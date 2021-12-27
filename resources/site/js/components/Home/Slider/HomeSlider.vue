@@ -58,7 +58,7 @@
                 this.currentIndex = index;
             },
             next: function() {
-                if(this.currentIndex < 4) {
+                if(this.currentIndex < this.slides.length - 1 ) {
                     this.currentIndex += 1;
                 }
 
