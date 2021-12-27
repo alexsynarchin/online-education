@@ -11,14 +11,19 @@ import modal from 'vue-js-modal';
 Vue.use(modal);
 
 //Auth
-
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
+Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
+//Footer
 Vue.component('FooterLine',require('./components/footer/FooterLine').default);
 Vue.component('FooterLinks',require('./components/footer/FooterLinks').default);
 Vue.component('FooterLogo',require('./components/footer/FooterLogo').default);
 Vue.component('FooterMenu',require('./components/footer/FooterMenu').default);
 Vue.component('FooterSocial',require('./components/footer/FooterSocial').default);
-Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
+//Home
+Vue.component('HomeHowToUseSite',require('./components/Home/HomeHowUseSite').default);
+Vue.component('HomeBanner',require('./components/Home/HomeBanner').default);
+Vue.component('HomePlus',require('./components/Home/HomePluse').default);
+Vue.component('HomeStudyItems',require('./components/Home/HomeStudyItems').default);
 
 import router from './router'
 
