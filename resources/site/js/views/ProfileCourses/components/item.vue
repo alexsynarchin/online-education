@@ -20,7 +20,7 @@
                 </div>
                 <div class="course-item__actions">
                     <div class="mb-2">
-                        <el-button icon="el-icon-edit" type="primary" style="width: 100%">Редактировать</el-button>
+                        <el-button icon="el-icon-edit" type="primary" style="width: 100%" @click="handleEdit">Редактировать</el-button>
                     </div>
                     <div class="mb-2">
                         <el-button icon="el-icon-delete" type="danger" style="width: 100%">Удалить</el-button>
@@ -38,6 +38,11 @@
             course:{
                 type:Object,
                 required:true,
+            }
+        },
+        methods: {
+            handleEdit() {
+                window.location.href = '/profile/course/' + this.course.slug + '/edit'
             }
         }
     }

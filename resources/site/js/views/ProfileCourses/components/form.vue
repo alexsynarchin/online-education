@@ -1,7 +1,6 @@
 <template>
   <section>
       <el-form ref="form" :model="form" class="mb-4">
-
       <div class="mt-4 row">
           <el-form-item :error="errors.get('edu_type_id')" class="col-md-4" label="Тип образования">
               <el-select v-model="form.edu_type_id"
@@ -159,6 +158,10 @@ import { Errors } from  '@/common/js/services/errors.js';
       mounted() {
         this.getCategories('edu_type');
         this.getCategories('subject');
+        if(this.form.edu_type_id) {
+            this.getCategories('edu_level', this.form.edu_type_id);
+            console.log(this.form.edu_type_id);
+        }
       }
   }
 </script>

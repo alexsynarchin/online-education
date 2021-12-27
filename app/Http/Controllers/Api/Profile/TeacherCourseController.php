@@ -73,4 +73,14 @@ class TeacherCourseController extends Controller
         }
         return $course;
     }
+    public function update(Request $request)
+    {
+
+    }
+
+    public function show($slug)
+    {
+        $course = Course::where('slug', $slug) -> firstOrFail();
+        return $course;
+    }
 }

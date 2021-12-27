@@ -19,6 +19,8 @@ Route::get('/category/list/{type}/{parent_id?}', [CategoryController::class,'typ
 use App\Http\Controllers\Api\Profile\TeacherCourseController;
 Route::get('/profile/course/index/{type}', [TeacherCourseController::class,'index']) -> name('profile.course.index');
 Route::post('/profile/course/store',[TeacherCourseController::class,'store'])->name('profile.course.store');
+Route::post('/profile/course/update',[TeacherCourseController::class,'update'])->name('profile.course.update');
+Route::get('/profile/course/{slug}/show', [TeacherCourseController::class,'show']) -> name('profile.course.show');
 
 use App\Http\Controllers\Api\Profile\ProfileController;
     Route::get('/profile/account', [ProfileController::class, 'account']) ->name('profile.user.account');
