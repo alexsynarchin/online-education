@@ -12,6 +12,7 @@ Vue.use(modal);
 
 //Auth
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
+Vue.component('HeaderNavigation', require('./components/header/HeaderNavigation').default);
 Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
 //Footer
 Vue.component('FooterLine',require('./components/footer/FooterLine').default);

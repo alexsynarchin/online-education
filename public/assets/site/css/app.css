@@ -12265,3 +12265,126 @@ a {
   border-radius: 15px;
   margin-bottom: 20px;
 }
+
+.filter-nav {
+  flex: 1 75%;
+  max-width: 75%;
+}
+.filter-nav__list {
+  margin-bottom: 0;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.filter-nav__item {
+  position: relative;
+}
+.filter-nav__link {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #272727;
+}
+.filter-nav__link:hover {
+  text-decoration: none;
+  color: #0056b3;
+}
+.filter-nav__sub {
+  box-shadow: 0px 0px 22px rgba(150, 150, 150, 0.25);
+  z-index: 55;
+  display: none;
+  position: absolute;
+  margin-top: 25px;
+  left: 0;
+}
+.filter-nav__sub--open {
+  display: block;
+}
+.filter-nav__sub:before {
+  z-index: 56;
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 15px;
+  width: 32px;
+  height: 20px;
+  border: 20px solid transparent;
+  border-bottom: 20px solid #fff;
+}
+.filter-nav__sub-inner {
+  border-radius: 10px;
+  padding: 20px 0 0 0;
+  min-width: 380px;
+  background-color: #fff;
+}
+.filter-nav__search {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.filter-nav__filter {
+  display: flex;
+}
+.filter-nav__levels {
+  padding-top: 23px;
+  padding-left: 40px;
+  padding-right: 10px;
+  flex: 1 50%;
+  max-width: 50%;
+  width: 50%;
+  padding-bottom: 20px;
+}
+.filter-nav__subjects {
+  background-color: #F2F3F6;
+  flex: 1 50%;
+  max-width: 50%;
+  width: 50%;
+}
+
+.filter-nav-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.filter-nav-list--subjects {
+  padding-bottom: 20px;
+  padding-top: 23px;
+  padding-right: 10px;
+  padding-left: 40px;
+  overflow-y: scroll;
+  scrollbar-color: #6A89CCFF rgba(106, 137, 204, 0.24);
+  /* thumb and track color */
+  scrollbar-width: 6px;
+}
+.filter-nav-list--subjects::-webkit-scrollbar {
+  width: 6px;
+  /* width of the entire scrollbar */
+}
+.filter-nav-list--subjects::-webkit-scrollbar-track {
+  background: rgba(106, 137, 204, 0.24);
+  /* color of the tracking area */
+}
+.filter-nav-list--subjects::-webkit-scrollbar-thumb {
+  background-color: #6A89CCFF;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid #6a89cc;
+  /* creates padding around scroll thumb */
+}
+.filter-nav-list__item {
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #272727;
+}
+.filter-nav-list__item--selected {
+  color: #6A89CC;
+}
+.filter-nav-list__item--disabled {
+  color: rgba(39, 39, 39, 0.35);
+}

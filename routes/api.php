@@ -20,4 +20,11 @@ use App\Http\Controllers\Api\Profile\TeacherCourseController;
 Route::get('/profile/course/index', [TeacherCourseController::class,'index']) -> name('profile.course.index');
 Route::post('/profile/course/store',[TeacherCourseController::class,'store'])->name('profile.course.store');
 
+//Header nav
+use App\Http\Controllers\Api\HeaderNavController;
+Route::get('/header-nav/edu-types', [HeaderNavController::class, 'eduTypesList']) -> name('header-nav.edu-list');
+Route::get('/header-nav/edu-levels', [HeaderNavController::class, 'eduLevelsList']) -> name('header-nav.edu-levels-list');
+Route::get('/header-nav/edu-subjects', [HeaderNavController::class,'eduSubjectsList']) -> name('header-nav.edu-subjects-list');
+//Route::post('/header-nav/filter', 'Api\HeaderNavController@filter') -> name('header-nav.filter');
+
 
