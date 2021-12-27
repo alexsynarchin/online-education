@@ -26,7 +26,7 @@ const app = new Vue({
     },
     methods:{
         async loadedApp(){
-            this.isLoading = false;
+            this.isLoading = true;
         },
 
     }
