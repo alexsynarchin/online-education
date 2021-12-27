@@ -1,0 +1,40 @@
+.b-tab-questation{
+    display: flex;
+    justify-content: center;
+}
+
+.b-tab{
+    display: flex;
+    justify-content: center;
+    &__item{
+        display: flex;
+        justify-content: center;
+    }
+    &__link{
+        position: relative;
+        font-family: 'RobotoRegular', sans-serif;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        color: #000 !important;
+        text-decoration: none;
+        &:after{
+            position: absolute;
+            bottom:0;
+            content: '';
+            width: 0;
+            left: 0;
+            height: 2px;
+            background-color: #35529F;
+        }
+        &.active{
+            border: none !important;
+            &:after{
+                width: 100%;
+            }
+        }
+        &:hover{
+            border: none !important;
+        }
+
+    }
+}

@@ -1,0 +1,9 @@
+.social-auth{
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    text-align: center;
+    &__item{
+        display: inline-block;
+    }
+}

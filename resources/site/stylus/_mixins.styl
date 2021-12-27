@@ -1,0 +1,16 @@
+rem($value)
+    return unit($value / 16,'rem')
+
+size()
+    if length(arguments) == 1
+        width: arguments[0]
+        height: arguments[0]
+    else
+        width: arguments[0]
+        height: arguments[1]
+
+placeholders(content)
+    -webkit-input-placeholder content
+    -moz-placeholder content
+    -moz-placeholder content
+    -ms-input-placeholder content  

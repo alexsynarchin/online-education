@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+
+//components
+
+@import "components/scaffolding";
+@import "components/auth";
+@import "components/preloader";
+@import "components/educate-icons";
+@import "components/teacher-lesson";
+//Header
+@import "components/base/page-header";
+@import "components/header/page-header-profile";
+
+//Sidebar
+@import "components/sidebar/sidebar-header";
+@import "components/sidebar/sidebar-nav";
+
+//Elements
+@import "components/elements/el-aside";

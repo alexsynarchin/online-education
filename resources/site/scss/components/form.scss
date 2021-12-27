@@ -1,0 +1,11 @@
+.el-form-item__label{
+    padding: 0 !important;
+    margin-bottom: 0;
+}
+.label-height-0{
+    .el-form-item__label{
+        line-height: 1;
+        padding-bottom: 0.2rem !important;
+    }
+}
+

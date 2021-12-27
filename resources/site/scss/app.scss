@@ -1,0 +1,30 @@
+@import "~bootstrap/scss/bootstrap";
+@import "variables";
+
+// Layout
+
+//Base
+@import "layout/base/scaffolding";
+//Header
+@import "layout/header/page-header";
+@import "layout/header/page-header-top-nav";
+@import "layout/header/page-header-main";
+@import "layout/header/page-header-phone";
+@import "layout/header/page-header-top";
+
+
+//Components
+//base
+@import "components/base/preloader";
+@import "components/b-search";
+@import "components/form";
+@import "components/modal-form";
+@import "components/social-auth";
+@import "components/b-tab";
+@import "components/breadcrumbs";
+@import "components/user-profile";
+@import "components/button";
+@import "components/avatar-uploader";
+
+//Course
+@import "components/course/course-item";

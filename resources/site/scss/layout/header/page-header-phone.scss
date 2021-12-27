@@ -1,0 +1,18 @@
+.page-header-phone {
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+  -moz-font-feature-settings: 'lnum=1';
+  -ms-font-feature-settings: 'lnum';
+  -webkit-font-feature-settings: 'lnum';
+  -o-font-feature-settings: 'lnum';
+  &__icon {
+    width: 23px;
+    height: 23px;
+    margin-right: 8px;
+  }
+}

@@ -1,0 +1,212 @@
+@import '@/admin/stylus/_mixins.styl'
+@import '@/admin/stylus/_rapture.styl'
+
+rupture.scale =       0    576px    768px    992px    1200px
+rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
+.b-breadcrumbs
+    margin 50px 0px 20px 0px
+    font-family 'RobotoLight'
+    font-size 16px
+    font-weight 400
+    color #9F9F9F
+
+.teacher-lesson
+    margin-bottom 80px
+
+.teacher-lesson-item
+    +below(sm)
+        padding 15px 20px
+
+.teacher-lesson__title
+    margin 20px 0px 30px 0px
+    font-family 'RubikRegular', sans-serif
+    font-size rem(36px)
+    font-weight 200
+    color #4B4B4B
+    +below(md)
+        font-size rem(26px)
+    &--small
+        margin-bottom 20px
+        font-size rem(28px)
+        +below(md)
+            font-size rem(26px)
+
+.teacher-container
+    margin-top 20px
+
+.preview-wrapper
+    height 100%
+    display flex
+    flex-direction column
+    justify-content space-between
+    +below(sm)
+        margin-top 20px
+
+.preview-lesson-des
+    display flex
+    justify-content space-between
+    +below(sm)
+        flex-wrap wrap
+    &__left
+        width 50%
+        +below(sm)
+            width 100%
+            margin-bottom 20px
+    &__right
+        width 50%
+        +below(sm)
+            width 100%
+
+.preview-lesson-wrap
+    max-width 100%
+    border-radius 15px
+    overflow hidden
+    +below(md)
+        margin-bottom 30px
+
+.preview-lesson-img
+   max-width 100%
+    +below(md)
+        object-fit cover
+
+.preview-stars
+    position relative
+    top -3px
+    height 28px
+    display flex
+
+.preview-star
+    size 20px
+    margin-left 4px
+    &__icon
+        size 100%
+    &__count
+        height 100%
+        display flex
+        align-items center
+        margin-left 10px
+        font 400 rem(14px) 'RobotoRegular', sans-serif
+        color #4B4B4B
+
+.preview-author
+    margin-top 10px
+    &__title
+        display inline-block
+        margin-bottom 15px
+        font 400 rem(14px) 'RobotoRegular', sans-serif
+    &-group
+        display flex
+        &__img
+            size 55px
+            margin-right 10px
+            border-radius 50%
+        &__fullname
+            width 50%
+            word-wrap break-word
+            font 400 rem(16px) 'RobotoMedium', sans-serif
+
+.preview-price-group
+    height 130px
+    padding 15px
+    border 1px dashed #99AEDB
+    border-radius 10px
+
+.preview-price
+    &__title
+        margin-right 10px
+        font 400 rem(14px) 'RobotoRegular', sans-serif
+        color #4B4B4B
+    &__ruble
+        font 400 rem(14px) 'RobotoMedium', sans-serif
+        color #4B4B4B
+    &__btn
+        display inline-block
+        margin-top 12px
+        padding 10px 30px
+        border-radius 20px
+        background-color #6A89CC
+        font 400 rem(14px) 'RobotoRegular', sans-serif
+        color #fff !important
+        transition all .25s ease
+        &:hover
+            background-color #4A69BD
+            color #fff
+
+.preview-specific
+    display flex
+    margin-top 15px
+    +below(sm)
+        margin 15px 0px
+    &__item
+        display flex
+        align-items center
+        margin-right 20px
+    &-icon
+        size 20px
+        margin-right 10px
+        fill #99AEDB
+    &-text
+        font 400 rem(14px) 'RobotoRegular', sans-serif
+        color #4B4B4B
+
+.preview-text
+    margin-top 30px
+    font 400 rem(16px) 'RobotoRegular', sans-serif
+    color #4B4B4B
+
+.all-course
+    position relative
+    display flex
+    align-items center
+    margin 20px 0px 0px 0px
+    padding-bottom 40px
+    +below(sm)
+        flex-direction column
+        align-items flex-start
+    &::after
+        content ''
+        position absolute
+        bottom 0
+        left 0
+        width 100%
+        height 2px
+        background-color #DEDEDE
+    &__btn
+        display inline-block
+        margin-right 15px
+        padding 15px 40px
+        border-radius 8px
+        background-color #6A89CC
+        font 400 rem(16px) 'RubikLight', sans-serif
+        color #fff !important
+        box-shadow 10px 10px 20px -10px rgba(0,0,0,0.25)
+        transition all .25s ease
+        &:hover
+            background-color #4A69BD
+            box-shadow none
+            color #fff
+        +below(sm)
+            margin-bottom 10px
+    &__sale
+        display inline-block
+        margin-right 15px
+        padding 11px 18px
+        border-radius 8px
+        background-color #EBF5FE
+        font 400 rem(18px) 'RobotoRegular', sans-serif
+        color #CBCBCB
+        +below(sm)
+            font-size rem(16px)
+            margin-bottom 10px
+    &__price
+        font 400 rem(18px) 'RobotoRegular', sans-serif
+        color #4B4B4B
+        +below(sm)
+            font-size rem(16px)
+
+.other-lesson-title
+    margin 25px 0px 40px 0px
+    font-family 'RubikRegular', sans-serif
+    font-size rem(28px)
+    font-weight 200
+    color #4B4B4B

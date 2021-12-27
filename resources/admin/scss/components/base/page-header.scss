@@ -1,0 +1,16 @@
+.page-header{
+    background-color: $blue;
+    color:#fff;
+    flex-shrink: 0;
+    height: 60px;
+    &__right{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+.el-dropdown-link{
+    font-size:1.05rem;
+    color: #fff;
+    cursor: pointer;
+}

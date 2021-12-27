@@ -1,0 +1,17 @@
+.page-header-top {
+  background-color: #F2F3F7;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  margin-bottom: 30px;
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__right {
+    align-items: center;
+    display: flex;
+  }
+}

@@ -1,0 +1,13 @@
+.sidebar-nav{
+    &__link{
+        font-size:1.05rem;
+        font-family: $headings-font-family;
+        &-text{
+            vertical-align: middle;
+        }
+    }
+    &__icon{
+        vertical-align: middle;
+        font-size:1.15rem;
+    }
+}
