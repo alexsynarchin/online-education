@@ -12269,6 +12269,7 @@ a {
 .filter-nav {
   flex: 1 75%;
   max-width: 75%;
+  margin-right: 25px;
 }
 .filter-nav__list {
   margin-bottom: 0;
