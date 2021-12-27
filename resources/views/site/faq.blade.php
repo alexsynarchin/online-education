@@ -13,7 +13,6 @@
                     </div>
                     <h1 class="tab-questation__title">Вопросы и ответы</h1>
                 </div>
-                <faq></faq>
             </div>
         </div>
     </div>
