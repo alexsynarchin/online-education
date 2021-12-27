@@ -15,6 +15,18 @@
                 </p>
             </div>
             <div class="course-item__right">
+                <div class="course-item__price">
+                    {{course.price}} ₽
+                </div>
+                <div class="course-item__actions">
+                    <div class="mb-2">
+                        <el-button icon="el-icon-edit" type="primary" style="width: 100%">Редактировать</el-button>
+                    </div>
+                    <div class="mb-2">
+                        <el-button icon="el-icon-delete" type="danger" style="width: 100%">Удалить</el-button>
+                    </div>
+
+                </div>
 
             </div>
         </div>
