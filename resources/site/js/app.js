@@ -13,6 +13,11 @@ Vue.use(modal);
 //Auth
 
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
+Vue.component('FooterLine',require('./components/footer/FooterLine').default);
+Vue.component('FooterLinks',require('./components/footer/FooterLinks').default);
+Vue.component('FooterLogo',require('./components/footer/FooterLogo').default);
+Vue.component('FooterMenu',require('./components/footer/FooterMenu').default);
+Vue.component('FooterSocial',require('./components/footer/FooterSocial').default);
 Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
 
 import router from './router'
