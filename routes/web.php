@@ -33,3 +33,21 @@ Route::get('/profile', [DashboardController::class, 'index']) -> name('dashboard
 Route::get('profile/my-courses/{slug}', [DashboardController::class, 'index']) -> name('profile.course.index');
 Route::get('profile/course/create', [DashboardController::class, 'index']) -> name('profile.course.create');
 Route::get('/profile/courses/{slug}', [DashboardController::class, 'index']) -> name('profile.course.show');
+
+
+
+Route::get('/for-teachers', function(){
+    return view('site.inner');
+});
+Route::get('/about', function(){
+    return view('site.inner');
+});
+Route::get('/for-student', function(){
+    return view('site.inner');
+});
+Route::get('/blog', function(){
+    return view('site.inner');
+});
+Route::get('/faq', function(){
+    return view('site.faq');
+});

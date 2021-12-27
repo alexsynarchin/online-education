@@ -25,6 +25,9 @@ Vue.component('HomeBanner',require('./components/Home/HomeBanner').default);
 Vue.component('HomePlus',require('./components/Home/HomePluse').default);
 Vue.component('HomeStudyItems',require('./components/Home/HomeStudyItems').default);
 
+//FAQ
+Vue.component('Faq',require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
+
 import router from './router'
 
 Vue.component('ProfileDashboard', require('./components/profile-dashboard/index').default);
