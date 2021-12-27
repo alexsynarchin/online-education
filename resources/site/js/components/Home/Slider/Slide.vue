@@ -2,7 +2,6 @@
     <div class="home-slider__slide" :class="{
         'home-slider__slide--active':this.index === currentIndex
     }"
-    style="background-image: url('/assets/site/images/home-slider.png')"
     >
         <div class="row">
             <div class="col-md-8">
@@ -17,7 +16,16 @@
                 </label>
             </div>
         </div>
-
+        <figure class="home-slider__slide-bg">
+            <img src="/assets/site/images/home-slider.png">
+        </figure>
+        <ul class="home-slider-levels">
+            <li class="home-slider-levels__item" v-for="(level, index) in slide.levels">
+                <span>
+                    {{index + 1}}
+                </span>
+            </li>
+        </ul>
 
     </div>
 </template>

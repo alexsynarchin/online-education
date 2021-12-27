@@ -44,7 +44,7 @@ const app = new Vue({
     },
     methods:{
         async loadedApp(){
-            this.isLoading = true;
+            this.isLoading = false;
         },
 
     }
