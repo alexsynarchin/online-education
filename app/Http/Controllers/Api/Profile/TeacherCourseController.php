@@ -10,10 +10,32 @@ use Auth;
 
 class TeacherCourseController extends Controller
 {
-    public function index()
+    public function index($type)
     {
         $user = Auth::user();
-        $courses = Course::where('author_id', $user -> id) -> get();
+        if ($type === 'moderate'){
+            $status = 1;
+            $empty_message = "В данный момент у вас нет курсов ожидающих модерации";
+        }
+        elseif ($type === 'draft')
+        {
+            $status = 0;
+            $empty_message = "В данный момент у вас нет сохраненных  черновиков";
+
+        }
+        elseif($type === 'active'){
+            $status = 2;
+            $empty_message = "В данный момент у вас нет уроков прошедщих модерацию";
+        }
+        elseif($type === 'cancel'){
+            $status = 3;
+            $empty_message = "В данный момент у вас нет отклоненных уроков";
+        }
+        else{
+            $status='moderate';
+            $empty_message = "В данный момент у вас нет уроков ожидающих модерации";
+        }
+        $courses = Course::where('author_id', $user -> id)->where('status', $status) -> get();
         return $courses;
     }
     public function store(Request $request)

@@ -70,7 +70,7 @@ import CourseItem from './components/item'
         },
         methods: {
             getCourses() {
-                axios.get('/api/profile/course/index')
+                axios.get('/api/profile/course/index/' + this.active_tab)
                 .then((response) => {
                     this.courses = response.data;
                 })

@@ -1,0 +1,248 @@
+<template>
+    <div>
+        <el-form :model="formData" ref="formData" :rules="rules" class="edu-h-form mb-3"  @submit.prevent="formSubmit" >
+            <div class="d-flex mt-3 mb-4 edu-h-form__settings">
+                <div class="mr-md-3">
+                    <el-form-item prop="avatar">
+                        <el-upload
+                            action=""
+                            v-model="formData.avatar"
+                            class="avatar-uploader circle"
+                            :auto-upload="false"
+                            :show-file-list="false"
+                            :on-change="uploadImage"
+                        >
+                            <img v-if="formData.avatar || user.avatar" :src="formData.avatar ? formData.avatar : user.avatar " class="avatar el-avatar--circle">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                        </el-upload>
+                    </el-form-item>
+                </div>
+                <div>
+                    <el-button @click.prevent="changeEmail">Изменить эл. почту</el-button>
+                    <el-button @click.prevent="password_modal = true">Изменить пароль</el-button>
+                </div>
+            </div>
+            <el-form-item prop="gender" label="Пол">
+                <el-radio-group v-model="formData.gender" >
+                    <el-radio label="1" border>Женский</el-radio>
+                    <el-radio label="2" border>Мужской</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item label="Уведомления" prop="notifications">
+                <el-switch v-model="formData.notifications" >
+                </el-switch>
+            </el-form-item>
+            <el-form-item label="Покупка за промокоды" v-if="user.profile_type === 'teacher'" prop="allow_promo">
+                <el-switch v-model="formData.allow_promo"   >
+                </el-switch>
+            </el-form-item>
+            <el-form-item label="Имя" prop="name">
+                <el-input v-model="formData.name"></el-input>
+            </el-form-item>
+            <el-form-item label="Фамилия" prop="surname">
+                <el-input v-model="formData.surname"></el-input>
+            </el-form-item>
+            <el-form-item label="Отчество" prop="last_name">
+                <el-input v-model="formData.last_name"></el-input>
+            </el-form-item>
+            <el-form-item label="Город" prop="city">
+                <el-input v-model="formData.city"></el-input>
+            </el-form-item>
+            <el-form-item label="Дата рождения" prop="birthday">
+                <el-input :placeholder="'дд.мм.гг'" v-model="formData.birthday" v-mask="'##.##.##'"></el-input>
+            </el-form-item>
+            <el-form-item label="Телефон" prop="phone">
+                <el-input v-model="formData.phone" v-mask="'+7(###)-##-##-###'" :placeholder="'+7(999)-99-99-999'"></el-input>
+            </el-form-item>
+            <div class="text-center">
+                <el-button type="primary" class="" @click.prevent="formSubmit">Сохранить</el-button>
+                <el-button type="" class="" @click.prevent="cancelEdit">Отменить</el-button>
+            </div>
+        </el-form>
+        <el-dialog
+            title="Сменить пароль"
+            :visible.sync="password_modal"
+            width="40%"
+        >
+            <el-form :model="passwordForm" :rules="password_rules" ref="passwordForm" label-position="top">
+                <el-form-item prop="current_password" :error="errors.get('current_password')" label="Текущий пароль">
+                    <el-input v-model="passwordForm.current_password" placeholder="Введите текущий пароль" show-password></el-input>
+                </el-form-item>
+                <el-form-item prop="new_password" :error="errors.get('new_password')" label="Новый пароль">
+                    <el-input v-model="passwordForm.new_password" placeholder="Введите новый пароль" show-password></el-input>
+                </el-form-item>
+                <el-form-item prop="new_password_confirmation" label="Новый пароль еще раз">
+                    <el-input v-model="passwordForm.new_password_confirmation" placeholder="Повторите новый пароль" show-password></el-input>
+                </el-form-item>
+            </el-form>
+            <div class="mt-3 d-flex justify-content-center">
+                <el-button  type="primary" @click="submitPasswordForm('passwordForm')">Сохранить</el-button>
+                <el-button @click="password_modal = false">Отмена</el-button>
+            </div>
+        </el-dialog>
+    </div>
+</template>
+
+<script>
+    import {mask} from 'vue-the-mask'
+    import { Errors } from  '@/common/js/services/errors.js';
+    export default {
+        props:['user','account'],
+        directives: {mask},
+        data() {
+            return {
+                options: [
+                    { text: 'Мужской', value: 2 },
+                    { text: 'Женский', value: 1 },
+                ],
+                password_rules: {
+                    current_password: [
+                        {required:true, message: 'Введите текущий пароль'}
+                    ],
+                    new_password: [
+                        {required:true, message: 'Введите новый пароль'}
+                    ],
+                    new_password_confirmation: [
+                        {required:true, message: 'Повторите новый пароль'}
+                    ],
+                },
+                passwordForm: {
+                    current_password:"",
+                    new_password: "",
+                    new_password_confirmation: ""
+
+                },
+                formData: {
+                    gender: this.user.gender,
+                    notifications: Boolean(this.user.notifications),
+                    name:this.user.name,
+                    surname:this.user.surname,
+                    last_name:this.user.last_name,
+                    city:this.user.city,
+                    phone:this.user.phone,
+                    birthday:this.birthday,
+                    avatar:"",
+                    allow_promo:"",
+
+                },
+                password_modal:false,
+                rules:{
+
+                },
+                errors: new Errors(),
+            }
+        },
+        methods:{
+            uploadImage(file){
+                let cond = this.beforeImageUpload(file.raw);
+                console.log(cond);
+                if(cond){
+                    this.createImage(file);
+                }
+            },
+            beforeImageUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isPNG = file.type === 'image/png';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG && !isPNG) {
+                    this.$message.error('Картинка должна быть в формате jpeg или png');
+                }
+                if (!isLt2M) {
+                    this.$message.error('Размер не может превышать 2МБ');
+                }
+                return (isJPG || isPNG) && isLt2M;
+            },
+
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.formData.avatar = e.target.result;
+                };
+                reader.readAsDataURL(file.raw);
+            },
+            submitPasswordForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if(valid) {
+                        axios.post('/api/profile/' + this.user.id + '/change-password', this.passwordForm)
+                            .then((response) => {
+                                this.password_modal = false;
+                                this.$refs[formName].resetFields();
+                                this.$message({
+                                    message: response.data,
+                                    type: 'success'
+                                });
+
+                            })
+                            .catch((error) => {
+                                this.errors.record(error.response.data.errors);
+                            })
+                    } else {
+                        return false;
+                    }
+                });
+
+            },
+            cancelEdit() {
+                this.$emit('cancelEdit');
+            },
+            getAllowPromo(){
+                if(this.user.profile_type === 'teacher'){
+                    this.formData.allow_promo = this.account.allow_promo;
+                }
+            },
+            changeEmail() {
+                this.$emit('changeEmail')
+            },
+            formSubmit(){
+                var data = this.formData;
+                axios.post('/profile/edit/'+this.user.id, data)
+                    .then(function (response) {
+                        console.log(response.request.responseURL);
+                        window.location = response.request.responseURL;
+                    })
+                    .catch(function (error) {
+                        var errors = error.response;
+                        if(errors.statusText === 'Unprocessable Entity' || errors.status === 422){
+                            console.log(errors.data);
+                            var er_data =  errors.data.errors;
+                        }
+                    });
+            }
+        },
+        mounted() {
+            this.getAllowPromo();
+        }
+    }
+</script>
+<style lang="scss" scoped>
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader.circle .el-upload {
+        border-radius: 100%;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+        &--circle{
+            border-radius:100%;
+        }
+    }
+</style>
