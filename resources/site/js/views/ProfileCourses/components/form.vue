@@ -68,6 +68,7 @@
         </el-col>
       </el-row>
       <el-button  type="primary" @click.prevent="storeCourse()"  style="text-transform: uppercase">Сохранить курс</el-button>
+          <el-button  type="default" @click.prevent="closeCourse()"  style="text-transform: uppercase">Вернуться к списку курсов</el-button>
     </el-form>
   </section>
 </template>
@@ -96,6 +97,9 @@ import { Errors } from  '@/common/js/services/errors.js';
       }
     },
     methods: {
+        closeCourse(){
+            window.location.href='/profile/my-courses/active';
+        },
       storeCourse() {
         axios.post(this.actionUrl, this.form)
         .then((response) => {
