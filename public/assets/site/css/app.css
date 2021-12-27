@@ -12121,6 +12121,39 @@ a {
   display: block;
 }
 
+.home-slider__title {
+  font-size: 42px;
+  color: #6A89CC;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.home-slider__text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #272727;
+  margin-bottom: 55px;
+}
+.home-slider__label {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+.home-slider__slide {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  visibility: hidden;
+  width: 100%;
+  opacity: 0;
+  display: none;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+}
+.home-slider__slide--active {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
 .course-item {
   padding: 25px 30px;
   background: #FFFFFF;

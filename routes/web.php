@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('site.home.index');
-}) -> name('home');
+use App\Http\Controllers\Site\HomeController;
+Route::get('/', [HomeController::class, 'index']) -> name('home');
 
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLogin;
 Route::get('/admin-login', [AdminLogin::class, 'login']) -> middleware('admin-guest') -> name('admin.login');

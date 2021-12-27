@@ -20,6 +20,7 @@ Vue.component('FooterLogo',require('./components/footer/FooterLogo').default);
 Vue.component('FooterMenu',require('./components/footer/FooterMenu').default);
 Vue.component('FooterSocial',require('./components/footer/FooterSocial').default);
 //Home
+Vue.component('HomeSlider',require('./components/Home/Slider/HomeSlider').default);
 Vue.component('HomeHowToUseSite',require('./components/Home/HomeHowUseSite').default);
 Vue.component('HomeBanner',require('./components/Home/HomeBanner').default);
 Vue.component('HomePlus',require('./components/Home/HomePluse').default);
@@ -43,7 +44,7 @@ const app = new Vue({
     },
     methods:{
         async loadedApp(){
-            this.isLoading = false;
+            this.isLoading = true;
         },
 
     }

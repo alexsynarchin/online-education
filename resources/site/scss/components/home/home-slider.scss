@@ -1,0 +1,36 @@
+.home-slider {
+
+    &__title {
+        font-size: 42px;
+        color: #6A89CC;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+    &__text{
+        font-size: 16px;
+        font-weight: 500;
+        color: $text-color;
+        margin-bottom: 55px;
+    }
+    &__label {
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+ &__slide {
+     padding-top: 100px;
+     padding-bottom: 40px;
+     visibility: hidden;
+     width:100%;
+     opacity: 0;
+     display: none;
+     background-repeat: no-repeat;
+     background-position: right center;
+     background-size: contain;
+
+     &--active {
+         display: block;
+         visibility: visible;
+         opacity: 1;
+     }
+ }
+}
