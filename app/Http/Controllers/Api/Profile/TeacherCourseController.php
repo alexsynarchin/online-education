@@ -108,12 +108,7 @@ class TeacherCourseController extends Controller
 
     public function show($slug)
     {
-        $course = Course::where('slug', $slug) -> firstOrFail();
+        $course = Course::where('slug', $slug) ->with('lessons') -> firstOrFail();
         return $course;
-    }
-
-    public function lessons($type, $id)
-    {
-
     }
 }

@@ -25,7 +25,11 @@
           course_slug: {
               type:String,
               required:true
-          }
+          },
+            course_lessons:{
+              type:Array,
+                required:true,
+            }
         },
         data() {
             return {
@@ -55,9 +59,6 @@
             selectTab(type) {
                 this.active_tab = type;
             },
-            getLessons(slug, type) {
-
-            }
          },
     }
 </script>

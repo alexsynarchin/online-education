@@ -22,6 +22,7 @@ Route::post('/profile/course/store',[TeacherCourseController::class,'store'])->n
 Route::post('/profile/course/update',[TeacherCourseController::class,'update'])->name('profile.course.update');
 Route::get('/profile/course/{slug}/show', [TeacherCourseController::class,'show']) -> name('profile.course.show');
 
+
 use App\Http\Controllers\Api\Profile\TeacherLessonController;
 
 Route::post('/profile/lesson/store', [TeacherLessonController::class, 'store']) -> name('profile.lesson.store');
