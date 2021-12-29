@@ -23,13 +23,6 @@ class QuestionService
             ]);
             $question->save();
             $question_dir = $directory . 'question-'.$question->id . '/';
-            if (strpos($item['preview'], 'data:image') !== false) {
-                $imageService = new ImageService();
-                $filename = $imageService -> make($item['preview'],$question_dir);
-                $question-> image = $filename;
-                $question ->directory = $question_dir;
-                $question->save();
-            }
             $optionsService = new OptionService();
             $optionsService->update($item['options'], $question->id, $question_dir);
         }

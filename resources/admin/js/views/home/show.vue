@@ -12,10 +12,13 @@
                 <el-button type="danger" @click.prevent="dialogCancel = true" v-if="course.status === 1">Отклонить</el-button>
             </div>
         </section>
-        <el-tabs type="card" >
-
+        <el-tabs type="card" class="mb-3" >
             <el-tab-pane label="Основная информация">
                 <Description :course="course" v-if="course.author"></Description>
+            </el-tab-pane>
+        </el-tabs>
+        <el-tabs type="card" >
+            <el-tab-pane label="Уроки">
             </el-tab-pane>
         </el-tabs>
         <el-dialog title="Отклонить Курс" width="40%" :visible.sync="dialogCancel" >

@@ -41,17 +41,23 @@
 
                         <div class="preview-lesson-des__right">
                             <div class="preview-price-group">
-                                <div class="preview-price">
+                                <div class="preview-price mb-2">
                                     <span class="preview-price__title">Стоимость курса:</span>
                                     <span class="preview-price__ruble">{{Math.trunc(course.price)}} РУБ</span>
                                 </div>
                                 <div class="lesson_status text-center">
-                                            <span class="badge badge-pill badge-secondary" v-if="course.status == 0">
-                                                Черновик
-                                            </span>
-                                    <span class="badge badge-pill badge-warning" v-if="course.status == 1">
-                                                На модерации
-                                            </span>
+                                    <el-tag type="success" v-if="course.status == 2">
+                                        Опубликован
+                                    </el-tag>
+                                    <el-tag type="warning" v-if="course.status == 0">
+                                        Черновик
+                                    </el-tag>
+                                    <el-tag type="warning"  v-if="course.status == 1">
+                                        На модерации
+                                    </el-tag>
+                                    <el-tag type="danger"  v-if="course.status == 3">
+                                        Отклонен
+                                    </el-tag>
                                 </div>
                                 <!--<a href="#" class="preview-price__btn">Купить урок</a>-->
                             </div>

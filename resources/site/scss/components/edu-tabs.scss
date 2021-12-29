@@ -1,0 +1,14 @@
+.edu-tabs{
+    .el-tabs{
+        &__active-bar{
+            background-color: $edu-primary-dark;
+        }
+        &__item{
+
+            text-transform: uppercase;
+          &:hover, &.is-active{
+             color: $edu-primary-medium;
+          }
+        }
+    }
+}

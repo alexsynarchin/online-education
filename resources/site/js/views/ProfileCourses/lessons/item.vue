@@ -23,7 +23,7 @@
 
         methods: {
             handleEdit() {
-
+              this.$emit('handle-edit', this.lesson.slug);
             },
         }
     }

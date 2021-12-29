@@ -16,30 +16,19 @@ class UpdateLessonService
     {
         $lesson = Lesson::findOrFail($id);
         $description = $request->get('lesson');
-        $content = $request->get('content');
+        $content = $request->get('lesson')['content'];
+
         $lesson ->fill([
             'price_user' => $description['price'],
-            'description' => $description['description'],
             'price' => 0,
             'time' => $description['time'],
-            'type_video' => $content['type_video'],
-            'type_image' => $content['type_image'],
-            'type_text' => $content['type_text'],
             'status' => 1
         ]);
-        $descriptionModel = Description::where('descriptions_id', $id)->firstOrFail();
-        $descriptionModel ->text= $description['description'];
-        $descriptionModel ->save();
         $contentService = new ContentService();
         $directory = 'users/user-' . Auth::user()->id .'/courses/course-'. $lesson->course_id . '/lesson-' . $lesson->id . '/';
 
 
-        if (strpos($request->get('lesson')['preview'], 'data:image') !== false) {
-            $imageService = new ImageService();
-            $filename = $imageService -> make($request->get('lesson')['preview'],$directory);
-            $lesson -> image = $filename;
-            $lesson ->directory = $directory;
-        }
+
 
         $contentModel = $contentService -> update($content['text'],$id,$directory);
         $contentModel->save();

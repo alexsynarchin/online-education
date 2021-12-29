@@ -2,7 +2,10 @@
     <section class="lesson-create">
         <div class="b-breadcrumbs">
             <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> / <a href="/profile">Профиль</a> / <a href="/profile/my-courses/active">Мои курсы</a> / {{course.title}}
+                <a href="/">Главная</a> /
+                <a href="/profile">Профиль</a> /
+                <a href="/profile/my-courses/active">Мои курсы</a> /
+                {{course.title}}
             </div>
         </div>
         <section class="course-item">

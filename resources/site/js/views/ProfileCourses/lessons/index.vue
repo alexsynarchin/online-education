@@ -17,7 +17,7 @@
                 </a>
             </li>
         </ul>
-        <lesson-item :lesson="lesson" v-for="(lesson, index) in filteredLessons" :key="lesson.id"></lesson-item>
+        <lesson-item :lesson="lesson" v-for="(lesson, index) in filteredLessons" :key="lesson.id" @handle-edit="handleEdit"></lesson-item>
     </section>
 </template>
 <script>
@@ -73,6 +73,9 @@
             }
         },
          methods: {
+            handleEdit(lesson_slug) {
+                window.location.href = '/profile/courses/' + this.course_slug + '/lesson/' + lesson_slug + '/edit';
+            },
             selectTab(type, value) {
                 this.active_tab = type;
                 this.active_status = value;

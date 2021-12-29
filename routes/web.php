@@ -34,7 +34,7 @@ Route::get('/profile/course/{slug}/edit', [DashboardController::class, 'index'])
 Route::get('/profile/courses/{slug}', [DashboardController::class, 'index']) -> name('profile.course.show');
 
 Route::get('/profile/courses/{slug}/lesson-create', [DashboardController::class, 'index']) -> name('profile.course.lesson.create');
-
+Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardController::class, 'index']) -> name('profile.course.lesson.edit');
 
 
 Route::get('/for-teachers', function(){

@@ -24,14 +24,6 @@ class OptionService
                 'right_answer' => $item['right_answer']
             ]);
             $option ->save();
-            if (strpos($item['preview'], 'data:image') !== false) {
-                $option_dir = $directory . 'option-' . $option ->id . '/';
-                $imageService = new ImageService();
-                $filename = $imageService -> make($item['preview'],$option_dir);
-                $option-> image = $filename;
-                $option ->directory = $option_dir;
-                $option ->save();
-            }
         }
     }
 }
