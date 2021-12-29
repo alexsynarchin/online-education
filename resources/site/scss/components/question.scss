@@ -1,0 +1,14 @@
+.question{
+    &__options{
+        &-item{
+           margin-bottom: 0.6rem;
+            p{
+                margin-bottom: 0;
+            }
+        }
+    }
+    &__btns{
+        margin-left: auto;
+        flex: 0 0 auto;
+    }
+}

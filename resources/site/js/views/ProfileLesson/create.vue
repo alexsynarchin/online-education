@@ -36,6 +36,13 @@
             ref="createContent"
             v-if="active === 1"
         ></content-form>
+        <create-test
+            v-if="active === 2"
+            :data = "testData"
+            ref="create_test"
+            @submitForm="checkTest"
+        >
+        </create-test>
         <div class="text-center mb-3">
             <el-button @click.prevent="prev()" v-if="active > 0" style="text-transform: uppercase">Назад</el-button>
             <el-button type="primary"  @click.prevent="nextStep" v-if="active < 2" style="margin-top: 12px; text-transform: uppercase">Продолжить</el-button>
@@ -52,9 +59,10 @@
 <script>
 import DescriptionForm from "./components/form";
 import ContentForm from "./components/ContentForm";
+import CreateTest from "./components/CreateTest";
     export default {
     components: {
-        DescriptionForm, ContentForm,
+        DescriptionForm, ContentForm, CreateTest
     },
         props:{
             slug:String,
@@ -89,6 +97,49 @@ import ContentForm from "./components/ContentForm";
             }
         },
         methods: {
+            checkTest(val){
+                this.test_state = val
+            },
+            store(status) {
+                this.$refs.create_test.submitForm('data');
+                if(!this.test_state){
+                    return;
+                }
+                if(this.testData.questions.length === 0 && !this.without_test){
+                    this.$confirm('Вы уверенны в том что хотите создать урок без теста?', 'Тест не создан!', {
+                        confirmButtonText: 'Да',
+                        cancelButtonText: 'Нет',
+                        type: 'warning'
+                    }).then(() => {
+                        this.without_test = true;
+                        this.store(status);
+                    }).catch(() => {
+
+                    });
+                    return;
+                }
+                var descriptionData = this.descriptionData;
+                var contentData = this.contentData;
+                var testData = this.testData;
+                var formData = {};
+                var status_item = {status: status};
+
+                Object.assign(formData,descriptionData,testData,contentData, status_item);
+                this.isLoading = true;
+                axios.post('/api/profile/lesson/store',formData)
+                    .then( (response) => {
+                        window.location = response.request.responseURL;
+
+                    })
+                    .catch( (error) => {
+                        var errors = error.response;
+                        var er_data =  errors.data.errors;
+                        this.isLoading = false;
+                        if(er_data){
+
+                        }
+                    });
+            },
             getCourseData() {
                 axios.get('/api/profile/course/' + this.slug + '/show')
                     .then ((response) => {
