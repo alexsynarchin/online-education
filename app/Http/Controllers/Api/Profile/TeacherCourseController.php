@@ -103,7 +103,7 @@ class TeacherCourseController extends Controller
             $course ->addMediaFromBase64($request->get('image'))
                 ->toMediaCollection('courses');
         }
-        return '/profile/my-courses/active';
+        return route('profile.course.show', $course -> slug);
     }
 
     public function show($slug)
