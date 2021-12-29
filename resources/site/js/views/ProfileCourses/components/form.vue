@@ -101,10 +101,11 @@ import { Errors } from  '@/common/js/services/errors.js';
             window.location.href='/profile/my-courses/active';
         },
       storeCourse() {
+            this.$root.isLoading =  true;
         axios.post(this.actionUrl, this.form)
         .then((response) => {
-          console.log(response.data);
-          //window.location.href = response.data;
+            this.$root.isLoading = false;
+            window.location.href = response.data;
         })
         .catch((error) => {
           this.errors.record(error.response.data.errors);
@@ -113,6 +114,7 @@ import { Errors } from  '@/common/js/services/errors.js';
       uploadImage(file){
         let cond = this.beforeImageUpload(file.raw);
         console.log(cond);
+          this.form['imageName'] = file.raw.name;
         if(cond){
           this.createImage(file);
         }

@@ -42,7 +42,7 @@
         },
         methods: {
             handleEdit() {
-                window.location.href = '/profile/course/' + this.course.slug + '/edit'
+                window.location.href = '/profile/courses/' + this.course.slug;
             }
         }
     }

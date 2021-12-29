@@ -1,0 +1,74 @@
+.step-progressbar {
+    list-style:none;
+    counter-reset: step;
+    display: flex;
+    padding: 0;
+    font-family: $font-family-sans-serif !important;
+    &__item {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        text-align: center;
+        position: relative;
+        &:before {
+            width: 3em;
+            height: 3em;
+            content: counter(step);
+            counter-increment: step;
+            align-self: center;
+            border: 2px solid #999;
+            background: #999;
+            color: #fff;
+            border-radius: 100%;
+            line-height: 3em;
+            margin-bottom: .5em;
+        }
+
+        &:after {
+            height: 2px;
+            width: calc(100% - 4em);
+            content: '';
+            background: #999;
+            position: absolute;
+            top: 1.5em;
+            left: calc(50% + 2em);
+        }
+
+        &:last-child {
+            &:after {
+                content: none;
+            }
+        }
+
+        &--active {
+            &:before {
+                background: $green;
+                border-color: $green;
+            }
+        }
+
+        &--complete {
+            &:before {
+                content: '✔';
+                border-color: $green;
+               background: transparent !important;
+            }
+        }
+    }
+    .el-step__icon{
+        width: 40px;
+        height: 40px;
+    }
+    .el-step.is-horizontal{
+        .el-step__line{
+            top:20px;
+            font-size: 16px;
+        }
+    }
+    .el-step__description{
+        font-size: 1.1rem;
+
+    }
+
+}
+

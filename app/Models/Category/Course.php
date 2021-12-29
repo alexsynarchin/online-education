@@ -2,6 +2,7 @@
 
 namespace App\Models\Category;
 
+use App\Models\Lesson\Lesson;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Sluggable\HasSlug;
@@ -86,5 +87,10 @@ class Course extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'course_id');
     }
 }

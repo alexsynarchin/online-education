@@ -12471,3 +12471,63 @@ a {
   justify-content: space-between;
   padding: 10px 15px;
 }
+
+.step-progressbar {
+  list-style: none;
+  counter-reset: step;
+  display: flex;
+  padding: 0;
+  font-family: "Raleway", sans-serif !important;
+}
+.step-progressbar__item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.step-progressbar__item:before {
+  width: 3em;
+  height: 3em;
+  content: counter(step);
+  counter-increment: step;
+  align-self: center;
+  border: 2px solid #999;
+  background: #999;
+  color: #fff;
+  border-radius: 100%;
+  line-height: 3em;
+  margin-bottom: 0.5em;
+}
+.step-progressbar__item:after {
+  height: 2px;
+  width: calc(100% - 4em);
+  content: "";
+  background: #999;
+  position: absolute;
+  top: 1.5em;
+  left: calc(50% + 2em);
+}
+.step-progressbar__item:last-child:after {
+  content: none;
+}
+.step-progressbar__item--active:before {
+  background: #38c172;
+  border-color: #38c172;
+}
+.step-progressbar__item--complete:before {
+  content: "✔";
+  border-color: #38c172;
+  background: transparent !important;
+}
+.step-progressbar .el-step__icon {
+  width: 40px;
+  height: 40px;
+}
+.step-progressbar .el-step.is-horizontal .el-step__line {
+  top: 20px;
+  font-size: 16px;
+}
+.step-progressbar .el-step__description {
+  font-size: 1.1rem;
+}

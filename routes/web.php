@@ -28,10 +28,12 @@ Route::post('/logout', [LoginController::class, 'logout']) -> name('logout');
 
 use App\Http\Controllers\DashboardController;
 Route::get('/profile', [DashboardController::class, 'index']) -> name('dashboard');
-Route::get('/profile/my-courses/{slug}', [DashboardController::class, 'index']) -> name('profile.course.index');
+Route::get('/profile/my-courses/{type}', [DashboardController::class, 'index']) -> name('profile.course.index');
 Route::get('/profile/course/create', [DashboardController::class, 'index']) -> name('profile.course.create');
 Route::get('/profile/course/{slug}/edit', [DashboardController::class, 'index']) -> name('profile.course.edit');
 Route::get('/profile/courses/{slug}', [DashboardController::class, 'index']) -> name('profile.course.show');
+
+Route::get('/profile/courses/{slug}/lesson-create', [DashboardController::class, 'index']) -> name('profile.course.lesson.create');
 
 
 
