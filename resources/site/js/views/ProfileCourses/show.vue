@@ -37,7 +37,9 @@
                 </div>
             </div>
         </section>
-        <lessons :course_slug="course.slug"></lessons>
+        <lessons :course_lessons="course.lessons"
+                 :course_slug="course.slug"
+                 v-if="loaded"></lessons>
     </section>
 </template>
 <script>
@@ -50,7 +52,7 @@
         data() {
            return {
                course: {},
-
+                loaded:false,
 
            }
         },
