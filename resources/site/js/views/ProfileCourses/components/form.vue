@@ -108,6 +108,7 @@ import { Errors } from  '@/common/js/services/errors.js';
             window.location.href = response.data;
         })
         .catch((error) => {
+            this.$root.isLoading = false;
           this.errors.record(error.response.data.errors);
         })
       },
