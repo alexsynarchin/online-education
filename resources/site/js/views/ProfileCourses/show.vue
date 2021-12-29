@@ -61,6 +61,9 @@
                         this.course = response.data;
                         this.loaded = true;
                     })
+            },
+            handleEdit() {
+                window.location.href = '/profile/course/' + this.course.slug + '/edit';
             }
         },
         mounted() {
