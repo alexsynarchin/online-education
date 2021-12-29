@@ -40,9 +40,6 @@
                     title:[
                         { required: true, message: 'Введите название урока', trigger: 'blur' },
                     ],
-                    description:[
-                        { required: true, message: 'Заполните описание урока', trigger: 'blur' },
-                    ],
                     price:[
                         { required: true, message: 'Введите цены', trigger: 'blur' },
                     ],
@@ -61,7 +58,7 @@
 
                     } else {
                         this.$emit('submitStep', false);
-
+                        return false;
                     }
                 });
             },

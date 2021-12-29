@@ -3,7 +3,7 @@
 
         <el-form :model="data" ref="data" :rules="rules" label-position="top">
             <el-form-item prop="text" label="Содержимое урока">
-                <textarea id="lesson_content"  v-model="data.text"></textarea>
+                <textarea id="lesson_content"  v-model="data.text" style="width: 100%"></textarea>
             </el-form-item>
             <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 0">
 
@@ -36,7 +36,7 @@
             }
         },
         methods:{
-            submitForm(formName){
+            submit(formName){
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$emit('submitStep',true)

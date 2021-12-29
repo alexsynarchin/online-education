@@ -30,7 +30,12 @@
             @submitStep="submitStep"
             v-if="active === 0"
         ></description-form>
-
+        <content-form
+            :data="contentData"
+            @submitStep="submitStep"
+            ref="createContent"
+            v-if="active === 1"
+        ></content-form>
         <div class="text-center mb-3">
             <el-button @click.prevent="prev()" v-if="active > 0" style="text-transform: uppercase">Назад</el-button>
             <el-button type="primary"  @click.prevent="nextStep" v-if="active < 2" style="margin-top: 12px; text-transform: uppercase">Продолжить</el-button>
@@ -94,10 +99,10 @@ import ContentForm from "./components/ContentForm";
             },
             nextStep(){
                 if (this.active === 0){
-                    this.$refs.description.Submit('description');
+                    this.$refs.description.submit('lesson');
                 }
                 else if(this.active === 1){
-                    this.$refs.createContent.submitForm('data');
+                    this.$refs.createContent.submit('data');
                 }
             },
             submitStep(state){
