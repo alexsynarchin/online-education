@@ -48,7 +48,18 @@ return [
             'url'        => env('APP_URL') . '/storage/courses',
             'visibility' => 'public'
         ],
-
+        'question' => [
+            'driver' =>'local',
+            'root' => storage_path('app/public/questions'),
+            'url'        => env('APP_URL') . '/storage/questions',
+            'visibility' => 'public'
+        ],
+        'question_option' => [
+            'driver' =>'local',
+            'root' => storage_path('app/public/question_options'),
+            'url'        => env('APP_URL') . '/storage/question_options',
+            'visibility' => 'public'
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -12,7 +12,7 @@ use  App\Models\Lesson\QuestionOption;
 
 class StoreQuestionService
 {
-    public function store($id, $data, $directory)
+    public function store($id, $data)
     {
         $menuindex = 1;
         foreach ($data as $item){
@@ -22,21 +22,17 @@ class StoreQuestionService
                 'menuindex' => $menuindex,
             ]);
             $question -> save();
-            $question_dir = $directory . 'question-'.$question->id . '/';
             if($item['preview']){
                 $imageData = $item['preview'];
-                Storage::makeDirectory('/public/' . $question_dir);
-                $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($item['preview'])->save(storage_path('app/public/').$question_dir . $fileName);
-                $question -> image = $fileName;
-                $question ->directory = $question_dir;
-                $question -> save();
+                $question ->addMediaFromBase64($item['preview'])
+                    ->toMediaCollection('questions');
             }
+            $question -> save();
             $menuindex++;
-            $this -> storeOptions($question->id, $item['options'], $question_dir);
+            $this -> storeOptions($question->id, $item['options']);
         }
     }
-    private function storeOptions($id, $data, $directory){
+    private function storeOptions($id, $data){
         $menuindex =1;
         foreach ($data as $item){
             $option = new QuestionOption([
@@ -45,17 +41,12 @@ class StoreQuestionService
                 'right_answer' => $item['right_answer'],
                 'menuindex' => $menuindex
             ]);
-            $option -> save();
             if($item['preview']){
-                $option_dir = $directory . 'option-' . $option ->id . '/';
-                $imageData = $item['preview'];
-                Storage::makeDirectory('/public/' .  $option_dir);
-                $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($item['preview'])->save(storage_path('app/public/'). $option_dir . $fileName);
-                $option -> image = $fileName;
-                $option ->directory = $option_dir;
-                $option -> save();
+                $option->addMediaFromBase64($item['preview'])
+                    ->toMediaCollection('question_options');
+
             }
+            $option -> save();
             $menuindex++;
         }
     }

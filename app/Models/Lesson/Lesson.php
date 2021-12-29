@@ -3,6 +3,7 @@
 namespace App\Models\Lesson;
 
 use App\Models\Category\Course;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -24,5 +25,19 @@ class Lesson extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'lesson_id');
+    }
+
+    public function author()
+    {
+        return $this -> belongsTo(User::class, 'author_id');
+    }
+
+    public function content(){
+        return $this->hasOne(LessonContent::class, 'lesson_id');
     }
 }

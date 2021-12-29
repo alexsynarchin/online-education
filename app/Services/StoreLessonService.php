@@ -53,18 +53,18 @@ class StoreLessonService
             $lesson->type_text = true;
         }
         $lesson->save();
-        $directory = 'users/user-' . Auth::user()->id .'/courses/course-'. $course_id . '/lesson-' . $lesson->id .'/';
-        $content_path = 'users/user-' . Auth::user()->id .'/courses/course-'. $course_id . '/lesson-' . $lesson->id.'/content';
+
        $lesson ->save();
         $test = new Test([
             'repeat_period' => $request->get('repeat_period'),
             'complete_percent' => $request->get('complete_percent'),
         ]);
         $lesson ->tests()->save($test);
-        $question_dir = $directory . 'test_student-'.$test->id . '/';
         $questions = new StoreQuestionService();
-        $questions -> store($test->id, $request->get('questions'), $question_dir);
+        $questions -> store($test->id, $request->get('questions'));
         $content_service= new ContentRichTextService();
+        $directory = 'users/user-' . Auth::user()->id .'/courses/course-'. $course_id . '/lesson-' . $lesson->id .'/';
+        $content_path = 'users/user-' . Auth::user()->id .'/courses/course-'. $course_id . '/lesson-' . $lesson->id.'/content';
         $content = $content_service->store($request->get('text'), $directory, $content_path);
         $lesson -> content()->save($content);
         return $lesson;

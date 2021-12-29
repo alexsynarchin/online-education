@@ -15,6 +15,8 @@ class CreateLessonContentsTable extends Migration
     {
         Schema::create('lesson_contents', function (Blueprint $table) {
             $table->id();
+            $table->longText('text');
+            $table->bigInteger('lesson_id')->unsigned();
             $table->timestamps();
         });
     }
