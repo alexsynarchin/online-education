@@ -49,7 +49,7 @@
             selectlevel(level) {
                 axios.post('/api/slider/filter', {edu_type:this.slide.slug, edu_level: level.id})
                 .then((response) => {
-                    console.log(response.data);
+                    window.location.href = response.data;
                 })
             }
         }

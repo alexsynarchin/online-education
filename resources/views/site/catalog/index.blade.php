@@ -46,7 +46,15 @@
                             </div>
                         </div>
                         <div class="course-item__footer">
-
+                            <div class="course-item__author">
+                                <label class="course-item__author-label">
+                                    Автор:
+                                </label>
+                                <span class="course-item__author-value">
+                                    {{$course -> author -> name}}
+                                    {{$course -> author -> surname}}
+                                </span>
+                            </div>
                         </div>
                     </section>
                 @endforeach
