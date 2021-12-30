@@ -1,0 +1,32 @@
+.filter-sidebar-item-list {
+    margin-top: 15px;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 15px;
+    &--scroll {
+        max-height: 195px;
+        overflow-y: scroll;
+        scrollbar-color: #6A89CCFF  rgba(106, 137, 204, 0.24); /* thumb and track color */
+        scrollbar-width: 6px;
+        &::-webkit-scrollbar {
+            width: 6px;               /* width of the entire scrollbar */
+        }
+        &::-webkit-scrollbar-track {
+            background:  rgba(106, 137, 204, 0.24);        /* color of the tracking area */
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #6A89CCFF;    /* color of the scroll thumb */
+            border-radius: 20px;       /* roundness of the scroll thumb */
+            border: 3px solid rgba(106, 137, 204, 1);;  /* creates padding around scroll thumb */
+        }
+    }
+    &__item {
+        cursor: pointer;
+        font-weight: 500;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+}

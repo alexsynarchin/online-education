@@ -11679,6 +11679,30 @@ a {
   padding-bottom: 0.2rem !important;
 }
 
+.form-checkbox__checkmark {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border: 1px solid #CDCDCD;
+  margin-right: 8px;
+}
+.form-checkbox__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 2px;
+  width: 8px;
+  height: 15px;
+  border: solid #d92344;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 .modal-form {
   width: 400px;
   margin-top: 30px;
@@ -12561,6 +12585,65 @@ a {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 15px;
+}
+.filter-sidebar-item__icon {
+  width: 14px;
+  height: 9px;
+  margin-right: 10px;
+}
+.filter-sidebar-item__icon--top {
+  transform: scaleY(-1);
+}
+.filter-sidebar-item__button {
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+  font-size: 16px !important;
+  color: #272727 !important;
+  font-weight: 500 !important;
+}
+.filter-sidebar-item__button:focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+.filter-sidebar-item-list {
+  margin-top: 15px;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+.filter-sidebar-item-list--scroll {
+  max-height: 195px;
+  overflow-y: scroll;
+  scrollbar-color: #6A89CCFF rgba(106, 137, 204, 0.24);
+  /* thumb and track color */
+  scrollbar-width: 6px;
+}
+.filter-sidebar-item-list--scroll::-webkit-scrollbar {
+  width: 6px;
+  /* width of the entire scrollbar */
+}
+.filter-sidebar-item-list--scroll::-webkit-scrollbar-track {
+  background: rgba(106, 137, 204, 0.24);
+  /* color of the tracking area */
+}
+.filter-sidebar-item-list--scroll::-webkit-scrollbar-thumb {
+  background-color: #6A89CCFF;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid #6a89cc;
+  /* creates padding around scroll thumb */
+}
+.filter-sidebar-item-list__item {
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .profile-data {

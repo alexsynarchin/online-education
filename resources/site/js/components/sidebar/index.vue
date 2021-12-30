@@ -3,6 +3,8 @@
         <sidebar-item
         :title="'Предмет'"
         :placeholder="'Поиск по предметам'"
+        :type="'subject'"
+        :filter-start="filterStart.subject"
         ></sidebar-item>
     </section>
 </template>

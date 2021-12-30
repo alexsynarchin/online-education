@@ -28,7 +28,8 @@ class CatalogController extends Controller
         })->get();
         $filter = [
             'subject' => $request->get('subjects'),
-            'level' => $request->get('levels')
+            'level' => $request->get('levels'),
+            'edu_type' => $category_type->id
         ];
         return view('site.catalog.index', [
             'courses' => $courses,

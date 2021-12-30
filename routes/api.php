@@ -42,6 +42,11 @@ Route::post('/header-nav/filter', [HeaderNavController::class,'filter']) -> name
 use App\Http\Controllers\Api\SliderFilterController;
 Route::post('/slider/filter', [SliderFilterController::class, 'filter']) -> name('slider.filter');
 
+//Category type
+
+use App\Http\Controllers\Api\CategoryTypeController;
+Route::get('/category-{type}/{parent_id?}', [CategoryTypeController::class, 'listByType'])->name('category-type.list');
+
 
 
 
