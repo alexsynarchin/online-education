@@ -21,27 +21,38 @@ class HeaderNavController extends Controller
     {
         $id = $request->get('id');
 
-
-            $data = [
-                'id' => $id,
-                'subject_id' => $request->get('subject_id')
-            ];
-         $levels = CategoryType::where('type', 'edu_level') -> where('parent_id', $id) ->with('categories')->get();
-        foreach ($levels as $level) {
-            if(count(Course::where('edu_level_id', $level -> id)->where('status', 2) -> whereHas('lessons', function($query) {
-                $query -> where('status', 2);
-                })) > 0) {
-                $level -> disabled = false;
-            } else {
-                $level -> disabled = true;
+        $levels = CategoryType::where('type', 'edu_level') -> where('parent_id', $id) ->with('categories')->get();
+        if($request->get('subject_id')) {
+            $subject_id =$request->get('subject_id');
+            foreach ($levels as $level) {
+                if(Course::where('edu_level_id', $level -> id) -> where('subject_id', $subject_id) ->where('status', 2) -> whereHas('lessons', function($query) {
+                    $query -> where('status', 2);
+                })->exists()) {
+                    $level -> disabled = false;
+                } else {
+                    $level -> disabled = true;
+                }
+                $level -> selected = false;
             }
-            $level -> selected = false;
+        } else {
+            foreach ($levels as $level) {
+                if(Course::where('edu_level_id', $level -> id)->where('status', 2) -> whereHas('lessons', function($query) {
+                    $query -> where('status', 2);
+                })->exists()) {
+                    $level -> disabled = false;
+                } else {
+                    $level -> disabled = true;
+                }
+                $level -> selected = false;
+            }
         }
+
+
         return $levels;
     }
     public function filter(Request $request)
     {
-        $url = route('catalog', [$request->get('edu_type'), $request->get('subject'), $request->get('level')]);
+        $url = route('catalog', $request->get('edu_type'));
         return $url;
     }
     public function eduSubjectsList(Request $request)
@@ -49,14 +60,31 @@ class HeaderNavController extends Controller
         $id = $request->get('id');
 
         $subjects = CategoryType::where('type', 'subject')->with('categories')->get();
-        foreach ($subjects as $subject) {
-            if(count($subject['categories']) > 0) {
-                $subject -> disabled = false;
-            } else {
-                $subject -> disabled = true;
+        if($request->get('level_id')) {
+            $level_id = $request->get('level_id');
+            foreach ($subjects as $subject) {
+                if(Course::where('edu_type_id',  $id) -> where('edu_level_id', $level_id)-> where('subject_id', $subject -> id) -> where('status', 2) -> whereHas('lessons', function($query) {
+                    $query -> where('status', 2);
+                })->exists()) {
+                    $subject -> disabled = false;
+                } else {
+                    $subject -> disabled = true;
+                }
+                $subject -> selected = false;
             }
-            $subject -> selected = false;
+        } else {
+            foreach ($subjects as $subject) {
+                if(Course::where('edu_type_id',  $id)-> where('subject_id', $subject -> id) -> where('status', 2) -> whereHas('lessons', function($query) {
+                    $query -> where('status', 2);
+                })->exists()) {
+                    $subject -> disabled = false;
+                } else {
+                    $subject -> disabled = true;
+                }
+                $subject -> selected = false;
+            }
         }
+
         return $subjects;
     }
 }
