@@ -4,20 +4,42 @@
     margin-left: 0;
     padding-left: 0;
     margin-bottom: 0;
+    $block:&;
+
     &__item {
         font-size: 16px;
         padding-bottom: 10px;
         margin-bottom: 15px;
         border-bottom: 1px dashed rgba(39, 39, 39, 0.3);
-        &:nth-child(2) {
-            color: rgba(39, 39, 39, 0.6);
+        &--preview {
+            &:nth-child(2) {
+                #{ $block }__link {
+                    color: rgba(39, 39, 39, 0.6);
+                    &:hover {
+                        color: $edu-primary;
+                    }
+                }
+
+            }
+            &:nth-child(3) {
+                #{ $block }__link {
+                    color: rgba(39, 39, 39, 0.25);
+                    &:hover {
+                        color: $edu-primary;
+                    }
+                }
+            }
+            &:last-child {
+                padding-bottom: 0;
+                border-bottom-color: transparent;
+            }
         }
-        &:nth-child(3) {
-            color: rgba(39, 39, 39, 0.25);
-        }
-        &:last-child {
-            padding-bottom: 0;
-            border-bottom-color: transparent;
+    }
+    &__link {
+
+        color: $text-color;
+        &:hover {
+            color: $edu-primary;
         }
     }
     &__btn {

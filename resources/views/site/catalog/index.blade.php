@@ -41,12 +41,14 @@
                                 </p>
                                 <ul class="course-item-lessons">
                                     @foreach($course -> lessons as $lesson)
-                                        <li class="course-item-lessons__item">
-                                            {{$lesson -> title}}
+                                        <li class="course-item-lessons__item course-item-lessons__item--preview">
+                                            <a href="{{route('lesson.show',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}" class="course-item-lessons__link">
+                                                {{$lesson -> title}}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
-                                <a href="{{route('catalog.show', ['edu_type' => $slug, 'slug' => $course -> slug])}}" class="course-item-lessons__btn btn">Полный список уроков</a>
+                                <a href="{{route('catalog.show', ['edu_slug' => $slug, 'slug' => $course -> slug])}}" class="course-item-lessons__btn btn">Полный список уроков</a>
                             </div>
                             <div class="course-item__right course-item__right--text-right">
                                 <div class="course-item__price">

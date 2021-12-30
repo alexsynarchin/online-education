@@ -38,8 +38,19 @@ class CatalogController extends Controller
             'slug' => $category_type -> slug,
         ]);
     }
-    public function show($edu_type, $slug)
+    public function show($edu_slug, $slug)
     {
-        return view('site.catalog.show');
+        $course = Course::where('slug', $slug) ->with(['edu_type' => function($query) {
+            $query -> select(['id', 'slug', 'title']);
+        }, 'lessons']) -> firstOrFail();
+        $filter = [
+            'subject' => $course -> subject_id,
+            'level' => $course -> edu_level_id,
+            'edu_type' => $course -> edu_type_id
+        ];
+        return view('site.catalog.show',[
+            'filter' => $filter,
+            'course' => $course,
+        ]);
     }
 }

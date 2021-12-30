@@ -11904,6 +11904,7 @@ a {
   position: relative;
   display: flex;
   align-items: center;
+  color: #6a89cc;
 }
 .breadcrumb__item:after {
   margin-right: 8px;
@@ -12346,6 +12347,9 @@ a {
   margin-bottom: 0;
   margin-top: 0;
 }
+.course-item__title--big {
+  font-size: 36px;
+}
 .course-item__heading {
   display: flex;
   justify-content: space-between;
@@ -12441,15 +12445,27 @@ a {
   margin-bottom: 15px;
   border-bottom: 1px dashed rgba(39, 39, 39, 0.3);
 }
-.course-item-lessons__item:nth-child(2) {
+.course-item-lessons__item--preview:nth-child(2) .course-item-lessons__link {
   color: rgba(39, 39, 39, 0.6);
 }
-.course-item-lessons__item:nth-child(3) {
+.course-item-lessons__item--preview:nth-child(2) .course-item-lessons__link:hover {
+  color: #6a89cc;
+}
+.course-item-lessons__item--preview:nth-child(3) .course-item-lessons__link {
   color: rgba(39, 39, 39, 0.25);
 }
-.course-item-lessons__item:last-child {
+.course-item-lessons__item--preview:nth-child(3) .course-item-lessons__link:hover {
+  color: #6a89cc;
+}
+.course-item-lessons__item--preview:last-child {
   padding-bottom: 0;
   border-bottom-color: transparent;
+}
+.course-item-lessons__link {
+  color: #272727;
+}
+.course-item-lessons__link:hover {
+  color: #6a89cc;
 }
 .course-item-lessons__btn {
   border: 1px solid rgba(106, 137, 204, 0.65) !important;

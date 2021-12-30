@@ -37,8 +37,13 @@ Route::get('/profile/courses/{slug}/lesson-create', [DashboardController::class,
 Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardController::class, 'index']) -> name('profile.course.lesson.edit');
 
 use App\Http\Controllers\Site\CatalogController;
-Route::get('/catalog/{edu_type}', [CatalogController::class, 'index']) -> name('catalog');
-Route::get('/catalog/{edu_type}/{slug}', [CatalogController::class, 'show']) -> name('catalog.show');
+Route::get('/catalog/{edu_slug}', [CatalogController::class, 'index']) -> name('catalog');
+Route::get('/catalog/{edu_slug}/{slug}', [CatalogController::class, 'show']) -> name('catalog.show');
+
+use App\Http\Controllers\Site\LessonController;
+Route::get('/catalog/{edu_slug}/{course_slug}/{slug}', [LessonController::class, 'show']) -> name('lesson.show');
+
+
 
 Route::get('/for-teachers', function(){
     return view('site.inner');
