@@ -35,10 +35,11 @@ class CatalogController extends Controller
             'courses' => $courses,
             'filter' => $filter,
             'title' => $category_type -> title,
+            'slug' => $category_type -> slug,
         ]);
     }
-    public function show($slug)
+    public function show($edu_type, $slug)
     {
-
+        return view('site.catalog.show');
     }
 }

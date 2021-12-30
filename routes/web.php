@@ -38,6 +38,7 @@ Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardContro
 
 use App\Http\Controllers\Site\CatalogController;
 Route::get('/catalog/{edu_type}', [CatalogController::class, 'index']) -> name('catalog');
+Route::get('/catalog/{edu_type}/{slug}', [CatalogController::class, 'show']) -> name('catalog.show');
 
 Route::get('/for-teachers', function(){
     return view('site.inner');
