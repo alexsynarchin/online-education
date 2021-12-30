@@ -76,6 +76,7 @@
                         </div>
                     </div>
                 </section>
+                @if(count($other_lessons) > 0)
                 <section class="course-item-block">
                     <h3 class="course-item-block__title">
                         Другие уроки курса:
@@ -95,6 +96,7 @@
                         @endforeach
                     </ul>
                 </section>
+                @endif
             </div>
         </div>
     </div>

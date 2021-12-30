@@ -45,6 +45,9 @@ class CatalogController extends Controller
         }, 'lessons' => function($query) {
             $query -> where('status', 2);
         }]) -> firstOrFail();
+        $other_courses = Course::where('author_id', $course-> author_id) ->where('id', '!=', $course-> id) ->where('status', 2) -> whereHas('lessons', function ($query){
+           $query -> where('status', 2);
+        }) -> get();
         $filter = [
             'subject' => $course -> subject_id,
             'level' => $course -> edu_level_id,
@@ -53,6 +56,7 @@ class CatalogController extends Controller
         return view('site.catalog.show',[
             'filter' => $filter,
             'course' => $course,
+            'other_courses' => $other_courses
         ]);
     }
 }

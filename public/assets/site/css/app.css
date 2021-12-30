@@ -11284,6 +11284,12 @@ textarea.form-control-lg {
 body, html {
   height: 100%;
   min-height: 100%;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -moz-font-feature-settings: "lnum=1";
+  -ms-font-feature-settings: "lnum";
+  -webkit-font-feature-settings: "lnum";
+  -o-font-feature-settings: "lnum";
 }
 
 .page-wrapper {
@@ -12515,6 +12521,39 @@ a {
   .other-lessons {
     width: 80%;
   }
+}
+
+.other-courses {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.other-courses__item {
+  margin-bottom: 15px;
+}
+.other-courses__link {
+  padding: 25px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 22px rgba(150, 150, 150, 0.25);
+  border-radius: 15px;
+  color: #272727;
+  text-decoration: none;
+}
+.other-courses__link:hover {
+  color: #272727;
+  text-decoration: none;
+}
+.other-courses__title {
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.other-courses__price {
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .filter-nav {

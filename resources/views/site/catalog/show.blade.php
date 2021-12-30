@@ -31,7 +31,7 @@
                 <filter-sidebar :filter-start="{{json_encode($filter)}}"></filter-sidebar>
             </div>
             <div class="col-lg-9">
-                <section class="course-item">
+                <section class="course-item course-item-block">
                     <div class="course-item__heading">
                         <h1 class="course-item__title course-item__title--big">
                             {{$course -> title}}
@@ -81,6 +81,29 @@
                         </div>
                     </div>
                 </section>
+                @if(count($other_courses) > 0)
+                <section class="course-item-block">
+                    <h3 class="course-item-block__title">
+                        Другие курсы преподавателя:
+                    </h3>
+                    <ul class="other-courses">
+                        @foreach($other_courses as $course)
+                            <li class="other-courses__item">
+                                <a href="{{route('catalog.show', [$course -> edu_type -> slug, $course -> slug])}}" class="other-courses__link">
+                                    <h4 class="other-courses__title">
+                                        {{$course -> title}}
+                                    </h4>
+                                    <div class="other-courses__link-right">
+                                        <span class="other-courses__price">
+                                            {{$course -> price}} ₽
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </section>
+                @endif
             </div>
         </div>
     </div>
