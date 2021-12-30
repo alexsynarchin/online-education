@@ -92,19 +92,23 @@
         })
       },
       selectSubject(subject, index) {
-        this.subject_selected = index;
+
         if(this.level_selected !=null && !subject.disabled) {
+            this.subject_selected = index;
           this.searchPage()
         } else if(!subject.disabled) {
+            this.subject_selected = index;
           this.getLevels(this.edu_types[this.selectedEdu]['id'], this.subjects[index].id)
           this.level_selected = null;
         }
       },
       selectLevel(level, index) {
-        this.level_selected = index;
+
         if(this.subject_selected !=null && !level.disabled) {
+            this.level_selected = index;
           this.searchPage();
         } else if(!level.disabled) {
+            this.level_selected = index;
           this.getSubjects(this.edu_types[this.selectedEdu]['id'], this.levels[index].id)
           this.subject_selected = null;
         }
