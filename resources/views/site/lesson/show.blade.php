@@ -36,12 +36,64 @@
                 <filter-sidebar :filter-start="{{json_encode($filter)}}"></filter-sidebar>
             </div>
             <div class="col-lg-9">
-                <section class="course-item">
+                <section class="course-item course-item-block">
                     <div class="course-item__heading">
                         <h1 class="course-item__title course-item__title--big">
                             {{$lesson -> title}}
                         </h1>
                     </div>
+                    <div class="course-item__content">
+                        <div class="course-item__main">
+                            <p class="course-item__descr">
+                                {!! $lesson -> content -> text !!}
+                            </p>
+                            <div class="course-item__buy">
+                                Для просмотра урока его необходимо <a href="" class="course-item__buy-link">купить</a>
+                            </div>
+                        </div>
+                        <div class="course-item__right course-item__right--text-right">
+                            <div class="course-item__price">
+                                {{$lesson ->price}} ₽
+                            </div>
+                            <div class="course-item__actions">
+                                <a href="" class="course-item__btn btn">Купить</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="course-item__footer">
+                        <div class="course-item__author">
+                            <label class="course-item__author-label">
+                                Автор:
+                            </label>
+                            <span class="course-item__author-value">
+                                    {{$course -> author -> name}}
+                                {{$course -> author -> surname}}
+                                </span>
+                            <svg class="course-item__author-icon">
+                                <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=12#sprite-question-icon')}}"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+                <section class="course-item-block">
+                    <h3 class="course-item-block__title">
+                        Другие уроки курса:
+                    </h3>
+                    <ul class="other-lessons course-item-lessons">
+                        @foreach($other_lessons as $lesson)
+                            <li class="course-item-lessons__item">
+                                <a class="course-item-lessons__link course-item-lessons__link--flex" href="{{route('lesson.show', [$course -> edu_type -> slug, $course -> slug, $lesson -> slug])}}">
+                                    <span class="course-item-lessons__title">
+                                        {{$lesson->title}}
+                                    </span>
+                                    <span class="course-item-lessons__price">
+                                        {{$lesson -> price}} ₽
+                                    </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </section>
             </div>
         </div>

@@ -12431,6 +12431,18 @@ a {
   outline: none !important;
   box-shadow: none !important;
 }
+.course-item__buy {
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.course-item__buy-link {
+  color: #6a89cc;
+  text-decoration: underline !important;
+}
+.course-item__buy-link:hover {
+  text-decoration: none;
+}
 
 .course-item-lessons {
   margin-top: 20px;
@@ -12462,10 +12474,20 @@ a {
   border-bottom-color: transparent;
 }
 .course-item-lessons__link {
+  display: block;
+  font-weight: 500;
   color: #272727;
 }
 .course-item-lessons__link:hover {
   color: #6a89cc;
+}
+.course-item-lessons__link--flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.course-item-lessons__price {
+  font-weight: 700;
 }
 .course-item-lessons__btn {
   border: 1px solid rgba(106, 137, 204, 0.65) !important;
@@ -12478,6 +12500,21 @@ a {
 .course-item-lessons__btn:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.course-item-block {
+  margin-bottom: 70px;
+}
+.course-item-block__title {
+  font-size: 28px;
+  margin-bottom: 35px;
+  font-weight: 700;
+}
+
+@media (min-width: 1400px) {
+  .other-lessons {
+    width: 80%;
+  }
 }
 
 .filter-nav {

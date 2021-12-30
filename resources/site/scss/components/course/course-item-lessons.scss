@@ -36,11 +36,21 @@
         }
     }
     &__link {
-
+        display: block;
+        font-weight: 500;
         color: $text-color;
         &:hover {
             color: $edu-primary;
         }
+        &--flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+    }
+    &__price {
+        font-weight: 700;
     }
     &__btn {
         border: 1px solid rgba(106, 137, 204, 0.65) !important;

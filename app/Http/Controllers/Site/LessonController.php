@@ -13,6 +13,7 @@ class LessonController extends Controller
     {
         $course = Course::where('slug', $course_slug) -> firstOrFail();
         $lesson = Lesson::where('slug', $slug) -> firstOrFail();
+        $other_lessons = $course -> lessons() -> where('id', '!=', $lesson->id) ->get();
         $filter = [
             'subject' => $course -> subject_id,
             'level' => $course -> edu_level_id,
@@ -21,7 +22,8 @@ class LessonController extends Controller
         return view('site.lesson.show', [
             'course' => $course,
             'lesson' => $lesson,
-            'filter' => $filter
+            'filter' => $filter,
+            'other_lessons' => $other_lessons,
         ]);
     }
 }

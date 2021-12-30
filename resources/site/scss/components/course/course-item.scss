@@ -95,4 +95,16 @@
             box-shadow: none !important;
         }
     }
+    &__buy {
+        margin-top: 15px;
+        font-weight: 700;
+        font-size: 20px;
+        &-link {
+            color: $edu-primary;
+            text-decoration: underline !important;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }
