@@ -13,7 +13,7 @@
             :type="'edu_level'"
             :filter-start="selected.level"
             @select-item="selectItem"
-            :parent_id="selected.edu_type"
+            :edu_type="filterStart.edu_type"
         ></sidebar-item>
     </section>
 </template>
