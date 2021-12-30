@@ -82,8 +82,8 @@
       searchPage() {
         let data = {
           edu_type:this.edu_types[this.selectedEdu].slug,
-          level:this.levels[ this.level_selected].slug,
-          subject:this.subjects[this.subject_selected].slug
+          level:this.levels[ this.level_selected].id,
+          subject:this.subjects[this.subject_selected].id
         };
         axios.post('/api/header-nav/filter', data)
         .then((response) => {

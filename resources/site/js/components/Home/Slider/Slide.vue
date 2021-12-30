@@ -20,7 +20,7 @@
             <img src="/assets/site/images/home-slider.png">
         </figure>
         <ul class="home-slider-levels">
-            <li class="home-slider-levels__item" v-for="(level, index) in slide.levels" @click.prevent="selectlevel">
+            <li class="home-slider-levels__item" v-for="(level, index) in slide.levels" @click.prevent="selectlevel(level)">
                 <span>
                     {{index + 1}}
                 </span>
@@ -46,10 +46,10 @@
             }
         },
         methods: {
-            selectlevel() {
-                axios.post('/api/slider/filter', {edu_type:this.slide.slug})
+            selectlevel(level) {
+                axios.post('/api/slider/filter', {edu_type:this.slide.slug, edu_level: level.id})
                 .then((response) => {
-                    window.location.href = response.data;
+                    console.log(response.data);
                 })
             }
         }

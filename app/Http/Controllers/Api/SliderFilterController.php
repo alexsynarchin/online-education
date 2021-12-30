@@ -9,7 +9,11 @@ class SliderFilterController extends Controller
 {
     public function filter(Request $request)
     {
+        $keys = [
+            'edu_level'
+        ];
         $url = route('catalog', $request->get('edu_type'));
+        $url = $url  .  '?levels=' . $request->get('edu_level');
         return $url;
     }
 }
