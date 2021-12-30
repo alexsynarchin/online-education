@@ -42,7 +42,9 @@ class CatalogController extends Controller
     {
         $course = Course::where('slug', $slug) ->with(['edu_type' => function($query) {
             $query -> select(['id', 'slug', 'title']);
-        }, 'lessons']) -> firstOrFail();
+        }, 'lessons' => function($query) {
+            $query -> where('status', 2);
+        }]) -> firstOrFail();
         $filter = [
             'subject' => $course -> subject_id,
             'level' => $course -> edu_level_id,
