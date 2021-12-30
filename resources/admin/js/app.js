@@ -11,6 +11,7 @@ import VueDataTables from 'vue-data-tables';
 Vue.use(VueDataTables);
 
 Vue.component('AdminLogin', require('./components/admin-login/index').default);
+Vue.component('Status', require('./components/Status').default);
 import router from './router'
 Vue.component('AdminApp',require('./Admin').default);
 

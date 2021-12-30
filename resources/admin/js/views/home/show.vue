@@ -19,6 +19,7 @@
         </el-tabs>
         <el-tabs type="card" >
             <el-tab-pane label="Уроки">
+                <lessons-list :lessons="course.lessons" v-if="loaded"></lessons-list>
             </el-tab-pane>
         </el-tabs>
         <el-dialog title="Отклонить Курс" width="40%" :visible.sync="dialogCancel" >
@@ -33,21 +34,23 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-    <el-button @click="publishCancel('cancelForm')">Отклонить</el-button>
-    <el-button type="primary" @click="dialogCancel  = false">Отменить</el-button>
-  </span>
+                <el-button @click="publishCancel('cancelForm')">Отклонить</el-button>
+                <el-button type="primary" @click="dialogCancel  = false">Отменить</el-button>
+            </span>
         </el-dialog>
     </section>
 </template>
 <script>
 import Description from "./components/Description";
+import LessonsList from "@/admin/js/components/lessons-list/index";
     export default {
         props:['id'],
         components:{
-            Description,
+            Description, LessonsList,
         },
         data() {
             return {
+                loaded:false,
                 course: {},
                 dialogCancel:false,
                 cancelForm:{
@@ -63,6 +66,7 @@ import Description from "./components/Description";
                 axios.get('/api/admin/courses/' + this.id)
                 .then((response) => {
                     this.course = response.data;
+                    this.loaded = true;
                 })
             },
             publishCancel(formName) {

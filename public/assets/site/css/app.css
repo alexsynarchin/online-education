@@ -11603,6 +11603,12 @@ a {
     transform: rotate(360deg);
   }
 }
+.page-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
 .b-search {
   flex: 1;
   position: relative;
@@ -11849,6 +11855,44 @@ a {
   font-weight: 500;
   font-size: 16px;
   color: #9F9F9F;
+}
+
+.breadcrumb {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.breadcrumb__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.breadcrumb__item:after {
+  margin-right: 8px;
+  margin-left: 8px;
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background-color: #6a89cc;
+}
+.breadcrumb__item:last-child:after {
+  content: none;
+}
+.breadcrumb__link {
+  color: #272727;
+  text-decoration: none;
+}
+.breadcrumb__link:hover {
+  color: #6a89cc;
+  text-decoration: none;
 }
 
 .b-profile-user__title {

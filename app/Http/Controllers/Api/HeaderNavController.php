@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category\CategoryType;
+use App\Models\Category\Course;
 use App\Models\Category\EduType;
 use App\Models\Category\Level;
 use App\Models\Category\Subject;
@@ -27,7 +28,9 @@ class HeaderNavController extends Controller
             ];
          $levels = CategoryType::where('type', 'edu_level') -> where('parent_id', $id) ->with('categories')->get();
         foreach ($levels as $level) {
-            if(count($level['categories']) > 0) {
+            if(count(Course::where('edu_level_id', $level -> id)->where('status', 2) -> whereHas('lessons', function($query) {
+                $query -> where('status', 2);
+                })) > 0) {
                 $level -> disabled = false;
             } else {
                 $level -> disabled = true;

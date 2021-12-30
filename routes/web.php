@@ -36,6 +36,8 @@ Route::get('/profile/courses/{slug}', [DashboardController::class, 'index']) -> 
 Route::get('/profile/courses/{slug}/lesson-create', [DashboardController::class, 'index']) -> name('profile.course.lesson.create');
 Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardController::class, 'index']) -> name('profile.course.lesson.edit');
 
+use App\Http\Controllers\Site\CatalogController;
+Route::get('/catalog/{edu_type}', [CatalogController::class, 'index']) -> name('catalog');
 
 Route::get('/for-teachers', function(){
     return view('site.inner');

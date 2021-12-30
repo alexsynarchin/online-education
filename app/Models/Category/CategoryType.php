@@ -17,4 +17,6 @@ class CategoryType extends Model
     {
         return $this->hasMany(Category::class, 'category_type_id');
     }
+
+
 }

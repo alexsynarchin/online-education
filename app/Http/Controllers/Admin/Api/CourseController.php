@@ -40,13 +40,13 @@ class CourseController extends Controller
         $message='';
         switch ($course->status){
             case 1:
-                $message = "Урок снят с публикации";
+                $message = "Курс снят с публикации";
                 break;
             case 2:
-                $message = "Урок опубликован";
+                $message = "Курс опубликован";
                 break;
             case 3:
-                $message = "Урок отклонен";
+                $message = "Курс отклонен";
                 break;
             default:
                 $message = "Повторите попытку";
