@@ -38,6 +38,10 @@ Route::get('/header-nav/edu-levels', [HeaderNavController::class, 'eduLevelsList
 Route::get('/header-nav/edu-subjects', [HeaderNavController::class,'eduSubjectsList']) -> name('header-nav.edu-subjects-list');
 Route::post('/header-nav/filter', [HeaderNavController::class,'filter']) -> name('header-nav.filter');
 
+//Slider Filter
+use App\Http\Controllers\Api\SliderFilterController;
+Route::post('/slider/filter', [SliderFilterController::class, 'filter']) -> name('slider.filter');
+
 
 
 

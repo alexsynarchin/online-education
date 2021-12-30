@@ -10,12 +10,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $edu_types = CategoryType::where('type', 'edu_type') -> get(['id', 'title']);
+        $edu_types = CategoryType::where('type', 'edu_type') -> get(['id', 'title', 'slug']);
         $slides = [];
         foreach ($edu_types as $edu_type) {
             $slide = [
                 'id' => $edu_type -> id,
                 'title' => $edu_type -> title,
+                'slug' => $edu_type -> slug,
                 'text' => 'Учёба.ру — это самый большой каталог учебных заведений и программ в России и за рубежом.',
                 'label' =>'курс',
                 'levels' => CategoryType::where('type', 'edu_level') -> where('parent_id', $edu_type->id) -> get(['id', 'title']),

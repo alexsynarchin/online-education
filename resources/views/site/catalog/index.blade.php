@@ -45,6 +45,9 @@
 
                             </div>
                         </div>
+                        <div class="course-item__footer">
+
+                        </div>
                     </section>
                 @endforeach
             </div>

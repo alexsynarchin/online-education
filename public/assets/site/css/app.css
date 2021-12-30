@@ -12361,6 +12361,10 @@ a {
   font-size: 28px;
   font-weight: 700;
 }
+.course-item__footer {
+  padding-top: 15px;
+  border-top: 1px solid rgba(39, 39, 39, 0.16);
+}
 
 .filter-nav {
   flex: 1 75%;

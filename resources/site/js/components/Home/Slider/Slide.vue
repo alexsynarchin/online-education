@@ -20,7 +20,7 @@
             <img src="/assets/site/images/home-slider.png">
         </figure>
         <ul class="home-slider-levels">
-            <li class="home-slider-levels__item" v-for="(level, index) in slide.levels">
+            <li class="home-slider-levels__item" v-for="(level, index) in slide.levels" @click.prevent="selectlevel">
                 <span>
                     {{index + 1}}
                 </span>
@@ -43,6 +43,14 @@
             index: {
                 type:Number,
                 required: true,
+            }
+        },
+        methods: {
+            selectlevel() {
+                axios.post('/api/slider/filter', {edu_type:this.slide.slug})
+                .then((response) => {
+                    window.location.href = response.data;
+                })
             }
         }
     }
