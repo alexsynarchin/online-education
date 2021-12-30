@@ -12375,6 +12375,11 @@ a {
 .course-item__author-value {
   text-decoration: underline;
 }
+.course-item__author-icon {
+  margin-left: 5px;
+  width: 16px;
+  height: 16px;
+}
 
 .filter-nav {
   flex: 1 75%;

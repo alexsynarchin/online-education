@@ -54,6 +54,9 @@
                                     {{$course -> author -> name}}
                                     {{$course -> author -> surname}}
                                 </span>
+                                <svg class="course-item__author-icon">
+                                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=12#sprite-question-icon')}}"></use>
+                                </svg>
                             </div>
                         </div>
                     </section>
