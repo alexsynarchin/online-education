@@ -2,9 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
-
-            </div>
+            <div class="col-lg-3"></div>
             <div class="col-lg-9">
                 <ul class="breadcrumb">
                     <li class="breadcrumb__item">
@@ -16,6 +14,13 @@
                         {{$title}}
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <filter-sidebar :filter-start="{{json_encode($filter)}}"></filter-sidebar>
+            </div>
+            <div class="col-lg-9">
                 <h1 class="page-title">
                     {{$title}}
                 </h1>

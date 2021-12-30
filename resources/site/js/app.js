@@ -27,6 +27,8 @@ Vue.component('HomeBanner',require('./components/Home/HomeBanner').default);
 Vue.component('HomePlus',require('./components/Home/HomePluse').default);
 Vue.component('HomeStudyItems',require('./components/Home/HomeStudyItems').default);
 
+Vue.component('FilterSidebar',require('./components/sidebar/index').default);
+
 //FAQ
 Vue.component('Faq',require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
 

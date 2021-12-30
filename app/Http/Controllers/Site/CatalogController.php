@@ -13,7 +13,7 @@ class CatalogController extends Controller
     {
         $category_type = CategoryType::where('slug', $edu_type) -> firstOrFail();
         $courses = (new Course) -> newQuery();
-        $courses =  $courses -> where('status', 2) ;
+        $courses =  $courses ->where('edu_type_id', $category_type -> id) -> where('status', 2) ;
         if($request->has('levels')) {
             $courses = $courses -> where('edu_level_id', $request->get('levels'));
         }
@@ -26,8 +26,13 @@ class CatalogController extends Controller
             $query -> where('status', 2);
             $query -> take(3);
         })->get();
+        $filter = [
+            'subject' => $request->get('subjects'),
+            'level' => $request->get('levels')
+        ];
         return view('site.catalog.index', [
             'courses' => $courses,
+            'filter' => $filter,
             'title' => $category_type -> title,
         ]);
     }

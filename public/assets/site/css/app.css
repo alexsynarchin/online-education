@@ -12557,6 +12557,12 @@ a {
   color: rgba(39, 39, 39, 0.35);
 }
 
+.filter-sidebar-item__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
 .profile-data {
   width: 40%;
   margin-bottom: 80px;
