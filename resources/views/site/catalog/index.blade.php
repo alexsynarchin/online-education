@@ -34,6 +34,13 @@
                                 <p class="course-item__descr">
                                     {{$course -> description}}
                                 </p>
+                                <ul class="course-item-lessons">
+                                    @foreach($course -> lessons as $lesson)
+                                        <li class="course-item-lessons__item">
+                                            {{$lesson -> title}}
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                             <div class="course-item__right">
                                 <div class="course-item__price">

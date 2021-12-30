@@ -12381,6 +12381,28 @@ a {
   height: 16px;
 }
 
+.course-item-lessons {
+  margin-top: 20px;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.course-item-lessons__item {
+  font-size: 16px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed rgba(39, 39, 39, 0.3);
+}
+.course-item-lessons__item:nth-child(2) {
+  color: rgba(39, 39, 39, 0.6);
+}
+.course-item-lessons__item:nth-child(3) {
+  color: rgba(39, 39, 39, 0.25);
+}
+.course-item-lessons__item:last-child {
+  border-bottom-color: transparent;
+}
+
 .filter-nav {
   flex: 1 75%;
   max-width: 75%;

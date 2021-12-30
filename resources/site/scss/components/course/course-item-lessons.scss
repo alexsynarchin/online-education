@@ -1,0 +1,22 @@
+.course-item-lessons {
+    margin-top: 20px;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    &__item {
+        font-size: 16px;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px dashed rgba(39, 39, 39, 0.3);
+        &:nth-child(2) {
+            color: rgba(39, 39, 39, 0.6);
+        }
+        &:nth-child(3) {
+            color: rgba(39, 39, 39, 0.25);
+        }
+        &:last-child {
+
+            border-bottom-color: transparent;
+        }
+    }
+}
