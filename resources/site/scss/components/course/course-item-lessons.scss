@@ -3,6 +3,7 @@
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
+    margin-bottom: 0;
     &__item {
         font-size: 16px;
         padding-bottom: 10px;
@@ -15,8 +16,20 @@
             color: rgba(39, 39, 39, 0.25);
         }
         &:last-child {
-
+            padding-bottom: 0;
             border-bottom-color: transparent;
+        }
+    }
+    &__btn {
+        border: 1px solid rgba(106, 137, 204, 0.65) !important;
+        color: $edu-primary !important;
+        border-radius: 4px !important;
+        padding: 6px 10px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
         }
     }
 }

@@ -20,6 +20,7 @@
     &__content {
         display: flex;
         justify-content: space-between;
+        padding-bottom: 20px;
     }
     &__img {
         border-radius: 5px;
@@ -39,12 +40,15 @@
         max-width: 23%;
         flex: 1 23%;
         padding-left: 20px;
-
+        &--text-right {
+            text-align: right;
+        }
     }
     &__main {
         width: 60%;
         max-width: 60%;
         flex: 1 60%;
+
     }
     &__price {
         font-variant-numeric: lining-nums;
@@ -74,6 +78,18 @@
             margin-left: 5px;
             width: 16px;
             height: 16px;
+        }
+    }
+    &__btn {
+        background-color: $edu-primary !important;
+        color: #fff !important;
+        border-radius: 5px !important;
+        padding: 10px 30px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
         }
     }
 }

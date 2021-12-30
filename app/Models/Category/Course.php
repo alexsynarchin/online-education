@@ -60,7 +60,8 @@ class Course extends Model implements HasMedia
     }
     public function getPriceAttribute()
     {
-        return 0;
+        $price = $this -> lessons() -> sum('price_user');
+        return $price;
     }
     public function getImageAttribute()
     {

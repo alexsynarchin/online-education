@@ -41,13 +41,14 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                                <a href="" class="course-item-lessons__btn btn">Полный список уроков</a>
                             </div>
-                            <div class="course-item__right">
+                            <div class="course-item__right course-item__right--text-right">
                                 <div class="course-item__price">
                                     {{$course ->price}} ₽
                                 </div>
                                 <div class="course-item__actions">
-
+                                    <a href="" class="course-item__btn btn">Купить</a>
                                 </div>
 
                             </div>
