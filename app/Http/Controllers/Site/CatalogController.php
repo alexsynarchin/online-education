@@ -37,4 +37,8 @@ class CatalogController extends Controller
             'title' => $category_type -> title,
         ]);
     }
+    public function show($slug)
+    {
+
+    }
 }
