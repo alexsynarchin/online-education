@@ -18,4 +18,5 @@ class CategoryTypeController extends Controller
         $categoryTypes = $categoryTypes -> get(['id', 'title']);
         return $categoryTypes;
     }
+
 }

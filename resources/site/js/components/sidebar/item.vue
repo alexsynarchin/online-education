@@ -16,8 +16,14 @@
             'filter-sidebar-item-list--scroll': !preview_mode
             }"
         >
-            <li class="filter-sidebar-item-list__item" v-for="(item, index) in itemsPreview">
-                <span class="form-checkbox__checkmark"></span> {{item.title}}
+            <li class="filter-sidebar-item-list__item" v-for="(item, index) in itemsPreview"
+                @click.prevent = "selectItem(item)"
+            >
+                <span class="form-checkbox__checkmark"
+                      :class="{
+                          'form-checkbox__checkmark--selected': item.id == filterStart
+                }"
+                ></span> {{item.title}}
             </li>
         </ul>
         <button class="btn filter-sidebar-item__button" @click.prevent="showAll">
@@ -67,12 +73,26 @@
                 items_length: 6,
             }
         },
+        watch: {
+            search(){
+                console.log(this.search)
+            }
+        },
         computed: {
             itemsPreview () {
-                return this.items.slice(0, this.items_length);
+                return this.filteredItems.slice(0, this.items_length)
+            },
+            filteredItems() {
+            return this.items.filter(item => {
+                    return item.title.toLowerCase().includes(this.search.toLowerCase())
+                });
+
             }
         },
         methods: {
+            selectItem(item) {
+                this.$emit('select-item', {id: item.id, type:this.type})
+            },
             showAll() {
                 this.preview_mode = !this.preview_mode;
                 if(this.preview_mode) {

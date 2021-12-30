@@ -25,13 +25,20 @@
             content: "";
             position: absolute;
             display: none;
-            left: 7px;
-            top: 2px;
-            width: 8px;
-            height: 15px;
-            border: solid #d92344;
+            left: 4px;
+            top: 0;
+            width: 6px;
+            height: 11px;
+            border: solid #fff;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
+        }
+        &--selected {
+            border-color: $edu-primary;
+            background-color: $edu-primary;
+            &:after {
+                display: block;
+            }
         }
     }
 }

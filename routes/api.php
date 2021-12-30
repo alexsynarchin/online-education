@@ -48,5 +48,9 @@ use App\Http\Controllers\Api\CategoryTypeController;
 Route::get('/category-{type}/{parent_id?}', [CategoryTypeController::class, 'listByType'])->name('category-type.list');
 
 
+//Catalog, filters
+use App\Http\Controllers\Api\CatalogController;
+Route::post('/catalog/filter', [CatalogController::class, 'filter']) -> name('catalog.filter');
+
 
 
