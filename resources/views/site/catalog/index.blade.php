@@ -27,9 +27,12 @@
                 @foreach($courses as $course)
                     <section class="course-item">
                         <div class="course-item__heading">
-                            <h4 class="course-item__title">
-                                {{$course -> title}}
-                            </h4>
+                            <a href="{{route('catalog.show', ['edu_slug' => $slug, 'slug' => $course -> slug])}}"  class="course-item__link">
+                                <h4 class="course-item__title">
+                                    {{$course -> title}}
+                                </h4>
+                            </a>
+
                         </div>
                         <div class="course-item__content">
                             <figure class="course-item__img">

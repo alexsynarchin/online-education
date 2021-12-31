@@ -12356,6 +12356,15 @@ a {
 .course-item__title--big {
   font-size: 36px;
 }
+.course-item__link {
+  display: inline-block;
+  color: #272727;
+  text-decoration: none;
+}
+.course-item__link:hover {
+  color: #6a89cc;
+  text-decoration: none;
+}
 .course-item__heading {
   display: flex;
   justify-content: space-between;
