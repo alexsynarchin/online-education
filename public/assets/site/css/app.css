@@ -12948,6 +12948,10 @@ a {
   padding: 14px 30px !important;
   color: #6a89cc !important;
 }
+.comments__button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .edu-tabs .el-tabs__active-bar {
   background-color: #35529F;

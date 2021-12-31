@@ -15,5 +15,9 @@
         border-radius: 5px !important;
         padding: 14px 30px !important;
         color: $edu-primary !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
     }
 }
