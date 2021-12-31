@@ -104,6 +104,9 @@
                     </ul>
                 </section>
                 @endif
+                <comments
+                    :course_id="{{json_encode($course->id)}}">
+                </comments>
             </div>
         </div>
     </div>

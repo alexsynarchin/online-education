@@ -12922,6 +12922,24 @@ a {
   font-family: "RobotoLight", sans-serif;
 }
 
+.comments__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comments__title {
+  font-size: 28px;
+  font-weight: 700;
+}
+.comments__button {
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  border: 2px solid #6a89cc !important;
+  border-radius: 5px !important;
+  padding: 14px 30px !important;
+  color: #6a89cc !important;
+}
+
 .edu-tabs .el-tabs__active-bar {
   background-color: #35529F;
 }

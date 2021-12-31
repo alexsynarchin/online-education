@@ -29,6 +29,8 @@ Vue.component('HomeStudyItems',require('./components/Home/HomeStudyItems').defau
 
 Vue.component('FilterSidebar',require('./components/sidebar/index').default);
 
+Vue.component('Comments',require('./components/comment/index').default);
+
 //FAQ
 Vue.component('Faq',require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
 
