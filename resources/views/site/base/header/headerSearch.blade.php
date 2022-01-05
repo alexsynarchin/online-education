@@ -7,9 +7,9 @@
             </svg>
         </button>
     </div>
-    <button type="submit" class="b-search__main-btn">
+    <a href="/search-teacher" type="submit" class="b-search__main-btn">
         Найти преподавателя
-    </button>
+    </a>
 </form>
 
 

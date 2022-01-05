@@ -35,6 +35,9 @@
         height: 20px;
     }
     &__main-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-weight: 600;
         border-radius: 5px;
         line-height: 1;
@@ -44,6 +47,10 @@
         color:#fff;
         padding:12px 24px;
         border: none;
+        text-decoration: none;
+        &:hover {
+            color: #fff;
+        }
     }
 }
 

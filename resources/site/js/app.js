@@ -34,6 +34,9 @@ Vue.component('Comments',require('./components/comment/index').default);
 //FAQ
 Vue.component('Faq',require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
 
+//Teacher search
+Vue.component('SearchTeachers',require('./components/teacher/index').default);
+
 import router from './router'
 
 Vue.component('ProfileDashboard', require('./components/profile-dashboard/index').default);
