@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Account\StudentAccount;
 use App\Models\Account\TeacherAccount;
+use App\Models\Reference\EduInstitution;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -65,5 +66,9 @@ class User extends Authenticatable
 
     public function teacherAccount(){
         return $this -> hasOne(TeacherAccount::class,'user_id');
+    }
+    public function eduInstitutions()
+    {
+        return $this -> belongsToMany(EduInstitution::class, 'user_edu_institution');
     }
 }
