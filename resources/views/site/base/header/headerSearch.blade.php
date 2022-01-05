@@ -7,7 +7,7 @@
             </svg>
         </button>
     </div>
-    <a href="/search-teacher" type="submit" class="b-search__main-btn">
+    <a href="{{route('teacher.index')}}" type="submit" class="b-search__main-btn">
         Найти преподавателя
     </a>
 </form>

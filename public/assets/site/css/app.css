@@ -13057,3 +13057,37 @@ a {
 .teacher-item__list-item {
   margin-bottom: 8px;
 }
+
+.teacher-page {
+  margin-top: 40px !important;
+}
+.teacher-page__description {
+  flex: 1;
+}
+.teacher-page__description-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.teacher-page__avatar {
+  overflow: hidden;
+  margin-right: 35px;
+  border-radius: 100%;
+  width: 207px;
+  max-width: 207px;
+}
+.teacher-page__title {
+  font-weight: 700;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.teacher-page-descr-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+.teacher-page-descr-list__label {
+  color: rgba(39, 39, 39, 0.7);
+}

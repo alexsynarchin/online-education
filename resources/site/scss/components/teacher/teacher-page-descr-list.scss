@@ -1,0 +1,10 @@
+.teacher-page-descr-list {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    font-size: 20px;
+    font-weight: 500;
+    &__label {
+        color: rgba(39, 39, 39, 0.7);
+    }
+}

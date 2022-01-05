@@ -44,7 +44,8 @@ use App\Http\Controllers\Site\LessonController;
 Route::get('/catalog/{edu_slug}/{course_slug}/{slug}', [LessonController::class, 'show']) -> name('lesson.show');
 
 use App\Http\Controllers\Site\TeacherController;
-Route::get('search-teacher', [TeacherController::class, 'index']) -> name('teacher.index');
+Route::get('/search-teacher', [TeacherController::class, 'index']) -> name('teacher.index');
+Route::get('/search-teachers/{id}', [TeacherController::class, 'show']) -> name('teacher.show');
 
 Route::get('/for-teachers', function(){
     return view('site.inner');

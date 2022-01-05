@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Account\StudentAccount;
 use App\Models\Account\TeacherAccount;
+use App\Models\Category\CategoryType;
+use App\Models\Category\Course;
 use App\Models\Reference\EduInstitution;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,7 +39,7 @@ class User extends Authenticatable
         'remember_token',
     ];
     protected $appends = [
-        'profile_type',
+        'profile_type', 'subjects'
     ];
 
     /**
@@ -60,6 +62,20 @@ class User extends Authenticatable
         }
         return $profile_type;
     }
+    public function getSubjectsAttribute()
+    {
+        $subjects = [];
+        if($this -> teacherCourses() -> exists()) {
+            $courses = $this ->teacherCourses() ->with('subject') ->get(['id', 'subject_id']);
+            foreach ($courses as $course) {
+                $check = array_search(($course -> subject -> title), $subjects);
+                if($check === false) {
+                    $subjects[] = $course->subject->title;
+                }
+            }
+            return $subjects;
+        }
+    }
     public function studentAccount(){
         return $this -> hasOne(StudentAccount::class,'user_id');
     }
@@ -70,5 +86,9 @@ class User extends Authenticatable
     public function eduInstitutions()
     {
         return $this -> belongsToMany(EduInstitution::class, 'user_edu_institution');
+    }
+    public function teacherCourses()
+    {
+        return $this->hasMany(Course::class, 'author_id');
     }
 }

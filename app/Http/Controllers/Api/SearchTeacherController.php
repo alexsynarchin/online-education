@@ -28,4 +28,5 @@ class SearchTeacherController extends Controller
         }
         return $response;
     }
+
 }

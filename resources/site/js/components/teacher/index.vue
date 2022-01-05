@@ -3,7 +3,7 @@
         <search-filter @search-teacher="searchTeacher"></search-filter>
         <div class="row">
             <div class="col-md-4" v-for="(teacher, index) in teachers" v-if="teachers.length > 0">
-               <a  href="" class="teacher-item">
+               <a  :href="'/search-teachers/' + teacher.id" class="teacher-item">
                    <figure class="teacher-item__avatar">
                        <img :src="teacher.avatar">
                    </figure>

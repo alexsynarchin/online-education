@@ -3,19 +3,32 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function index()
+    private $filter;
+    public function __construct()
     {
-        $filter = [
+        $this -> filter = [
             'subject' =>'',
             'level' => '',
             'edu_type' => ''
         ];
+    }
+    public function index()
+    {
         return view('site.teacher.index', [
-            'filter' => $filter
+            'filter' => $this -> filter
+        ]);
+    }
+    public function show($id)
+    {
+        $teacher = User::with(['eduInstitutions']) -> findOrFail($id);
+        return view('site.teacher.show', [
+            'teacher' => $teacher,
+            'filter' => $this -> filter
         ]);
     }
 }
