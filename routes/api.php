@@ -52,5 +52,9 @@ Route::get('/category-{type}/{parent_id?}', [CategoryTypeController::class, 'lis
 use App\Http\Controllers\Api\CatalogController;
 Route::post('/catalog/filter', [CatalogController::class, 'filter']) -> name('catalog.filter');
 
+use App\Http\Controllers\Api\SearchTeacherController;
+Route::get('/search-teacher/filter', [SearchTeacherController::class,'filter'])->name('search-teacher.filter');
+Route::post('/search-teacher', [SearchTeacherController::class, 'search']) -> name('search-teacher');
+
 
 

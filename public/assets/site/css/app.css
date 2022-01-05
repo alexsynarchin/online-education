@@ -12970,6 +12970,10 @@ a {
   color: #0056b3;
 }
 
+.search-teachers-filter {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
 .search-teachers-filter__item {
   display: flex;
   flex-wrap: wrap;
@@ -12982,6 +12986,7 @@ a {
   flex: 1 40%;
   font-size: 17px;
   font-weight: 500;
+  color: rgba(39, 39, 39, 0.3);
 }
 @media (min-width: 1400px) {
   .search-teachers-filter__label {
@@ -12989,6 +12994,9 @@ a {
     max-width: 35%;
     flex: 1 35%;
   }
+}
+.search-teachers-filter__label--selected {
+  color: #272727;
 }
 @media (min-width: 992px) {
   .search-teachers-filter .el-select {
@@ -13008,4 +13016,44 @@ a {
 }
 .search-teachers-filter .el-select .el-input.is-focus .el-input__inner {
   border-color: #6a89cc;
+}
+.search-teachers-filter .el-select .el-input__inner:focus {
+  border-color: #6a89cc;
+}
+
+.teacher-item {
+  color: #272727;
+  text-decoration: none;
+  display: block;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 22px rgba(150, 150, 150, 0.25);
+  border-radius: 15px;
+  padding: 30px;
+}
+.teacher-item:hover {
+  text-decoration: none;
+  color: #272727;
+}
+.teacher-item__title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+.teacher-item__avatar {
+  border-radius: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.teacher-item__list {
+  text-align: center;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  color: rgba(39, 39, 39, 0.7);
+  font-weight: 500;
+  font-size: 14px;
+}
+.teacher-item__list-item {
+  margin-bottom: 8px;
 }

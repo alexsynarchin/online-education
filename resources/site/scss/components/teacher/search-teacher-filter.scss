@@ -1,4 +1,6 @@
 .search-teachers-filter {
+    margin-top: 40px;
+    margin-bottom: 60px;
     &__item {
         display: flex;
         flex-wrap: wrap;
@@ -11,10 +13,14 @@
         flex: 1 40%;
         font-size: 17px;
         font-weight: 500;
+        color: rgba(39, 39, 39, 0.3);
         @include media-breakpoint-up(xxl) {
             width: 35%;
             max-width: 35%;
             flex: 1 35%;
+        }
+        &--selected {
+            color: $text-color;
         }
     }
     .el-select {
@@ -32,6 +38,9 @@
         }
     }
     .el-select .el-input.is-focus .el-input__inner {
+        border-color: $edu-primary;
+    }
+    .el-select .el-input__inner:focus {
         border-color: $edu-primary;
     }
 }
