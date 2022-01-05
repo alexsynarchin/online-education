@@ -25,7 +25,15 @@ class TeacherController extends Controller
     }
     public function show($id)
     {
-        $teacher = User::with(['eduInstitutions']) -> findOrFail($id);
+        $teacher = User::with(['eduInstitutions', 'teacherCourses'=> function($query){
+            $query -> where('status',2);
+            $query -> whereHas('lessons', function ($query){
+                $query->where('status',2);
+            });
+            $query -> with(['lessons' => function($query) {
+                $query->where('status',2);
+            }]);
+        }]) -> findOrFail($id);
         return view('site.teacher.show', [
             'teacher' => $teacher,
             'filter' => $this -> filter
