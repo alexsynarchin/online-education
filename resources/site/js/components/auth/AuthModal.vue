@@ -13,6 +13,7 @@
             <div class="modal-content-upline">
                 <button class="modal-content__close" @click="closeModal"></button>
             </div>
+
             <tabs>
                 <tab name="Вход" :selected="true">
                     <login></login>
@@ -33,6 +34,7 @@
     import SocialAuth from './SocialAuth';
 export default {
     name: 'ModalLogin',
+
     components:{
         'Tabs': Tabs,
         'Tab': Tab,
@@ -46,6 +48,7 @@ export default {
             duration: 5000,
             activeTab:'login',
             profile_type:'',
+            redirect_path:"",
         }
     },
     methods: {

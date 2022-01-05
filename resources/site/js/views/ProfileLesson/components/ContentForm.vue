@@ -3,7 +3,7 @@
 
         <el-form :model="data" ref="data" :rules="rules" label-position="top">
             <el-form-item prop="text" label="Содержимое урока">
-                <textarea id="lesson_content"  v-model="data.text" style="width: 100%"></textarea>
+                <richtext v-model="data.text"></richtext>
             </el-form-item>
             <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 0">
 
@@ -23,9 +23,12 @@
     </fieldset>
 </template>
 <script>
-
+import richtext from '@/common/js/components/richtext/index';
     export default {
         props:['data'],
+        components:{
+            richtext,
+        },
         data(){
             return{
                 rules:{

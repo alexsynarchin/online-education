@@ -36,13 +36,13 @@
             ref="createContent"
             v-if="active === 1"
         ></content-form>
-        <create-test
+        <test-form
             v-if="active === 2"
             :data = "testData"
             ref="create_test"
             @submitForm="checkTest"
         >
-        </create-test>
+        </test-form>
         <div class="text-center mb-3">
             <el-button @click.prevent="prev()" v-if="active > 0" style="text-transform: uppercase">Назад</el-button>
             <el-button type="primary"  @click.prevent="nextStep" v-if="active < 2" style="margin-top: 12px; text-transform: uppercase">Продолжить</el-button>
@@ -59,10 +59,10 @@
 <script>
 import DescriptionForm from "./components/form";
 import ContentForm from "./components/ContentForm";
-import CreateTest from "./components/CreateTest";
+import TestForm from "./components/LessonTest/TestForm";
     export default {
     components: {
-        DescriptionForm, ContentForm, CreateTest
+        DescriptionForm, ContentForm, TestForm
     },
         props:{
             slug:String,
@@ -129,7 +129,6 @@ import CreateTest from "./components/CreateTest";
                 axios.post('/api/profile/lesson/store',formData)
                     .then( (response) => {
                         window.location = response.request.responseURL;
-
                     })
                     .catch( (error) => {
                         var errors = error.response;

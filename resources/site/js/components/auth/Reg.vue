@@ -46,7 +46,7 @@
                         </label>
                 </div>
                 <span class="text-danger error-text" role="alert" v-if="errors.get('profile_type')" style="font-size: 80%">
-                                    {{errors.get('profile_type')}}
+                        {{errors.get('profile_type')}}
                 </span>
             </fieldset>
             <button class="modal-form-btn" type="submit" @click.prevent="registerPost()">Зарегистрироваться</button>

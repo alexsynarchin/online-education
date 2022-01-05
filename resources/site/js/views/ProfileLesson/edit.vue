@@ -18,7 +18,7 @@
                 <content-form :data="lesson.content" v-if="loaded"></content-form>
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
-                <test-form :data="test" v-if="loaded"></test-form>
+                <test-form :data="test"   v-if="loaded"></test-form>
             </el-tab-pane>
         </el-tabs>
         <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
@@ -28,7 +28,7 @@
 <script>
     import DescriptionForm from "./components/form";
     import ContentForm from "./components/ContentForm";
-    import TestForm from "./components/CreateTest";
+    import TestForm from "./components/LessonTest/TestForm";
     export default {
         components:{
             DescriptionForm, ContentForm, TestForm,

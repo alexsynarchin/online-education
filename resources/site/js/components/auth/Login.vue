@@ -29,8 +29,12 @@
 <script>
     import { Errors } from  '@/common/js/services/errors.js';
     export default {
+        props: {
+            redirect_path: {
+                type:String,
+            }
+        },
         components:{
-
         },
         data(){
             return{
