@@ -11,9 +11,12 @@
                         </a>
                     </li>
                     <li class="breadcrumb__item">
-                        <a href="/" class="breadcrumb__link">
+                        <a href="{{route('teacher.index')}}" class="breadcrumb__link">
                             Преподаватели
                         </a>
+                    </li>
+                    <li class="breadcrumb__item">
+                        {{$teacher -> name}} {{$teacher -> surname}}
                     </li>
                 </ul>
             </div>
