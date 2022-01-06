@@ -17,6 +17,7 @@ class CreateLessonContentsTable extends Migration
             $table->id();
             $table->longText('text');
             $table->bigInteger('lesson_id')->unsigned();
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
             $table->timestamps();
         });
     }

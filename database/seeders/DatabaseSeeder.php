@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,8 @@ class DatabaseSeeder extends Seeder
             EduLevelsSeeder::class,
             RolesSeeder::class,
             UsersSeeder::class,
+            EduInstitutionSeeder::class,
+            TeacherEduInstutionAttach::class,
         ]);
     }
 }

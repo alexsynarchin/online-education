@@ -1,0 +1,17 @@
+.edu-levels-list {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    &__item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed gray;
+    }
+    &__show {
+        font-weight: 500;
+        font-size: 17px;
+    }
+}

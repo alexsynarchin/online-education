@@ -18,5 +18,10 @@ class CategoryType extends Model
         return $this->hasMany(Category::class, 'category_type_id');
     }
 
+    public function levels()
+    {
+        return $this->hasMany(CategoryType::class, 'parent_id');
+    }
+
 
 }

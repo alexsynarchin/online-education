@@ -11324,6 +11324,10 @@ img {
   max-width: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 .auth {
   min-height: 100vh;
   display: flex;
@@ -11579,6 +11583,11 @@ img {
   text-decoration: none;
 }
 
+.page-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
 .sidebar-header {
   padding: 0 3rem;
   background-color: #f6f6f6;
@@ -11661,4 +11670,22 @@ img {
   margin-bottom: 10px;
   font-size: 28px;
   font-weight: 700;
+}
+
+.edu-levels-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.edu-levels-list__item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed gray;
+}
+.edu-levels-list__show {
+  font-weight: 500;
+  font-size: 17px;
 }

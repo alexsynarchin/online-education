@@ -28,6 +28,8 @@ class Course extends Model implements HasMedia
         'slug',
         'lessons_count'
     ];
+
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

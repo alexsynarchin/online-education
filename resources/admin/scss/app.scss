@@ -10,6 +10,7 @@
 //Header
 @import "components/base/page-header";
 @import "components/header/page-header-profile";
+@import "components/base/page-title";
 
 //Sidebar
 @import "components/sidebar/sidebar-header";
@@ -19,5 +20,8 @@
 @import "components/elements/el-aside";
 
 @import "components/course/course-item";
+
+//Category
+@import "components/category/edu-levels-list";
 
 
