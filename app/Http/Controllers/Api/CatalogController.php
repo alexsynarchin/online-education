@@ -21,6 +21,9 @@ class CatalogController extends Controller
         if($request->has('subject')) {
             $url = $url . '&subjects=' . $request->get('subject');
         }
+        if($request->has('theme')) {
+            $url = $url . '&themes=' . $request->get('theme');
+        }
         return $url;
     }
 }

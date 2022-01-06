@@ -15,6 +15,14 @@
             @select-item="selectItem"
             :edu_type="filterStart.edu_type"
         ></sidebar-item>
+        <sidebar-item
+            title="Тема курса"
+            :placeholder="'Поиск по темам'"
+            :type="'theme'"
+            :filter-start="selected.theme"
+            @select-item="selectItem"
+            :subject="filterStart.subject"
+        ></sidebar-item>
     </section>
 </template>
 <script>
@@ -42,6 +50,9 @@
                 }
                 if(data.type === 'edu_level') {
                     this.selected.level = data.id;
+                }
+                if(data.type ==='theme') {
+                    this.selected.theme = data.id;
                 }
                 axios.post('/api/catalog/filter', this.selected)
                 .then((response) => {

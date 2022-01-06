@@ -56,6 +56,9 @@
             edu_type: {
                 default:null,
             },
+            subject: {
+                default:null,
+            },
             filterStart: {
                 default: null
             },
@@ -105,6 +108,9 @@
                 let url = '/api/category-' + this.type;
                 if(this.edu_type) {
                     url = url + '/' + this.edu_type;
+                }
+                if(this.subject) {
+                    url = url + '/' + this.subject;
                 }
                 axios.get(url)
                 .then((response)=> {

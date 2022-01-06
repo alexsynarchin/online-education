@@ -20,6 +20,11 @@ class CatalogController extends Controller
         if($request->has('subjects')) {
             $courses = $courses -> where('subject_id', $request->get('subjects'));
         }
+        if($request->has('themes')) {
+            $courses = $courses -> whereHas('themes', function ($query) use ($request){
+                $query->where('theme_id', $request->get('themes'));
+            });
+        }
         $courses = $courses -> whereHas('lessons', function ($query){
             $query -> where('status', 2);
         }) -> with('author') -> with('lessons', function($query) {
@@ -29,7 +34,8 @@ class CatalogController extends Controller
         $filter = [
             'subject' => $request->get('subjects'),
             'level' => $request->get('levels'),
-            'edu_type' => $category_type->id
+            'edu_type' => $category_type->id,
+            'theme' => $request->get('themes')
         ];
         return view('site.catalog.index', [
             'courses' => $courses,
