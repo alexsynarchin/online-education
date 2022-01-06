@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category\CategoryType;
 use DB;
 use Illuminate\Database\Seeder;
 
@@ -87,5 +88,33 @@ class SubjectsSeeder extends Seeder
             ],
         ];
         DB::table('category_types') ->insert($subjects);
+        $themes = [
+            [
+                'title' => 'Алгоритмы',
+                'type' => 'theme',
+            ],
+            [
+                'title' => 'Дифферинциалы',
+                'type' => 'theme',
+            ],
+            [
+                'title' => 'Интегралы',
+                'type' => 'theme',
+            ],
+            [
+                'title' => 'Теория вероятностей',
+                'type' => 'theme',
+            ],
+            [
+                'title' => 'Теория чисел',
+                'type' => 'theme',
+            ],
+        ];
+        $subject = CategoryType::where('type', 'subject')->where('slug','maths')->firstOrFail();
+        foreach ($themes as $theme) {
+            $theme = CategoryType::create($theme);
+            $theme -> parent_id = $subject -> id;
+            $theme -> save();
+        }
     }
 }

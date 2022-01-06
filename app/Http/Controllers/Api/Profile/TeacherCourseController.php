@@ -71,6 +71,11 @@ class TeacherCourseController extends Controller
             $course ->addMediaFromBase64($request->get('image'))
                 ->toMediaCollection('courses');
         }
+        if(count($request->get('themes')) > 0) {
+            foreach ($request->get('themes') as $theme) {
+                $course -> themes() -> attach($theme);
+            }
+        }
         return route('profile.course.show', $course -> slug);
     }
     public function update(Request $request)
@@ -103,12 +108,40 @@ class TeacherCourseController extends Controller
             $course ->addMediaFromBase64($request->get('image'))
                 ->toMediaCollection('courses');
         }
+        if($request->has('themes')) {
+            $isset_themes = $course->themes;
+            $request_themes = $request->get('themes');
+            $isset_theme_ids = [];
+            foreach ($isset_themes as $key => $theme) {
+                if(!in_array($theme->pivot->theme_id, $request_themes)) {
+                    $course->themes()->detach($theme->pivot->theme_id);
+                } else {
+                    $isset_theme_ids[]= $request_themes[$key];
+                }
+            }
+            foreach ($request_themes as $theme) {
+                if(!in_array($theme, $isset_theme_ids)) {
+                    $course->themes()->attach($theme);
+                }
+            }
+        } else {
+            $course->themes()->detach();
+        }
         return route('profile.course.show', $course -> slug);
     }
 
     public function show($slug)
     {
-        $course = Course::where('slug', $slug) ->with('lessons') -> firstOrFail();
+        $course = Course::where('slug', $slug) ->with(['lessons', 'themes' => function($query){
+            $query ->select('theme_id');
+        }]) -> firstOrFail();
+        $themes = [];
+        foreach ($course -> themes as $theme) {
+            $themes[] = $theme->theme_id;
+        }
+        $course = $course -> toArray();
+        $course['themes'] = $themes;
+
         return $course;
     }
 }

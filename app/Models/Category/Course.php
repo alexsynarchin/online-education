@@ -96,4 +96,9 @@ class Course extends Model implements HasMedia
     {
         return $this->hasMany(Lesson::class, 'course_id');
     }
+
+    public function themes()
+    {
+        return $this->belongsToMany(CategoryType::class, 'course_theme', 'course_id', 'theme_id');
+    }
 }

@@ -18,8 +18,10 @@ class CreateCategoryTypesTable extends Migration
             $table->string('title');
             $table->string('type');
             $table->string('slug');
+            $table->boolean('active')->default(true);
             $table->integer('menuindex')->default(0);
             $table->bigInteger('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on('category_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@
               <el-select v-model="form.subject_id"
                          filterable placeholder="Выберите предмет"
                          style="width: 100%;"
+                         @change="selectSubject"
               >
                   <el-option
                       v-for="item in subjects"
@@ -33,6 +34,16 @@
               <el-select v-model="form.edu_level_id" placeholder="Выберите уровень образования" style="width: 100%;">
                   <el-option
                       v-for="item in edu_levels"
+                      :key="item.id"
+                      :label="item.title"
+                      :value="item.id">
+                  </el-option>
+              </el-select>
+          </el-form-item>
+          <el-form-item label="Темы курса"  class="col-md-8 col-xl-7">
+              <el-select v-model="form.themes" multiple placeholder="Выберите Темы курса" style="width: 100%;">
+                  <el-option
+                      v-for="item in themes"
                       :key="item.id"
                       :label="item.title"
                       :value="item.id">
@@ -65,6 +76,7 @@
               <textarea style="width:100%"   v-model="form.description" ></textarea>
             </div>
           </el-form-item>
+
         </el-col>
       </el-row>
       <el-button  type="primary" @click.prevent="storeCourse()"  style="text-transform: uppercase">Сохранить курс</el-button>
@@ -93,6 +105,7 @@ import { Errors } from  '@/common/js/services/errors.js';
         edu_types: [],
         subjects:[],
         edu_levels:[],
+        themes: [],
         errors: new Errors(),
       }
     },
@@ -156,10 +169,16 @@ import { Errors } from  '@/common/js/services/errors.js';
                 if(type === 'edu_level') {
                     this.edu_levels = response.data;
                 }
+                if(type === 'theme') {
+                    this.themes = response.data;
+                }
             })
         },
         selectEduType(id) {
            this.getCategories('edu_level', id);
+        },
+        selectSubject(id) {
+            this.getCategories('theme', id);
         }
     },
       mounted() {
@@ -168,6 +187,9 @@ import { Errors } from  '@/common/js/services/errors.js';
         if(this.form.edu_type_id) {
             this.getCategories('edu_level', this.form.edu_type_id);
             console.log(this.form.edu_type_id);
+        }
+        if(this.form.subject_id) {
+            this.getCategories('theme', this.form.subject_id);
         }
       }
   }
