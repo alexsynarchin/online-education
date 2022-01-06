@@ -184,7 +184,7 @@ export default {
             }
         },
         getModerators() {
-            axios.get('/admin/api/moderators-list')
+            axios.get('/api/admin/users', {params: {type:'admin'}})
                 .then((response) => {
                     this.moderators = response.data;
                 })
