@@ -35,3 +35,6 @@ Route::post('/category-type/store', [CategoryTypeController::class, 'store']) ->
 Route::post('/category-type/update', [CategoryTypeController::class, 'update']) -> name('category-type.update');
 Route::post('/category-type/{id}/remove', [CategoryTypeController::class, 'remove']) -> name('category-type.remove');
 
+use App\Http\Controllers\Admin\Api\UserController;
+Route::get('/users', [UserController::class, 'index']) -> name('users.index');
+
