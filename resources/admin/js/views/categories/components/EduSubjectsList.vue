@@ -45,19 +45,20 @@
             </data-tables>
         </div>
         <el-dialog
+            v-if="showModal"
             :title="modalTitle"
             :visible.sync="showModal"
             width="50%"
             :before-close="handleClose">
             <el-form ref="form" :model="subjectItem">
-                <el-form-item label="Заголовок типа образования" prop="title">
+                <el-form-item label="Заголовок предмета" prop="title">
                     <el-input v-model="subjectItem.title"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="showModal = false">Закрыть</el-button>
                 <el-button type="primary" @click="updateItem" v-if="subjectItem.id">Сохранить</el-button>
-                <el-button type="primary" @click="addSubject" v-else>Добавить</el-button>
+                <el-button type="primary" @click="storeSubject" v-else>Добавить</el-button>
             </span>
         </el-dialog>
     </section>
@@ -88,20 +89,22 @@ export default {
     },
     methods:{
         addSubject() {
-            this.showModal = true;
             this.modalTitle = 'Новый предмет';
-            this.subjectItem.title = '';
+            this.subjectItem.type = 'subject';
+            this.showModal = true;
+        },
+        storeSubject() {
             axios.post('/api/admin/category-type/store', this.subjectItem)
-            .then((response) => {
-                this.$notify({
-                    title: 'Добавлен предмет',
-                    message: response.data.title + '.',
-                    type: 'success',
-                    duration:4000
-                });
-                this.subjects.push(response.data);
-                this.handleClose();
-            })
+                .then((response) => {
+                    this.$notify({
+                        title: 'Добавлен предмет',
+                        message: response.data.title + '.',
+                        type: 'success',
+                        duration:4000
+                    });
+                    this.subjects.push(response.data);
+                    this.handleClose();
+                })
         },
         getSubjects(){
             axios.get('/api/admin/category-types/subject')
