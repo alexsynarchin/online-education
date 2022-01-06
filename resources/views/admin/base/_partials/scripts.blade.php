@@ -1,1 +1,1 @@
-<script src="{{mix('js/app.js', 'assets/admin')}}?ver=25"></script>
+<script src="{{mix('js/app.js', 'assets/admin')}}?ver=26"></script>

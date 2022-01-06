@@ -30,6 +30,8 @@ class CategoryTypeController extends Controller
     public function store(Request $request)
     {
 
+        $categoryType = CategoryType::create($request->all());
+        return $categoryType;
     }
     public function update(Request $request)
     {

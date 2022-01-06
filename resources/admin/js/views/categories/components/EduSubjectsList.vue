@@ -6,7 +6,7 @@
                     <el-button type="success"
                                icon="el-icon-plus"
                                class="mb-3"
-                               @click.prevent="$modal.show('SubjectModal',{ actionState:'add',title:'Новый предмет'})"
+                               @click.prevent="addSubject"
                     >Добавить Предмет</el-button>
                 </el-col>
                 <el-col :span="12">
@@ -44,10 +44,6 @@
                 </el-table-column>
             </data-tables>
         </div>
-
-
-
-
         <el-dialog
             :title="modalTitle"
             :visible.sync="showModal"
@@ -60,7 +56,8 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="showModal = false">Закрыть</el-button>
-                <el-button type="primary" @click="updateItem">Сохранить</el-button>
+                <el-button type="primary" @click="updateItem" v-if="subjectItem.id">Сохранить</el-button>
+                <el-button type="primary" @click="addSubject" v-else>Добавить</el-button>
             </span>
         </el-dialog>
     </section>
@@ -90,6 +87,22 @@ export default {
         }
     },
     methods:{
+        addSubject() {
+            this.showModal = true;
+            this.modalTitle = 'Новый предмет';
+            this.subjectItem.title = '';
+            axios.post('/api/admin/category-type/store', this.subjectItem)
+            .then((response) => {
+                this.$notify({
+                    title: 'Добавлен предмет',
+                    message: response.data.title + '.',
+                    type: 'success',
+                    duration:4000
+                });
+                this.subjects.push(response.data);
+                this.handleClose();
+            })
+        },
         getSubjects(){
             axios.get('/api/admin/category-types/subject')
                 .then((response)=>{
