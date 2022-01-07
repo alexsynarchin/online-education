@@ -29,6 +29,10 @@ class CategoryType extends Model
     {
         return $this->hasMany(CategoryType::class, 'parent_id');
     }
+    public function parent()
+    {
+        return $this->belongsTo(CategoryType::class, 'parent_id');
+    }
 
 
 }

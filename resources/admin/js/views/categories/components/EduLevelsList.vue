@@ -78,6 +78,9 @@ import deleteDialog from "../../../mixins/deleteDialog";
                 }
 
             },
+            storeItem(item) {
+
+            },
             updateItem(item) {
                 axios.post('/api/admin/category-type/update', item)
                     .then((response) => {

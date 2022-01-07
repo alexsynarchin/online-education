@@ -2,7 +2,7 @@ export default {
     methods: {
        async deleteDialog(msg) {
            let deleteCond = false;
-            await this.$confirm(msg, 'Warning', {
+            await this.$confirm(msg, 'Удаление', {
                 confirmButtonText: 'Удалить',
                 cancelButtonText: 'Отмена',
                 type: 'warning',

@@ -109,21 +109,7 @@ class TeacherCourseController extends Controller
                 ->toMediaCollection('courses');
         }
         if($request->has('themes')) {
-            $isset_themes = $course->themes;
-            $request_themes = $request->get('themes');
-            $isset_theme_ids = [];
-            foreach ($isset_themes as $key => $theme) {
-                if(!in_array($theme->pivot->theme_id, $request_themes)) {
-                    $course->themes()->detach($theme->pivot->theme_id);
-                } else {
-                    $isset_theme_ids[]= $request_themes[$key];
-                }
-            }
-            foreach ($request_themes as $theme) {
-                if(!in_array($theme, $isset_theme_ids)) {
-                    $course->themes()->attach($theme);
-                }
-            }
+            $course -> themes() -> sync($request->get('themes'));
         } else {
             $course->themes()->detach();
         }

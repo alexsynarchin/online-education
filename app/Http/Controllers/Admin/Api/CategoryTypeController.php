@@ -18,9 +18,13 @@ class CategoryTypeController extends Controller
         $list = $list -> get(['id', 'title']);
         return $list;
     }
+    public function getThemes()
+    {
+        $themes = CategoryType::where('type', 'theme')->with('parent')->get();
+        return $themes;
+    }
     public function show($type, $id)
     {
-
         $categoryType = (new CategoryType) -> newQuery();
         $categoryType = CategoryType::where('type', $type) -> where('id', $id);
         $categoryType = $categoryType -> firstOrFail();
@@ -29,7 +33,15 @@ class CategoryTypeController extends Controller
 
     public function store(Request $request)
     {
-
+        if($request->get('type') === 'theme') {
+            $request -> validate([
+                'title' =>'required',
+                'parent_id' => 'required',
+            ], [
+                'title.required' => 'Введите название темы курса',
+                'parent_id.required' => 'Выберите  предмет',
+            ]);
+        }
         $categoryType = CategoryType::create($request->all());
         return $categoryType;
     }

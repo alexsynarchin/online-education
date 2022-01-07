@@ -18,7 +18,7 @@
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <filter-sidebar :filter-start="{{json_encode($filter)}}"></filter-sidebar>
+                @include('site.base._partials.sidebar')
             </div>
             <div class="col-lg-9">
                 <h1 class="page-title">

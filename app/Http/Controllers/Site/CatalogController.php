@@ -31,15 +31,10 @@ class CatalogController extends Controller
             $query -> where('status', 2);
             $query -> take(3);
         })->get();
-        $filter = [
-            'subject' => $request->get('subjects'),
-            'level' => $request->get('levels'),
-            'edu_type' => $category_type->id,
-            'theme' => $request->get('themes')
-        ];
+
         return view('site.catalog.index', [
             'courses' => $courses,
-            'filter' => $filter,
+
             'title' => $category_type -> title,
             'slug' => $category_type -> slug,
         ]);

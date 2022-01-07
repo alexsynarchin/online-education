@@ -30,6 +30,7 @@ Route::post('/lesson/{id}/cansel-msg', [LessonController::class, 'canselMsg'])->
 
 use App\Http\Controllers\Admin\Api\CategoryTypeController;
 Route::get('/category-types/{type}', [CategoryTypeController::class, 'getList']) ->name('category-type.list');
+Route::get('/category-types/theme/list', [CategoryTypeController::class, 'getThemes']) ->name('category-type.theme-list');
 Route::get('/category-types/{type}/{id}', [CategoryTypeController::class, 'show']) -> name('category-type.show');
 Route::post('/category-type/store', [CategoryTypeController::class, 'store']) -> name('category-type.store');
 Route::post('/category-type/update', [CategoryTypeController::class, 'update']) -> name('category-type.update');
