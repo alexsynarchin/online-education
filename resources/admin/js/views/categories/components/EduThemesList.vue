@@ -55,7 +55,7 @@
             :before-close="handleClose">
             <el-form ref="form" :model="themeItem" label-position="top">
                 <el-form-item label="Выберите предмет" prop="subject" :error="errors.get('parent_id')">
-                    <el-select v-model="themeItem.parent_id" placeholder="Выберите предмет">
+                    <el-select filterable v-model="themeItem.parent_id" placeholder="Выберите предмет">
                         <el-option
                             v-for="item in subjects"
                             :key="item.id"
