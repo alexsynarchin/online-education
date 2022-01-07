@@ -5,7 +5,7 @@
             <el-form-item  prop="title" style="margin-right: 15px; flex:1;">
                 <el-input placeholder="Добавить уровень образования" v-model="level.title"></el-input>
             </el-form-item>
-            <el-button icon="el-icon-plus">Добавить</el-button>
+            <el-button icon="el-icon-plus" @click="storeItem(level)">Добавить</el-button>
         </el-form>
         <ul class="edu-levels-list">
             <li class="edu-levels-list__item" v-for="(item, index) in EduLevels">
@@ -44,6 +44,7 @@ import deleteDialog from "../../../mixins/deleteDialog";
                 level: {
                     parent_id: this.id,
                     title:'',
+                    type: 'edu_level'
                 },
                 EduLevels: [],
             }
@@ -79,7 +80,18 @@ import deleteDialog from "../../../mixins/deleteDialog";
 
             },
             storeItem(item) {
-
+                axios.post('/api/admin/category-type/store', item)
+                    .then((response) => {
+                        this.$notify({
+                            title: 'Добавлен предмет',
+                            message: response.data.title + '.',
+                            type: 'success',
+                            duration:4000
+                        });
+                        this.level.title = ''
+                        this.EduLevels.push(response.data);
+                        this.handleClose();
+                    })
             },
             updateItem(item) {
                 axios.post('/api/admin/category-type/update', item)
