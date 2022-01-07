@@ -83,7 +83,7 @@ import deleteDialog from "../../../mixins/deleteDialog";
                 axios.post('/api/admin/category-type/store', item)
                     .then((response) => {
                         this.$notify({
-                            title: 'Добавлен предмет',
+                            title: 'Добавлен уровень образования',
                             message: response.data.title + '.',
                             type: 'success',
                             duration:4000
