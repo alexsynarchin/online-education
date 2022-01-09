@@ -33,9 +33,9 @@ use App\Http\Controllers\Api\Profile\ProfileController;
 
 //Header nav
 use App\Http\Controllers\Api\HeaderNavController;
-Route::get('/header-nav/edu-types', [HeaderNavController::class, 'eduTypesList']) -> name('header-nav.edu-list');
-Route::get('/header-nav/edu-levels', [HeaderNavController::class, 'eduLevelsList']) -> name('header-nav.edu-levels-list');
-Route::get('/header-nav/edu-subjects', [HeaderNavController::class,'eduSubjectsList']) -> name('header-nav.edu-subjects-list');
+Route::get('/header-nav/edu-types', [HeaderNavController::class, 'eduTypesList'])-> name('header-nav.edu-list');
+Route::get('/header-nav/edu-levels', [HeaderNavController::class, 'eduLevelsList'])-> name('header-nav.edu-levels-list');
+Route::get('/header-nav/edu-subjects', [HeaderNavController::class,'eduSubjectsList'])-> name('header-nav.edu-subjects-list');
 Route::post('/header-nav/filter', [HeaderNavController::class,'filter']) -> name('header-nav.filter');
 
 //Slider Filter
@@ -45,16 +45,27 @@ Route::post('/slider/filter', [SliderFilterController::class, 'filter']) -> name
 //Category type
 
 use App\Http\Controllers\Api\CategoryTypeController;
-Route::get('/category-{type}/{parent_id?}', [CategoryTypeController::class, 'listByType'])->name('category-type.list');
+Route::get('/category-{type}/{parent_id?}', [CategoryTypeController::class, 'listByType'])
+    ->name('category-type.list');
 
 
 //Catalog, filters
 use App\Http\Controllers\Api\CatalogController;
-Route::post('/catalog/filter', [CatalogController::class, 'filter']) -> name('catalog.filter');
+Route::post('/catalog/filter', [CatalogController::class, 'filter'])-> name('catalog.filter');
 
 use App\Http\Controllers\Api\SearchTeacherController;
 Route::get('/search-teacher/filter', [SearchTeacherController::class,'filter'])->name('search-teacher.filter');
 Route::post('/search-teacher', [SearchTeacherController::class, 'search']) -> name('search-teacher');
 
+//Social auth
+use App\Http\Controllers\Api\Auth\SocialAuthController;
 
+Route::get('/social-auth/{provider}', [SocialAuthController::class,'redirectToProvider'])->name('auth.social');
+Route::get('/social-auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])
+    ->name('auth.social.callback');
+
+//Profile user
+use App\Http\Controllers\Api\Profile\UserController;
+Route::post('/user/{id}/select-profile', [UserController::class, 'selectProfile']) -> name('user.select-profile');
+Route::post('/user/{id}/update-email', [UserController::class, 'updateEmail']) -> name('user.update-email');
 

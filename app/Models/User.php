@@ -12,11 +12,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory,InteractsWithMedia, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -39,7 +43,7 @@ class User extends Authenticatable
         'remember_token',
     ];
     protected $appends = [
-        'profile_type', 'subjects'
+        'profile_type', 'subjects', 'avatar'
     ];
 
     /**
@@ -62,6 +66,32 @@ class User extends Authenticatable
         }
         return $profile_type;
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('users')
+            ->singleFile()
+            ->useDisk('user');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(240)
+            ->height(240)
+            ->crop(Manipulations::CROP_CENTER, 240, 240)
+            ->nonQueued();
+    }
+
+    public function getAvatarAttribute()
+    {
+        $avatar = $this ->getFirstMediaUrl('users','thumb');
+        if(!$avatar) {
+            $avatar = '/images/avatar.jpg';
+        }
+        return $avatar;
+    }
+
     public function getSubjectsAttribute()
     {
         $subjects = [];

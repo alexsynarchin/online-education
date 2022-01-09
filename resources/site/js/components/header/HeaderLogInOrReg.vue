@@ -129,7 +129,7 @@
                 </div>
             </div>
         </div>
-        <div v-else class="btn-auth" role="button"  @click="$modal.show('isLogin')">
+        <div v-else class="btn-auth" role="button"  @click="showAuthModal">
             <svg class="btn-auth__svg">
                 <use xlink:href="/images/sprite.svg#login"></use>
             </svg>
@@ -144,7 +144,7 @@
 <script>
 
 import Notification from './HeaderLoginNotificationPopup'
-
+import EventBus from "../../EventBus";
 export default {
     components: { Notification },
     data () {
@@ -163,6 +163,9 @@ export default {
 
     },
     methods: {
+        showAuthModal() {
+            EventBus.$emit('show-auth-modal')
+        },
         logout: function () {
             axios.post('/logout').then(response => {
                 if (response.status === 302 || 401) {

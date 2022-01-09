@@ -58,7 +58,9 @@ export default {
         },
         email_modal_msg:function () {
             if(!this.user.email) {
-                return 'Одну минуту! Мы не получили ваш e-mail. Электронный адрес необходим для завершения регистрации и получения полного доступа ко всем возможностям нашего сервиса.'
+                return 'Одну минуту! Мы не получили ваш e-mail.' +
+                    ' Электронный адрес необходим для ' +
+                    'завершения регистрации и получения полного доступа ко всем возможностям нашего сервиса.'
             } else {
                 return 'Введите e-mail'
             }
@@ -99,7 +101,7 @@ export default {
         submitEmailForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    axios.post('/api/profile/' + this.user.id +'/update-email',{email:this.emailForm.email})
+                    axios.post('/api/user/' + this.user.id +'/update-email',{email:this.emailForm.email})
                         .then((response) => {
                            location.reload(true);
                         })
@@ -120,7 +122,7 @@ export default {
         selectProfileType(formName) {
             this.$refs[formName].validate((valid) => {
                if(valid) {
-                    axios.post('/api/profile/' + this.user.id + '/select-type', {profile_type: this.profileForm.profile_type})
+                    axios.post('/api/user/' + this.user.id + '/select-profile', {profile_type: this.profileForm.profile_type})
                         .then((response) => {
                             location.reload(true);
                         })

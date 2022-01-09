@@ -1,16 +1,8 @@
 <template>
-    <modal
-        name="AddStudentPromoModal"
-        transition="nice-modal-fade"
-        :min-width="200"
-        :max-width="400"
-        :delay="100"
-        :adaptive="true"
-        :scrollable="true"
-        width="90%"
-        height="auto"
-
-        @closed="closeModal"
+    <el-dialog
+        title="Введите промокод"
+        :visible.sync="promoModal"
+        width="30%"
     >
         <div class="modal-body">
             <div class="modal-heading mb-3">
@@ -34,13 +26,14 @@
 
 
         </div>
-    </modal>
+    </el-dialog>
 </template>
 <script>
 import { Errors } from  '@/common/js/services/errors.js';
     export default {
         data(){
             return {
+                promoModal:false,
                 PromoCode:{
                     text:""
                 },

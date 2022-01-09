@@ -17,7 +17,7 @@ class Dashboard
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::check() || !auth()->user()->hasRole('teacher')) {
+        if(!Auth::check() || auth()->user()->hasRole('admin')) {
             return redirect(route('home'));
         }
         return $next($request);

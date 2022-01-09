@@ -17,7 +17,7 @@
                 if(this.authCheck) {
                     this.$eventBus.$emit('review-submitted', productReview)
                 } else {
-                    this.$modal.show('isLogin');
+                    this.$eventBus.$emit('show-auth-modal');
                 }
             },
         },

@@ -7,9 +7,8 @@ Vue.use(ElementUI);
 import lang from 'element-ui/lib/locale/lang/ru-RU'
 import locale from 'element-ui/lib/locale'
 locale.use(lang);
-import modal from 'vue-js-modal';
-Vue.use(modal);
-const eventBus = new Vue()
+
+export const eventBus = new Vue()
 //Auth
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
 Vue.component('HeaderNavigation', require('./components/header/HeaderNavigation').default);

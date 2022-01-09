@@ -7,7 +7,7 @@ body,html{
     -ms-font-feature-settings: 'lnum';
     -webkit-font-feature-settings: 'lnum';
     -o-font-feature-settings: 'lnum';
-
+    font-family: $font-family-sans-serif !important;
 }
 .page-wrapper {
     background-color:  #F7F7F7;
@@ -30,9 +30,6 @@ button{
 }
 .divider{
     border-bottom:1px dashed #000;
-}
-#app{
-    font-family: $font-family-sans-serif !important;
 }
 .btn-auth__title {
     margin-left: 10px;

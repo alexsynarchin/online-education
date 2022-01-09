@@ -11290,6 +11290,7 @@ body, html {
   -ms-font-feature-settings: "lnum";
   -webkit-font-feature-settings: "lnum";
   -o-font-feature-settings: "lnum";
+  font-family: "Raleway", sans-serif !important;
 }
 
 .page-wrapper {
@@ -11315,10 +11316,6 @@ button:focus {
 
 .divider {
   border-bottom: 1px dashed #000;
-}
-
-#app {
-  font-family: "Raleway", sans-serif !important;
 }
 
 .btn-auth__title {
@@ -11738,7 +11735,7 @@ a {
 }
 .modal-form-group__title {
   margin: 10px 0px 30px 0px;
-  font: 400 17px "RobotoRegular", sans-serif;
+  font: 500 17px "Raleway", sans-serif, sans-serif;
 }
 .modal-form-group__input {
   width: 100% !important;
@@ -11746,7 +11743,8 @@ a {
   padding-left: 15px !important;
   border: 1px solid #E2E2E2;
   border-radius: 5px !important;
-  font: 400 14px "RobotoRegular", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 .modal-form-group__input:focus {
   background: transparent;
@@ -11758,7 +11756,8 @@ a {
   background-color: #6A89CC;
   border: none;
   border-radius: 5px;
-  font: 400 20px "RobotoLight", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
   color: #fff;
   transition: all 0.25s ease;
   overflow: hidden;
@@ -11788,7 +11787,8 @@ a {
 .modal-form-polytic {
   margin-top: 20px;
   text-align: center;
-  font: 400 12px "RobotoLight", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
   color: #AEAEAE;
 }
 .modal-form__conf {
@@ -11802,9 +11802,11 @@ a {
   justify-content: space-between;
 }
 .modal-radio-group-item {
+  align-items: center;
   display: flex;
 }
 .modal-radio-group__title {
+  font-weight: 600;
   margin-left: 15px;
 }
 
@@ -11869,8 +11871,8 @@ a {
 }
 .b-tab__link {
   position: relative;
-  font-family: "RobotoRegular", sans-serif;
   font-size: 16px;
+  font-weight: 600;
   letter-spacing: 0.8px;
   color: #000 !important;
   text-decoration: none;
@@ -12208,6 +12210,73 @@ a {
   width: 178px;
   height: 178px;
   display: block;
+}
+
+.auth-modal .el-dialog {
+  min-width: 420px;
+  max-width: 600px;
+}
+.auth-modal .el-dialog__close {
+  font-size: 25px;
+}
+.auth-modal .el-dialog__body {
+  padding: 15px 10px 30px 10px;
+}
+
+.modal-content {
+  padding: 10px 20px 30px 20px;
+}
+.modal-content-upline {
+  display: flex;
+  justify-content: flex-end;
+}
+.modal-content__close {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+}
+.modal-content__close:focus, .modal-content__close:active {
+  outline: none;
+}
+.modal-content__close::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #BEBEBE;
+  transform: rotate(45deg);
+}
+.modal-content__close::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #BEBEBE;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 575.98px) {
+  .b-tab-questation {
+    text-align: center;
+  }
+}
+@media (max-width: 575.98px) {
+  .b-tab-questation__item {
+    margin-right: 0px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .modal-radio-group {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .home-slider {

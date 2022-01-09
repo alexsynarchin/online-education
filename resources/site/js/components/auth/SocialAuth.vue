@@ -26,7 +26,7 @@
         props:['profile_type'],
         methods: {
             handleSocialAuth(type) {
-                window.location.href = '/social-auth/' + type +'?profile_type='+this.profile_type ;
+                window.location.href = '/api/social-auth/' + type +'?profile_type='+this.profile_type ;
             }
         }
     }
