@@ -14,7 +14,8 @@ class SocialAuthController extends Controller
     public function redirectToProvider($provider, Request $request)
     {
         $resposne = Socialite::driver($provider) -> scopes(['email']);
-        $resposne = $resposne-> with(['state' => 'test'])-> redirect();
+        // with(['state' => 'test'])->
+        $resposne = $resposne->redirect();
         return $resposne;
     }
 
