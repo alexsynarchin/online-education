@@ -1,13 +1,13 @@
 <template>
     <div class="b-search">
         <input v-model="searchquery"
-               v-on:keyup.enter="search"
+               v-on:keyup.enter="search('')"
                v-on:keyup="getSearchData"
                class="b-search__input"
                type="text"
                name="query"
                placeholder="Введите название темы курса или урока">
-        <button type="submit" class="b-search__btn" @click.prevent="search">
+        <button type="submit" class="b-search__btn" @click.prevent="search('')">
             <svg class="b-search__icon">
                 <use xlink:href="/images/sprite.svg#search"></use>
             </svg>
@@ -66,7 +66,8 @@
                 }
 
             },
-            search(type=null) {
+            search(type) {
+                console.log(type)
                 axios.post('/api/search', {search:this.searchquery, type:type})
                 .then((response) => {
                     window.location.href=response.data;

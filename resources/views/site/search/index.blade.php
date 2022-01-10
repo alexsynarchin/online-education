@@ -17,7 +17,7 @@
         <div class="col-lg-9">
             @if(count($courses) > 0)
                 <h3 class="search__title">
-                    Результаты по названию курса
+                    Результаты по названию курса:
                 </h3>
                 @foreach($courses as $course)
                     @include('site.course.item', ['course' => $course])
@@ -25,7 +25,7 @@
             @endif
             @if(count($themes) > 0)
                 <h3 class="search__title">
-                    Результаты по теме
+                    Результаты по названию темы:
                 </h3>
                 @foreach($themes as $course)
                     @include('site.course.item', ['course' => $course])

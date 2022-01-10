@@ -11,7 +11,9 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        return route('search', $request->all());
+
+       $request=$request->all();
+        return route('search', $request);
     }
     public function autocomplete(Request $request)
     {

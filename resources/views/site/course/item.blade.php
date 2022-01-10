@@ -1,6 +1,6 @@
 <section class="course-item">
     <div class="course-item__heading">
-        <a href="{{route('catalog.show', ['edu_slug' => $slug, 'slug' => $course -> slug])}}"  class="course-item__link">
+        <a href="{{route('catalog.show', ['edu_slug' => $course -> edu_type -> slug, 'slug' => $course -> slug])}}"  class="course-item__link">
             <h4 class="course-item__title">
                 {{$course -> title}}
             </h4>
@@ -24,7 +24,7 @@
                     </li>
                 @endforeach
             </ul>
-            <a href="{{route('catalog.show', ['edu_slug' => $slug, 'slug' => $course -> slug])}}" class="course-item-lessons__btn btn">Полный список уроков</a>
+            <a href="{{route('catalog.show', ['edu_slug' => $course -> edu_type -> slug, 'slug' => $course -> slug])}}" class="course-item-lessons__btn btn">Полный список уроков</a>
         </div>
         <div class="course-item__right course-item__right--text-right">
             <div class="course-item__price">

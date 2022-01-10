@@ -12088,6 +12088,12 @@ a {
   padding-left: 0;
 }
 
+.search__title {
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
 .b-profile-user__title {
   margin-top: 20px;
   font-size: 36px;

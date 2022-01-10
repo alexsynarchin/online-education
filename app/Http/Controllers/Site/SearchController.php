@@ -25,19 +25,18 @@ class SearchController extends Controller
                 $query -> where('title', 'like', '%' .  $request->get('search') . '%');
             }) -> whereHas('lessons', function ($query){
                 $query -> where('status', 2);
-            }) -> with('author') -> with('lessons', function($query) {
+            }) -> with('author', 'edu_type') -> with('lessons', function($query) {
                 $query -> where('status', 2);
                 $query -> take(3);
             }) -> get();
             $courses = Course::where('title', 'like', '%' . $request->get('search') . '%')
                 -> whereHas('lessons', function ($query){
                 $query -> where('status', 2);
-            }) -> with('author') -> with('lessons', function($query) {
+            }) -> with('author','edu_type') -> with('lessons', function($query) {
                 $query -> where('status', 2);
                 $query -> take(3);
             }) -> get();
         }
-
         return view('site.search.index',['courses' => $courses, 'themes' => $themes]);
     }
 }
