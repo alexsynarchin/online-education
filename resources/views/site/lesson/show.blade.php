@@ -53,7 +53,7 @@
                         </div>
                         <div class="course-item__right course-item__right--text-right">
                             <div class="course-item__price">
-                                {{$lesson ->price}} ₽
+                                {{$lesson ->price_user}} ₽
                             </div>
                             <div class="course-item__actions">
                                 <a href="" class="course-item__btn btn">Купить</a>
