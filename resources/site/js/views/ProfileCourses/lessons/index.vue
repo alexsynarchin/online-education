@@ -17,7 +17,12 @@
                 </a>
             </li>
         </ul>
-        <lesson-item :lesson="lesson" v-for="(lesson, index) in filteredLessons" :key="lesson.id" @handle-edit="handleEdit"></lesson-item>
+        <lesson-item :lesson="lesson"
+                     v-for="(lesson, index) in filteredLessons"
+                     :key="lesson.id"
+                     @handle-edit="handleEdit"
+                    @handle-remove="handleRemove"
+        ></lesson-item>
     </section>
 </template>
 <script>
@@ -38,7 +43,7 @@
         },
         computed: {
             filteredLessons: function() {
-                return this.course_lessons.filter(lesson => {
+                return this.lessons.filter(lesson => {
                         return lesson.status == this.active_status;
                     })
             }
@@ -73,6 +78,10 @@
             }
         },
          methods: {
+            handleRemove(id) {
+                let index = this.lessons.findIndex(x => x.id === id);
+                this.lessons.splice(index, 1);
+            },
             handleEdit(lesson_slug) {
                 window.location.href = '/profile/courses/' + this.course_slug + '/lesson/' + lesson_slug + '/edit';
             },
@@ -81,5 +90,8 @@
                 this.active_status = value;
             },
          },
+        mounted() {
+            this.lessons = this.course_lessons;
+        }
     }
 </script>

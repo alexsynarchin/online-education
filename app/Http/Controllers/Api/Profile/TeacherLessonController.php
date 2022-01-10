@@ -37,4 +37,11 @@ class TeacherLessonController extends Controller
         return 'success';
     }
 
+    public function remove($id)
+    {
+        $lesson = Lesson::findOrFail($id);
+        $lesson -> delete();
+        return $lesson -> id;
+    }
+
 }

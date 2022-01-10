@@ -67,7 +67,7 @@ class TeacherCourseController extends Controller
         $course -> author_id = Auth::user()-> id;
         $course -> status = 1;
         $course -> save();
-        if($request->has('image')) {
+        if($request->has('image') && $request->get('image')) {
             $course ->addMediaFromBase64($request->get('image'))
                 ->toMediaCollection('courses');
         }

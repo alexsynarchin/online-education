@@ -51,7 +51,6 @@
                 window.location.href = '/profile/courses/' + this.course.slug;
             },
             async handleRemove() {
-                console.log('delete');
                 const result = await this.deleteDialog('Удалить курс. Все связанные уроки будут также удалены.')
                 if(result) {
                     axios.post('/api/profile/course/' + this.course.id + '/remove')
