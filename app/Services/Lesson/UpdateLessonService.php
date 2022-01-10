@@ -15,10 +15,12 @@ class UpdateLessonService
     public function update(Request $request, $id)
     {
         $lesson = Lesson::findOrFail($id);
+
         $description = $request->get('lesson');
         $content = $request->get('lesson')['content'];
 
         $lesson ->fill([
+            'title' => $description['title'],
             'price_user' => $description['price'],
             'price' => 0,
             'time' => $description['time'],
