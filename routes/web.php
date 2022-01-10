@@ -33,8 +33,14 @@ Route::get('/profile/course/create', [DashboardController::class, 'index']) -> n
 Route::get('/profile/course/{slug}/edit', [DashboardController::class, 'index']) -> name('profile.course.edit');
 Route::get('/profile/courses/{slug}', [DashboardController::class, 'index']) -> name('profile.course.show');
 
-Route::get('/profile/courses/{slug}/lesson-create', [DashboardController::class, 'index']) -> name('profile.course.lesson.create');
-Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardController::class, 'index']) -> name('profile.course.lesson.edit');
+Route::get('/profile/courses/{slug}/lesson-create', [DashboardController::class, 'index'])
+    -> name('profile.course.lesson.create');
+Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardController::class, 'index'])
+    -> name('profile.course.lesson.edit');
+Route::get('/profile/students' ,[DashboardController::class, 'index']) -> name('profile.students');
+Route::get('/profile/messages' ,[DashboardController::class, 'index']) -> name('profile.messages');
+Route::get('/profile/transactions' ,[DashboardController::class, 'index']) -> name('profile.transactions');
+Route::get('/profile/notifications' ,[DashboardController::class, 'index']) -> name('profile.notifications');
 
 use App\Http\Controllers\Site\CatalogController;
 Route::get('/catalog/{edu_slug}', [CatalogController::class, 'index']) -> name('catalog');
