@@ -32,7 +32,7 @@
                             <el-button icon="el-icon-edit" type="primary" style="width: 100%" @click="handleEdit">Редактировать</el-button>
                         </div>
                         <div class="mb-2">
-                            <el-button icon="el-icon-delete" type="danger" style="width: 100%">Удалить</el-button>
+                            <el-button icon="el-icon-delete" type="danger" style="width: 100%" @click.prevent = handleRemove>Удалить</el-button>
                         </div>
 
                     </div>
@@ -46,8 +46,10 @@
     </section>
 </template>
 <script>
-    import lessons from './lessons/index'
+    import lessons from './lessons/index';
+    import deleteDialog from "../../mixins/deleteDialog";
     export default {
+        mixins:[deleteDialog],
        props:['slug'],
         components: {
            lessons,
@@ -69,6 +71,16 @@
             },
             handleEdit() {
                 window.location.href = '/profile/course/' + this.course.slug + '/edit';
+            },
+            async handleRemove() {
+                console.log('delete');
+                const result = await this.deleteDialog('Удалить курс. Все связанные уроки будут также удалены.')
+                if(result) {
+                    axios.post('/api/profile/course/' + this.course.id + '/remove')
+                        .then((response) => {
+                            window.location.href= '/profile/my-courses/moderate'
+                        })
+                }
             }
         },
         mounted() {

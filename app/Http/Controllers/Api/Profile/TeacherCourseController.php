@@ -116,6 +116,13 @@ class TeacherCourseController extends Controller
         return route('profile.course.show', $course -> slug);
     }
 
+    public function remove($id)
+    {
+        $course = Course::findOrFail($id);
+        $course -> delete();
+        return $course -> id;
+    }
+
     public function show($slug)
     {
         $course = Course::where('slug', $slug) ->with(['lessons', 'themes' => function($query){

@@ -77,7 +77,7 @@
     </section>
 </template>
 <script>
-import DeleteDialog from "../../../mixins/deleteDialog";
+
 import { Errors } from  '@/common/js/services/errors.js';
 import deleteDialog from "../../../mixins/deleteDialog";
     export default {

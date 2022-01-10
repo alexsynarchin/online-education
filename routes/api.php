@@ -21,6 +21,7 @@ Route::get('/profile/course/index/{type}', [TeacherCourseController::class,'inde
 Route::post('/profile/course/store',[TeacherCourseController::class,'store'])->name('profile.course.store');
 Route::post('/profile/course/update',[TeacherCourseController::class,'update'])->name('profile.course.update');
 Route::get('/profile/course/{slug}/show', [TeacherCourseController::class,'show']) -> name('profile.course.show');
+Route::post('/profile/course/{id}/remove', [TeacherCourseController::class, 'remove']) -> name('profile.course.remove');
 
 
 use App\Http\Controllers\Api\Profile\TeacherLessonController;

@@ -27,6 +27,7 @@
             <course-item v-for="(course, index) in courses"
                          :key="course.id"
                          :course="course"
+                         @remove-course="removeCourse"
             >
             </course-item>
         </div>
@@ -74,7 +75,11 @@ import CourseItem from './components/item'
                 .then((response) => {
                     this.courses = response.data;
                 })
-            }
+            },
+            removeCourse(id) {
+                let index = this.courses.findIndex(x => x.id === id);
+                this.courses.splice(index, 1);
+            },
         },
         mounted() {
             this.active_tab = this.$route.params.slug;
