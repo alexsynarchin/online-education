@@ -12531,6 +12531,7 @@ a {
   position: relative;
 }
 .course-item__descr--lesson:after {
+  content: "";
   z-index: 2;
   background: linear-gradient(transparent, #fff);
 }
