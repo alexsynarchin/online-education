@@ -2,7 +2,7 @@
     <section class="search-teachers mb-4">
         <search-filter @search-teacher="searchTeacher"></search-filter>
         <div class="row">
-            <div class="col-md-4 col-lg-4 col-xl-3" v-for="(teacher, index) in teachers" v-if="teachers.length > 0">
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3" v-for="(teacher, index) in teachers" v-if="teachers.length > 0">
                <a  :href="'/search-teachers/' + teacher.id" class="teacher-item">
                    <figure class="teacher-item__avatar">
                        <img :src="teacher.avatar">
