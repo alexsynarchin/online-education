@@ -1,10 +1,16 @@
 <template>
     <section>
-        <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> / <a href="/profile">Профиль</a> / Мои курсы
-            </div>
-        </div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/profile">Профиль</a>
+            </li>
+            <li class="breadcrumb__item">
+                Мои курсы
+            </li>
+        </ul>
         <div class="row align-items-center">
             <div class="col-md-9">
                 <h1 class="b-profile-user__title">Мои курсы</h1>
