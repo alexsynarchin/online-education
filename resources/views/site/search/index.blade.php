@@ -24,7 +24,7 @@
                 @endforeach
             @endif
             @if(count($themes) > 0)
-                <h3 class="search__title">
+                <h3 class="search__title mt-4">
                     Результаты по названию темы:
                 </h3>
                 @foreach($themes as $course)
