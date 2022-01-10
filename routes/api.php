@@ -47,7 +47,10 @@ Route::post('/header-nav/filter', [HeaderNavController::class,'filter']) -> name
 
 //Search
 use App\Http\Controllers\Api\SearchController;
+Route::post('/search', [SearchController::class,'search']) -> name('search');
 Route::get('/search/autocomplete', [SearchController::class,'autocomplete'])->name('search.autocomplete');
+Route::post('/search/autocomplete/course', [SearchController::class,'autocompleteToCourse'])
+    ->name('search.autocomplete.course');
 
 //Slider Filter
 use App\Http\Controllers\Api\SliderFilterController;

@@ -47,6 +47,10 @@ use App\Http\Controllers\Site\TeacherController;
 Route::get('/search-teacher', [TeacherController::class, 'index']) -> name('teacher.index');
 Route::get('/search-teachers/{id}', [TeacherController::class, 'show']) -> name('teacher.show');
 
+//Search
+use App\Http\Controllers\Site\SearchController;
+Route::get('/search', [SearchController::class, 'index']) -> name('search');
+
 Route::get('/for-teachers', function(){
     return view('site.inner');
 });

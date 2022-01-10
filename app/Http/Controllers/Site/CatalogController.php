@@ -20,7 +20,7 @@ class CatalogController extends Controller
         if($request->has('subjects')) {
             $courses = $courses -> where('subject_id', $request->get('subjects'));
         }
-        if($request->has('themes')) {
+        if($request->has('themes') && $request->get('themes')) {
             $courses = $courses -> whereHas('themes', function ($query) use ($request){
                 $query->where('theme_id', $request->get('themes'));
             });
