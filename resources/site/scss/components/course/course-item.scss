@@ -49,6 +49,11 @@
         &--lesson {
             max-height: 250px;
             overflow: hidden;
+            position: relative;
+            &:after {
+                z-index: 2;
+                background: linear-gradient(transparent, #fff);
+            }
         }
     }
     &__right {

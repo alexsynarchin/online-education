@@ -12528,6 +12528,11 @@ a {
 .course-item__descr--lesson {
   max-height: 250px;
   overflow: hidden;
+  position: relative;
+}
+.course-item__descr--lesson:after {
+  z-index: 2;
+  background: linear-gradient(transparent, #fff);
 }
 .course-item__right {
   width: 23%;
