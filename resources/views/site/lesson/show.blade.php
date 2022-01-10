@@ -44,7 +44,7 @@
                     </div>
                     <div class="course-item__content">
                         <div class="course-item__main">
-                            <div class="course-item__descr course-item__descr-lesson">
+                            <div class="course-item__descr course-item__descr--lesson">
                                 {!! $lesson -> content -> text !!}
                             </div>
                             <div class="course-item__buy">
@@ -89,7 +89,7 @@
                                         {{$lesson->title}}
                                     </span>
                                     <span class="course-item-lessons__price">
-                                        {{$lesson -> price}} ₽
+                                        {{$lesson -> price_user}} ₽
                                     </span>
                                 </a>
                             </li>

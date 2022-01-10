@@ -12525,6 +12525,10 @@ a {
   font-size: 16px;
   font-weight: 500;
 }
+.course-item__descr--lesson {
+  max-height: 250px;
+  overflow: hidden;
+}
 .course-item__right {
   width: 23%;
   max-width: 23%;
