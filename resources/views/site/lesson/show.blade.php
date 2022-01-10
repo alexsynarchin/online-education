@@ -44,9 +44,9 @@
                     </div>
                     <div class="course-item__content">
                         <div class="course-item__main">
-                            <p class="course-item__descr">
+                            <div class="course-item__descr course-item__descr-lesson">
                                 {!! $lesson -> content -> text !!}
-                            </p>
+                            </div>
                             <div class="course-item__buy">
                                 Для просмотра урока его необходимо <a href="" class="course-item__buy-link">купить</a>
                             </div>
