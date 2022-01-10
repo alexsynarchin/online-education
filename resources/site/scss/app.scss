@@ -28,9 +28,15 @@
 @import "components/b-tab";
 @import "components/breadcrumbs";
 @import "components/breadcrumb";
-@import "components/user-profile";
 @import "components/button";
 @import "components/avatar-uploader";
+
+//Search
+@import "components/search/search-autocomplete";
+//profile user
+@import "components/user-profile";
+@import "components/profile/profile-user-form";
+
 //auth
 
 @import "components/auth/auth";
@@ -50,7 +56,7 @@
 @import "components/filter-sidebar/filter-sidebar-item";
 @import "components/filter-sidebar/filter-sidebar-item-list";
 
-@import "components/profile/.profile-data";
+@import "components/profile/profile-data";
 @import "components/step-progressbar";
 
 //Question

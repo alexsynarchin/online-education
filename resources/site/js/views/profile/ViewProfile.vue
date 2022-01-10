@@ -69,9 +69,9 @@
                         <span class="profile-data-text__left">Уведомления:</span>
                         <span class="profile-data-text__right">включены</span>
                     </div>
-                    <div class="profile-data-body__item" v-if="user.profile_type === 'teacher'">
+                    <div class="profile-data-body__item" v-if="user.profile_type === 'teacher' && user.teacher_account">
                         <span class="profile-data-text__left">Покупка за промокоды:</span>
-                        <span class="profile-data-text__right" v-if="account.allow_promo">разрешена</span>
+                        <span class="profile-data-text__right" v-if="user.teacher_account.allow_promo">разрешена</span>
                         <span class="profile-data-text__right" v-else>запрещена</span>
                     </div>
                 </div>

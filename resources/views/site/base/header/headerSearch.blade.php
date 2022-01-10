@@ -1,12 +1,5 @@
-<form class="b-search__form" action="" method="get">
-    <div class="b-search">
-        <input class="b-search__input" type="text" name="query" placeholder="Введите название темы курса или урока">
-        <button type="submit" class="b-search__btn">
-            <svg class="b-search__icon">
-                <use xlink:href="{{URL::asset('images/sprite.svg#search')}}"></use>
-            </svg>
-        </button>
-    </div>
+<form class="b-search__form">
+    <header-search></header-search>
     <a href="{{route('teacher.index')}}" type="submit" class="b-search__main-btn">
         Найти преподавателя
     </a>

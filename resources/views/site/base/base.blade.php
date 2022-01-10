@@ -19,7 +19,7 @@
 <script>
     window.App = {!! json_encode([
         'user' => Auth::user(),
-        'signedIn' => Auth::check() && (Auth::user()->hasRole('teacher') || Auth::user()->hasRole('student'))
+        'signedIn' => Auth::check() && !Auth::user()->hasRole('admin')
     ]) !!} ;
 </script>
 @include('site.base._partials.scripts')

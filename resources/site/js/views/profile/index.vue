@@ -1,13 +1,16 @@
-<template>
-    <section>
-        <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> / Профиль пользователя
-            </div>
-        </div>
+<template >
+    <section v-if="loading">
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="/" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                Профиль пользователя
+            </li>
+        </ul>
     <h1 class="b-profile-user__title">Мой профиль<span v-if="editing">: редактирование</span></h1>
-    <edit-profile v-if="editing " :user="user" :account="account" @changeEmail="changeEmail" @cancelEdit="cancelEdit"></edit-profile>
-    <view-profile v-else :user="user" :account="account" @handleEdit="handleEdit"></view-profile>
+    <edit-profile v-if="editing " :user="user" @update-user="update" @changeEmail="changeEmail" @cancelEdit="cancelEdit" ></edit-profile>
+    <view-profile v-else :user="user"  @handleEdit="handleEdit"></view-profile>
         <el-dialog
             :title=" email_modal_title"
             :visible.sync="email_modal"
@@ -66,7 +69,7 @@ export default {
             }
         }
     },
-    props : ['user'],
+
     components: {
         'EditProfile':EditProfile,
         'ViewProfile':ViewProfile,
@@ -74,7 +77,8 @@ export default {
 
     data(){
         return {
-            account:{},
+            loading:false,
+            user: {},
             emailForm:{
                 email:""
             },
@@ -113,6 +117,12 @@ export default {
                 }
             });
         },
+        update() {
+            console.log('success');
+            this.editing = false;
+            this.loading = false;
+            this.getUser();
+        },
         changeEmail() {
             this.email_modal = true;
         },
@@ -137,25 +147,26 @@ export default {
         handleEdit() {
             this.editing = true;
         },
-        getAccount() {
-            axios.get('/api/profile/account')
-            .then((response) => {
-                this.account = response.data;
-            })
+            getUser() {
+            axios.get('/api/profile/user/show')
+                .then((response) => {
+                    this.user = response.data;
+                    if(!this.user.email) {
+                        this.email_modal = true;
+                    }
+                    if(this.user.email && !this.user.profile_type) {
+                        this.profile_modal = true;
+                    }
+                    if(this.user.email) {
+                        this.emailForm.email = this.user.email;
+                    }
+                    this.loading = true;
+                })
         }
 
     },
-    mounted() {
-        if(!this.user.email) {
-            this.email_modal = true;
-        }
-        if(this.user.email && !this.user.profile_type) {
-            this.profile_modal = true;
-        }
-        if(this.user.email) {
-            this.emailForm.email = this.user.email;
-        }
-        this.getAccount();
+    async mounted() {
+        await this.getUser();
     }
 }
 </script>
@@ -169,9 +180,9 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
 
 .b-profile-user__title
     margin-top 20px
-    font-family 'RubikRegular', sans-serif
+    font-family 'Raleway', sans-serif
     font-size rem(36px)
-    font-weight 200
+    font-weight 700
     color #4B4B4B
     +below(md)
         font-size rem(26px)
@@ -200,7 +211,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         width 82px
         height 82px
     &__fullname
-        font 400 rem(16px) "RobotoMedium", sans-serif
+        font 500 rem(16px) "Raleway", sans-serif
         color #4B4B4B
 .profile-user-edit
     display flex
@@ -211,7 +222,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         margin-right 10px
         fill #99AEDB
     &__text
-        font 400 rem(14px) "RobotoItalic", sans-serif
+        font 500 rem(14px) "Raleway", sans-serif
         text-decoration underline
         color #4B4B4B
 .profile-user-transac
@@ -233,7 +244,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
     color #4B4B4B
     &__score,&__currency
         margin-right 5px
-        font 400 rem(14px) "RobotoMedium", sans-serif
+        font 500 rem(14px) "Raleway", sans-serif
 
 .profile-user-withdraw
     display flex
@@ -244,7 +255,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         margin-right 10px
         fill #99AEDB
     &__text
-        font 400 rem(14px) "RobotoItalic", sans-serif
+        font 500 rem(14px) "Raleway", sans-serif
         text-decoration underline
         color #4B4B4B
 
@@ -267,7 +278,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         padding 15px
         border-radius 5px
         background-color #6A89CC
-        font 400 rem(14px) "RobotoRegular", sans-serif
+        font 500 rem(14px) "Raleway", sans-serif
         color #fff
         opacity 0
         transform translateY(10px)

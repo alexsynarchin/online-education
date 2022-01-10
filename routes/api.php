@@ -31,12 +31,23 @@ Route::post('/profile/lesson/update', [TeacherLessonController::class, 'update']
 use App\Http\Controllers\Api\Profile\ProfileController;
     Route::get('/profile/account', [ProfileController::class, 'account']) ->name('profile.user.account');
 
+//Profile user
+use App\Http\Controllers\Api\Profile\UserController;
+Route::get('/profile/user/show', [UserController::class, 'show']) -> name('user.show');
+Route::post('/profile/user/{id}/select-profile', [UserController::class, 'selectProfile']) -> name('user.select-profile');
+Route::post('/profile/user/{id}/update-email', [UserController::class, 'updateEmail']) -> name('user.update-email');
+Route::post('/profile/user/{id}/update', [UserController::class, 'update']) -> name('user.update');
+
 //Header nav
 use App\Http\Controllers\Api\HeaderNavController;
 Route::get('/header-nav/edu-types', [HeaderNavController::class, 'eduTypesList'])-> name('header-nav.edu-list');
 Route::get('/header-nav/edu-levels', [HeaderNavController::class, 'eduLevelsList'])-> name('header-nav.edu-levels-list');
 Route::get('/header-nav/edu-subjects', [HeaderNavController::class,'eduSubjectsList'])-> name('header-nav.edu-subjects-list');
 Route::post('/header-nav/filter', [HeaderNavController::class,'filter']) -> name('header-nav.filter');
+
+//Search
+use App\Http\Controllers\Api\SearchController;
+Route::get('/search/autocomplete', [SearchController::class,'autocomplete'])->name('search.autocomplete');
 
 //Slider Filter
 use App\Http\Controllers\Api\SliderFilterController;
@@ -64,8 +75,5 @@ Route::get('/social-auth/{provider}', [SocialAuthController::class,'redirectToPr
 Route::get('/social-auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])
     ->name('auth.social.callback');
 
-//Profile user
-use App\Http\Controllers\Api\Profile\UserController;
-Route::post('/user/{id}/select-profile', [UserController::class, 'selectProfile']) -> name('user.select-profile');
-Route::post('/user/{id}/update-email', [UserController::class, 'updateEmail']) -> name('user.update-email');
+
 

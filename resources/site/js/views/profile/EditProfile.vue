@@ -1,8 +1,8 @@
 <template>
     <div>
-        <el-form :model="formData" ref="formData" :rules="rules" class="edu-h-form mb-3"  @submit.prevent="formSubmit" >
+        <el-form :model="formData" ref="formData" :rules="rules" class="profile-user-form mb-3"  @submit.prevent="formSubmit" >
             <div class="d-flex mt-3 mb-4 edu-h-form__settings">
-                <div class="mr-md-3">
+                <div style="margin-right: 20px">
                     <el-form-item prop="avatar">
                         <el-upload
                             action=""
@@ -17,43 +17,50 @@
                         </el-upload>
                     </el-form-item>
                 </div>
-                <div>
-                    <el-button @click.prevent="changeEmail">Изменить эл. почту</el-button>
-                    <el-button @click.prevent="password_modal = true">Изменить пароль</el-button>
+                <div class="profile-user-form__top-right">
+                    <div class="profile-user-form__btns-group">
+                        <el-button @click.prevent="changeEmail">Изменить эл. почту</el-button>
+                        <el-button @click.prevent="password_modal = true">Изменить пароль</el-button>
+                    </div>
+
+
+                    <el-form-item prop="gender" label="Пол">
+                        <el-radio-group v-model="formData.gender" >
+                            <el-radio label="1" border>Женский</el-radio>
+                            <el-radio label="2" border>Мужской</el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                    <el-form-item label="Уведомления" prop="notifications">
+                        <el-switch v-model="formData.notifications" >
+                        </el-switch>
+                    </el-form-item>
+                    <el-form-item label="Покупка за промокоды" v-if="user.profile_type === 'teacher' && formData.teacher_account" prop="allow_promo">
+                        <el-switch v-model="formData.teacher_account.allow_promo"   >
+                        </el-switch>
+                    </el-form-item>
                 </div>
             </div>
-            <el-form-item prop="gender" label="Пол">
-                <el-radio-group v-model="formData.gender" >
-                    <el-radio label="1" border>Женский</el-radio>
-                    <el-radio label="2" border>Мужской</el-radio>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="Уведомления" prop="notifications">
-                <el-switch v-model="formData.notifications" >
-                </el-switch>
-            </el-form-item>
-            <el-form-item label="Покупка за промокоды" v-if="user.profile_type === 'teacher'" prop="allow_promo">
-                <el-switch v-model="formData.allow_promo"   >
-                </el-switch>
-            </el-form-item>
-            <el-form-item label="Имя" prop="name">
-                <el-input v-model="formData.name"></el-input>
-            </el-form-item>
-            <el-form-item label="Фамилия" prop="surname">
-                <el-input v-model="formData.surname"></el-input>
-            </el-form-item>
-            <el-form-item label="Отчество" prop="last_name">
-                <el-input v-model="formData.last_name"></el-input>
-            </el-form-item>
-            <el-form-item label="Город" prop="city">
-                <el-input v-model="formData.city"></el-input>
-            </el-form-item>
-            <el-form-item label="Дата рождения" prop="birthday">
-                <el-input :placeholder="'дд.мм.гг'" v-model="formData.birthday" v-mask="'##.##.##'"></el-input>
-            </el-form-item>
-            <el-form-item label="Телефон" prop="phone">
-                <el-input v-model="formData.phone" v-mask="'+7(###)-##-##-###'" :placeholder="'+7(999)-99-99-999'"></el-input>
-            </el-form-item>
+
+            <div class="row">
+                <el-form-item label="Имя" prop="name" class="col-md-4">
+                    <el-input v-model="formData.name"></el-input>
+                </el-form-item>
+                <el-form-item label="Фамилия" prop="surname" class="col-md-4">
+                    <el-input v-model="formData.surname"></el-input>
+                </el-form-item>
+                <el-form-item label="Отчество" prop="last_name" class="col-md-4">
+                    <el-input v-model="formData.last_name"></el-input>
+                </el-form-item>
+            </div>
+            <div class="row">
+                <el-form-item label="Дата рождения" prop="birthday" class="col-md-6">
+                    <el-input :placeholder="'дд.мм.гг'" v-model="formData.birthday" v-mask="'##.##.##'"></el-input>
+                </el-form-item>
+                <el-form-item label="Телефон" prop="phone" class="col-md-6">
+                    <el-input v-model="formData.phone" v-mask="'+7(###)-##-##-###'" :placeholder="'+7(999)-99-99-999'"></el-input>
+                </el-form-item>
+            </div>
+            <work-places></work-places>
             <div class="text-center">
                 <el-button type="primary" class="" @click.prevent="formSubmit">Сохранить</el-button>
                 <el-button type="" class="" @click.prevent="cancelEdit">Отменить</el-button>
@@ -82,15 +89,24 @@
         </el-dialog>
     </div>
 </template>
-
 <script>
+    import WorkPlaces from "./work-places";
     import {mask} from 'vue-the-mask'
     import { Errors } from  '@/common/js/services/errors.js';
     export default {
-        props:['user','account'],
+        props:{
+            user: {
+            type:Object,
+            required:true
+            }
+        },
         directives: {mask},
+        components: {
+            WorkPlaces,
+        },
         data() {
             return {
+                loading:false,
                 options: [
                     { text: 'Мужской', value: 2 },
                     { text: 'Женский', value: 1 },
@@ -112,19 +128,7 @@
                     new_password_confirmation: ""
 
                 },
-                formData: {
-                    gender: this.user.gender,
-                    notifications: Boolean(this.user.notifications),
-                    name:this.user.name,
-                    surname:this.user.surname,
-                    last_name:this.user.last_name,
-                    city:this.user.city,
-                    phone:this.user.phone,
-                    birthday:this.birthday,
-                    avatar:"",
-                    allow_promo:"",
-
-                },
+                formData: {},
                 password_modal:false,
                 rules:{
 
@@ -187,20 +191,14 @@
             cancelEdit() {
                 this.$emit('cancelEdit');
             },
-            getAllowPromo(){
-                if(this.user.profile_type === 'teacher'){
-                    this.formData.allow_promo = this.account.allow_promo;
-                }
-            },
             changeEmail() {
                 this.$emit('changeEmail')
             },
             formSubmit(){
                 var data = this.formData;
-                axios.post('/profile/edit/'+this.user.id, data)
-                    .then(function (response) {
-                        console.log(response.request.responseURL);
-                        window.location = response.request.responseURL;
+                axios.post('/api/profile/user/' + this.user.id + '/update', data)
+                    .then((response) => {
+                        this.$emit('update-user');
                     })
                     .catch(function (error) {
                         var errors = error.response;
@@ -211,8 +209,10 @@
                     });
             }
         },
-        mounted() {
-            this.getAllowPromo();
+      mounted() {
+            console.log(this.user);
+         this.formData = this.user;
+         this.loading = true;
         }
     }
 </script>

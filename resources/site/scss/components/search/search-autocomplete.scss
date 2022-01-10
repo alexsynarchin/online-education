@@ -1,0 +1,38 @@
+.search-autocomplete {
+  position: relative;
+  z-index: 20;
+  &__panel {
+    position: absolute;
+    top:100%;
+    width: 100%;
+    left: 0;
+    background-color: #fff;
+    z-index: 20;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.25);
+  }
+  &__title {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.45rem 0.1rem 0.45rem;
+  }
+  &__item {
+    color: $body-color;
+    cursor: pointer;
+    padding: 14px 0.45rem;
+    font-size: 14px;
+
+    &:hover {
+      background-color: $edu-primary;
+
+    }
+    @include media-breakpoint-only(lg) {
+      font-size: 12px;
+    }
+  }
+  &__list {
+    color: $body-color;
+    margin-bottom: 0;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+}

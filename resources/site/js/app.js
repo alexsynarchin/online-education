@@ -13,6 +13,8 @@ export const eventBus = new Vue()
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
 Vue.component('HeaderNavigation', require('./components/header/HeaderNavigation').default);
 Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
+//Header Search
+Vue.component('HeaderSearch', require('./components/header/Search').default);
 //Footer
 Vue.component('FooterLine',require('./components/footer/FooterLine').default);
 Vue.component('FooterLinks',require('./components/footer/FooterLinks').default);
@@ -38,7 +40,7 @@ Vue.component('SearchTeachers',require('./components/teacher/index').default);
 
 import router from './router'
 
-Vue.component('ProfileDashboard', require('./components/profile-dashboard/index').default);
+Vue.component('ProfileDashboard', require('./views/profile-dashboard/index').default);
 const app = new Vue({
     el: '#app',
     router,

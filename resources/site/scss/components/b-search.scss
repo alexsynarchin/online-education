@@ -9,6 +9,7 @@
         display: flex;
     }
     &__input{
+        outline: none;
         width: 100%;
         height: 100%;
         padding-left: 20px;
@@ -18,6 +19,9 @@
             color: #A8A8A8;
             font-weight: 500;
             font-size: 17px;
+        }
+        &:focus {
+            border-color: $edu-primary;
         }
     }
     &__btn{
