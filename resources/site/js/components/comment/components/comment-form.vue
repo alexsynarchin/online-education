@@ -21,14 +21,14 @@
     </div>
     <div class="b-comment-form__footer mt-4">
       <div class="order-md-1">
-        <label class="form-checkbox " :class="errors.get('conf_agree') ? 'is-invalid':''">
+        <label class="form-checkbox-conf" :class="errors.get('conf_agree') ? 'is-invalid':''">
         <span class="modal__conf-text">
              Согласен (-на) с
         <a class="landing-questions__link" href="/privacy" target="_blank">политикой
             конфиденциальности.</a>
         </span>
-          <input type="checkbox" v-model="form.conf_agree" name="conf_agree" class="form-checkbox__input" checked>
-          <span class="form-checkbox__checkmark"></span>
+          <input type="checkbox" v-model="form.conf_agree" name="conf_agree" class="form-checkbox-conf__input" checked>
+          <span class="form-checkbox-conf__checkmark"></span>
         </label>
         <div class="invalid-feedback" v-text="errors.get('conf_agree')"></div>
       </div>
@@ -43,10 +43,10 @@
     <div class="alert alert-primary" role="alert">
       Ваш комментарий будет опубликован после модерации
     </div>
-    <button class="btn button-red" @click.prevent="newComment()">
+    <button class="btn button" @click.prevent="newComment()">
       Новый комментарий
     </button>
-    <button class="btn button-red" @click.prevent="close()">
+    <button class="btn button" @click.prevent="close()">
       Закрыть
     </button>
   </div>

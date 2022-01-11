@@ -12057,34 +12057,34 @@ a {
   display: block;
 }
 
-.b-comment-form .form-checkbox {
+.form-checkbox-conf {
   position: relative;
   font-weight: 400;
   padding-left: 36px;
 }
-.b-comment-form .form-checkbox--big {
+.form-checkbox-conf--big {
   font-size: 1rem;
   padding-left: 50px;
 }
-.b-comment-form .form-checkbox a {
+.form-checkbox-conf a {
   color: #212529;
   text-decoration: underline;
 }
-.b-comment-form .form-checkbox a:hover, .b-comment-form .form-checkbox a:focus {
+.form-checkbox-conf a:hover, .form-checkbox-conf a:focus {
   color: #212529;
   text-decoration: none;
 }
-.b-comment-form .form-checkbox__input {
+.form-checkbox-conf__input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
 }
-.b-comment-form .form-checkbox__input:checked ~ .b-comment-form .form-checkbox__checkmark:after {
+.form-checkbox-conf__input:checked ~ .form-checkbox-conf__checkmark:after {
   display: block;
 }
-.b-comment-form .form-checkbox__checkmark {
+.form-checkbox-conf__checkmark {
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -12093,7 +12093,7 @@ a {
   width: 24px;
   background-color: #6a89cc;
 }
-.b-comment-form .form-checkbox__checkmark:after {
+.form-checkbox-conf__checkmark:after {
   content: "";
   position: absolute;
   display: none;
@@ -12105,18 +12105,18 @@ a {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-.b-comment-form .form-checkbox__checkmark--big {
+.form-checkbox-conf__checkmark--big {
   height: 40px;
   width: 40px;
   border: solid 1px #fff;
 }
-.b-comment-form .form-checkbox__checkmark--big:after {
+.form-checkbox-conf__checkmark--big:after {
   left: 12px;
   width: 18px;
   height: 25px;
   border-width: 0 6px 6px 0;
 }
-.b-comment-form .form-checkbox__checkmark--white {
+.form-checkbox-conf__checkmark--white {
   border-color: #fff;
   background-color: #fff;
 }
