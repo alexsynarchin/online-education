@@ -1,0 +1,25 @@
+.b-comment-item-user {
+  display: flex;
+  align-items: center;
+  &__avatar {
+    margin-bottom: 0;
+    overflow: hidden;
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #EBEBEB;
+    margin-right:18px;
+    svg {
+      fill: #C4C4C4;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__name {
+    font-size: 20px;
+  }
+}

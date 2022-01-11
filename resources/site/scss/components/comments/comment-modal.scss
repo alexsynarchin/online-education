@@ -1,0 +1,45 @@
+.comment-modal {
+  &__header {
+    padding-left: 20px;
+    @include media-breakpoint-down(md) {
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #EBEBEB;
+    }
+  }
+  &__title {
+    font-size: 28px;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    color: $body-color;
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+    &--mobile {
+      display: block;
+      font-size: 20px;
+      padding-bottom: 0;
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+    }
+  }
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+      border-bottom: 1px solid #EBEBEB;
+      margin-bottom: 20px;
+    }
+  }
+  &__common {
+    padding-bottom: 20px;
+
+    @include media-breakpoint-up(lg) {
+      border-bottom: 1px solid #EBEBEB;
+      margin-bottom: 20px;
+    }
+  }
+}

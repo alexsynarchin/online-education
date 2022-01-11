@@ -8,11 +8,27 @@
                 Добавить комментарий
             </button>
         </div>
+        <el-dialog
+            :visible.sync="commentModal"
+            >
+            <comment-form
+                :user="user"
+                :parent_id="parent_id"
+                :course_id="course_id"
+                v-on:close="$emit('close')"
+                v-on:store-comment="$emit('store-comment')"
+            ></comment-form>
+
+        </el-dialog>
     </section>
 </template>
 <script>
+import CommentForm from "./components/comment-form";
 import EventBus from "../../EventBus";
 export default {
+        components: {
+            CommentForm,
+        },
         props:{
             course_id:{
                 type:Number,
@@ -23,11 +39,16 @@ export default {
                 required:true,
             }
         },
+    data() {
+            return {
+                commentModal: false,
+                parent_id:0,
+            }
+    },
         methods: {
             addComment() {
-                console.log(this.authCheck);
                 if(this.authCheck) {
-
+                    this.commentModal = true;
                 } else {
                     EventBus.$emit('show-auth-modal', window.location.href);
                 }
@@ -48,5 +69,6 @@ export default {
                 }
             }
         },
+
     }
 </script>

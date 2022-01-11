@@ -30,7 +30,8 @@
 @import "components/breadcrumb";
 @import "components/button";
 @import "components/avatar-uploader";
-
+//Form
+@import "components/form/form-checkbox";
 //Search
 @import "components/search/search-autocomplete";
 @import "components/search/search";
@@ -65,7 +66,23 @@
 @import "components/question-modal";
 
 //Comments
-@import "components/commnets/commnets";
+@import "components/comments/commnets";
+@import "components/comments/b-comment-list";
+@import "components/comments/b-comment-form";
+@import "components/comments/b-comment-item";
+@import "components/comments/comment-modal";
+@import "components/comments/b-comment-filters";
+@import "components/comments/b-comment-user";
+@import "components/comments/b-comment-user-profile";
+@import "components/comments/b-rating-filter";
+@import "components/comments/b-rating-filter-list";
+@import "components/comments/b-comment-item-user";
+
+//Rating
+@import "components/rating/rating-list";
+@import "components/rating/rating-item";
+@import "components/rating/rating-common";
+@import "components/rating/star-rating";
 
 //Edu tabs
 @import "components/edu-tabs";

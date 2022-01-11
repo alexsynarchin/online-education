@@ -1,0 +1,32 @@
+.b-comments-list {
+    &__heading {
+            padding-bottom: 17px;
+        @include media-breakpoint-up(lg) {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #EBEBEB;
+        }
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+        &--mobile {
+            display: block;
+            @include media-breakpoint-up(lg) {
+                display: none;
+            }
+        }
+    }
+    &__wrap {
+
+
+    }
+    &__btn {
+        padding-left: 30px;
+        padding-right: 30px;
+        &--first {
+            margin-right: 15px;
+        }
+    }
+
+}

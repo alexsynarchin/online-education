@@ -1,0 +1,68 @@
+.form-checkbox {
+    $form-checkbox: &;
+    position: relative;
+    font-weight: 400;
+    padding-left: 36px;
+    &--big {
+        font-size: 1rem;
+        padding-left: 50px;
+    }
+
+    a {
+        color: $body-color;
+        text-decoration: underline;
+        &:hover, &:focus{
+            color:  $body-color;
+            text-decoration: none;
+        }
+    }
+    &__input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        &:checked ~ #{$form-checkbox}__checkmark:after {
+            display: block;
+        }
+    }
+    &__checkmark {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        background-color: $edu-primary;
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 2px;
+            width: 8px;
+            height: 15px;
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        &--big {
+            height:40px;
+            width: 40px;
+            border: solid 1px #fff;
+            &:after {
+                left: 12px;
+                width: 18px;
+                height: 25px;
+                border-width: 0 6px 6px 0;
+            }
+        }
+        &--white {
+            border-color: #fff;
+            background-color: #fff;
+        }
+    }
+
+}

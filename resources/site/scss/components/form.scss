@@ -42,3 +42,9 @@
         }
     }
 }
+.form-control {
+    &:hover, &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}

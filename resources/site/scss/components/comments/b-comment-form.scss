@@ -1,0 +1,53 @@
+.b-comment-form {
+
+    &__heading {
+        margin-bottom: 25px;
+
+        @include media-breakpoint-up(md) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &__input {
+        background-color: #F6F6F6;
+        &::placeholder {
+            font-size: 16px;
+            color: #A0A0A0;
+        }
+    }
+    &__footer {
+
+        @include media-breakpoint-up(md) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &__preview {
+        overflow: hidden;
+        margin-bottom: 0;
+        border-radius: 100%;
+        width: 70px;
+        height: 70px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        &-wrap {
+            display: flex;
+        }
+        &--big{
+            width: 90px;
+            height: 90px;
+        }
+    }
+    &__remove-img-btn {
+        font-size: 16px;
+        font-weight: 400;
+    }
+    &__btn {
+        @include media-breakpoint-down(sm) {
+            width: 100%;
+            margin-top: 25px;
+        }
+    }
+}

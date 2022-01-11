@@ -1,0 +1,27 @@
+.rating-common {
+    text-align: center;
+    background-color: #ffcd02;
+    padding: 1.25rem 1rem;
+    border-radius: 5px;
+    &__title {
+        font-family: $font-family-base;
+        font-size: 0.875rem;
+        font-weight: normal;
+        align-self:stretch;
+    }
+    &__wrap {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        align-content:flex-start;
+        padding-right: 2rem;
+        @include media-breakpoint-up(xl) {
+            padding-right: 3rem;
+        }
+    }
+    &__value {
+        font-weight: $headings-font-weight;
+        font-size: 2.5rem;
+        line-height: 1.3;
+    }
+}

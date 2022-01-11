@@ -1,0 +1,23 @@
+.comments {
+    &__heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        font-size: 28px;
+        font-weight: 700;
+    }
+    &__button {
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        border: 2px solid $edu-primary !important;
+        border-radius: 5px !important;
+        padding: 14px 30px !important;
+        color: $edu-primary !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+}

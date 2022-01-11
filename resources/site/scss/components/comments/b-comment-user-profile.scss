@@ -1,0 +1,36 @@
+.b-comment-user-profile {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #EBEBEB;
+  margin-bottom: 15px;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+  &__actions {
+    text-align: right;
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+    &--mobile {
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      @include media-breakpoint-up(md) {
+        display: none;
+      }
+    }
+  }
+  &__logout {
+    margin-bottom: 21px;
+  }
+  &__btns {
+    margin-top: 30px;
+  }
+  &__btn {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+}

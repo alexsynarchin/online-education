@@ -1,0 +1,33 @@
+.rating-item {
+    color: $body-color;
+    &:hover, &:focus {
+        text-decoration: none;
+        color: $body-color;
+    }
+    border: solid 1px #e8e8e8;
+    &__title {
+        font-weight: 600;
+        font-size: 1.125rem;
+    }
+    &__preview {
+        @include media-breakpoint-up(lg) {
+            flex: 40%;
+            max-width: 40%;
+        }
+        @include media-breakpoint-up(xxl) {
+            flex: 0 0 28%;
+            max-width: 28%;
+        }
+    }
+    &__content {
+        padding-left: 2rem;
+        @include media-breakpoint-up(lg) {
+            flex: 60%;
+            max-width: 60%;
+        }
+        @include media-breakpoint-up(xxl) {
+            flex: 0 0 72%;
+            max-width: 72%;
+        }
+    }
+}

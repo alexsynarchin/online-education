@@ -44,7 +44,7 @@ class SocialAuthController extends Controller
         //dd($socialiteUser);
         $user = $this->findOrCreateUser($provider, $socialiteUser);
         auth()->login($user, true);
-        if($request->get('state')) {
+        if($request->get('state') && $user->profile_type) {
             $redirect_url = $request->get('state');
         } else {
             $redirect_url = route('dashboard');
