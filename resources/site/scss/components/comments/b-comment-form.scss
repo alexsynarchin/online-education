@@ -16,6 +16,12 @@
             color: #A0A0A0;
         }
     }
+    &__title {
+        font-weight: 700;
+        font-size: 28px;
+        padding-bottom: 20px;
+        border-bottom:  1px solid rgba(39, 39, 39, 0.16);;
+    }
     &__footer {
 
         @include media-breakpoint-up(md) {

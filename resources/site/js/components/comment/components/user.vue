@@ -9,12 +9,7 @@
     <section class="b-comment-user__content">
       <h5 class="b-comment-user__title">{{user.name}}</h5>
       <div class="b-comment-user-bnts">
-        <button class="b-comment-user__btn" @click.prevent="profile">
-          Настройки
-        </button>
-        <button class="b-comment-user__btn" @click.prevent="logout">
-          Выйти
-        </button>
+
       </div>
     </section>
   </section>

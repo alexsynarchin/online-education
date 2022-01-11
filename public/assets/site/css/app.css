@@ -13232,6 +13232,12 @@ a {
   font-size: 16px;
   color: #A0A0A0;
 }
+.b-comment-form__title {
+  font-weight: 700;
+  font-size: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(39, 39, 39, 0.16);
+}
 @media (min-width: 768px) {
   .b-comment-form__footer {
     display: flex;

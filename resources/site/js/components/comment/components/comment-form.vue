@@ -1,5 +1,8 @@
 <template>
   <div v-if="!formSend">
+      <h3 class="b-comment-form__title">
+          Добавить комментарий
+      </h3>
   <div class="b-comment-form__heading">
     <user :user="user"
     ></user>
