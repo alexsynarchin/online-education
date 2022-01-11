@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Site\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category\Course;
 use Illuminate\Http\Request;
-
+use App\Models\Comment;
 class CommentController extends Controller
 {
 
-
+    public function index()
+    {
+        $comments = Comment::where('active', 1) ->get();
+        return$comments;
+    }
 
     public function store(Request $request)
     {
@@ -16,6 +21,10 @@ class CommentController extends Controller
             'comment' => 'required',
             'conf_agree' =>'accepted'
         ]);
-        dd($request->all());
+        $course = Course::findOrFail($request->get('course_id'));
+        $comment = $course -> comments()->create($request->all());
+        $comment -> active = 1;
+        $comment -> save();
+        return $comment;
     }
 }
