@@ -105,7 +105,7 @@ export default {
         submitEmailForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    axios.post('/api/user/' + this.user.id +'/update-email',{email:this.emailForm.email})
+                    axios.post('/api/profile/user/' + this.user.id +'/update-email',{email:this.emailForm.email})
                         .then((response) => {
                            location.reload(true);
                         })
@@ -132,7 +132,7 @@ export default {
         selectProfileType(formName) {
             this.$refs[formName].validate((valid) => {
                if(valid) {
-                    axios.post('/api/user/' + this.user.id + '/select-profile', {profile_type: this.profileForm.profile_type})
+                    axios.post('/api/profile/user/' + this.user.id + '/select-profile', {profile_type: this.profileForm.profile_type})
                         .then((response) => {
                             location.reload(true);
                         })
