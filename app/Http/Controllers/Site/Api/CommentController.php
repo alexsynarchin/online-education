@@ -9,10 +9,11 @@ use App\Models\Comment\Comment;
 class CommentController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
-        $comments = Comment::where('active', 1) ->get();
-        return$comments;
+        $course = Course::findOrFail($id);
+        $comments =$course  -> comments() -> where('active', 1) -> with('user') ->get();
+        return $comments;
     }
 
     public function store(Request $request)

@@ -83,6 +83,7 @@ Route::get('/social-auth/{provider}/callback', [SocialAuthController::class, 'ha
 //Comments
 Use App\Http\Controllers\Site\Api\CommentController;
 Route::post('/comment/store', [CommentController::class, 'store']) -> name('comment.store');
+Route::get('/comments/course/{id}', [CommentController::class, 'index']) -> name('comment.index');
 
 
 

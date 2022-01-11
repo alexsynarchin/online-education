@@ -8,6 +8,11 @@
                 Добавить комментарий
             </button>
         </div>
+        <list
+            :course_id="course_id"
+            v-on:answer-comment="commentAnswer"
+            :auth="auth"
+            @show-auth-modal="addComment" v-on:comments-count="" ref="list"></list>
         <el-dialog
             :visible.sync="commentModal"
             >
@@ -23,11 +28,12 @@
     </section>
 </template>
 <script>
+import list from './components/list';
 import CommentForm from "./components/comment-form";
 import EventBus from "../../EventBus";
 export default {
         components: {
-            CommentForm,
+            CommentForm, list
         },
         props:{
             course_id:{
@@ -43,9 +49,13 @@ export default {
             return {
                 commentModal: false,
                 parent_id:0,
+                auth:false,
             }
     },
         methods: {
+            commentAnswer() {
+
+            },
             addComment() {
                 if(this.authCheck) {
                     this.commentModal = true;
@@ -70,8 +80,10 @@ export default {
                 } else {
                     return false;
                 }
-            }
+            },
         },
-
-    }
+        mounted() {
+            this.auth = this.authCheck
+        }
+}
 </script>

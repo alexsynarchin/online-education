@@ -13694,6 +13694,7 @@ a {
   height: 40px;
 }
 .b-comment-item-user__name {
+  font-weight: 600;
   font-size: 20px;
 }
 
