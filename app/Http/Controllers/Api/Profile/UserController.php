@@ -21,6 +21,8 @@ class UserController extends Controller
         }
         if(Auth::user() -> profile_type == 'student') {
             $user = User::with('studentAccount') ->find(Auth::id());
+        } else {
+            $user = User::find(Auth::id());
         }
         return $user;
     }

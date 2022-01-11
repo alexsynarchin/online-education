@@ -25,6 +25,7 @@ export default {
         },
         methods: {
             addComment() {
+                console.log(this.authCheck);
                 if(this.authCheck) {
 
                 } else {
