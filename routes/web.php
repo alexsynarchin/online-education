@@ -42,6 +42,10 @@ Route::get('/profile/messages' ,[DashboardController::class, 'index']) -> name('
 Route::get('/profile/transactions' ,[DashboardController::class, 'index']) -> name('profile.transactions');
 Route::get('/profile/notifications' ,[DashboardController::class, 'index']) -> name('profile.notifications');
 
+Route::get('/profile/education' ,[DashboardController::class, 'index']) -> name('profile.education');
+Route::get('/profile/teachers' ,[DashboardController::class, 'index']) -> name('profile.teachers');
+Route::get('/profile/tests' ,[DashboardController::class, 'index']) -> name('profile.tests');
+
 use App\Http\Controllers\Site\CatalogController;
 Route::get('/catalog/{edu_slug}', [CatalogController::class, 'index']) -> name('catalog');
 Route::get('/catalog/{edu_slug}/{slug}', [CatalogController::class, 'show']) -> name('catalog.show');
