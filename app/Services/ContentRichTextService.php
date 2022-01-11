@@ -43,7 +43,7 @@ class ContentRichTextService
                     // resize if required
                     /* ->resize(300, 200) */
                     ->encode($mimetype, 100) 	// encode file to the specified mimetype
-                    ->save((storage_path('app/').$filepath));
+                    ->save((storage_path('app/public/').$filepath));
 
                 $new_src = '/storage/'.$path.'/'.$filename.'.'.$mimetype;
                 $img->removeAttribute('src');
