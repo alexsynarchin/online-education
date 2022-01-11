@@ -11,10 +11,12 @@ class ContentRichTextService
 {
     public function store($data, $directory, $path){
         $content_dir = $directory . '/content/';
-        Storage::makeDirectory($content_dir);
+        Storage::makeDirectory('public/' .$content_dir);
         $content = new LessonContent();
         $dom = new DomDocument();
-            $dom->loadHTML(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8'));
+        libxml_use_internal_errors(true);
+        $dom->loadHTML(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8'));
+        libxml_clear_errors();
 
         $images = $dom->getElementsByTagName('img');
 
