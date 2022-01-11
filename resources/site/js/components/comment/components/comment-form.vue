@@ -72,7 +72,6 @@ export default {
         comment:"",
         conf_agree:true,
         user_id:this.user.id,
-        building_id:this.building_id,
       },
       rating_set:false,
       formSend:false,
@@ -112,7 +111,7 @@ export default {
       if(this.parent_id != 0) {
         this.form['parent_id'] = this.parent_id;
       }
-      axios.post('/comment/store', this.form)
+      axios.post('/api/comment/store', this.form)
           .then((response) => {
             this.$emit('store-comment');
             this.formSend = true;

@@ -13,10 +13,12 @@
     transition: all 0.25s ease;
     overflow: hidden;
     z-index: 2;
+    &:hover, & :focus {
+        box-shadow: none;
+    }
     &:hover{
         text-decoration: none;
         color: #fff;
-
     }
     &::before{
         content: '';

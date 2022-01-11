@@ -11967,6 +11967,9 @@ a {
   overflow: hidden;
   z-index: 2;
 }
+.button:hover, .button :focus {
+  box-shadow: none;
+}
 .button:hover {
   text-decoration: none;
   color: #fff;

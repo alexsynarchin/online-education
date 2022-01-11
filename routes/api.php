@@ -80,5 +80,9 @@ Route::get('/social-auth/{provider}', [SocialAuthController::class,'redirectToPr
 Route::get('/social-auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])
     ->name('auth.social.callback');
 
+//Comments
+Use App\Http\Controllers\Site\Api\CommentController;
+Route::post('/comment/store', [CommentController::class, 'store']) -> name('comment.store');
+
 
 
