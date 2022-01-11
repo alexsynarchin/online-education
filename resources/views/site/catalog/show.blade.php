@@ -51,7 +51,6 @@
                                         <a href="{{route('lesson.show',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}" class="course-item-lessons__link">
                                             {{$lesson -> title}}
                                         </a>
-
                                     </li>
                                 @endforeach
                             </ul>
@@ -105,6 +104,7 @@
                 </section>
                 @endif
                 <comments
+                    :show_comment="{{json_encode($show_comment)}}"
                     :course_id="{{json_encode($course->id)}}">
                 </comments>
             </div>

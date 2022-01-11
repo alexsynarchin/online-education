@@ -34,21 +34,26 @@ class CatalogController extends Controller
 
         return view('site.catalog.index', [
             'courses' => $courses,
-
             'title' => $category_type -> title,
             'slug' => $category_type -> slug,
         ]);
     }
-    public function show($edu_slug, $slug)
+    public function show($edu_slug, $slug, Request $request)
     {
         $course = Course::where('slug', $slug) ->with(['edu_type' => function($query) {
             $query -> select(['id', 'slug', 'title']);
         }, 'lessons' => function($query) {
             $query -> where('status', 2);
         }]) -> firstOrFail();
-        $other_courses = Course::where('author_id', $course-> author_id) ->where('id', '!=', $course-> id) ->where('status', 2) -> whereHas('lessons', function ($query){
+        $other_courses = Course::where('author_id', $course-> author_id)
+            ->where('id', '!=', $course-> id)
+            ->where('status', 2) -> whereHas('lessons', function ($query){
            $query -> where('status', 2);
         }) -> get();
+        $show_comment = '';
+        if($request->has('comment')) {
+            $show_comment = $request->get('comment');
+        }
         $filter = [
             'subject' => $course -> subject_id,
             'level' => $course -> edu_level_id,
@@ -57,7 +62,8 @@ class CatalogController extends Controller
         return view('site.catalog.show',[
             'filter' => $filter,
             'course' => $course,
-            'other_courses' => $other_courses
+            'other_courses' => $other_courses,
+            'show_comment' => $show_comment,
         ]);
     }
 }

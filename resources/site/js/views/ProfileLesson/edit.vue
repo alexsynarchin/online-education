@@ -1,13 +1,23 @@
 <template>
     <section>
         <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> /
-                <a href="/profile">Профиль</a> /
-                <a href="/profile/my-courses/active">Мои курсы</a> /
-                <a :href="'/profile/courses/' + slug">{{course.title}}</a> /
-                {{lesson.title}} : редактирование
-            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb__item">
+                    <a  href="/" class="breadcrumb__link">Главная</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <a  href="/profile/my-courses/active"  class="breadcrumb__link">Мои курсы</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <a href="/profile" class="breadcrumb__link">Профиль</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <a :href="'/profile/courses/' + slug" class="breadcrumb__link">{{course.title}}</a>
+                </li>
+                <li class="breadcrumb__item">
+                    {{lesson.title}} : редактирование
+                </li>
+            </ul>
         </div>
         <h1 class="b-profile-user__title">{{lesson.title}} : редактирование</h1>
         <el-tabs v-model="activeTab"  class="edu-tabs">
@@ -43,7 +53,7 @@
         },
         data() {
             return {
-                activeTab:'description',
+                activeTab:'content',
                 loaded:false,
                 course: {},
                 lesson: {},

@@ -17,7 +17,12 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return route('dashboard');
+            if($request->get('url')) {
+                return $request->get('url') . '?comment=show';
+            } else {
+                return route('dashboard');
+            }
+
             //return redirect()->intended('dashboard');
         }
         throw ValidationException::withMessages([

@@ -15,6 +15,7 @@ class CreateUserEduInstitutionTable extends Migration
     {
         Schema::create('user_edu_institution', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('edu_institution_id')->unsigned()->index();

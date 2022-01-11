@@ -15,15 +15,14 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table -> text('comment');
-            $table -> tinyInteger('rating')->unsigned()->default(0);
-            $table -> boolean('active')->default(false);
-            $table -> bigInteger('course_id')->unsigned()->index();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
-            $table -> bigInteger('user_id')->unsigned()->index();
+            $table->text('comment');
+            $table->tinyInteger('rating')->unsigned()->default(0);
+            $table->boolean('active')->default(false);
+            $table->morphs('commentable');
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('like')->default(0);
-            $table ->integer('dislike') ->default(0);
+            $table->integer('dislike') ->default(0);
             $table->timestamps();
         });
     }

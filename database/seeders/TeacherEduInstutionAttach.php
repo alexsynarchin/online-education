@@ -15,6 +15,6 @@ class TeacherEduInstutionAttach extends Seeder
     public function run()
     {
         $teacher = User::find(2);
-        $teacher -> eduInstitutions() -> attach(1);
+        $teacher -> eduInstitutions() -> attach(1, ['type' => 'work']);
     }
 }

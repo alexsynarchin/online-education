@@ -5,13 +5,13 @@
         >
         <tabs>
             <tab name="Вход" :selected="true">
-                <login></login>
+                <login :url="url"></login>
             </tab>
             <tab name="Регистрация">
-                <register @setProfileType="setProfileType"></register>
+                <register :url="url" @setProfileType="setProfileType"></register>
             </tab>
         </tabs>
-        <social-auth :profile_type="profile_type"></social-auth>
+        <social-auth :url="url" :profile_type="profile_type"></social-auth>
     </el-dialog>
 </template>
 <script>
@@ -39,10 +39,14 @@ export default {
             activeTab:'login',
             profile_type:'',
             redirect_path:"",
+            url: "",
         }
     },
     methods: {
-        show () {
+        show (url) {
+            if(url) {
+                this.url = url;
+            }
            this.showModal= true;
         },
         closeModal () {

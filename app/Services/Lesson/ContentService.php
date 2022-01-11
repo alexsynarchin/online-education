@@ -14,10 +14,11 @@ public function update($data, $id, $directory)
 {
     $content = LessonContent::where('lesson_id', $id)->firstOrFail();
     $content_dir = $directory . 'content/';
-    Storage::makeDirectory($content_dir);
+    Storage::makeDirectory('public/' .$content_dir);
     $dom = new DomDocument();
+    libxml_use_internal_errors(true);
     $dom->loadHTML(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8'));
-
+    libxml_clear_errors();
     $images = $dom->getElementsByTagName('img');
 
 
@@ -43,9 +44,9 @@ public function update($data, $id, $directory)
                 // resize if required
                 /* ->resize(300, 200) */
                 ->encode($mimetype, 100) 	// encode file to the specified mimetype
-                ->save((storage_path('app/').$filepath));
+                ->save((storage_path('app/public/').$filepath));
 
-            $new_src = '/storage/'.$content_dir.$filename.'.'.$mimetype;
+            $new_src = '/storage/' . $content_dir . $filename.'.'.$mimetype;
             $img->removeAttribute('src');
             $img->setAttribute('src', $new_src);
         } // <!--endif

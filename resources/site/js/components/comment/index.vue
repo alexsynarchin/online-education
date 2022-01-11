@@ -2,7 +2,7 @@
     <section class="course-item-block comments">
         <div class="comments__heading">
             <h3 class="comments__title">
-                Комментарии к курсу :
+                Комментарии к курсу:
             </h3>
             <button class="btn comments__button" @click.prevent="addComment">
                 Добавить комментарий
@@ -11,13 +11,24 @@
     </section>
 </template>
 <script>
-    export default {
+import EventBus from "../../EventBus";
+export default {
+        props:{
+            course_id:{
+                type:Number,
+                required:true,
+            },
+            show_comment: {
+                type:String,
+                required:true,
+            }
+        },
         methods: {
             addComment() {
                 if(this.authCheck) {
-                    this.$eventBus.$emit('review-submitted', productReview)
+
                 } else {
-                    this.$eventBus.$emit('show-auth-modal');
+                    EventBus.$emit('show-auth-modal', window.location.href);
                 }
             },
         },
@@ -34,7 +45,6 @@
                 } else {
                     return false;
                 }
-
             }
         },
     }

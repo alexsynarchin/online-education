@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 let distPath = 'public/assets/site';
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+
 require('laravel-mix-alias');
 mix
     .js('resources/site/js/app.js', 'js')

@@ -28,10 +28,6 @@ class UpdateLessonService
         ]);
         $contentService = new ContentService();
         $directory = 'users/user-' . Auth::user()->id .'/courses/course-'. $lesson->course_id . '/lesson-' . $lesson->id . '/';
-
-
-
-
         $contentModel = $contentService -> update($content['text'],$id,$directory);
         $contentModel->save();
         $testService = new UpdateTestService();
