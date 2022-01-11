@@ -48,7 +48,8 @@
                             <ul class="course-item-lessons">
                                 @foreach($course -> lessons as $lesson)
                                     <li class="course-item-lessons__item">
-                                        <a href="{{route('lesson.show',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}" class="course-item-lessons__link">
+                                        <a href="{{route('lesson.show',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}"
+                                           class="course-item-lessons__link">
                                             {{$lesson -> title}}
                                         </a>
                                     </li>
@@ -60,7 +61,7 @@
                                 {{$course ->price}} ₽
                             </div>
                             <div class="course-item__actions">
-                                <a href="" class="course-item__btn btn">Купить</a>
+                                <buy-btn></buy-btn>
                             </div>
 
                         </div>

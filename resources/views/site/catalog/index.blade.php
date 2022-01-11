@@ -58,7 +58,7 @@
                                     {{$course ->price}} ₽
                                 </div>
                                 <div class="course-item__actions">
-                                    <a href="" class="course-item__btn btn">Купить</a>
+                                    <buy-btn></buy-btn>
                                 </div>
 
                             </div>
