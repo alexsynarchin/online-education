@@ -23,10 +23,10 @@
 </template>
 <script>
     export default {
-        props:['profile_type'],
+        props:['profile_type', 'url'],
         methods: {
             handleSocialAuth(type) {
-                window.location.href = '/api/social-auth/' + type +'?profile_type='+this.profile_type ;
+                window.location.href = '/api/social-auth/' + type +'?profile_type='+this.profile_type + '&url=' + this.url ;
             }
         }
     }

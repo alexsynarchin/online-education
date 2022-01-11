@@ -13,17 +13,18 @@ class SocialAuthController extends Controller
 {
     public function redirectToProvider($provider, Request $request)
     {
-        $resposne = Socialite::driver($provider) -> scopes(['email']);
-        // with(['state' => 'test'])->
+
+        $resposne = Socialite::driver($provider)
+            -> with(['state' => $request->get('url')])
+            -> scopes(['email']);
+
         $resposne = $resposne->redirect();
         return $resposne;
     }
 
     public function handleProviderCallback($provider, Request $request)
     {
-        if ($request->session()->has('building_id')) {
-            $building_id = $request->session()->get('building_id');
-        }
+
         if ($provider == 'vkontakte') {
             $socialiteUser = Socialite::driver($provider)->fields([
                 'photo', 'photo_big',
@@ -43,7 +44,12 @@ class SocialAuthController extends Controller
         //dd($socialiteUser);
         $user = $this->findOrCreateUser($provider, $socialiteUser);
         auth()->login($user, true);
-        return redirect(route('dashboard'));
+        if($request->get('state')) {
+            $redirect_url = $request->get('state');
+        } else {
+            $redirect_url = route('dashboard');
+        }
+        return redirect($redirect_url);
     }
     private function findOrCreateUser($provider, $socialiteUser)
     {
