@@ -15,7 +15,7 @@
                 :user="user"
                 :parent_id="parent_id"
                 :course_id="course_id"
-                v-on:close="$emit('close')"
+                v-on:close="closeModal()"
                 v-on:store-comment="$emit('store-comment')"
             ></comment-form>
 
@@ -53,6 +53,9 @@ export default {
                     EventBus.$emit('show-auth-modal', window.location.href);
                 }
             },
+            closeModal() {
+                this.commentModal = false;
+            }
         },
         computed: {
             signedIn() {
