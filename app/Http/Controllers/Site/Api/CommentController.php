@@ -16,5 +16,6 @@ class CommentController extends Controller
             'comment' => 'required',
             'conf_agree' =>'accepted'
         ]);
+        dd($request->all());
     }
 }

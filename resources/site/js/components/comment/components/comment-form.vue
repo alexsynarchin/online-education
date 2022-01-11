@@ -58,7 +58,7 @@ import user from './user';
 export default {
   props:{
     user:Object,
-    building_id:Number,
+    course_id:Number,
     parent_id:Number,
   },
   components:{
@@ -72,6 +72,7 @@ export default {
         comment:"",
         conf_agree:true,
         user_id:this.user.id,
+        course_id:this.course_id
       },
       rating_set:false,
       formSend:false,
