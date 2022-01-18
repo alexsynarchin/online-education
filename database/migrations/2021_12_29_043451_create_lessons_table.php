@@ -26,6 +26,7 @@ class CreateLessonsTable extends Migration
             $table->boolean('type_text') ->default(false);
             $table->boolean('type_video')->default(false);
             $table->boolean('type_image')->default(false);
+            $table->boolean('type_audio')->default(false);
             $table->smallInteger('time')->nullable();
             $table->tinyInteger('status')->unsigned()->default(0);
             $table->timestamps();
