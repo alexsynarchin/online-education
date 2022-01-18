@@ -34,7 +34,7 @@
             <el-form :model = "profileForm" :rules="profile_rules" ref="profileForm" >
                 <el-form-item prop="profile_type" class="d-flex justify-content-center">
                     <el-radio-group v-model="profileForm.profile_type">
-                        <el-radio label="student" border>Ученик</el-radio>
+                        <el-radio label="student" border>Учащийся</el-radio>
                         <el-radio label="teacher" border>Преподаватель</el-radio>
                     </el-radio-group>
                 </el-form-item>

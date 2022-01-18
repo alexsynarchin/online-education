@@ -75,7 +75,7 @@
                         </section>
                         <section v-if="user.profile_type == 'teacher'">
 
-                            <a href="" class="nav-profile-item">
+                            <a href="/profile/course/create" class="nav-profile-item">
                                 <i class="el-icon-plus nav-profile-item__icon" style="color: #fff; font-size: 20px"></i>
                                 <span class="nav-profile-item__text">Добавить курс</span>
                             </a>

@@ -35,7 +35,7 @@
                                  <input class="modal-radio-item__radio" v-on:change="setProfileType" type="radio" name="profile_type" value="student" id="student_f"  v-model="registerData.profile_type">
                             <span></span>
                             </span>
-                            <span class="modal-radio-group__title">Ученик</span>
+                            <span class="modal-radio-group__title">Учащийся</span>
                         </label>
                         <label  for="teacher" class="modal-radio-group-item">
                             <span class="modal-radio-item">

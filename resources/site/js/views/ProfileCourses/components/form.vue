@@ -1,7 +1,8 @@
 <template>
   <section>
-      <el-form ref="form" :model="form" class="mb-4">
-      <div class="mt-4 row">
+      <el-form ref="form" :model="form" class="mb-4 mt-4">
+      <el-checkbox border v-model="form.yege">Это подготовка к ЕГЭ</el-checkbox>
+      <div class=" row">
           <el-form-item :error="errors.get('edu_type_id')" class="col-md-4" label="Тип образования">
               <el-select v-model="form.edu_type_id"
                          placeholder="Выберите тип образования"
@@ -40,7 +41,7 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item label="Темы курса"  class="col-md-8 col-xl-7">
+          <el-form-item label="Темы курса"  class="col-md-7 col-xl-6">
               <el-select v-model="form.themes" multiple placeholder="Выберите Темы курса" style="width: 100%;">
                   <el-option
                       v-for="item in themes"

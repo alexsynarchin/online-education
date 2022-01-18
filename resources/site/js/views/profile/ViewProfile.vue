@@ -142,7 +142,7 @@ export  default {
                     profile_type = 'Преподаватель';
                     break;
                 case 'student':
-                    profile_type = 'Студент';
+                    profile_type = 'Учащийся';
                     break;
                 default:
                     profile_type = '';

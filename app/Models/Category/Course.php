@@ -27,9 +27,13 @@ class Course extends Model implements HasMedia
         'subject_id',
         'author_id',
         'slug',
-        'lessons_count'
+        'lessons_count',
+        'yege'
     ];
 
+    protected $casts = [
+        'yege' => 'boolean',
+    ];
 
     public function getSlugOptions() : SlugOptions
     {
