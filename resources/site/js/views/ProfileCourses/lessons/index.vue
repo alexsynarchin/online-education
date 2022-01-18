@@ -12,7 +12,9 @@
         </div>
         <ul class="nav b-tab mb-3">
             <li class="nav-item b-tab__title" v-for="(tab, index) in tabs">
-                <a href=""  class="nav-link b-tab__link" :class="{'active': tab.type === active_tab}" @click.prevent="selectTab(tab.type, tab.value)">
+                <a href=""  class="nav-link b-tab__link"
+                   :class="{'active': tab.type === active_tab}"
+                   @click.prevent="selectTab(tab.type, tab.value)">
                     {{tab.title}} ({{tab.count}})
                 </a>
             </li>

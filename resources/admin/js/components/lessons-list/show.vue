@@ -28,7 +28,10 @@
                 </div>
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку">
-
+                <test v-for="(test, index) in lesson.tests"
+                      :key="test.id"
+                      :test="test"
+                ></test>
             </el-tab-pane>
         </el-tabs>
         <el-dialog title="Отклонить Урок" width="40%" :visible.sync="dialogCancel" append-to-body>
@@ -51,12 +54,16 @@
 
 </template>
 <script>
+import Test from './components/test'
     export default {
         props: {
           id: {
               type:Number,
               required:true,
           }
+        },
+        components: {
+            Test,
         },
         data() {
             return {

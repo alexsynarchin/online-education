@@ -10,7 +10,7 @@ class LessonController extends Controller
 {
     public function show($id)
     {
-        $lesson = Lesson::with(['content', 'tests']) -> findOrFail($id);
+        $lesson = Lesson::with(['content', 'tests.questions.options']) -> findOrFail($id);
         return $lesson;
     }
     public function changeStatus(Request $request)
