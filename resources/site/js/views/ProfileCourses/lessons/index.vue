@@ -13,7 +13,7 @@
         <ul class="nav b-tab mb-3">
             <li class="nav-item b-tab__title" v-for="(tab, index) in tabs">
                 <a href=""  class="nav-link b-tab__link" :class="{'active': tab.type === active_tab}" @click.prevent="selectTab(tab.type, tab.value)">
-                    {{tab.title}}
+                    {{tab.title}} ({{tab.count}})
                 </a>
             </li>
         </ul>
@@ -57,22 +57,26 @@
                     {
                         type:'active',
                         value:2,
-                        title: "Активные"
+                        title: "Активные",
+                        count: this.course_lessons.filter(lesson =>  lesson.status == 2).length
                     },
                     {
                         type:'moderate',
                         value:1,
-                        title: "На модерации"
+                        title: "На модерации",
+                        count: this.course_lessons.filter(lesson => lesson.status == 1).length
                     },
                     {
                         type:'draft',
                         value:0,
-                        title: "Черновики"
+                        title: "Черновики",
+                        count: this.course_lessons.filter(lesson => lesson.status == 0).length
                     },
                     {
                         type:'cancel',
                         value:3,
-                        title: "Отклоненные"
+                        title: "Отклоненные",
+                        count: this.course_lessons.filter(lesson => lesson.status == 3).length
                     },
                 ],
             }
@@ -90,8 +94,8 @@
                 this.active_status = value;
             },
          },
-        mounted() {
-            this.lessons = this.course_lessons;
+       async mounted() {
+           this.lessons = this.course_lessons;
         }
     }
 </script>
