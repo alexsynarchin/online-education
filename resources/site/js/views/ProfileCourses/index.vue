@@ -67,7 +67,7 @@ import CourseItem from './components/item'
             },
             getCoursesCount() {
                 axios.get('/api/profile/course/count', {params:{
-                    statuses: [0,1,2,3]
+                    statuses: [2,1,0,3]
                     }})
                 .then((response) => {
                     this.tabs = response.data;

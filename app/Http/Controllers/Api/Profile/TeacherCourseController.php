@@ -141,18 +141,20 @@ class TeacherCourseController extends Controller
     {
         $tabs=[];
         $names = [
+
             [
-                'type' => 'draft',
-                'title' => 'Черновики'
+                'type' => 'active',
+                'title' => 'Активные'
             ],
             [
                 'type' => 'moderate',
                 'title' => 'На модерации'
             ],
             [
-                'type' => 'active',
-                'title' => 'Активные'
+                'type' => 'draft',
+                'title' => 'Черновики'
             ],
+
             [
                 'type' => 'cansel',
                 'title' =>  'Отклоненные'
