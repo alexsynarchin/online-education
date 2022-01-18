@@ -52,8 +52,12 @@ class HeaderNavController extends Controller
     }
     public function filter(Request $request)
     {
-        $url = route('catalog', $request->get('edu_type'));
-        $url = $url .  '?levels=' . $request->get('level') . '&subjects=' . $request->get('subject');
+
+        $url = route('catalog', [
+            'edu_slug' => $request->get('edu_type'),
+            'levels' => $request->get('level'),
+            'subjects' => $request -> get('subject'),
+            ]);
         return $url;
     }
     public function eduSubjectsList(Request $request)

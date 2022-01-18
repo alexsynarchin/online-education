@@ -16,21 +16,29 @@ class UserController extends Controller
 
     public function show()
     {
-        if(Auth::user() -> profile_type == 'teacher') {
-            $user = User::with('eduInstitutions', 'teacherAccount') ->find(Auth::id());
+        if(Auth::user() -> hasRole('teacher')) {
+            $user = User::with(['eduInstitutions', 'teacherAccount']) ->find(Auth::id());
         }
-        if(Auth::user() -> profile_type == 'student') {
+        else if(Auth::user() -> hasRole('student')) {
             $user = User::with('studentAccount') ->find(Auth::id());
         } else {
             $user = User::find(Auth::id());
         }
+
         return $user;
     }
 
     public function update($id, Request $request)
     {
         $user = User::findOrFail($id);
-        $user ->update($request->except('teacher_account', 'student_account'));
+        $user ->update($request->except('teacher_account', 'student_account', 'edu_institutions'));
+        if($request->has('edu_institutions')) {
+            $edu_institutions_ids=[];
+            foreach ($request->get('edu_institutions') as $item) {
+                $edu_institutions_ids[] = $item['id'];
+            }
+            $user -> eduInstitutions() -> syncWithPivotValues($edu_institutions_ids, ['type' => 'work']);
+        }
         return $user -> id;
 
     }

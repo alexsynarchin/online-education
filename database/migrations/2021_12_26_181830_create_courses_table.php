@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->boolean('yege')->default(false);
             $table->mediumText('description')->nullable();
             $table->tinyInteger('status')->unsigned()->default(0);
             $table->bigInteger('category_id')->unsigned()->nullable();

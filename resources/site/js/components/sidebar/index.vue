@@ -45,6 +45,7 @@
         },
         methods: {
             selectItem(data) {
+                this.$root.filtered = true;
                 if(data.type === 'subject') {
                     this.selected.subject = data.id;
                 }
@@ -56,7 +57,8 @@
                 }
                 axios.post('/api/catalog/filter', this.selected)
                 .then((response) => {
-                    window.location.href = response.data;
+                    console.log(response.data);
+                    //window.location.href = response.data;
                 })
             }
         },

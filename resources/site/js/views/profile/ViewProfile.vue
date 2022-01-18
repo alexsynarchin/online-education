@@ -110,6 +110,18 @@
                     </div>
                 </div>
             </div>
+            <div class="profile-data-item" v-if="user.profile_type === 'teacher'">
+                <div class="profile-data-head">
+                    Опыт работы
+                </div>
+                <ul class="mt-2 nb-2">
+                    <li
+                    v-for="(item, index) in user.edu_institutions "
+                    >
+                        {{item.title}}
+                    </li>
+                </ul>
+            </div>
         </div>
         <add-student-promo></add-student-promo>
     </section>

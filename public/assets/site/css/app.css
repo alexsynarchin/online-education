@@ -13071,6 +13071,33 @@ a {
   font-size: 1.1rem;
 }
 
+.profile-work-places__heading {
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  .profile-work-places__heading {
+    display: flex;
+    align-items: center;
+  }
+}
+.profile-work-places__title {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+@media (min-width: 992px) {
+  .profile-work-places__title {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+}
+.profile-work-places__select {
+  width: 100%;
+}
+.profile-work-places__select-wrap {
+  margin-bottom: 15px !important;
+}
+
 .question__options-item {
   margin-bottom: 0.6rem;
 }

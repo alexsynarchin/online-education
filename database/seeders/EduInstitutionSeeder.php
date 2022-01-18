@@ -27,10 +27,50 @@ class EduInstitutionSeeder extends Seeder
                 'city_id' => 1,
             ],
             [
+                'title' => 'УГНТУ',
+                'type' => 'university',
+                'city_id' => 1,
+            ],
+            [
+                'title' => 'БашГУ',
+                'type' => 'university',
+                'city_id' => 1,
+            ],
+            [
                 'title' => 'Гимназия №3',
                 'type' => 'school',
                 'city_id' => 1,
-            ]
+            ],
+            [
+                'title' => 'Гимназия №39',
+                'type' => 'school',
+                'city_id' => 1,
+            ],
+            [
+                'title' => 'школа № 61',
+                'type' => 'school',
+                'city_id' => 1,
+            ],
+            [
+                'title' => 'школа № 109',
+                'type' => 'school',
+                'city_id' => 1,
+            ],
+            [
+                'title' => 'Лицей №58',
+                'type' => 'school',
+                'city_id' => 1,
+            ],
+            [
+                'title' => 'Лицей №106',
+                'type' => 'school',
+                'city_id' => 1,
+            ],
+            [
+                'title' => 'Лицей №153',
+                'type' => 'school',
+                'city_id' => 1,
+            ],
         ];
         foreach ($edu_institutions as $item) {
             EduInstitution::create($item);

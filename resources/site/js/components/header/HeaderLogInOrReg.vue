@@ -74,6 +74,11 @@
                             </a>
                         </section>
                         <section v-if="user.profile_type == 'teacher'">
+
+                            <a href="" class="nav-profile-item">
+                                <i class="el-icon-plus nav-profile-item__icon" style="color: #fff; font-size: 20px"></i>
+                                <span class="nav-profile-item__text">Добавить курс</span>
+                            </a>
                             <a href="/profile/my-courses/active" class="nav-profile-item">
                                 <svg class="nav-profile-item__icon">
                                     <use xlink:href="/images/sprite.svg#srednee_obrazovanie"></use>
