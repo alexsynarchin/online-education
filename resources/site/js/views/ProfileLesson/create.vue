@@ -86,7 +86,8 @@ import TestForm from "./components/LessonTest/TestForm";
                     text:null,
                     type_text:null,
                     type_image:null,
-                    type_video:null
+                    type_video:null,
+                    type_audio:null,
                 },
                 testData:{
                     repeat_period:0,

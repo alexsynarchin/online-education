@@ -6,15 +6,15 @@
                 <richtext v-model="data.text"></richtext>
             </el-form-item>
             <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 0">
-
                 <el-form-item style="margin-bottom: 0">
                     <el-checkbox v-model="data.type_text">Текст</el-checkbox>
                 </el-form-item>
-
                 <el-form-item style="margin-left: 2rem; margin-bottom: 0">
                     <el-checkbox v-model="data.type_image">Изображение</el-checkbox>
                 </el-form-item>
-
+                <el-form-item style="margin-left: 2rem; margin-bottom: 0">
+                    <el-checkbox v-model="data.type_audio">Аудио</el-checkbox>
+                </el-form-item>
                 <el-form-item style="margin-left: 2rem; margin-bottom: 0">
                     <el-checkbox v-model="data.type_video">Видео</el-checkbox>
                 </el-form-item>
