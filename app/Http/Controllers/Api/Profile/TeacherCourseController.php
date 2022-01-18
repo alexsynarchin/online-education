@@ -137,4 +137,37 @@ class TeacherCourseController extends Controller
 
         return $course;
     }
+    public function getCoursesCount(Request $request)
+    {
+        $tabs=[];
+        $names = [
+            [
+                'type' => 'draft',
+                'title' => 'Черновики'
+            ],
+            [
+                'type' => 'moderate',
+                'title' => 'На модерации'
+            ],
+            [
+                'type' => 'active',
+                'title' => 'Активные'
+            ],
+            [
+                'type' => 'cansel',
+                'title' =>  'Отклоненные'
+            ]
+        ];
+        foreach ($request->get('statuses') as $key => $status)
+        {
+
+            $tab = [
+                'type' => $names[$key]['type'],
+                'title' => $names[$key]['title'],
+                'count' => Course::where('status', $status)->count()
+            ];
+            $tabs[]=$tab;
+        }
+        return $tabs;
+    }
 }

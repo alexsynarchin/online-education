@@ -25,7 +25,7 @@
         <ul class="nav b-tab">
             <li class="nav-item b-tab__title" v-for="(tab, index) in tabs">
                 <a :href="'/profile/my-courses/' + tab.type"  class="nav-link b-tab__link" :class="{'active': tab.type === active_tab}">
-                    {{tab.title}}
+                    {{tab.title}} ({{tab.count}})
                 </a>
             </li>
         </ul>
@@ -55,24 +55,7 @@ import CourseItem from './components/item'
             return {
                 courses: [],
                 active_tab:'active',
-                tabs:[
-                    {
-                        type:'active',
-                        title: "Активные"
-                    },
-                    {
-                        type:'moderate',
-                        title: "На модерации"
-                    },
-                    {
-                        type:'draft',
-                        title: "Черновики"
-                    },
-                    {
-                        type:'cancel',
-                        title: "Отклоненные"
-                    },
-                ],
+                tabs:[],
             }
         },
         methods: {
@@ -80,6 +63,14 @@ import CourseItem from './components/item'
                 axios.get('/api/profile/course/index/' + this.active_tab)
                 .then((response) => {
                     this.courses = response.data;
+                })
+            },
+            getCoursesCount() {
+                axios.get('/api/profile/course/count', {params:{
+                    statuses: [0,1,2,3]
+                    }})
+                .then((response) => {
+                    this.tabs = response.data;
                 })
             },
             removeCourse(id) {
@@ -90,6 +81,7 @@ import CourseItem from './components/item'
         mounted() {
             this.active_tab = this.$route.params.slug;
             this.getCourses();
+            this.getCoursesCount();
         }
     }
 </script>

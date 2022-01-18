@@ -22,7 +22,7 @@ Route::post('/profile/course/store',[TeacherCourseController::class,'store'])->n
 Route::post('/profile/course/update',[TeacherCourseController::class,'update'])->name('profile.course.update');
 Route::get('/profile/course/{slug}/show', [TeacherCourseController::class,'show']) -> name('profile.course.show');
 Route::post('/profile/course/{id}/remove', [TeacherCourseController::class, 'remove']) -> name('profile.course.remove');
-
+Route::get('/profile/course/count', [TeacherCourseController::class, 'getCoursesCount']) -> name('profile.course.count');
 
 use App\Http\Controllers\Api\Profile\TeacherLessonController;
 Route::get('/profile/{course_slug}/{slug}/show', [TeacherLessonController::class, 'show']) -> name('profile.lesson.show');
