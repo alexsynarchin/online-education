@@ -34,10 +34,6 @@
                         <el-switch v-model="formData.notifications" >
                         </el-switch>
                     </el-form-item>
-                    <el-form-item label="Покупка за промокоды" v-if="user.profile_type === 'teacher' && formData.teacher_account" prop="allow_promo">
-                        <el-switch v-model="formData.teacher_account.allow_promo"   >
-                        </el-switch>
-                    </el-form-item>
                 </div>
             </div>
 

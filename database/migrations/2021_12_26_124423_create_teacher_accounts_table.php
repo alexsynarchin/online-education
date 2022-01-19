@@ -16,13 +16,11 @@ class CreateTeacherAccountsTable extends Migration
         Schema::create('teacher_accounts', function (Blueprint $table) {
             $table->id();
             $table->decimal('balance',8,2)->nullable();
-            $table->boolean('allow_promo')->default(false);
             $table->bigInteger('card_number')->nullable();
             $table->bigInteger('bank_account')->nullable();
             $table->string('card_name')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table -> integer('promo_balance')->nullable();
             $table->timestamps();
         });
     }
