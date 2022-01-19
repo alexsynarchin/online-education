@@ -31,7 +31,10 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
+        'birthday',
+        'phone',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -53,6 +56,7 @@ class User extends Authenticatable implements HasMedia
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birthday' => 'date',
     ];
 
     public function getProfileTypeAttribute()
