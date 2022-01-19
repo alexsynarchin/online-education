@@ -7,6 +7,7 @@ use App\Models\Account\TeacherAccount;
 use App\Models\Category\CategoryType;
 use App\Models\Category\Course;
 use App\Models\Reference\EduInstitution;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,7 +48,8 @@ class User extends Authenticatable implements HasMedia
         'remember_token',
     ];
     protected $appends = [
-        'profile_type', 'subjects', 'avatar'
+        'profile_type', 'subjects', 'avatar', 'gender_string','formatted_birthday',
+        'formatted_created_at',
     ];
 
     /**
@@ -59,6 +61,29 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'birthday' => 'date',
     ];
+    public function getGenderStringAttribute() {
+        if(isset($this->attributes['gender'])){
+            $gender = $this->attributes['gender'];
+            if($gender === 1) {
+                $genderString = 'Женский';
+            } else {
+                $genderString = 'Мужской';
+            }
+            return $genderString;
+        } else {
+            return "";
+        }
+
+    }
+
+    public function getFormattedCreatedAtAttribute() {
+        return isset($this->attributes['created_at']) ? Carbon::parse($this->attributes['created_at'])->format('d.m.y') : null;
+    }
+
+    public function getFormattedBirthdayAttribute() {
+
+        return isset($this->attributes['birthday']) ? Carbon::parse($this->attributes['birthday'])->format('d.m.y') : null;
+    }
 
     public function getProfileTypeAttribute()
     {
