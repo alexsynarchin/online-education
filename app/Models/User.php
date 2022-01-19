@@ -77,12 +77,12 @@ class User extends Authenticatable implements HasMedia
     }
 
     public function getFormattedCreatedAtAttribute() {
-        return isset($this->attributes['created_at']) ? Carbon::parse($this->attributes['created_at'])->format('d.m.y') : null;
+        return isset($this->attributes['created_at']) ? Carbon::parse($this->attributes['created_at'])->format('d.m.Y') : null;
     }
 
     public function getFormattedBirthdayAttribute() {
 
-        return isset($this->attributes['birthday']) ? Carbon::parse($this->attributes['birthday'])->format('d.m.y') : null;
+        return isset($this->attributes['birthday']) ? Carbon::parse($this->attributes['birthday'])->format('d.m.Y') : null;
     }
 
     public function getProfileTypeAttribute()
