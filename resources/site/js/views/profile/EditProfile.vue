@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-form :model="formData" ref="formData" :rules="rules" class="profile-user-form mb-3"  @submit.prevent="formSubmit" >
+        <el-form label-position="top" :model="formData" ref="formData" :rules="rules" class="profile-user-form mb-3"  @submit.prevent="formSubmit" >
             <div class="d-flex mt-3 mb-4 edu-h-form__settings">
                 <div style="margin-right: 20px">
                     <el-form-item prop="avatar">
@@ -24,13 +24,13 @@
                     </div>
 
 
-                    <el-form-item prop="gender" label="Пол">
+                    <el-form-item prop="gender" label="Пол" class="d-flex">
                         <el-radio-group v-model="formData.gender" >
                             <el-radio label="1" border>Женский</el-radio>
                             <el-radio label="2" border>Мужской</el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <el-form-item label="Уведомления" prop="notifications">
+                    <el-form-item label="Уведомления" prop="notifications" class="d-flex">
                         <el-switch v-model="formData.notifications" >
                         </el-switch>
                     </el-form-item>
@@ -49,8 +49,13 @@
                 </el-form-item>
             </div>
             <div class="row">
-                <el-form-item label="Дата рождения" prop="birthday" class="col-md-6">
-                    <el-input :placeholder="'дд.мм.гг'" v-model="formData.birthday" v-mask="'##.##.##'"></el-input>
+                <el-form-item  label="Дата рождения" prop="birthday" class="col-md-6">
+                    <el-date-picker
+                        style="width: 100%"
+                        v-model="formData.birthday"
+                        type="date"
+                        placeholder="Выберите дату рождения">
+                    </el-date-picker>
                 </el-form-item>
                 <el-form-item label="Телефон" prop="phone" class="col-md-6">
                     <el-input v-model="formData.phone" v-mask="'+7(###)-##-##-###'" :placeholder="'+7(999)-99-99-999'"></el-input>
