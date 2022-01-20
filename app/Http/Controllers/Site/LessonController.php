@@ -15,8 +15,9 @@ class LessonController extends Controller
         $lesson = Lesson::where('slug', $slug) -> firstOrFail();
         $other_lessons = $course -> lessons() -> where('status', 2) ->  where('id', '!=', $lesson->id) ->get();
         $filter = [
-            'subject' => $course -> subject_id,
-            'level' => $course -> edu_level_id,
+            'yege' => $course->yege ? [1] : [],
+            'subjects' => [$course -> subject_id],
+            'levels' => [$course -> edu_level_id],
             'edu_type' => $course -> edu_type_id
         ];
         return view('site.lesson.show', [
