@@ -11,7 +11,16 @@ class CatalogController extends Controller
 {
     public function filter(Request $request, CatalogFilterService $filterService)
     {
-        $courses = $filterService-> filter($request->all());
-        return $courses;
+        if($request->has('redirect')) {
+            $edu_type = CategoryType::findOrFail($request->get('edu_type'));
+            return route('catalog', ['edu_slug' => $edu_type->slug,
+                'subjects' => $request->get('subjects'),
+                'levels' => $request->get('levels'),
+                'themes' => $request->get('themes'),
+            ]);
+        } else {
+            $courses = $filterService-> filter($request->all());
+            return $courses;
+        }
     }
 }

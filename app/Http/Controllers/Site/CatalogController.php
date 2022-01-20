@@ -56,10 +56,12 @@ class CatalogController extends Controller
             $show_comment = $request->get('comment');
         }
         $filter = [
+            'redirect' => true,
             'yege' => $course->yege ? [1] : [],
             'subjects' => [$course -> subject_id],
             'levels' => [$course -> edu_level_id],
             'edu_type' => $course -> edu_type_id,
+            'themes' => [],
 
         ];
         return view('site.catalog.show',[

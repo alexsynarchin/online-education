@@ -93,8 +93,11 @@
                 }
                 axios.post('/api/catalog/filter', this.selected)
                 .then((response) => {
-                    EventBus.$emit('get-filtered-courses', response.data)
-                    //window.location.href = response.data;
+                    if(this.selected.redirect) {
+                        window.location.href = response.data;
+                    } else {
+                        EventBus.$emit('get-filtered-courses', response.data)
+                    }
                 })
             }
         },
