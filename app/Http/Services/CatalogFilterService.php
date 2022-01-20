@@ -21,7 +21,10 @@ class CatalogFilterService
         $yege = $filterData['yege'];
 
         $courses = (new Course) -> newQuery();
-        $courses = $courses->where('edu_type_id', $filterData['edu_type']);
+        $courses = $courses->where('edu_type_id', $filterData['edu_type'])
+            ->whereHas('lessons', function ($query){
+            $query -> where('status', 2);
+        });
         if(count($subjects) > 0) {
             $courses = $courses->whereIn('subject_id', $subjects);
         }
@@ -36,7 +39,11 @@ class CatalogFilterService
         if(count($yege)> 0) {
             $courses = $courses->where('yege', 1);
         }
-        $courses = $courses->get();
+        $courses = $courses
+            ->with(['author', 'edu_type']) -> with('lessons', function($query) {
+            $query -> where('status', 2);
+            $query -> take(3);
+        })->get();
 
         return $courses;
     }

@@ -29,7 +29,7 @@
                         @include('site.course.item', ['$course' => $course])
                     @endforeach
                 </section>
-
+                <course-list v-if="filtered"></course-list>
             </div>
         </div>
     </div>

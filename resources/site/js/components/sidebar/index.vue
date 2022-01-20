@@ -35,6 +35,7 @@
 </template>
 <script>
     import SidebarItem from './item';
+    import EventBus from "../../EventBus";
     export default {
         components: {
             SidebarItem,
@@ -92,7 +93,7 @@
                 }
                 axios.post('/api/catalog/filter', this.selected)
                 .then((response) => {
-                    console.log(response.data);
+                    EventBus.$emit('get-filtered-courses', response.data)
                     //window.location.href = response.data;
                 })
             }

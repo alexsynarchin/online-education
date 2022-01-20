@@ -34,10 +34,12 @@ Vue.component('FilterSidebar',require('./components/sidebar/index').default);
 Vue.component('Comments',require('./components/comment/index').default);
 
 //FAQ
-Vue.component('Faq',require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
+Vue.component('Faq', require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
 
 //Teacher search
 Vue.component('SearchTeachers',require('./components/teacher/index').default);
+
+Vue.component('CourseList', require('./components/course-list/index').default);
 
 import router from './router'
 
