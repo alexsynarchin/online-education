@@ -36,10 +36,13 @@ class ComposerServiceProvider extends ServiceProvider
                 $subjects[] = $subject;
             }
             $levels = [];
-            foreach ($request->get('levels') as $level) {
-                $level = (int) $level;
-                $levels[] = $level;
+            if($request->has('levels')) {
+                foreach ($request->get('levels') as $level) {
+                    $level = (int) $level;
+                    $levels[] = $level;
+                }
             }
+
             $filter = [
                 'yege' => [],
                 'subjects' =>$subjects,
