@@ -11,18 +11,19 @@ class CatalogController extends Controller
 {
     public function index($edu_type, Request $request)
     {
+
         $category_type = CategoryType::where('slug', $edu_type) -> firstOrFail();
         $courses = (new Course) -> newQuery();
         $courses =  $courses ->where('edu_type_id', $category_type -> id) -> where('status', 2) ;
         if($request->has('levels')) {
-            $courses = $courses -> where('edu_level_id', $request->get('levels'));
+            $courses = $courses -> whereIn('edu_level_id', $request->get('levels'));
         }
         if($request->has('subjects')) {
-            $courses = $courses -> where('subject_id', $request->get('subjects'));
+            $courses = $courses -> whereIn('subject_id', $request->get('subjects'));
         }
         if($request->has('themes') && $request->get('themes')) {
             $courses = $courses -> whereHas('themes', function ($query) use ($request){
-                $query->where('theme_id', $request->get('themes'));
+                $query->whereIn('theme_id', $request->get('themes'));
             });
         }
         $courses = $courses -> whereHas('lessons', function ($query){

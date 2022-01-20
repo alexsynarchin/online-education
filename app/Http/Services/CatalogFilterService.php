@@ -15,8 +15,29 @@ class CatalogFilterService
 
     public function filter($filterData)
     {
-        $edu_type = CategoryType::where('type', 'edu_type')->where('slug', $filterData['edu_type']) ->firstOrFail('id');
+        $subjects = $filterData['subjects'];
+        $levels = $filterData['levels'];
+        $tags = $filterData['themes'];
+        $yege = $filterData['yege'];
 
-        return $edu_type;
+        $courses = (new Course) -> newQuery();
+        $courses = $courses->where('edu_type_id', $filterData['edu_type']);
+        if(count($subjects) > 0) {
+            $courses = $courses->whereIn('subject_id', $subjects);
+        }
+        if(count($levels) > 0) {
+            $courses = $courses->whereIn('edu_level_id', $levels);
+        }
+        if(count($tags) > 0) {
+            $courses = $courses->whereHas('themes', function ($query) use ($tags){
+                $query->whereIn('theme_id', $tags);
+            });
+        }
+        if(count($yege)> 0) {
+            $courses = $courses->where('yege', 1);
+        }
+        $courses = $courses->get();
+
+        return $courses;
     }
 }

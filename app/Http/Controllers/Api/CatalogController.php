@@ -11,8 +11,7 @@ class CatalogController extends Controller
 {
     public function filter(Request $request, CatalogFilterService $filterService)
     {
-        $result = $filterService-> filter($request->all());
-        dd($result);
-        return $result;
+        $courses = $filterService-> filter($request->all());
+        return $courses;
     }
 }

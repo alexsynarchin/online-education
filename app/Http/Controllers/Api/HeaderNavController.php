@@ -52,11 +52,12 @@ class HeaderNavController extends Controller
     }
     public function filter(Request $request)
     {
-
+        $levels[] = (int) $request->get('level');
+        $subjects[] = (int) $request -> get('subject');
         $url = route('catalog', [
             'edu_slug' => $request->get('edu_type'),
-            'levels' => $request->get('level'),
-            'subjects' => $request -> get('subject'),
+            'levels' => $levels,
+            'subjects' => $subjects,
             ]);
         return $url;
     }

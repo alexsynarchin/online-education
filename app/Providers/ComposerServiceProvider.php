@@ -30,12 +30,24 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('site.base._partials.sidebar', function($view) use($request) {
             $view_data= $view->getData();
             $category_type = CategoryType::where('slug', $view_data['slug']) -> firstOrFail();
+            $subjects = [];
+            foreach ($request->get('subjects') as $subject) {
+                $subject = (int) $subject;
+                $subjects[] = $subject;
+            }
+            $levels = [];
+            foreach ($request->get('levels') as $level) {
+                $level = (int) $level;
+                $levels[] = $level;
+            }
             $filter = [
-                'subject' => $request->get('subjects'),
-                'level' => $request->get('levels'),
+                'yege' => [],
+                'subjects' =>$subjects,
+                'levels' => $levels,
                 'edu_type' => $category_type -> id,
-                'theme' => $request->get('themes')
+                'themes' => $request->get('themes') ?  $request->get('themes') : [],
             ];
+
             $view->with(['filter' => $filter]);
         });
     }

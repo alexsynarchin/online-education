@@ -1,9 +1,9 @@
 <template>
     <section class="filter-sidebar-item" v-if="loaded">
-        <h3 class="filter-sidebar-item__title">
+        <h3 class="filter-sidebar-item__title" v-if="type != 'yege'">
             {{title}}
         </h3>
-        <div class="b-search">
+        <div class="b-search" v-if="type != 'yege'">
             <input class="b-search__input" type="text" v-model="search" name="query" :placeholder="placeholder">
             <button type="submit" class="b-search__btn"  @click.prevent="">
                 <svg class="b-search__icon">
@@ -21,12 +21,12 @@
             >
                 <span class="form-checkbox__checkmark"
                       :class="{
-                          'form-checkbox__checkmark--selected': item.id == filterStart
+                          'form-checkbox__checkmark--selected': filterStart.findIndex(x => x == item.id) != -1
                 }"
                 ></span> {{item.title}}
             </li>
         </ul>
-        <button class="btn filter-sidebar-item__button" @click.prevent="showAll">
+        <button class="btn filter-sidebar-item__button" @click.prevent="showAll" v-if="type != 'yege'">
             <svg viewBox="0 0 14 9" class="filter-sidebar-item__icon"
                  :class="{
                 'filter-sidebar-item__icon--top': !preview_mode
@@ -120,7 +120,15 @@
             }
         },
         mounted() {
-            this.getFilterItems();
+            if(this.type ==='yege') {
+             this.items.push({
+                 id:1,
+                 title:'Подготовка к ЕГЭ',
+             })
+                this.loaded = true;
+            } else {
+                this.getFilterItems();
+            }
         }
     }
 </script>
