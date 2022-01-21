@@ -31,9 +31,11 @@ class ComposerServiceProvider extends ServiceProvider
             $view_data= $view->getData();
             $category_type = CategoryType::where('slug', $view_data['slug']) -> firstOrFail();
             $subjects = [];
-            foreach ($request->get('subjects') as $subject) {
-                $subject = (int) $subject;
-                $subjects[] = $subject;
+            if($request->has('subjects')) {
+                foreach ($request->get('subjects') as $subject) {
+                    $subject = (int) $subject;
+                    $subjects[] = $subject;
+                }
             }
             $levels = [];
             if($request->has('levels')) {
