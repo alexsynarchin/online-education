@@ -1,10 +1,16 @@
 <template>
     <section class="lesson-create">
-        <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> / <a href="/profile">Профиль</a> /  Новый Курс
-            </div>
-        </div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="/" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="/profile" class="breadcrumb__link">Профиль</a>
+            </li>
+            <li class="breadcrumb__item">
+                Новый Курс
+            </li>
+        </ul>
         <h1 class="b-profile-user__title">Создание курса</h1>
         <course-form
             :form="form"

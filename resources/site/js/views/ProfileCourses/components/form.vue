@@ -1,8 +1,7 @@
 <template>
   <section>
       <el-form ref="form" :model="form" class="mb-4 mt-4">
-      <el-checkbox border v-model="form.yege">Это подготовка к ЕГЭ</el-checkbox>
-      <div class=" row">
+      <div class="row align-items-end" >
           <el-form-item :error="errors.get('edu_type_id')" class="col-md-4" label="Тип образования">
               <el-select v-model="form.edu_type_id"
                          placeholder="Выберите тип образования"
@@ -41,7 +40,7 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item label="Темы курса"  class="col-md-7 col-xl-6">
+          <el-form-item label="Темы курса"  class="col-md-6 col-xl-6">
               <el-select v-model="form.themes" multiple placeholder="Выберите Темы курса" style="width: 100%;">
                   <el-option
                       v-for="item in themes"
@@ -50,6 +49,9 @@
                       :value="item.id">
                   </el-option>
               </el-select>
+          </el-form-item>
+          <el-form-item class="col-md-6 col-xl-6" v-if="form.edu_type_id === 1">
+              <el-checkbox border v-model="form.yege">Это подготовка к ЕГЭ</el-checkbox>
           </el-form-item>
       </div>
         <el-form-item label="Название курса" :error="errors.get('title')">
@@ -177,6 +179,7 @@ import { Errors } from  '@/common/js/services/errors.js';
         },
         selectEduType(id) {
            this.getCategories('edu_level', id);
+           this.form.yege = false;
         },
         selectSubject(id) {
             this.getCategories('theme', id);

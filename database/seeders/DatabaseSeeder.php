@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             EduTypesSeeder::class,
             SubjectsSeeder::class,
             EduLevelsSeeder::class,
+            SpecialitySeeder::class,
             RolesSeeder::class,
             UsersSeeder::class,
             EduInstitutionSeeder::class,

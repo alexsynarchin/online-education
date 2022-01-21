@@ -28,6 +28,8 @@ class CreateCoursesTable extends Migration
             $table->foreign('subject_id')->references('id')->on('category_types')->onDelete('cascade');
             $table->bigInteger('edu_level_id')->unsigned()->nullable();
             $table->foreign('edu_level_id')->references('id')->on('category_types')->onDelete('cascade');
+            $table->bigInteger('specialty_id')->unsigned()->nullable();
+            $table->foreign('specialty_id')->references('id')->on('category_types')->onDelete('cascade');
             $table->smallInteger('lessons_count')->default(0);
             $table->bigInteger('author_id') -> unsigned()->nullable();
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
