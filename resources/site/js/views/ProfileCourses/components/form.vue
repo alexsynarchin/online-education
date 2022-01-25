@@ -204,7 +204,7 @@ import { Errors } from  '@/common/js/services/errors.js';
                 if(type === 'specialty' && parent_id) {
                     this.specialties = response.data;
                 }
-                if(type === 'specialty') {
+                if(type === 'specialty' && !parent_id) {
                     this.directions = response.data
                 }
             })
