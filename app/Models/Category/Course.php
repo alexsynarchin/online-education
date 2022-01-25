@@ -24,6 +24,8 @@ class Course extends Model implements HasMedia
         'category_id',
         'edu_type_id',
         'edu_level_id',
+        'specialty_id',
+        'direction_id',
         'subject_id',
         'author_id',
         'slug',

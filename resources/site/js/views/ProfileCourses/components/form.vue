@@ -54,6 +54,30 @@
               <el-checkbox border v-model="form.yege">Это подготовка к ЕГЭ</el-checkbox>
           </el-form-item>
       </div>
+      <div class="row" v-if="form.edu_type_id === 2 ||form.edu_type_id === 3" >
+          <el-form-item label="Направление"  class="col-md-6 col-xl-6">
+              <el-select v-model="form.direction_id"  placeholder="Выберите направление"
+                         @change="selectDirection(form.direction_id)"
+                         style="width: 100%;">
+                  <el-option
+                      v-for="item in directions"
+                      :key="item.id"
+                      :label="item.title"
+                      :value="item.id">
+                  </el-option>
+              </el-select>
+          </el-form-item>
+          <el-form-item label="Специальность"  class="col-md-6 col-xl-6">
+              <el-select v-model="form.specialty_id"  placeholder="Выберите специальность" style="width: 100%;">
+                  <el-option
+                      v-for="item in specialties"
+                      :key="item.id"
+                      :label="item.title"
+                      :value="item.id">
+                  </el-option>
+              </el-select>
+          </el-form-item>
+      </div>
         <el-form-item label="Название курса" :error="errors.get('title')">
           <el-input v-model="form.title"></el-input>
         </el-form-item>
@@ -109,6 +133,8 @@ import { Errors } from  '@/common/js/services/errors.js';
         subjects:[],
         edu_levels:[],
         themes: [],
+        specialties: [],
+        directions:[],
         errors: new Errors(),
       }
     },
@@ -175,14 +201,26 @@ import { Errors } from  '@/common/js/services/errors.js';
                 if(type === 'theme') {
                     this.themes = response.data;
                 }
+                if(type === 'specialty' && parent_id) {
+                    this.specialties = response.data;
+                }
+                if(type === 'specialty') {
+                    this.directions = response.data
+                }
             })
         },
         selectEduType(id) {
            this.getCategories('edu_level', id);
            this.form.yege = false;
+           if(id === 2 || id === 3) {
+               this.getCategories('specialty');
+           }
         },
         selectSubject(id) {
             this.getCategories('theme', id);
+        },
+        selectDirection(id) {
+            this.getCategories('specialty', id);
         }
     },
       mounted() {
@@ -190,7 +228,12 @@ import { Errors } from  '@/common/js/services/errors.js';
         this.getCategories('subject');
         if(this.form.edu_type_id) {
             this.getCategories('edu_level', this.form.edu_type_id);
-            console.log(this.form.edu_type_id);
+            if(this.form.edu_type_id === 2 || this.form.edu_type_id === 3) {
+                this.getCategories('specialty');
+            }
+        }
+        if(this.form.direction_id) {
+            this.getCategories('specialty', this.form.direction_id);
         }
         if(this.form.subject_id) {
             this.getCategories('theme', this.form.subject_id);

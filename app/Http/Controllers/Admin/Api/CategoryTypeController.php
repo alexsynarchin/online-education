@@ -15,6 +15,9 @@ class CategoryTypeController extends Controller
         if($request->has('edu_type_id')) {
             $list = $list -> where('parent_id', $request-> get('edu_type_id'));
         }
+        if($request->has('parent_id')) {
+            $list = $list -> where('parent_id', $request-> get('parent_id'));
+        }
         $list = $list -> get(['id', 'title']);
         return $list;
     }

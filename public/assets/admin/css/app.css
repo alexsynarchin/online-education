@@ -11689,3 +11689,22 @@ a {
   font-weight: 500;
   font-size: 17px;
 }
+
+.edu-cat-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.edu-cat-list__item {
+  padding: 8px;
+  border-radius: 2px;
+  border: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.edu-cat-list__title {
+  margin-bottom: 0;
+  margin-right: 8px;
+}

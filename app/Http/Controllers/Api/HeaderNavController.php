@@ -25,7 +25,9 @@ class HeaderNavController extends Controller
         if($request->get('subject_id')) {
             $subject_id =$request->get('subject_id');
             foreach ($levels as $level) {
-                if(Course::where('edu_level_id', $level -> id) -> where('subject_id', $subject_id) ->where('status', 2) -> whereHas('lessons', function($query) {
+                if(Course::where('edu_level_id', $level -> id)
+                    -> where('subject_id', $subject_id)
+                    ->where('status', 2) -> whereHas('lessons', function($query) {
                     $query -> where('status', 2);
                 })->exists()) {
                     $level -> disabled = false;

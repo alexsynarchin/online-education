@@ -39,6 +39,8 @@ export default {
                 edu_type_id:null,
                 edu_level_id:null,
                 subject_id:null,
+                direction_id:null,
+                specialty_id:null,
                 yege:false,
                 themes: [],
             }
