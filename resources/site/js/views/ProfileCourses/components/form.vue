@@ -216,6 +216,8 @@ import { Errors } from  '@/common/js/services/errors.js';
         selectEduType(id) {
            this.getCategories('edu_level', id);
            this.form.yege = false;
+            this.form.direction_id = null;
+            this.form.specialty_id = null;
            if(id === 2 || id === 3) {
                this.getCategories('specialty');
            }
@@ -224,6 +226,7 @@ import { Errors } from  '@/common/js/services/errors.js';
             this.getCategories('theme', id);
         },
         selectDirection(id) {
+            this.form.specialty_id = null;
             this.getCategories('specialty', id);
         }
     },
