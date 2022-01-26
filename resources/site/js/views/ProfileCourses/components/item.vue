@@ -1,5 +1,6 @@
 <template>
     <section class="course-item">
+
         <div class="course-item__heading">
             <h4 class="course-item__title">
                 {{course.title}}
@@ -13,6 +14,21 @@
                 <p class="course-item__descr">
                     {{course.description}}
                 </p>
+                <div class="d-flex align-items-center mb-2">
+                    <h6 class="mb-0" style="margin-right: 20px">Список уроков:</h6>
+                    <el-button icon="el-icon-plus" size="medium" type="success" @click="addLesson">Добавить урок</el-button>
+                </div>
+                <section v-if="course.lessons.length > 0">
+                    <ul class="course-item-lessons" style="margin-top: 0">
+                        <li class="course-item-lessons__item course-item-lessons__item--preview" v-for="(lesson, index) in course.lessons">
+                            <a :href="'/courses/' + course.slug + '/lesson/' + lesson.slug + '/edit'"
+                               class="course-item-lessons__link">
+                                {{lesson.title}}
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
             </div>
             <div class="course-item__right">
                 <div class="course-item__price">
@@ -47,6 +63,9 @@
             }
         },
         methods: {
+            addLesson() {
+                window.location.href = '/profile/courses/' + this.course.slug + '/lesson-create'
+            },
             handleEdit() {
                 window.location.href = '/profile/courses/' + this.course.slug;
             },
