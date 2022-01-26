@@ -14,7 +14,7 @@
                 <p class="course-item__descr">
                     {{course.description}}
                 </p>
-                <div class="d-flex align-items-center mb-2">
+                <div class="d-flex align-items-center mb-2" style="margin-top: 40px">
                     <h6 class="mb-0" style="margin-right: 20px">Список уроков:</h6>
                     <el-button icon="el-icon-plus" size="medium" type="success" @click="addLesson">Добавить урок</el-button>
                 </div>
