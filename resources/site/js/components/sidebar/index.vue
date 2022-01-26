@@ -1,5 +1,6 @@
 <template>
     <section class="filter-sidebar">
+
         <sidebar-item
             v-if="selected.edu_type === 1"
             :title="'Подготовка к Егэ'"

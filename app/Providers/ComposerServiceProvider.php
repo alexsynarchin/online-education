@@ -56,7 +56,7 @@ class ComposerServiceProvider extends ServiceProvider
                 'edu_type' => $category_type -> id,
                 'themes' => $request->get('themes') ?  $request->get('themes') : [],
                 'direction' => $direction,
-                'specialties' => $request->get('specialties'),
+                'specialties' => $request->get('specialties') ? $request->get('specialties') : [],
             ];
 
             $view->with(['filter' => $filter]);
