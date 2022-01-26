@@ -93,6 +93,7 @@ import LessonsList from "@/admin/js/components/lessons-list/index";
                 axios.post('/api/admin/course/change-status', {id:this.course.id, status:status})
                     .then((response)=>{
                         this.course.status = status;
+                        this.getData();
                         this.$notify({
                             title: 'Отлично',
                             message: response.data,

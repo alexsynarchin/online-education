@@ -47,7 +47,7 @@
                          allow-create
                          default-first-option
                          multiple
-                         placeholder="Выберите Темы курса" style="width: 100%;">
+                         placeholder="Выберите или добавьте свои темы курса" style="width: 100%;">
                   <el-option
                       v-for="item in themes"
                       :key="item.id"
