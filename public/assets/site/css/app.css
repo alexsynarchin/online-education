@@ -12922,6 +12922,13 @@ a {
   text-decoration: none;
 }
 
+.filter-sidebar {
+  margin-bottom: 25px;
+  padding: 15px;
+  box-shadow: 0px 0px 22px rgba(150, 150, 150, 0.25);
+  border-radius: 10px;
+}
+
 .filter-sidebar-item {
   padding-bottom: 20px;
   border-bottom: 1px solid #E2E2E2;
