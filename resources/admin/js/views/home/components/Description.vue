@@ -1,6 +1,11 @@
 <template>
     <div class="teacher-container" style="max-width: 900px">
-
+        <h6>Неопобликованные теги:</h6>
+        <div class="d-flex flex-wrap mb-4">
+            <el-tag type="danger" :key="theme.id" v-for="theme in course.themes">
+                {{theme.title}}
+            </el-tag>
+        </div>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="preview-lesson-wrap">
