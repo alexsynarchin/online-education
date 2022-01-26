@@ -17,6 +17,7 @@
             :filter-start="selected.specialties"
             :direction="selected.direction"
             @select-item="selectItem"
+            :edu_type="filterStart.edu_type"
         ></sidebar-item>
         <sidebar-item
         :title="'Предмет'"

@@ -109,16 +109,18 @@
             },
             getFilterItems() {
                 let url = '/api/category-' + this.type;
-                if(this.edu_type) {
+                let request = {};
+                if(this.edu_type && !this.direction) {
                     url = url + '/' + this.edu_type;
                 }
                 if(this.subject) {
                     url = url + '/' + this.subject;
                 }
-                if(this.direction) {
+                if(this.direction && this.edu_type) {
                     url = url + '/' + this.direction;
+                    request = {edu_type_id:this.edu_type}
                 }
-                axios.get(url)
+                axios.get(url, {params: {request}})
                 .then((response)=> {
                     this.items = response.data;
                     this.loaded = true;
