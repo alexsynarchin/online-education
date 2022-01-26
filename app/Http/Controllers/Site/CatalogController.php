@@ -14,7 +14,12 @@ class CatalogController extends Controller
 
         $category_type = CategoryType::where('slug', $edu_type) -> firstOrFail();
         $courses = (new Course) -> newQuery();
-        $courses =  $courses ->where('edu_type_id', $category_type -> id) -> where('status', 2) ;
+        $courses =  $courses ->where('edu_type_id', $category_type -> id) -> where('status', 2);
+        if($request->has('direction')) {
+            $direction = CategoryType::where('slug', $request->get('direction'))->firstOrFail(['id']);
+
+            $courses =  $courses ->where('direction_id', $direction -> id);
+        }
         if($request->has('levels')) {
             $courses = $courses -> whereIn('edu_level_id', $request->get('levels'));
         }
@@ -62,6 +67,8 @@ class CatalogController extends Controller
             'levels' => [$course -> edu_level_id],
             'edu_type' => $course -> edu_type_id,
             'themes' => [],
+            'direction' => $course->direction_id,
+            'specialties' => [$course->specialty_id]
 
         ];
         return view('site.catalog.show',[

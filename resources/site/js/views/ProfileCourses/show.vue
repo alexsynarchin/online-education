@@ -1,13 +1,19 @@
 <template>
     <section class="lesson-create">
-        <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> /
-                <a href="/profile">Профиль</a> /
-                <a href="/profile/my-courses/active">Мои курсы</a> /
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="/" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="/profile" class="breadcrumb__link">Профиль</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="/profile/my-courses/active" class="breadcrumb__link">Мои курсы</a>
+            </li>
+            <li class="breadcrumb__item">
                 {{course.title}}
-            </div>
-        </div>
+            </li>
+        </ul>
         <section class="course-item">
             <div class="course-item__heading">
                 <h1 class="course-item__title">

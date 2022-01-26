@@ -84,6 +84,9 @@
   list-style-type: none;
   margin-left: 0;
   padding-left: 0;
+    &--directions {
+        padding: 10px 20px 10px 20px;
+    }
   &--subjects {
     padding-bottom: 20px;
     padding-top: 23px;
@@ -118,4 +121,12 @@
       color: rgba(39, 39, 39, 0.35);;
     }
   }
+    &__link {
+        color: $text-color;
+        text-decoration: none;
+        &:hover {
+            color: #6A89CC;
+            text-decoration: none;
+        }
+    }
 }

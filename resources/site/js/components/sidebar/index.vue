@@ -9,6 +9,15 @@
             @select-item="selectItem"
         ></sidebar-item>
         <sidebar-item
+            v-if="selected.edu_type === 2 || selected.edu_type === 3"
+            :title="'Специальность'"
+            :placeholder="'Поиск по специальностям'"
+            :type="'specialty'"
+            :filter-start="selected.specialties"
+            :direction="selected.direction"
+            @select-item="selectItem"
+        ></sidebar-item>
+        <sidebar-item
         :title="'Предмет'"
         :placeholder="'Поиск по предметам'"
         :type="'subject'"
@@ -43,7 +52,7 @@
         props:{
             filterStart:{
                 type:Object,
-                default:{levels:[], subjects:[], edu_type:null, themes:[]},
+                default:{levels:[], subjects:[], direction:null, specialties:[], edu_type:null, themes:[]},
             }
         },
         data() {
@@ -79,6 +88,15 @@
                         this.selected.themes.splice(index, 1);
                     } else {
                         this.selected.themes.push(data.id);
+                    }
+
+                }
+                if(data.type ==='specialty') {
+                    let index = this.selected.specialties.findIndex(x => x == data.id);
+                    if( index != -1) {
+                        this.selected.specialties.splice(index, 1);
+                    } else {
+                        this.selected.specialties.push(data.id);
                     }
 
                 }

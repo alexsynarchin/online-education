@@ -4,7 +4,10 @@
         <li class="filter-nav__item" v-for="(edu_type, index) in edu_types"
 
         >
-          <a href="" class="filter-nav__link" @click.prevent="selectEdu(index)">
+            <a href="" class="filter-nav__link" @click.prevent="" v-if="edu_type.id === 4">
+                {{edu_type.title}}
+            </a>
+          <a href="" class="filter-nav__link" @click.prevent="selectEdu(index)" v-else>
             {{edu_type.title}}
           </a>
           <div class="filter-nav__sub"
@@ -14,8 +17,8 @@
 
           >
 
-            <div class="filter-nav__sub-inner">
-              <section class="filter-nav__search">
+            <div class="filter-nav__sub-inner" v-if="edu_type.id === 1">
+              <section class="filter-nav__search" >
                 <div class="b-search">
                   <input class="b-search__input" type="text" v-model="search" name="query" placeholder="Поиск по предметам">
                   <button type="submit" class="b-search__btn"  @click.prevent="">
@@ -57,6 +60,18 @@
               </section>
             </div>
 
+          <div class="filter-nav__sub-inner" v-if="edu_type.id === 2 || edu_type.id === 3">
+              <ul class="filter-nav-list filter-nav-list--directions" >
+                  <li class="filter-nav-list__item "
+                      v-for="(direction, index) in directions"
+                  >
+                  <a @click.prevent="selectDirection(direction.slug)" class="filter-nav-list__link">
+                      {{direction.title}}
+                  </a>
+                  </li>
+              </ul>
+          </div>
+
           </div>
         </li>
     </ul>
@@ -75,6 +90,7 @@
         levels:[],
         subjects:[],
         selectedEdu:null,
+        directions: [],
       }
     },
 
@@ -91,7 +107,17 @@
           location.href= response.data;
         })
       },
-      selectSubject(subject, index) {
+        selectDirection(slug) {
+            let data = {
+                edu_type:this.edu_types[this.selectedEdu].slug,
+                direction:slug,
+            };
+            axios.post('/api/header-nav/direction/redirect', data)
+            .then((response)=> {
+                location.href= response.data;
+            });
+        },
+        selectSubject(subject, index) {
 
         if(this.level_selected !=null && !subject.disabled) {
             this.subject_selected = index;
@@ -132,19 +158,21 @@
               this.subjects = response.data;
             })
       },
-      selectEdu(index) {
+        getDirections() {
+            axios.get('/api/header-nav/directions')
+            .then((response) => {
+                this.directions = response.data;
+            })
+        },
+        selectEdu(index) {
         if(index === 0) {
           this.listHeight = 450
-        } else if(index === 1) {
-          this.listHeight =170
-        } else {
-          this.listHeight =210
+            this.getLevels(this.edu_types[index]['id']);
+            this.getSubjects(this.edu_types[index]['id']);
         }
         if(index != 3) {
           this.Eduselected = true
           this.selectedEdu = index;
-          this.getLevels(this.edu_types[index]['id']);
-          this.getSubjects(this.edu_types[index]['id']);
         }
         this.level_selected =null;
         this.subject_selected=null;
@@ -196,7 +224,7 @@
 
     mounted() {
       this.getEduTypes();
-
+        this.getDirections();
 
     }
   }

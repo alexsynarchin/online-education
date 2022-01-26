@@ -53,6 +53,9 @@
             placeholder: {
                 type:String,
             },
+            direction: {
+                default:null,
+            },
             edu_type: {
                 default:null,
             },
@@ -111,6 +114,9 @@
                 }
                 if(this.subject) {
                     url = url + '/' + this.subject;
+                }
+                if(this.direction) {
+                    url = url + '/' + this.direction;
                 }
                 axios.get(url)
                 .then((response)=> {

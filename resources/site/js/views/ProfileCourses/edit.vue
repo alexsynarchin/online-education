@@ -1,10 +1,19 @@
 <template>
     <section>
-        <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> / <a href="/profile">Профиль</a> / <a href="/profile/my-courses/active">Мои курсы</a> / {{course.title}}
-            </div>
-        </div>
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="/" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="/profile" class="breadcrumb__link">Профиль</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="/profile/my-courses/active" class="breadcrumb__link">Мои курсы</a>
+            </li>
+            <li class="breadcrumb__item">
+                {{course.title}}
+            </li>
+        </ul>
         <course-form :form="course" :action-url="actionUrl" v-if="loaded"></course-form>
     </section>
 </template>

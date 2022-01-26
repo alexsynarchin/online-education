@@ -13,10 +13,18 @@ class CatalogController extends Controller
     {
         if($request->has('redirect')) {
             $edu_type = CategoryType::findOrFail($request->get('edu_type'));
-            return route('catalog', ['edu_slug' => $edu_type->slug,
+            $direction = '';
+            if($request->has('direction')) {
+                $direction = CategoryType::findOrFail($request->get('direction'));
+                $direction= $direction -> slug;
+            }
+            return route('catalog', [
+                'edu_slug' => $edu_type->slug,
+                'direction' => $direction,
                 'subjects' => $request->get('subjects'),
                 'levels' => $request->get('levels'),
                 'themes' => $request->get('themes'),
+                'specialties' => $request->get('specialties'),
             ]);
         } else {
             $courses = $filterService-> filter($request->all());

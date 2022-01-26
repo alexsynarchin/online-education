@@ -19,6 +19,8 @@ class CatalogFilterService
         $levels = $filterData['levels'];
         $tags = $filterData['themes'];
         $yege = $filterData['yege'];
+        $direction = $filterData['direction'];
+        $specialties = $filterData['specialties'];
 
         $courses = (new Course) -> newQuery();
         $courses = $courses->where('edu_type_id', $filterData['edu_type'])
@@ -38,6 +40,12 @@ class CatalogFilterService
         }
         if(count($yege)> 0) {
             $courses = $courses->where('yege', 1);
+        }
+        if($direction) {
+            $courses = $courses->where('direction_id', $direction);
+        }
+        if(count($specialties) > 0) {
+            $courses = $courses->whereIn('specialty_id', $specialties);
         }
         $courses = $courses
             ->with(['author', 'edu_type']) -> with('lessons', function($query) {

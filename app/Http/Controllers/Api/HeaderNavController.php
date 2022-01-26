@@ -95,4 +95,17 @@ class HeaderNavController extends Controller
 
         return $subjects;
     }
+    public function getDirections()
+    {
+        $directions = CategoryType::where('type', 'specialty') -> where('parent_id', null)->get();
+        return $directions;
+    }
+    public function redirectDirectionPage(Request $request)
+    {
+        $url = route('catalog', [
+            'edu_slug' => $request->get('edu_type'),
+            'direction' => $request->get('direction')
+        ]);
+        return $url;
+    }
 }

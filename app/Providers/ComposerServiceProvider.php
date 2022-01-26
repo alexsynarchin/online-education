@@ -44,13 +44,19 @@ class ComposerServiceProvider extends ServiceProvider
                     $levels[] = $level;
                 }
             }
-
+            $direction = '';
+            if($request->has('direction')) {
+                $direction = CategoryType::where('slug', $request->get('direction'))->firstOrFail(['id']);
+                $direction = $direction->id;
+            }
             $filter = [
                 'yege' => [],
                 'subjects' =>$subjects,
                 'levels' => $levels,
                 'edu_type' => $category_type -> id,
                 'themes' => $request->get('themes') ?  $request->get('themes') : [],
+                'direction' => $direction,
+                'specialties' => $request->get('specialties'),
             ];
 
             $view->with(['filter' => $filter]);

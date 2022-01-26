@@ -45,6 +45,8 @@ use App\Http\Controllers\Api\HeaderNavController;
 Route::get('/header-nav/edu-types', [HeaderNavController::class, 'eduTypesList'])-> name('header-nav.edu-list');
 Route::get('/header-nav/edu-levels', [HeaderNavController::class, 'eduLevelsList'])-> name('header-nav.edu-levels-list');
 Route::get('/header-nav/edu-subjects', [HeaderNavController::class,'eduSubjectsList'])-> name('header-nav.edu-subjects-list');
+Route::get('/header-nav/directions', [HeaderNavController::class, 'getDirections']) -> name('header-nav.get-directions');
+Route::post('/header-nav/direction/redirect', [HeaderNavController::class,'redirectDirectionPage']) -> name('header-nav.redirect-direction-page');
 Route::post('/header-nav/filter', [HeaderNavController::class,'filter']) -> name('header-nav.filter');
 
 //Search

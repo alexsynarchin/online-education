@@ -12871,6 +12871,9 @@ a {
   margin-left: 0;
   padding-left: 0;
 }
+.filter-nav-list--directions {
+  padding: 10px 20px 10px 20px;
+}
 .filter-nav-list--subjects {
   padding-bottom: 20px;
   padding-top: 23px;
@@ -12909,6 +12912,14 @@ a {
 }
 .filter-nav-list__item--disabled {
   color: rgba(39, 39, 39, 0.35);
+}
+.filter-nav-list__link {
+  color: #272727;
+  text-decoration: none;
+}
+.filter-nav-list__link:hover {
+  color: #6A89CC;
+  text-decoration: none;
 }
 
 .filter-sidebar-item {
