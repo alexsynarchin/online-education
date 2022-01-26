@@ -120,10 +120,22 @@ class TeacherCourseController extends Controller
             $course ->addMediaFromBase64($request->get('image'))
                 ->toMediaCollection('courses');
         }
-        if($request->has('themes')) {
-            $course -> themes() -> sync($request->get('themes'));
-        } else {
-            $course->themes()->detach();
+        $course->themes()->detach();
+        if(count($request->get('themes')) > 0) {
+            foreach ($request->get('themes') as $theme) {
+                if(!CategoryType::where('id', $theme)  -> exists()) {
+                    if(CategoryType::where('type', 'theme') -> where('title', $theme) -> exists()) {
+                        $theme = CategoryType::where('type', 'theme') -> where('title', $theme)->first();
+                    } else {
+                        $theme = CategoryType::create([
+                            'type' => 'theme',
+                            'title' => $theme,
+                            'active' => 0,
+                        ]);
+                    }
+                }
+                $course -> themes() -> attach($theme);
+            }
         }
         return route('profile.course.show', $course -> slug);
     }

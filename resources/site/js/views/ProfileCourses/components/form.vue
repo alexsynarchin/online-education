@@ -41,7 +41,7 @@
               </el-select>
           </el-form-item>
 
-          <el-form-item label="Темы курса"  class="col-md-6 col-xl-6">
+          <el-form-item label="Темы курса"  class="col-md-6 col-xl-6" v-if="themes_loaded">
               <el-select v-model="form.themes"
                          filterable
                          allow-create
@@ -141,6 +141,7 @@ import { Errors } from  '@/common/js/services/errors.js';
         themes: [],
         specialties: [],
         directions:[],
+          themes_loaded:false,
         errors: new Errors(),
       }
     },
@@ -210,6 +211,7 @@ import { Errors } from  '@/common/js/services/errors.js';
                 }
                 if(type === 'theme') {
                     this.themes = response.data;
+                    this.themes_loaded = true;
                 }
                 if(type === 'specialty' && parent_id) {
                     this.specialties = response.data;
