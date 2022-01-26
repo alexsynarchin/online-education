@@ -15,7 +15,6 @@ class CategoryTypeController extends Controller
         if($type === 'specialty' && !$request->has('parent_id')) {
            $list = $list->whereNull('parent_id');
         }
-
         if($request->has('parent_id')) {
             $list = $list -> where('parent_id', $request-> get('parent_id'));
         }
