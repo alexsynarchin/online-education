@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function typeList(Request  $request, $type, $parent_id = null)
     {
         $categories = (new CategoryType) -> newQuery();
-        if($request->has('edu_type_id')) {
+        if($request->has('edu_type_id') && $type != 'edu_level') {
             $categories = $categories -> where('edu_type_id', $request->get('edu_type_id')) -> orWhereNull('edu_type_id');
         }
         $categories = $categories -> where('type', $type);
