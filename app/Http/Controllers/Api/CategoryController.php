@@ -16,6 +16,7 @@ class CategoryController extends Controller
         }
         $categories = $categories -> where('type', $type);
         if($parent_id) {
+
             $categories = $categories -> where('parent_id', $parent_id);
         }
 

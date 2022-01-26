@@ -97,8 +97,8 @@ class HeaderNavController extends Controller
     }
     public function getDirections(Request $request)
     {
-        $directions = CategoryType::where('edu_type_id', $request->get('edu_type_id'))
-            -> orWhereNull('parent_id', null)->where('type', 'specialty')->get();
+        $directions = CategoryType::where('edu_type_id', $request->get('edu_type_id')) -> orWhereNull('edu_type_id')
+            -> whereNull('parent_id')->where('type', 'specialty')->get();
         return $directions;
     }
     public function redirectDirectionPage(Request $request)

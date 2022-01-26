@@ -51,7 +51,7 @@ import deleteDialog from "../../../mixins/deleteDialog";
         },
         methods:{
             getLevels() {
-                axios.get('/api/admin/category-types/' + 'edu_level', {params: {edu_type_id: this.id}})
+                axios.get('/api/admin/category-types/' + 'edu_level', {params: {parent_id: this.id}})
                     .then((response) => {
                         this.EduLevels = response.data;
 

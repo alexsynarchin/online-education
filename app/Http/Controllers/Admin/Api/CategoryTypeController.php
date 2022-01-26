@@ -12,9 +12,10 @@ class CategoryTypeController extends Controller
     {
         $list = (new CategoryType) -> newQuery();
         $list = $list -> where('type', $type) -> withCount('levels');
-        if($request->has('edu_type_id')) {
-            $list = $list -> where('parent_id', $request-> get('edu_type_id'));
+        if($type === 'specialty' && !$request->has('parent_id')) {
+           $list = $list->whereNull('parent_id');
         }
+
         if($request->has('parent_id')) {
             $list = $list -> where('parent_id', $request-> get('parent_id'));
         }
