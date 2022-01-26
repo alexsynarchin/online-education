@@ -12,7 +12,7 @@ class CategoryType extends Model
     use HasFactory, HasSlug;
 
     protected $fillable =[
-        'title', 'slug', 'type', 'parent_id', 'edu_type_id',
+        'title', 'slug', 'type', 'parent_id', 'edu_type_id', 'active',
     ];
     public function getSlugOptions() : SlugOptions
     {

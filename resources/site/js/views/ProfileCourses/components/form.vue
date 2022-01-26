@@ -40,8 +40,14 @@
                   </el-option>
               </el-select>
           </el-form-item>
+
           <el-form-item label="Темы курса"  class="col-md-6 col-xl-6">
-              <el-select v-model="form.themes" multiple placeholder="Выберите Темы курса" style="width: 100%;">
+              <el-select v-model="form.themes"
+                         filterable
+                         allow-create
+                         default-first-option
+                         multiple
+                         placeholder="Выберите Темы курса" style="width: 100%;">
                   <el-option
                       v-for="item in themes"
                       :key="item.id"
@@ -223,7 +229,7 @@ import { Errors } from  '@/common/js/services/errors.js';
            }
         },
         selectSubject(id) {
-            this.getCategories('theme', id);
+            this.getCategories('theme');
         },
         selectDirection(id) {
             this.form.specialty_id = null;
@@ -242,9 +248,7 @@ import { Errors } from  '@/common/js/services/errors.js';
         if(this.form.direction_id) {
             this.getCategories('specialty', this.form.direction_id);
         }
-        if(this.form.subject_id) {
-            this.getCategories('theme', this.form.subject_id);
-        }
+          this.getCategories('theme');
       }
   }
 </script>

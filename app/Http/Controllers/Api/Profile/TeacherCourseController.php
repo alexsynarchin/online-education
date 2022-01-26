@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category\Category;
+use App\Models\Category\CategoryType;
 use App\Models\Category\Course;
 use Illuminate\Http\Request;
 use Auth;
@@ -73,6 +74,17 @@ class TeacherCourseController extends Controller
         }
         if(count($request->get('themes')) > 0) {
             foreach ($request->get('themes') as $theme) {
+                if(!CategoryType::where('id', $theme)  -> exists()) {
+                    if(CategoryType::where('type', 'theme') -> where('title', $theme) -> exists()) {
+                        $theme = CategoryType::where('type', 'theme') -> where('title', $theme)->first();
+                    } else {
+                        $theme = CategoryType::create([
+                            'type' => 'theme',
+                            'title' => $theme,
+                            'active' => 0,
+                        ]);
+                    }
+                }
                 $course -> themes() -> attach($theme);
             }
         }
