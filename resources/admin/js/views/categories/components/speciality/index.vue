@@ -8,6 +8,9 @@
                 <h4 class="edu-cat-list__title">
                     {{item.title}}
                 </h4>
+                <el-tag v-if="item.edu_type_id === 2">Среднее образование</el-tag>
+                <el-tag v-if="item.edu_type_id === 3">Высшее образование</el-tag>
+                <el-tag v-if="!item.edu_type_id">Среднее и высшее образование</el-tag>
                 <div>
                     <el-button type="primary" size="medium" circle icon="el-icon-edit" @click.prevent="handleEdit(item.id)"></el-button>
                     <el-button type="danger" size="medium" circle icon="el-icon-delete" @click.prevent="handleDelete(item.id)"></el-button>
@@ -21,10 +24,22 @@
             width="50%"
             append-to-body
             :before-close="handleClose">
-            <el-form ref="form" :model="categoryItem">
-                <el-form-item label="Заголовок направления" prop="title">
-                    <el-input v-model="categoryItem.title"></el-input>
-                </el-form-item>
+            <el-form ref="form" label-position="top" :model="categoryItem">
+                <div class="row">
+                    <el-form-item class="col-md-6" label="Заголовок направления" prop="title">
+                        <el-input v-model="categoryItem.title"></el-input>
+                    </el-form-item>
+                    <el-form-item class="col-md-6" label="Тип образования" prop="edu_type_id">
+                        <el-select v-model="categoryItem.edu_type_id" placeholder="Выбрать тип образования">
+                            <el-option
+                                v-for="item in edu_types"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </div>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="showModal = false">Закрыть</el-button>
@@ -51,6 +66,16 @@ import deleteDialog from "../../../../mixins/deleteDialog";
                 },
                 showModal:false,
                 modalTitle:'',
+                edu_types: [
+                    {
+                        label:'Среднее образование ',
+                        value:2,
+                    },
+                    {
+                        label:'Высшее образование',
+                        value:3,
+                    },
+                ],
             }
         },
         methods: {
@@ -80,7 +105,6 @@ import deleteDialog from "../../../../mixins/deleteDialog";
                         });
                         this.items.push(response.data);
                         this.handleClose();
-                        this.handleEdit(response.data.id);
                     })
             },
             handleClose() {

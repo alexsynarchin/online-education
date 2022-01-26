@@ -158,8 +158,8 @@
               this.subjects = response.data;
             })
       },
-        getDirections() {
-            axios.get('/api/header-nav/directions')
+        getDirections(id) {
+            axios.get('/api/header-nav/directions', {params: {edu_type_id:id}})
             .then((response) => {
                 this.directions = response.data;
             })
@@ -169,6 +169,9 @@
           this.listHeight = 450
             this.getLevels(this.edu_types[index]['id']);
             this.getSubjects(this.edu_types[index]['id']);
+        }
+        if(index ===1 || index === 2) {
+            this.getDirections(index+1);
         }
         if(index != 3) {
           this.Eduselected = true
@@ -224,7 +227,7 @@
 
     mounted() {
       this.getEduTypes();
-        this.getDirections();
+
 
     }
   }

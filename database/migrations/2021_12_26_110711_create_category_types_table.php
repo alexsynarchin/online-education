@@ -20,6 +20,8 @@ class CreateCategoryTypesTable extends Migration
             $table->string('slug');
             $table->boolean('active')->default(true);
             $table->integer('menuindex')->default(0);
+            $table->bigInteger('edu_type_id')->unsigned()->nullable();
+            $table->foreign('edu_type_id')->references('id')->on('category_types')->onDelete('cascade');
             $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->references('id')->on('category_types')->onDelete('cascade');
             $table->timestamps();

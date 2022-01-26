@@ -11,7 +11,7 @@ class CategoryTypeController extends Controller
     public function getList($type, Request $request)
     {
         $list = (new CategoryType) -> newQuery();
-        $list = $list -> where('type', $type);
+        $list = $list -> where('type', $type) -> withCount('levels');
         if($request->has('edu_type_id')) {
             $list = $list -> where('parent_id', $request-> get('edu_type_id'));
         }

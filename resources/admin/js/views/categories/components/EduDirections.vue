@@ -1,6 +1,5 @@
 <template>
     <section class="subject-cats row">
-        <div class="col-md-6">
             <el-row type="flex">
                 <el-col :span="12">
                     <el-button type="success"
@@ -24,10 +23,34 @@
                 </el-table-column>
                 <el-table-column
                     prop="title"
-
+                    label="Название"
                     width="250"
                     sortable
                 >
+                </el-table-column>
+                <el-table-column
+                    prop="levels_count"
+                    label="Кол-во специальностей"
+                    width="250"
+                    sortable
+                >
+                </el-table-column>
+                <el-table-column
+                    label="Тип образования"
+                    width="250"
+                    sortable
+                >
+                    <template slot-scope="scope">
+                    <span v-if="scope.row.edu_type_id===2">
+                        Среднее образование
+                    </span>
+                    <span v-if="scope.row.edu_type_id===3">
+                        Высшее образование
+                    </span>
+                        <span v-if="!scope.row.edu_type_id">
+                        Высшее и среднее образование
+                    </span>
+                    </template>
                 </el-table-column>
 
                 <el-table-column align="center" label="Действия">
@@ -35,7 +58,7 @@
                     <template slot-scope="scope">
                         <el-button
                             size="mini"
-                            @click="handleEdit(scope.$index, scope.row)">Редактировать</el-button>
+                            @click="handleEdit(scope.row.id)">Редактировать</el-button>
                         <el-button
                             size="mini"
                             type="danger"
@@ -43,17 +66,29 @@
                     </template>
                 </el-table-column>
             </data-tables>
-        </div>
         <el-dialog
             v-if="showModal"
             :title="modalTitle"
             :visible.sync="showModal"
             width="50%"
             :before-close="handleClose">
-            <el-form ref="form" :model="subjectItem">
-                <el-form-item label="Заголовок направления" prop="title">
-                    <el-input v-model="subjectItem.title"></el-input>
-                </el-form-item>
+            <el-form label-position="top" ref="form" :model="subjectItem">
+                <div class="row">
+                    <el-form-item class="col-md-6" label="Заголовок направления" prop="title">
+                        <el-input v-model="subjectItem.title"></el-input>
+                    </el-form-item>
+                    <el-form-item class="col-md-6" label="Тип образования" prop="edu_type_id">
+                        <el-select v-model="subjectItem.edu_type_id" placeholder="Выбрать тип образования">
+                            <el-option
+                                v-for="item in edu_types"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </div>
+
                 <speciality-list v-if="subjectItem.id" :parent_id="subjectItem.id"></speciality-list>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -87,6 +122,16 @@ export default {
             subjectItem: {},
             showModal:false,
             modalTitle: '',
+            edu_types: [
+                {
+                    label:'Среднее образование ',
+                    value:2,
+                },
+                {
+                    label:'Высшее образование',
+                    value:3,
+                },
+            ],
         }
     },
     methods:{
@@ -106,6 +151,7 @@ export default {
                     });
                     this.subjects.push(response.data);
                     this.handleClose();
+                    this.handleEdit(response.data.id);
                 })
         },
         getDirections(){
@@ -114,9 +160,9 @@ export default {
                     this.subjects = response.data;
                 })
         },
-        handleEdit(index, row) {
+        handleEdit(id) {
             this.modalTitle = 'Редактировать направление';
-            this.getSubjectItem(row.id, 'specialty');
+            this.getSubjectItem(id, 'specialty');
         },
         updateItem() {
             axios.post('/api/admin/category-type/update', this.subjectItem)
