@@ -11,7 +11,7 @@ class CategoryTypeController extends Controller
     public function listByType(Request $request, $type, $parent_id = null)
     {
         $categoryTypes = (new CategoryType) ->newQuery();
-        $categoryTypes = $categoryTypes -> where('type', $type);
+        $categoryTypes = $categoryTypes -> where('type', $type)->where('active', 1);
         if($parent_id) {
             $categoryTypes = $categoryTypes -> where('parent_id', $parent_id);
             if($request->has('edu_type_id')) {
