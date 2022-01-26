@@ -187,7 +187,11 @@ import { Errors } from  '@/common/js/services/errors.js';
           if(parent_id) {
               url = url + '/' + parent_id;
           }
-          axios.get(url)
+          let request = {};
+          if(this.form.edu_type_id === 2 || this.form.edu_type_id === 3) {
+              request = {edu_type_id:this.form.edu_type_id}
+          }
+          axios.get(url, {params:request})
             .then((response) => {
                 if(type === 'edu_type') {
                     this.edu_types = response.data;
