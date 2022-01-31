@@ -92,4 +92,11 @@ use App\Http\Controllers\Api\Profile\PromoCodeController;
 Route::post('/promo-code/handle', [PromoCodeController::class,'handlePromoCode'])->name('promo-code.handle');
 
 
+//Buying
+use App\Http\Controllers\Api\BuyingController;
+Route::get('/buying/data', [BuyingController::class, 'getData'])->name('buying.data');
+
+
+
+
 

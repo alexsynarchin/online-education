@@ -5,10 +5,18 @@
 import EventBus from "../../EventBus";
 
 export default {
+    props: {
+        buying_type:{
+            default: 'course',
+        },
+        buying_id: {
+            type:Number,
+        }
+    },
     methods: {
         buy() {
             if(this.authCheck) {
-                EventBus.$emit('show-buy-modal');
+                EventBus.$emit('show-buy-modal', {id:this.buying_id, type:this.buying_type});
             } else {
                 EventBus.$emit('show-auth-modal', window.location.href);
             }

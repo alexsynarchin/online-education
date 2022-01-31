@@ -20,7 +20,7 @@ class PromoCodeController extends Controller
                 })->exists();
 
                 if($exists) {
-                    $fail('Данный промокод уже существует');
+                    $fail('Данный промокод уже использован');
                 }
         }]],  [
             'name.required' => 'Введите промокод',
@@ -35,4 +35,5 @@ class PromoCodeController extends Controller
        $student_account -> save();
        return $student_account->promo_balance;
     }
+
 }

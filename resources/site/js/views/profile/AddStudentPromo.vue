@@ -33,6 +33,7 @@ import { Errors } from  '@/common/js/services/errors.js';
         },
         data(){
             return {
+                balance: {},
                 PromoCode:{
                     name:""
                 },
@@ -51,7 +52,7 @@ import { Errors } from  '@/common/js/services/errors.js';
             AddPromo(formName){
                 axios.post('/api/promo-code/handle',{name:this.PromoCode.name, id:this.id})
                     .then((response)=>{
-                        this.$emit('add-promo', response.data);
+
                     })
                     .catch((error)=>{
                         this.errors.record(error.response.data.errors)

@@ -33,7 +33,7 @@
                 {{$course ->price}} ₽
             </div>
             <div class="course-item__actions">
-                <buy-btn></buy-btn>
+                <buy-btn :buying_id="{{$course->id}}"></buy-btn>
             </div>
 
         </div>
