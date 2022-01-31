@@ -22,10 +22,10 @@ class PromoCodeController extends Controller
                 if($exists) {
                     $fail('Данный промокод уже существует');
                 }
-        }], [
+        }]],  [
             'name.required' => 'Введите промокод',
             'name.exists' => 'Промокод не найден'
-        ]]);
+        ]);
        $student_account = StudentAccount::findOrFail($request->get('id'));
        $promo_code = PromoCode::where('name', $request->get('name'))->firstOrFail();
        $student_account -> promoCodes() -> attach($promo_code);
