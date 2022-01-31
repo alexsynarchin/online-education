@@ -18,7 +18,7 @@
             </a>
 
             <div class="profile-user-transac" v-if="user.profile_type === 'student'">
-                <el-button type="primary" @click.prevent="$modal.show('AddStudentPromoModal')">Введите промокод</el-button>
+                <el-button type="primary" @click="addPromo">Введите промокод</el-button>
             </div>
             <div class="profile-user-transac" v-if="user.profile_type === 'teacher'">
                 <div class="profile-user-count">
@@ -118,7 +118,9 @@
                 </ul>
             </div>
         </div>
-        <add-student-promo></add-student-promo>
+        <add-student-promo
+            @close="closePromoModal"
+            :promoModal="promoModal"></add-student-promo>
     </section>
 
 </template>
@@ -148,13 +150,20 @@ export  default {
     },
     data() {
         return {
-
+            promoModal:false,
         }
     },
     methods:{
         handleEdit() {
             this.$emit('handleEdit')
-        }
+        },
+         addPromo()
+         {
+             this.promoModal = true;
+         },
+        closePromoModal() {
+            this.promoModal = false;
+        },
     },
     mounted() {
 

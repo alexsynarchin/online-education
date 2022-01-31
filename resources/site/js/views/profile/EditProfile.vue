@@ -61,7 +61,9 @@
                     <el-input v-model="formData.phone" v-mask="'+7(###)-##-##-###'" :placeholder="'+7(999)-99-99-999'"></el-input>
                 </el-form-item>
             </div>
-            <work-places :edu_institutions="user.edu_institutions" @change-work-places="changeWorkPlaces"></work-places>
+            <work-places v-if="formData.profile_type === 'teacher'"
+                         :edu_institutions="user.edu_institutions"
+                         @change-work-places="changeWorkPlaces"></work-places>
             <div class="text-center">
                 <el-button type="primary" class="" @click.prevent="formSubmit">Сохранить</el-button>
                 <el-button type="" class="" @click.prevent="cancelEdit">Отменить</el-button>

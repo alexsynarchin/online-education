@@ -3,14 +3,8 @@
         title="Введите промокод"
         :visible.sync="promoModal"
         width="30%"
+        :before-close="closeModal"
     >
-        <div class="modal-body">
-            <div class="modal-heading mb-3">
-                <h5 class="modal-heading__title text-center" style="flex: 1">
-                    Введите промокод
-                </h5>
-                <button class="modal-heading__close" @click="closeModal"></button>
-            </div>
             <el-form :model="PromoCode" label-position="top" :rules="rules" ref="PromoCode" class="mb-3">
                 <el-form-item label="Промокод" prop="text" :error="errors.get('name')">
                     <el-input
@@ -23,17 +17,18 @@
                 </div>
 
             </el-form>
-
-
-        </div>
     </el-dialog>
 </template>
 <script>
 import { Errors } from  '@/common/js/services/errors.js';
     export default {
+        props:{
+            promoModal: {
+                type:Boolean,
+            }
+        },
         data(){
             return {
-                promoModal:false,
                 PromoCode:{
                     text:""
                 },
@@ -47,7 +42,7 @@ import { Errors } from  '@/common/js/services/errors.js';
         },
         methods:{
             closeModal(){
-                this.$modal.hide('AddStudentPromoModal')
+                this.$emit('close');
             },
             AddPromo(formName){
                 this.$refs[formName].validate((valid) => {
