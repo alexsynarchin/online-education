@@ -15,9 +15,14 @@
                             {{$course -> edu_type -> title}}
                         </a>
                     </li>
+
                     <li class="breadcrumb__item">
-                        <a href="{{route('catalog', ['edu_slug' => $course -> edu_type -> slug,
-                                                      'subjects' => [(int) $course -> subject -> id]])}}" class="breadcrumb__link">
+                        <a href="{{route('catalog', [
+                                                        'edu_slug' => $course -> edu_type -> slug,
+                                                      'direction' => \App\Models\Category\CategoryType::find($course -> direction_id)['slug'],
+                                                      'subjects' => [(int) $course -> subject -> id,
+
+                                                      ]])}}" class="breadcrumb__link">
                             {{$course -> subject -> title}}
                         </a>
                     </li>

@@ -52,18 +52,24 @@
                 </el-table-column>
             </data-tables>
         </div>
-
+        <el-dialog
+            title="Новый промокод"
+            :visible.sync="modalCreate"
+            width="50%"
+            >
+            <modal-create @finish = "closeModal" v-if="modalCreate" @updateTableData="updateTableData"/>
+        </el-dialog>
     </section>
 </template>
 <script>
-
+import ModalCreate from "./ModalCreate";
 
 export default {
     mounted(){
         this.getPromoCodes();
     },
     components:{
-
+        ModalCreate,
     },
     data(){
         return{
@@ -80,21 +86,19 @@ export default {
     methods:{
         openModal(){
             this.modalCreate = true;
-            this.$nextTick(() => {
-                this.$modal.show('CreatePromoModal')
-            });
 
         },
         closeModal(){
             this.modalCreate=false;
         },
         getPromoCodes(){
-            axios.get('/admin/api/promo-code/list')
+            axios.get('/api/admin/promo-code/list')
                 .then((response)=>{
                     this.tableData = response.data;
                 })
         },
         updateTableData(message){
+            this.getPromoCodes();
             this.$notify({
                 title: 'Отлично',
                 message: message,

@@ -24,7 +24,14 @@ class CategoryType extends Model
     {
         return $this->hasMany(Category::class, 'category_type_id');
     }
-
+    public function coursesSpecialty()
+    {
+        return $this->hasMany(Course::class, 'specialty_id');
+    }
+    public function coursesSubject()
+    {
+        return $this->hasMany(Course::class, 'subject_id');
+    }
     public function levels()
     {
         return $this->hasMany(CategoryType::class, 'parent_id');

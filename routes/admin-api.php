@@ -39,3 +39,7 @@ Route::post('/category-type/{id}/remove', [CategoryTypeController::class, 'remov
 use App\Http\Controllers\Admin\Api\UserController;
 Route::get('/users', [UserController::class, 'index']) -> name('users.index');
 
+use App\Http\Controllers\Admin\Api\PromoCodeController;
+Route::post('/promo-code/store', [PromoCodeController::class, 'store'])->name('promo-code.store');
+Route::get('/promo-code/list', [PromoCodeController::class, 'getList'])->name('promo-code.list');
+

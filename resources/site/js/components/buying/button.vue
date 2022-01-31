@@ -8,7 +8,7 @@ export default {
     methods: {
         buy() {
             if(this.authCheck) {
-
+                EventBus.$emit('show-buy-modal');
             } else {
                 EventBus.$emit('show-auth-modal', window.location.href);
             }
@@ -23,7 +23,7 @@ export default {
         },
         authCheck() {
             if(this.signedIn) {
-                return (this.user.profile_type === 'teacher') || (this.user.profile_type === 'student')
+                return this.user.profile_type === 'student';
             } else {
                 return false;
             }

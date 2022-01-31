@@ -124,6 +124,10 @@ export default {
             modalTitle: '',
             edu_types: [
                 {
+                    label:'Высшее и среднее',
+                    value:'',
+                },
+                {
                     label:'Среднее образование ',
                     value:2,
                 },

@@ -12,8 +12,9 @@ export const eventBus = new Vue();
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
 Vue.component('HeaderNavigation', require('./components/header/HeaderNavigation').default);
 Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
-//Btns
+//Buying
 Vue.component('BuyBtn',require('./components/buying/button').default);
+Vue.component('BuyModal', require('./components/buying/BuyModal').default);
 //Header Search
 Vue.component('HeaderSearch', require('./components/header/Search').default);
 //Footer
