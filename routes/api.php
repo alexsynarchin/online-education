@@ -87,5 +87,9 @@ Use App\Http\Controllers\Site\Api\CommentController;
 Route::post('/comment/store', [CommentController::class, 'store']) -> name('comment.store');
 Route::get('/comments/course/{id}', [CommentController::class, 'index']) -> name('comment.index');
 
+//Promo Codes
+use App\Http\Controllers\Api\Profile\PromoCodeController;
+Route::post('/promo-code/handle', [PromoCodeController::class,'handlePromoCode'])->name('promo-code.handle');
+
 
 

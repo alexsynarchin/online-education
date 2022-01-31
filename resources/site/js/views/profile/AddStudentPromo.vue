@@ -5,18 +5,18 @@
         width="30%"
         :before-close="closeModal"
     >
-            <el-form :model="PromoCode" label-position="top" :rules="rules" ref="PromoCode" class="mb-3">
-                <el-form-item label="Промокод" prop="text" :error="errors.get('name')">
-                    <el-input
-                        v-model="PromoCode.text">
-                    </el-input>
-                </el-form-item>
-                <div class="d-flex justify-content-center">
-                    <el-button type="success" @click.prevent="AddPromo('PromoCode')" >Ввести</el-button>
-                    <el-button @click.prevent="closeModal">Отменить</el-button>
-                </div>
+    <el-form :model="PromoCode" label-position="top" :rules="rules" ref="PromoCode" class="mb-3">
+        <el-form-item label="Промокод" prop="text" :error="errors.get('name')">
+            <el-input
+                v-model="PromoCode.name">
+            </el-input>
+        </el-form-item>
+        <div class="d-flex justify-content-center">
+            <el-button type="success" @click.prevent="AddPromo('PromoCode')" >Ввести</el-button>
+            <el-button @click.prevent="closeModal">Отменить</el-button>
+        </div>
 
-            </el-form>
+    </el-form>
     </el-dialog>
 </template>
 <script>
@@ -25,15 +25,19 @@ import { Errors } from  '@/common/js/services/errors.js';
         props:{
             promoModal: {
                 type:Boolean,
+            },
+            id: {
+                type:Number,
+                required:true,
             }
         },
         data(){
             return {
                 PromoCode:{
-                    text:""
+                    name:""
                 },
                 rules:{
-                    text:[
+                    name:[
                         {required:true,message:"Введите значение промокода"}
                     ]
                 },
@@ -45,23 +49,13 @@ import { Errors } from  '@/common/js/services/errors.js';
                 this.$emit('close');
             },
             AddPromo(formName){
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                       console.log('success')
-                        axios.post('/api/profile/add-promo-code',{name:this.PromoCode.text})
-                            .then((response)=>{
-                                console.log(response);
-                                document.location.reload(true);
-                            })
-                            .catch((error)=>{
-
-                                this.errors.record(error.response.data.errors)
-                            })
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
+                axios.post('/api/promo-code/handle',{name:this.PromoCode.name, id:this.id})
+                    .then((response)=>{
+                        this.$emit('add-promo', response.data);
+                    })
+                    .catch((error)=>{
+                        this.errors.record(error.response.data.errors)
+                    })
             }
         }
     }

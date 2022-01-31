@@ -18,6 +18,9 @@
             </a>
 
             <div class="profile-user-transac" v-if="user.profile_type === 'student'">
+                <div v-if="user.student_account.promo_balance" class="mb-2">
+                    <label>Бонусный баланс:</label> {{user.student_account.promo_balance}}
+                </div>
                 <el-button type="primary" @click="addPromo">Введите промокод</el-button>
             </div>
             <div class="profile-user-transac" v-if="user.profile_type === 'teacher'">
@@ -119,8 +122,12 @@
             </div>
         </div>
         <add-student-promo
+            v-if="promoModal"
             @close="closePromoModal"
-            :promoModal="promoModal"></add-student-promo>
+            @add-promo="saveBalance"
+            :promoModal="promoModal"
+            :id="user.student_account.id"
+        ></add-student-promo>
     </section>
 
 </template>
@@ -154,6 +161,10 @@ export  default {
         }
     },
     methods:{
+        saveBalance(balance) {
+             this.user.student_account.promo_balance = balance;
+             this.closePromoModal();
+        },
         handleEdit() {
             this.$emit('handleEdit')
         },
