@@ -16,6 +16,28 @@
                   </el-option>
               </el-select>
           </el-form-item>
+          <el-form-item label="Направление"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3">
+              <el-select v-model="form.direction_id"  placeholder="Выберите направление"
+                         @change="selectDirection(form.direction_id)"
+                         style="width: 100%;">
+                  <el-option
+                      v-for="item in directions"
+                      :key="item.id"
+                      :label="item.title"
+                      :value="item.id">
+                  </el-option>
+              </el-select>
+          </el-form-item>
+          <el-form-item label="Специальность"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3">
+              <el-select v-model="form.specialty_id"  placeholder="Выберите специальность" style="width: 100%;">
+                  <el-option
+                      v-for="item in specialties"
+                      :key="item.id"
+                      :label="item.title"
+                      :value="item.id">
+                  </el-option>
+              </el-select>
+          </el-form-item>
           <el-form-item :error="errors.get('subject_id')" class="col-md-4" label="Предмет">
               <el-select v-model="form.subject_id"
                          filterable placeholder="Выберите предмет"
@@ -58,30 +80,6 @@
           </el-form-item>
           <el-form-item class="col-md-6 col-xl-6" v-if="form.edu_type_id === 1">
               <el-checkbox border v-model="form.yege">Это подготовка к ЕГЭ</el-checkbox>
-          </el-form-item>
-      </div>
-      <div class="row" v-if="form.edu_type_id === 2 ||form.edu_type_id === 3" >
-          <el-form-item label="Направление"  class="col-md-6 col-xl-6">
-              <el-select v-model="form.direction_id"  placeholder="Выберите направление"
-                         @change="selectDirection(form.direction_id)"
-                         style="width: 100%;">
-                  <el-option
-                      v-for="item in directions"
-                      :key="item.id"
-                      :label="item.title"
-                      :value="item.id">
-                  </el-option>
-              </el-select>
-          </el-form-item>
-          <el-form-item label="Специальность"  class="col-md-6 col-xl-6">
-              <el-select v-model="form.specialty_id"  placeholder="Выберите специальность" style="width: 100%;">
-                  <el-option
-                      v-for="item in specialties"
-                      :key="item.id"
-                      :label="item.title"
-                      :value="item.id">
-                  </el-option>
-              </el-select>
           </el-form-item>
       </div>
         <el-form-item label="Название курса" :error="errors.get('title')">
