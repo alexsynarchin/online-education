@@ -23,7 +23,7 @@
                       :class="{
                           'form-checkbox__checkmark--selected': filterStart.findIndex(x => x == item.id) != -1
                 }"
-                ></span> {{item.title}} ({{item[countName]}})
+                ></span> {{item.title}} <span v-if="type != 'yege'" style="margin-left: 5px"> ({{item[countName]}})</span>
             </li>
         </ul>
         <button class="btn filter-sidebar-item__button" @click.prevent="showAll" v-if="type != 'yege'">
