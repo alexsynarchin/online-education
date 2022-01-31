@@ -38,19 +38,31 @@ class CategoryTypeController extends Controller
         }
         $count = '';
         if($type === 'specialty') {
-            $categoryTypes = $categoryTypes->withCount('coursesSpecialty');
+            $categoryTypes = $categoryTypes->withCount(['coursesSpecialty' => function ($query) use ($selected){
+                $query->where('status', 2);
+                $query->where('edu_type_id', $selected['edu_type']);
+            }]);
             $count = 'courses_specialty';
         }
         if($type === 'subject') {
-            $categoryTypes = $categoryTypes->withCount('coursesSubject');
+            $categoryTypes = $categoryTypes->withCount(['coursesSubject' =>  function ($query) use ($selected){
+                $query->where('status', 2);
+                $query->where('edu_type_id', $selected['edu_type']);
+            }]);
             $count = 'courses_subject';
         }
         if($type === 'theme') {
-            $categoryTypes = $categoryTypes->withCount('coursesTheme');
+            $categoryTypes = $categoryTypes->withCount(['coursesTheme' => function ($query) use ($selected){
+                $query->where('status', 2);
+                $query->where('edu_type_id', $selected['edu_type']);
+            }]);
             $count = 'courses_theme';
         }
         if($type === 'edu_level') {
-            $categoryTypes = $categoryTypes->withCount('coursesLevel');
+            $categoryTypes = $categoryTypes->withCount(['coursesLevel' =>  function ($query) use ($selected){
+                $query->where('status', 2);
+                $query->where('edu_type_id', $selected['edu_type']);
+            }]);
             $count = 'courses_level';
         }
 
