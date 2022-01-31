@@ -23,7 +23,7 @@
                       :class="{
                           'form-checkbox__checkmark--selected': filterStart.findIndex(x => x == item.id) != -1
                 }"
-                ></span> {{item.title}}
+                ></span> {{item.title}} ({{item[countName]}})
             </li>
         </ul>
         <button class="btn filter-sidebar-item__button" @click.prevent="showAll" v-if="type != 'yege'">
@@ -65,6 +65,9 @@
             filterStart: {
                 default: null
             },
+            selected:{
+                required: true
+            },
             type: {
               type:String,
               required:true,
@@ -85,6 +88,22 @@
             }
         },
         computed: {
+            countName() {
+                let name = '';
+                if(this.type ==='specialty') {
+                    name = 'courses_specialty_count';
+                }
+                if(this.type ==='subject') {
+                    name = 'courses_subject_count';
+                }
+                if(this.type ==='edu_level') {
+                    name = 'courses_level_count';
+                }
+                if(this.type ==='theme') {
+                    name = 'courses_theme_count';
+                }
+                return name;
+            },
             itemsPreview () {
                 return this.filteredItems.slice(0, this.items_length)
             },
@@ -98,6 +117,7 @@
         methods: {
             selectItem(item) {
                 this.$emit('select-item', {id: item.id, type:this.type})
+                this.getFilterItems();
             },
             showAll() {
                 this.preview_mode = !this.preview_mode;
@@ -109,7 +129,9 @@
             },
             getFilterItems() {
                 let url = '/api/category-' + this.type;
-                let request = {};
+                let request = {
+                    selected:this.selected
+                };
                 if(this.edu_type && !this.direction) {
                     url = url + '/' + this.edu_type;
                 }
@@ -118,9 +140,9 @@
                 }
                 if(this.direction && this.edu_type) {
                     url = url + '/' + this.direction;
-                    request = {edu_type_id:this.edu_type}
+                    request.edu_type_id = this.edu_type
                 }
-                axios.get(url, {params: {request}})
+                axios.get(url, {params: request})
                 .then((response)=> {
                     this.items = response.data;
                     this.loaded = true;

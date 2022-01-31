@@ -2,15 +2,16 @@
     <section class="filter-sidebar">
 
         <sidebar-item
-            v-if="selected.edu_type === 1"
+            v-if="selected.edu_type === 1 && loaded"
             :title="'Подготовка к Егэ'"
             :placeholder="'Поиск по предметам'"
             :type="'yege'"
             :filter-start="selected.yege"
             @select-item="selectItem"
+            :selected = this.selected
         ></sidebar-item>
         <sidebar-item
-            v-if="selected.edu_type === 2 || selected.edu_type === 3"
+            v-if="(selected.edu_type === 2 || selected.edu_type === 3) && loaded"
             :title="'Специальность'"
             :placeholder="'Поиск по специальностям'"
             :type="'specialty'"
@@ -18,29 +19,36 @@
             :direction="selected.direction"
             @select-item="selectItem"
             :edu_type="filterStart.edu_type"
+            :selected = this.selected
         ></sidebar-item>
         <sidebar-item
+            v-if="loaded"
         :title="'Предмет'"
         :placeholder="'Поиск по предметам'"
         :type="'subject'"
         :filter-start="selected.subjects"
         @select-item="selectItem"
+        :selected = this.selected
         ></sidebar-item>
         <sidebar-item
+            v-if="loaded"
             :title="level_title"
             :placeholder="'Поиск по ' + level_title + 'ам'"
             :type="'edu_level'"
             :filter-start="selected.levels"
             @select-item="selectItem"
             :edu_type="filterStart.edu_type"
+            :selected = this.selected
         ></sidebar-item>
         <sidebar-item
+            v-if="loaded"
             title="Тема курса"
             :placeholder="'Поиск по темам'"
             :type="'theme'"
             :filter-start="selected.themes"
             @select-item="selectItem"
             :subject="selected.subjects"
+            :selected = this.selected
         ></sidebar-item>
     </section>
 </template>
@@ -61,6 +69,7 @@
             return {
             selected: {},
             level_title:"",
+            loaded:false,
             }
         },
         methods: {
@@ -123,6 +132,7 @@
         },
         mounted() {
             this.selected = this.filterStart;
+            this.loaded = true;
             if(this.selected.edu_type == 1) {
                 this.level_title = 'Класс';
             } else {
