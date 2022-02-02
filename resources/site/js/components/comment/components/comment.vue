@@ -12,18 +12,20 @@
               <h5 class="b-comment-item-user__name">
                 {{comment.user.name}}
               </h5>
+
               <div class="b-comment-item-user__rating"
                    v-if="(comment.rating)  && (comment.parent_id === 0)"
                   >
                 <star-rating
-                    :star-size="24"
+                    :star-size="13"
                     :show-rating="false"
                     :read-only="true"
-                    :rating="comment.rating.value"
+                    :rating="comment.rating"
                     active-color="#FDC20B"
                     inactive-color="rgba(253, 194, 11, 0.3)"
                     :round-start-rating="false"
-                    v-if="comment.rating.value > 0"
+                    style="max-height: 14px"
+                    v-if="comment.rating > 0"
                 ></star-rating>
               </div>
             </section>

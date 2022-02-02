@@ -13746,6 +13746,7 @@ a {
   height: 40px;
 }
 .b-comment-item-user__name {
+  margin-bottom: 0;
   font-weight: 600;
   font-size: 20px;
 }
