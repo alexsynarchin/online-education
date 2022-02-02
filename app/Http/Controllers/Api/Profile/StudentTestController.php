@@ -13,7 +13,7 @@ class StudentTestController extends Controller
     public function index($id)
     {
         $lesson = Lesson::findOrFail($id);
-        $tests = $lesson->tests()->with(['questions'=>function ($query){
+        $tests = $lesson->tests()->whereHas('questions')->with(['questions'=>function ($query){
             $query->with('options');
         }])->get();
         return $tests;

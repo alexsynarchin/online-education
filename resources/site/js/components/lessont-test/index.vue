@@ -1,5 +1,5 @@
 <template>
-    <section class="lesson-test">
+    <section class="lesson-test" v-if="loaded && tests.length > 0">
         <button  class="button" @click="startTest">Пройти тест</button>
         <el-dialog
             :title="'Тест к уроку ' + lesson_title"
