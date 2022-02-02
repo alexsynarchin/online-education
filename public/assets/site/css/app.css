@@ -14168,7 +14168,9 @@ a {
 
 .test-image-wrap {
   position: relative;
+  margin-right: 15px;
   max-width: 300px;
+  min-width: 200px;
   margin-bottom: 30px;
   overflow: hidden;
   border-radius: 10px;
@@ -14224,8 +14226,9 @@ a {
 }
 
 .test-option__image-wrap {
-  margin-top: 1rem;
+  margin-right: 1rem;
   width: 200px;
+  min-width: 200px;
 }
 
 .test-result-list {

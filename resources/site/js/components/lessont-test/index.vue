@@ -13,19 +13,18 @@
                             <span class="test-header__count">{{question_index + 1}}</span>
                             <div class="test-header__title" v-html="question.text"></div>
                         </div>
-                        <div class="test-image-wrap" v-if="question.image">
+                        <div class="test-image-wrap" v-if="question.preview">
                             <img :src="question.preview"/>
                         </div>
                         <div class="test-body">
                             <div class="test-body-item" v-for="(option, option_index) in question.options">
                                 <span class="test-body-item__number">{{option_index+1}})</span>
                                 <input type="checkbox" v-model="option.answer"  class="test-body-item__checkbox">
-                                <div class="test-body-item__content">
-
-                                    <div class="test-body-item__questation" v-html="option.text"></div>
-                                    <div class="test-option__image-wrap" v-if="option.image">
+                                <div class="test-body-item__content d-flex">
+                                    <div class="test-option__image-wrap" v-if="option.preview"">
                                         <img :src="option.preview"/>
                                     </div>
+                                    <div class="test-body-item__questation" v-html="option.text"></div>
                                 </div>
 
 
