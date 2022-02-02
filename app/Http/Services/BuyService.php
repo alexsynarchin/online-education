@@ -11,6 +11,7 @@ class BuyService
     public function finishBuy(Request $request)
     {
         $student = \Auth::user()->studentAccount;
+        $student->promo_balance = $student->promo_balance-$request->get('price');
         $url='/profile/education/';
 
         if($request->get('type') === 'course') {
@@ -24,7 +25,6 @@ class BuyService
                 'slug' => $course->slug
             ]);
             $teacher = User::findOrFail($course->author_id);
-
         } else {
             $lesson = Lesson::findOrFail($request->get('id'));
             $this->lessonToStudent($lesson, $student->id);
@@ -37,6 +37,8 @@ class BuyService
             ]);
         }
         $teacher = $teacher -> teacherAccount;
+        $teacher->balance = $teacher->balance + $request->get('price');
+        $teacher->save();
         $teacher_id = $teacher -> id;
         if(!$student->teachers()->where('student_id', $student->id)->exists()) {
             $student->teachers()->attach($teacher_id);
