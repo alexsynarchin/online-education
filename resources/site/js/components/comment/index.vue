@@ -76,7 +76,7 @@ export default {
             },
             authCheck() {
                 if(this.signedIn) {
-                    return (this.user.profile_type === 'teacher') || (this.user.profile_type === 'student')
+                    return this.user.profile_type === 'student'
                 } else {
                     return false;
                 }
