@@ -24,6 +24,10 @@ Route::get('/profile/course/{slug}/show', [TeacherCourseController::class,'show'
 Route::post('/profile/course/{id}/remove', [TeacherCourseController::class, 'remove']) -> name('profile.course.remove');
 Route::get('/profile/course/count', [TeacherCourseController::class, 'getCoursesCount']) -> name('profile.course.count');
 
+use App\Http\Controllers\Api\Profile\TeacherController;
+Route::get('/profile/teachers', [TeacherController::class, 'index'])->name('teacher.index');
+
+
 use App\Http\Controllers\Api\Profile\TeacherLessonController;
 Route::get('/profile/{course_slug}/{slug}/show', [TeacherLessonController::class, 'show']) -> name('profile.lesson.show');
 Route::post('/profile/lesson/store', [TeacherLessonController::class, 'store']) -> name('profile.lesson.store');
