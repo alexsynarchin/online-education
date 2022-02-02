@@ -1,0 +1,10 @@
+.course-rating {
+    display: flex;
+    align-items: center;
+    &__count {
+        font-size: 14px;
+        font-weight: 500;
+        font-family: 'Raleway', sans-serif;
+        margin-left: 10px;
+    }
+}

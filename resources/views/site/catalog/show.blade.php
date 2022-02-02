@@ -37,11 +37,18 @@
                 <filter-sidebar :filter-start="{{json_encode($filter)}}"></filter-sidebar>
             </div>
             <div class="col-lg-9">
+
                 <section class="course-item course-item-block">
                     <div class="course-item__heading">
                         <h1 class="course-item__title course-item__title--big">
                             {{$course -> title}}
                         </h1>
+                        @if($course->rating > 0)
+                        <course-rating
+                        :count="1"
+                        :rating="{{json_encode($course->rating)}}"
+                        ></course-rating>
+                        @endif
                     </div>
                     <div class="course-item__content">
                         <figure class="course-item__img">
@@ -93,15 +100,15 @@
                         Другие курсы преподавателя:
                     </h3>
                     <ul class="other-courses">
-                        @foreach($other_courses as $course)
+                        @foreach($other_courses as $item)
                             <li class="other-courses__item">
-                                <a href="{{route('catalog.show', [$course -> edu_type -> slug, $course -> slug])}}" class="other-courses__link">
+                                <a href="{{route('catalog.show', [$item -> edu_type -> slug,$item -> slug])}}" class="other-courses__link">
                                     <h4 class="other-courses__title">
-                                        {{$course -> title}}
+                                        {{$item -> title}}
                                     </h4>
                                     <div class="other-courses__link-right">
                                         <span class="other-courses__price">
-                                            {{$course -> price}} ₽
+                                            {{$item -> price}} ₽
                                         </span>
                                     </div>
                                 </a>

@@ -65,7 +65,14 @@ class Course extends Model implements HasMedia
     ];
     public function getRatingAttribute()
     {
-        return 0;
+        $rating = 0;
+
+        $comments_count = $this->comments()->where('active', 1)->count();
+       if($comments_count > 0) {
+           $sum = $this->comments()->where('active', 1)->where('rating', '>', 0)->sum('rating');
+           $rating = $sum / $comments_count;
+       }
+        return round($rating, 0);
     }
 
     public function getUserBuyAttribute()
