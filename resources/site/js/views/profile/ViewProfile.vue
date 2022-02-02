@@ -30,7 +30,7 @@
                     </svg>
                     <div class="profile-user-text">
                         <span class="profile-user-text">На счету:</span>
-                        <span class="profile-user-text__score">0</span>
+                        <span class="profile-user-text__score">{{user.teacher_account.balance}}</span>
                         <span class="profile-user-text__currency">Руб</span>
                     </div>
                     <div class="profile-user-questation">
