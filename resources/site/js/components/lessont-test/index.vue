@@ -2,11 +2,11 @@
     <section class="lesson-test" v-if="loaded && tests.length > 0">
         <button  class="button" @click="startTest">Пройти тест</button>
         <el-dialog
-            :title="'Тест к уроку ' + lesson_title"
             :visible.sync="dialogVisible"
             :fullscreen="true"
         >
-            <section class="mt-4" v-for="(test, index) in tests" v-if="loaded && dialogVisible">
+            <section class="container" v-for="(test, index) in tests" v-if="loaded && dialogVisible">
+                <h2 class="page-title">{{'Тест к уроку ' + lesson_title}}</h2>
                 <form action="" class="test-form">
                     <fieldset class="test-form-item" v-for="(question, question_index) in test.questions">
                         <div class="test-header">
