@@ -7,6 +7,12 @@
                 </h4>
             </a>
 
+            <course-rating
+                :count="course.rating_count"
+                :rating="course.rating"
+                v-if="course.rating > 0"
+            ></course-rating>
+
         </div>
         <div class="course-item__content">
             <figure class="course-item__img">

@@ -61,13 +61,13 @@ class Course extends Model implements HasMedia
 
 
     protected $appends = [
-        'image','rating', 'price', 'user_buy'
+        'image','rating', 'price', 'user_buy', 'rating_count'
     ];
     public function getRatingAttribute()
     {
         $rating = 0;
 
-        $comments_count = $this->comments()->where('active', 1)->count();
+        $comments_count = $this->comments()->where('active', 1)->where('rating', '>', 0)->count();
        if($comments_count > 0) {
            $sum = $this->comments()->where('active', 1)->where('rating', '>', 0)->sum('rating');
            $rating = $sum / $comments_count;
@@ -100,7 +100,11 @@ class Course extends Model implements HasMedia
         $image = $this ->getFirstMediaUrl('courses','thumb');
         return $image;
     }
-
+    public function getRatingCountAttribute()
+    {
+        $comments_count = $this->comments()->where('active', 1)->where('rating', '>', 0)->count();
+        return $comments_count;
+    }
     public function author()
     {
         return $this -> belongsTo(User::class, 'author_id');

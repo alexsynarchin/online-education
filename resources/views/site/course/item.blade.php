@@ -5,7 +5,12 @@
                 {{$course -> title}}
             </h4>
         </a>
-
+        @if($course->rating > 0)
+            <course-rating
+                :count="{{json_encode($course->rating_count)}}"
+                :rating="{{json_encode($course->rating)}}"
+            ></course-rating>
+        @endif
     </div>
     <div class="course-item__content">
         <figure class="course-item__img">

@@ -45,7 +45,7 @@
                         </h1>
                         @if($course->rating > 0)
                         <course-rating
-                        :count="1"
+                        :count="{{json_encode($course->rating_count)}}"
                         :rating="{{json_encode($course->rating)}}"
                         ></course-rating>
                         @endif
