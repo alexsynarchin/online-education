@@ -101,6 +101,10 @@ Route::post('/buying/buy', [BuyingController::class,'buy'])->name('buying.buy');
 //Student Courses
 use App\Http\Controllers\Api\Profile\StudentCourseController;
 Route::get('/education', [StudentCourseController::class,'index'])->name('student-course.index');
+// Student Test Controller
+use App\Http\Controllers\Api\Profile\StudentTestController;
+Route::get('/education/test/{id}', [StudentTestController::class, 'index'])->name('student-test.index');
+Route::post('/education/test/{id}/pass', [StudentTestController::class, 'pass'])->name('test-student.pass');
 
 
 

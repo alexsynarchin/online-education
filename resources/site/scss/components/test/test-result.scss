@@ -1,0 +1,16 @@
+.test-result-list{
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    &__item{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        p {
+            margin-bottom: 0;
+        }
+        &-question{
+            margin-left: 0.5rem;
+        }
+    }
+}

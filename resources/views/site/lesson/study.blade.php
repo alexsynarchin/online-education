@@ -37,6 +37,9 @@
         <div class="mb-4">
             {!! $lesson -> content -> text !!}
         </div>
+        @if($lesson->tests()->exists())
+            <lesson-test :lesson_title="'{{json_encode($lesson->title)}}'" :id="{{json_encode($lesson->id)}}"></lesson-test>
+        @endif
         </div>
 
 @endsection

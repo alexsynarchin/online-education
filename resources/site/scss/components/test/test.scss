@@ -1,0 +1,170 @@
+.lesson-test{
+    &__title{
+        margin: 20px 0px;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: #4B4B4B;
+    }
+}
+.test-header{
+display: flex;
+align-items: center;
+margin-bottom: 30px;
+    &__count {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+        border-radius: 50%;
+        font-weight: 700;
+        color: #fff;
+        background-color: #99AEDB;
+    }
+    &__title{
+        margin-top: 10px;
+        font: 400 1.15rem 'RobotoMedium', sans-serif;
+        color: #3D3D3D;
+          @include media-breakpoint-down(sm){
+              width: 80%;
+          }
+    }
+}
+.test-body{
+    &--flex{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &-item {
+        margin-bottom: 25px;
+        display: flex;
+        align-items: flex-start;
+
+        &__content{
+
+        }
+        p{
+            margin-bottom: 0;
+        }
+        &:last-child {
+        margin-bottom: 80px;
+        }
+        &--column{
+            flex-direction: column;
+            width: 33%;
+            @include media-breakpoint-down(sm){
+                width:47%;
+            }
+            @include media-breakpoint-down(xs){
+                width: 100%;
+                margin-right: 0 !important;
+            }
+            &:not(:nth-child(2)):not(:last-child){
+                margin-right: 30px;
+            }
+
+        }
+        &__number{
+            font: 400 0.95rem 'OpenSansRegular', sans-serif;
+            color: #3D3D3D;
+        }
+        &__checkbox {
+            width: 27px;
+            min-width: 27px;
+            height: 27px;
+            margin: 0px 15px;
+            border: 1px solid #D1D1D1;
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+            background-image: url('../../../images/check.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 0px;
+            transition: all .25s ease;
+
+            &:checked {
+                background-size: 16px;
+                transition: all .25s ease;
+            }
+        }
+
+        &__questation {
+            font: 400 0.9rem 'RobotoRegular', sans-serif;
+            color: #3D3D3D;
+            @include media-breakpoint-down(sm){
+                width: 70%;
+            }
+        }
+
+
+    }
+
+}
+.test-image-wrap{
+    position: relative;
+    max-width: 300px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 10px;
+    @include media-breakpoint-down(sm){
+        height: auto;
+    }
+    img{
+        cursor: pointer;
+        @include media-breakpoint-down(sm){
+            width: 100%;
+        }
+    }
+    &--overflow{
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width:  100%;
+            height: 100%;
+            background: #99AEDB;
+            opacity: .8;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            top: calc(50% - 60px);
+            left: calc(50% - 60px);
+            width:  120px;
+            height: 120px;
+            background: url('../../../images/check-white.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 120px;
+        }
+    }
+}
+.test-form-btn{
+    margin: 20px 0px 40px 0px;
+    padding: 15px 70px;
+    border: none;
+    border-radius: 8px;
+    background: #6A89CC;
+    font: 400 1rem 'RobotoLight', sans-serif;
+    color: #fff;
+    transition: all .25s ease;
+    &:hover{
+        background: #35529F;
+    }
+
+}
+.test-option{
+    &__image-wrap{
+        margin-top: 1rem;
+        width: 200px;
+    }
+}
+
+
+
+
+
+

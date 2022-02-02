@@ -47,6 +47,8 @@ Vue.component('LessonStudent', require('./components/LessonStudent/index').defau
 
 //Course Rating
 Vue.component('CourseRating', require('./components/course-rating').default);
+Vue.component('LessonTest', require('./components/lessont-test/index').default);
+
 import router from './router'
 
 Vue.component('ProfileDashboard', require('./views/profile-dashboard/index').default);
