@@ -12,6 +12,7 @@ class BuyService
     {
         $student = \Auth::user()->studentAccount;
         $student->promo_balance = $student->promo_balance-$request->get('price');
+        $student->save();
         $url='/profile/education/';
 
         if($request->get('type') === 'course') {
