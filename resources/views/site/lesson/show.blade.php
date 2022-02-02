@@ -48,18 +48,27 @@
                             <div class="course-item__descr course-item__descr--lesson">
                                 {!! $lesson -> content -> text !!}
                             </div>
-                            <div class="course-item__buy">
-                                Для просмотра урока его необходимо <a href="" class="course-item__buy-link">купить</a>
-                            </div>
+                            @if(!$lesson->user_buy)
+                                <div class="course-item__buy">
+                                    Для просмотра урока его необходимо <buy-btn :type="'link'" :buying_type="'lesson'"
+                                                                                :buying_id="{{$lesson->id}}"
+                                                                                v-if="{{json_encode(!$lesson->user_buy)}}"></buy-btn>
+                                </div>
+                            @endif
                         </div>
                         <div class="course-item__right course-item__right--text-right">
+                            @if(!$lesson->user_buy)
                             <div class="course-item__price">
                                 {{$lesson ->price_user}} ₽
                             </div>
-                            <div class="course-item__actions">
-                                <a href="" class="course-item__btn btn">Купить</a>
-                            </div>
 
+                            <div class="course-item__actions">
+                                <buy-btn :buying_type="'lesson'"  :buying_id="{{$lesson->id}}" v-if="{{json_encode(!$lesson->user_buy)}}"></buy-btn>
+                            </div>
+                            @else
+                                <a href="{{route('lesson.study',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}"
+                                   class="course-item__btn btn">Перейти</a>
+                            @endif
                         </div>
                     </div>
                     <div class="course-item__footer">

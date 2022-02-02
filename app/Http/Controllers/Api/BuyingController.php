@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\BuyService;
 use App\Models\Category\Course;
+use App\Models\Lesson\Lesson;
 use Illuminate\Http\Request;
 
 class BuyingController extends Controller
@@ -16,6 +18,11 @@ class BuyingController extends Controller
             $title = $course -> title;
             $price = $course->price;
             $id = $course->id;
+        } else {
+            $lesson = Lesson::findOrFail($request->get('id'));
+            $title = $lesson -> title;
+            $price = $lesson->price? $lesson->price : $lesson->price_user;
+            $id = $lesson->id;
         }
         return [
             'id' => $id,
@@ -25,6 +32,15 @@ class BuyingController extends Controller
             'account_id' => $student_account->id,
             'promo_balance' => $student_account->promo_balance ? $student_account->promo_balance : 0,
         ];
+    }
+
+    public function buy(Request $request, BuyService $buyService)
+    {
+        $url='';
+        if($request->get('discount_price') === 0) {
+           $url = $buyService->finishBuy($request);
+        }
+        return $url;
     }
 
     public function calculateDiscount(Request $request)

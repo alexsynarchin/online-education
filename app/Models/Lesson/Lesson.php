@@ -15,6 +15,7 @@ class Lesson extends Model
 
     protected $fillable = [ 'title', 'course_id','price', 'time','user_id','status',
         'price_user','type_video','type_text','type_image', 'type_audio', 'slug'];
+    protected $appends = ['user_buy'];
 
     public function getSlugOptions() : SlugOptions
     {
@@ -40,5 +41,24 @@ class Lesson extends Model
 
     public function content(){
         return $this->hasOne(LessonContent::class, 'lesson_id');
+    }
+
+    public function getUserBuyAttribute()
+    {
+
+        $result = false;
+        if(\Auth::check()) {
+            $user = \Auth::user();
+            if($user  -> profile_type === 'student') {
+                $result =  $this->students()->where('student_id', $user -> studentAccount->id) -> exists();
+            }
+        }
+
+        return $result;
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'student_lesson','lesson_id','student_id')->withTimestamps();
     }
 }

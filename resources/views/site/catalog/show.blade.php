@@ -67,7 +67,7 @@
                                 {{$course ->price}} ₽
                             </div>
                             <div class="course-item__actions">
-                                <buy-btn></buy-btn>
+                                <buy-btn :buying_id="{{$course->id}}" v-if="{{json_encode(!$course->user_buy)}}"></buy-btn>
                             </div>
 
                         </div>

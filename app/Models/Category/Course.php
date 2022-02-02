@@ -61,11 +61,27 @@ class Course extends Model implements HasMedia
 
 
     protected $appends = [
-        'image','rating', 'price'
+        'image','rating', 'price', 'user_buy'
     ];
     public function getRatingAttribute()
     {
         return 0;
+    }
+
+    public function getUserBuyAttribute()
+    {
+
+        $result = false;
+        if(\Auth::check()) {
+            $user = \Auth::user();
+            if($user  -> profile_type === 'student') {
+                $result =  $this->lessons()->whereHas('students', function ($query) use ($user){
+                    $query->where('student_id', $user -> studentAccount->id);
+                }) -> exists();
+            }
+        }
+
+        return $result;
     }
     public function getPriceAttribute()
     {

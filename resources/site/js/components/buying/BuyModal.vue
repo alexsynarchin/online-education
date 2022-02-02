@@ -1,6 +1,5 @@
 <template>
         <el-dialog
-
             title="Оформление заказа"
             :visible.sync="dialogVisible"
             :before-close="handleClose">
@@ -11,6 +10,7 @@
                         <label>Бонусный баланс:</label>
                         {{data.promo_balance}}
                     </div>
+
                     <el-form-item class="col-md-5" :error="errors.get('name')">
                         <el-input v-model="PromoCode.name" placeholder="Введите промокод"></el-input>
                     </el-form-item>
@@ -18,12 +18,11 @@
                         <el-button icon="el-icon-plus" type="primary" @click="addPromo">Пополнить</el-button>
                     </el-form-item>
                 </div>
-
                 <div class="mb-4" style="font-size: 20px">
                     <label>Сумма к оплате:</label> <span style="font-weight: 700">{{data.discount_price}} руб.</span>
                     <el-button type="primary" @click="calculateDiscount">Использовать бонусный баланс</el-button>
                 </div>
-                <el-button  type="primary" @click.prevent="">Оплатить</el-button>
+                <el-button  type="primary" @click.prevent="payment">Оплатить</el-button>
                 <el-button  type="default" @click.prevent="closeModal">Отмена</el-button>
             </el-form>
         </el-dialog>
@@ -52,14 +51,18 @@ import { Errors } from  '@/common/js/services/errors.js';
         },
         methods: {
             calculateDiscount(){
-                if(this.data.price > this.data.promo_balance) {
-                    this.data.discount_price  = this.data.price - this.data.promo_balance;
-                    this.data.promo_balance = 0;
-                } else {
-                    this.data.discount_price = 0;
-                    this.data.promo_balance  = this.data.promo_balance - this.data.price;
+                if(this.data.discount_price !== 0) {
+                    if(this.data.price > this.data.promo_balance) {
+                        this.data.discount_price  = this.data.price - this.data.promo_balance;
+                        this.data.promo_balance = 0;
+                    } else {
+                        this.data.discount_price = 0;
+                        this.data.promo_balance  = this.data.promo_balance - this.data.price;
+                    }
                 }
+
             },
+
             addPromo() {
                 axios.post('/api/promo-code/handle',{name:this.PromoCode.name, id:this.data.account_id})
                     .then((response)=>{
@@ -89,7 +92,13 @@ import { Errors } from  '@/common/js/services/errors.js';
             showModal(data) {
                 this.getData(data);
                 this.dialogVisible = true;
-            }
+            },
+            payment() {
+                axios.post('/api/buying/buy', this.data)
+                .then((response) => {
+                    window.location.href = response.data;
+                })
+            },
         },
         created() {
             EventBus.$on('show-buy-modal', this.showModal)

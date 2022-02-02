@@ -29,4 +29,13 @@ class LessonController extends Controller
             'other_lessons' => $other_lessons,
         ]);
     }
+    public function study($edu_slug, $course_slug, $slug)
+    {
+        $course = Course::where('slug', $course_slug) -> firstOrFail();
+        $lesson = Lesson::where('slug', $slug) -> firstOrFail();
+       return view('site.lesson.study', [
+           'course' => $course,
+           'lesson' => $lesson,
+       ]);
+    }
 }

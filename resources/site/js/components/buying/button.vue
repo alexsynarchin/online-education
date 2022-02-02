@@ -1,11 +1,16 @@
 <template>
-    <a href="" class="course-item__btn btn" @click.prevent="buy">Купить</a>
+    <a href="" class="course-item__btn btn" @click.prevent="buy" v-if="type === 'btn'">Купить</a>
+    <a href="" class="course-item__buy-link" @click.prevent="buy" v-else>Купить</a>
 </template>
 <script>
 import EventBus from "../../EventBus";
 
 export default {
     props: {
+        type:{
+            type:String,
+            default:'btn'
+        },
         buying_type:{
             default: 'course',
         },

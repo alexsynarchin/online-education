@@ -14,4 +14,9 @@ class TeacherAccount extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(StudentAccount::class, 'teacher_student','teacher_id', 'student_id');
+    }
 }

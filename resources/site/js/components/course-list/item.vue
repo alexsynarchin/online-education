@@ -32,7 +32,12 @@
                     {{course.price}} ₽
                 </div>
                 <div class="course-item__actions">
-                    <buy-btn :buying_id="course.id"></buy-btn>
+                    <buy-btn :buying_id="course.id" v-if="!course.user_buy"></buy-btn>
+                    <a
+                        :href="'/catalog/' + course.edu_type.slug + '/' + course.slug"
+                        class="course-item__btn btn" v-else>
+                        Перейти
+                    </a>
                 </div>
 
             </div>

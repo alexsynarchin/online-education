@@ -95,6 +95,12 @@ Route::post('/promo-code/handle', [PromoCodeController::class,'handlePromoCode']
 //Buying
 use App\Http\Controllers\Api\BuyingController;
 Route::get('/buying/data', [BuyingController::class, 'getData'])->name('buying.data');
+Route::post('/buying/buy', [BuyingController::class,'buy'])->name('buying.buy');
+//Payment
+
+//Student Courses
+use App\Http\Controllers\Api\Profile\StudentCourseController;
+Route::get('/education', [StudentCourseController::class,'index'])->name('student-course.index');
 
 
 

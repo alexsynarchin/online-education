@@ -42,6 +42,9 @@ Vue.component('SearchTeachers',require('./components/teacher/index').default);
 
 Vue.component('CourseList', require('./components/course-list/index').default);
 
+//Lesson Student
+Vue.component('LessonStudent', require('./components/LessonStudent/index').default);
+
 import router from './router'
 
 Vue.component('ProfileDashboard', require('./views/profile-dashboard/index').default);
