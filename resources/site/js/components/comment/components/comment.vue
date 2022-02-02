@@ -17,14 +17,18 @@
                    v-if="(comment.rating)  && (comment.parent_id === 0)"
                   >
                 <star-rating
-                    :star-size="13"
+                    :star-size="9"
+                    :padding="2"
+                    :border-width="3"
                     :show-rating="false"
                     :read-only="true"
                     :rating="comment.rating"
+                    active-border-color="#FDC20B"
+                    border-color="rgba(201, 201, 201, 0.7)"
                     active-color="#FDC20B"
-                    inactive-color="rgba(253, 194, 11, 0.3)"
+                    inactive-color="#fff"
                     :round-start-rating="false"
-                    style="max-height: 14px"
+                    style="max-height: 15px"
                     v-if="comment.rating > 0"
                 ></star-rating>
               </div>
