@@ -17,6 +17,7 @@
                     </li>
 
                     <li class="breadcrumb__item">
+                        @if($course->direction_id)
                         <a href="{{route('catalog', [
                                                         'edu_slug' => $course -> edu_type -> slug,
                                                       'direction' => $course ->direction_id ? \App\Models\Category\CategoryType::find($course -> direction_id)['slug']: "",
@@ -25,6 +26,15 @@
                                                       ]])}}" class="breadcrumb__link">
                             {{$course -> subject -> title}}
                         </a>
+                        @else
+                            <a href="{{route('catalog', [
+                                                        'edu_slug' => $course -> edu_type -> slug,
+                                                      'subjects' => [(int) $course -> subject -> id,
+
+                                                      ]])}}" class="breadcrumb__link">
+                                {{$course -> subject -> title}}
+                            </a>
+                        @endif
                     </li>
                     <li class="breadcrumb__item">
                         {{$course -> title}}

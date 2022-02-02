@@ -67,7 +67,7 @@ class CatalogController extends Controller
             'levels' => [$course -> edu_level_id],
             'edu_type' => $course -> edu_type_id,
             'themes' => [],
-            'direction' => $course->direction_id,
+            'direction' => $course->direction_id ,
             'specialties' => [$course->specialty_id]
 
         ];
