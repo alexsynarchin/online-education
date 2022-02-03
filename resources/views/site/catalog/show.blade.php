@@ -94,13 +94,15 @@
                             <label class="course-item__author-label">
                                 Автор:
                             </label>
-                            <span class="course-item__author-value">
+                            <a href="{{route('teacher.show', $course->author -> id)}}" class="course-item__author-value">
                                     {{$course -> author -> name}}
                                 {{$course -> author -> surname}}
-                                </span>
-                            <svg class="course-item__author-icon">
-                                <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=12#sprite-question-icon')}}"></use>
-                            </svg>
+                            </a>
+                            <el-tooltip class="item" effect="dark" content="Кликнете по имени преподавателя чтобы посмотреть его курсы" placement="top-start">
+                                <svg class="course-item__author-icon">
+                                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=12#sprite-question-icon')}}"></use>
+                                </svg>
+                            </el-tooltip>
                         </div>
                     </div>
                 </section>
