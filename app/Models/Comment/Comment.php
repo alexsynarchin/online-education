@@ -16,6 +16,7 @@ class Comment extends Model implements HasMedia
     ];
     protected $casts = [
         'active' => 'boolean',
+        'created_at' => "datetime:Y-m-d"
     ];
     public function commentable()
     {
