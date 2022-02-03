@@ -4,6 +4,12 @@
             <a class="b-footer-links__item b-footer-links__item--legal-info" :href="legalLink">
                 Юридическая информация
             </a>
+            <a class="b-footer-links__item b-footer-links__item--legal-info" href="/faq">
+                <svg class="page-header-top-nav__icon">
+                    <use xlink:href="/images/sprite.svg#help"></use>
+                </svg>
+                Поддержка
+            </a>
             <a class="b-footer-links__item" :href="mainMail">{{ mainMail }}</a>
             <a class="b-footer-links__item" :href="mainPhone">{{ mainPhone }}</a>
         </div>
