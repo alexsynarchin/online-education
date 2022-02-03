@@ -22,7 +22,7 @@ export default {
                 },
                 {
                     title: 'Как пользоваться?',
-                    link: '/faq'
+                    link: '/how-it-works'
                 },
                 {
                     title: 'Школьное образование',

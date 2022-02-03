@@ -78,3 +78,6 @@ Route::get('/blog', function(){
 Route::get('/faq', function(){
     return view('site.faq');
 });
+Route::get('/how-it-works', function(){
+    return view('site.faq');
+});
