@@ -57,9 +57,12 @@
                                     {{$course -> author -> name}}
                 {{$course -> author -> surname}}
                                 </a>
-            <svg class="course-item__author-icon">
-                <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=12#sprite-question-icon')}}"></use>
-            </svg>
+            <el-tooltip class="item" effect="dark" content="Кликнете по имени преподавателя чтобы посмотреть его курсы" placement="top-start">
+                <svg class="course-item__author-icon">
+                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=12#sprite-question-icon')}}"></use>
+                </svg>
+            </el-tooltip>
+
         </div>
     </div>
 </section>
