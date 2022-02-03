@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-3">
+    <div class="col-sm-12 col-md-12 col-lg-2">
         <div class="b-footer-links">
             <a class="b-footer-links__item b-footer-links__item--legal-info" :href="legalLink">
                 Юридическая информация

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-4">
+    <div class="col-sm-12 col-md-12 col-lg-2">
         <div class="b-footer-soc">
             <span class="b-footer-soc__title">Социальные сети</span>
             <div class="b-footer-soc-links">

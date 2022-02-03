@@ -1,5 +1,5 @@
 <template>
-    <div class="d-none col-lg-4">
+    <div class="col-lg-6">
         <nav class="b-footer-nav">
             <ul class="b-footer-menu">
                 <li class="b-footer-menu-nav__item b-footer-menu-nav__item--hover"  v-for="(menuLinkItem, index) in footerMenuItemsOne" :key="index">
@@ -17,28 +17,38 @@ export default {
         return {
             footerMenuItemsOne: [
                 {
-                    title: 'Предметы',
+                    title: 'Дошкольное образование',
                     link: '#'
                 },
                 {
-                    title: 'Профильные курсы',
-                    link: '#'
+                    title: 'Как пользоваться?',
+                    link: '/faq'
                 },
                 {
-                    title: 'Как это работает?',
-                    link: '#'
+                    title: 'Школьное образование',
+                    link: '/catalog/school-education'
                 },
                 {
-                    title: 'Предметы',
-                    link: '#'
+                    title: 'Преподавателям',
+                    link: '/for-teachers'
                 },
                 {
-                    title: 'Профильные курсы',
-                    link: '#'
+                    title: 'Среднее образование',
+                    link: '/catalog/secondary-special'
+                },
+
+                {
+                    title: 'Блог',
+                    link: '/blog'
                 },
                 {
-                    title: 'Как это работает?',
-                    link: '#'
+                    title: 'Высшее образование',
+                    link: '/catalog/higher-education'
+                },
+
+                {
+                    title: 'О Educall',
+                    link: '/about'
                 }
             ]
         }

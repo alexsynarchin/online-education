@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-12 col-md-12 col-lg-3">
+    <div class="col-sm-12 col-md-12 col-lg-2">
         <a class="b-footer__logo" :href="url">
             <img class="b-footer__logo-img" src="/images/logo-2.svg" alt="logo">
         </a>
