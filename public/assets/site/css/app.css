@@ -12650,7 +12650,11 @@ a {
   color: rgba(39, 39, 39, 0.65);
 }
 .course-item__author-value {
-  text-decoration: underline;
+  color: #212529 !important;
+  text-decoration: underline !important;
+}
+.course-item__author-value:hover {
+  color: #212529 !important;
 }
 .course-item__author-icon {
   margin-left: 5px;
