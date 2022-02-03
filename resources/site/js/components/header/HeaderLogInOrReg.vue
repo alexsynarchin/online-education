@@ -216,7 +216,7 @@ export default {
         width 17px
         height 17px
         margin-right 5px
-        fill #6a89cc
+        fill #c34242
 
     .btn-auth__title
         position relative
