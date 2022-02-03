@@ -41,12 +41,15 @@
                 <div class="login-in-prof" @click="isProfile = true">
                     <img class="login-in__avatar" v-if="user.avatar != null"  :src = user.avatar>
                     <img class="login-in__avatar" v-else src="/images/teacher-1.jpg" alt="">
-                    <span class="login-in__fullname">{{user.name}} {{user.surname}}</span>
+
                 </div>
 
                 <div class="mini-profile" :class="isProfile ? 'mini-profile--open' : 'mini-profile--close'">
                     <div class="mini-profile__close" @click="isProfile = !isProfile"></div>
                     <nav class="nav-profile">
+                        <a href="/profile" class="nav-profile-item ">
+                            <span class="nav-profile-item__text  nav-profile-item__text--big">{{user.name}} {{user.surname}}</span>
+                        </a>
                         <a href="/profile" class="nav-profile-item nav-profile-item--border">
                             <svg class="nav-profile-item__icon">
                                 <use xlink:href="/images/sprite.svg#home"></use>
@@ -322,6 +325,7 @@ export default {
     .mini-profile
         position absolute
         top 60px
+        right -85px
         width 250px
         padding 15px 0px
         border-radius 5px
@@ -403,8 +407,10 @@ export default {
                 margin-right  15px
                 fill #fff
             &__text
-                font 400 rem(15px) 'RobotoRegular', sans-serif
+                font 600 rem(15px) 'Raleway', sans-serif
                 color #fff
                 &:hover
                     text-decoration underline
+                 &--big
+                    font-size:22px
 </style>
