@@ -45,7 +45,7 @@ class OrderController extends Controller
         if(!$student->teachers()->where('student_id', $student->id)->exists()) {
             $student->teachers()->attach($teacher_id);
         }
-        redirect($url) ;
+        return redirect($url) ;
     }
 
     public function fail(Request $request)
