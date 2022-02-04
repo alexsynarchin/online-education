@@ -58,6 +58,9 @@ Route::get('/catalog/{edu_slug}/{course_slug}/{slug}/study', [LessonController::
 use App\Http\Controllers\Site\TeacherController;
 Route::get('/search-teacher', [TeacherController::class, 'index']) -> name('teacher.index');
 Route::get('/search-teachers/{id}', [TeacherController::class, 'show']) -> name('teacher.show');
+use App\Http\Controllers\Site\OrderController;
+Route::get('/order/success', [OrderController::class, 'success']) -> name('order.success');
+Route::get('/order/fail', [OrderController::class, 'fail']) -> name('order.fail');
 
 //Search
 use App\Http\Controllers\Site\SearchController;
