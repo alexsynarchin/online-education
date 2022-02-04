@@ -53,7 +53,7 @@ class BuyingController extends Controller
             $out_summ = $order->sum;
             $IsTest = 1;
             $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
-            $url = 'https://auth.robokassa.ru/Merchant/Index.aspx?' . $mrh_login;
+            $url = 'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=' . $mrh_login . '&OutSum='.$out_summ .'&InvId='.$inv_id.'&Description='.$inv_desc.'&SignatureValue='.$crc.'&IsTest='.$IsTest;
             //redirect()->to($url .'MerchantLogin='.$mrh_login .'&OutSum='.$out_summ.'&InvoiceID='.$inv_id.'&Description='.$inv_desc.'&SignatureValue='.$crc.'&IsTest='.$IsTest);
             redirect($url);
         }
