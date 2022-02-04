@@ -44,6 +44,8 @@ class BuyingController extends Controller
 
             $order = new Order();
             $order->status = 'wait';
+            $order->student_id = \Auth::user()->studentAccount->id;
+            $order->buying_id = $request->get('id');
             $order->sum = $request->get('discount_price');
             $order->type = $request->get('type');
             $order ->save();
