@@ -45,6 +45,7 @@ class BuyingController extends Controller
             $order = new Order();
             $order->status = 'wait';
             $order->sum = $request->get('discount_price');
+            $order->type = $request->get('type');
             $order ->save();
             $mrh_login = "Educall";
             $mrh_pass1 = "a69DD4YRP5tkcZ0zrcRf";
