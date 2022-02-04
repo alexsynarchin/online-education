@@ -47,7 +47,7 @@ class BuyingController extends Controller
             $order->sum = $request->get('discount_price');
             $order ->save();
             $mrh_login = "educall";
-            $mrh_pass1 = "XL2ystKr74AVnGlrf7H9";
+            $mrh_pass1 = "a69DD4YRP5tkcZ0zrcRf";
             $inv_id = $order->id;
             $inv_desc = "Оплата за обучение";
             $out_summ = $order->sum;
