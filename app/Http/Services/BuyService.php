@@ -46,7 +46,6 @@ class BuyService
         }
         return $url;
     }
-
     private function lessonToStudent($lesson, $student_id)
     {
         if(!$lesson->students()->where('student_id', $student_id) -> exists()){

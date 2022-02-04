@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\BuyService;
 use App\Models\Category\Course;
 use App\Models\Lesson\Lesson;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class BuyingController extends Controller
@@ -39,6 +40,20 @@ class BuyingController extends Controller
         $url='';
         if($request->get('discount_price') === 0) {
            $url = $buyService->finishBuy($request);
+        } else {
+            $order = new Order();
+            $order->status = 'wait';
+            $order->sum = $request->get('discount_price');
+            $order ->save();
+            $mrh_login = "educall";
+            $mrh_pass1 = "T7wHFNnA15BJX2JIrEL0";
+            $inv_id = $order->id;
+            $inv_desc = "Оплата за обучение";
+            $out_summ = $order->sum;
+            $IsTest = 1;
+            $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
+            $url = 'https://auth.robokassa.ru/Merchant/Index.aspx?';
+            return redirect()->to($url .'MerchantLogin='.$mrh_login .'&OutSum='.$out_summ.'&InvoiceID='.$inv_id.'&Description='.$inv_desc.'&SignatureValue='.$crc.'&IsTest='.$IsTest);
         }
         return $url;
     }

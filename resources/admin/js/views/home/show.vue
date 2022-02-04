@@ -10,6 +10,7 @@
                 <el-button type="success" @click.prevent="courseChangeStatus(2)" v-if="course.status != 2">Опубликовать</el-button>
                 <el-button type="warning" @click.prevent="courseChangeStatus(1)" v-if="course.status === 2">Снять с публикации</el-button>
                 <el-button type="danger" @click.prevent="dialogCancel = true" v-if="course.status === 1">Отклонить</el-button>
+                <el-button type="primary" @click="">Редактировать курс</el-button>
             </div>
         </section>
         <el-tabs type="card" class="mb-3" >
