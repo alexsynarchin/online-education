@@ -46,15 +46,16 @@ class BuyingController extends Controller
             $order->status = 'wait';
             $order->sum = $request->get('discount_price');
             $order ->save();
-            $mrh_login = "educall";
+            $mrh_login = "Educall";
             $mrh_pass1 = "a69DD4YRP5tkcZ0zrcRf";
             $inv_id = $order->id;
             $inv_desc = "Оплата за обучение";
             $out_summ = $order->sum;
             $IsTest = 1;
             $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
-            $url = 'https://auth.robokassa.ru/Merchant/Index.aspx?';
-            redirect()->to($url .'MerchantLogin='.$mrh_login .'&OutSum='.$out_summ.'&InvoiceID='.$inv_id.'&Description='.$inv_desc.'&SignatureValue='.$crc.'&IsTest='.$IsTest);
+            $url = 'https://auth.robokassa.ru/Merchant/Index.aspx?' . $mrh_login;
+            //redirect()->to($url .'MerchantLogin='.$mrh_login .'&OutSum='.$out_summ.'&InvoiceID='.$inv_id.'&Description='.$inv_desc.'&SignatureValue='.$crc.'&IsTest='.$IsTest);
+            redirect($url);
         }
         return $url;
     }
