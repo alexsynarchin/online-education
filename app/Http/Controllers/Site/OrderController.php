@@ -11,7 +11,7 @@ class OrderController extends Controller
     public function success(Request $request)
     {
         $order = Order::findOrFail($request->get('InvId'));
-        dd($request->all());
+        dd($order);
     }
 
     public function fail(Request $request)
