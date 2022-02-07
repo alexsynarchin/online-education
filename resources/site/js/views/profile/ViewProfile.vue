@@ -18,7 +18,7 @@
             </a>
 
             <div class="profile-user-transac" v-if="user.profile_type === 'student'">
-                <div v-if="user.student_account.promo_balance" class="mb-2">
+                <div  class="mb-2">
                     <label>Бонусный баланс:</label> {{user.student_account.promo_balance}}
                 </div>
                 <el-button type="primary" @click="addPromo">Введите промокод</el-button>

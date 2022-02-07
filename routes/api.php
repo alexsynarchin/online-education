@@ -100,6 +100,7 @@ Route::post('/promo-code/handle', [PromoCodeController::class,'handlePromoCode']
 use App\Http\Controllers\Api\BuyingController;
 Route::get('/buying/data', [BuyingController::class, 'getData'])->name('buying.data');
 Route::post('/buying/buy', [BuyingController::class,'buy'])->name('buying.buy');
+Route::post('/buying/handle-discount', [BuyingController::class, 'handleDiscount'])->name('buying.handle-discount');
 //Payment
 
 //Student Courses

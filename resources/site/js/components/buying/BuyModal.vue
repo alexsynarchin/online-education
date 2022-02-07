@@ -1,43 +1,77 @@
 <template>
         <el-dialog
-            title="Оформление заказа"
+            class="order-modal"
             :visible.sync="dialogVisible"
             :before-close="handleClose">
             <el-form :model="data" label-position="top" ref="form">
-                <h4>{{data.title}}</h4>
-                <div class="d-flex flex-wrap">
-                    <div style="margin-right: 20px; font-size: 19px; font-weight: 700">
-                        <label>Бонусный баланс:</label>
-                        {{data.promo_balance}}
+                <h3 class="order-modal__title">
+                    Оформить заказ
+                </h3>
+                <div class="order-modal__item">
+                    <figure class="order-modal__item-preview">
+                        <img :src="data.preview">
+                    </figure>
+                    <div class="order-modal__item-content">
+                        <h4 class="order-modal__item-title-1">{{data.title}}</h4>
+                        <h4 class="order-modal__item-title-2">{{data.edu_type_title}}</h4>
                     </div>
-
-                    <el-form-item class="col-md-5" :error="errors.get('name')">
-                        <el-input v-model="PromoCode.name" placeholder="Введите промокод"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button icon="el-icon-plus" type="primary" @click="addPromo">Пополнить</el-button>
-                    </el-form-item>
+                    <span class="order-modal__item-price">
+                        {{data.price}} ₽
+                    </span>
                 </div>
-                <div class="mb-4" style="font-size: 20px">
-                    <label>Сумма к оплате:</label> <span style="font-weight: 700">{{data.discount_price}} руб.</span>
-                    <el-button type="primary" @click="calculateDiscount">Использовать бонусный баланс</el-button>
+                <div class="order-modal__promo-heading">
+                    <label class="order-modal__promo-label">
+                        Списать бонусы:
+                    </label>
+                    <div class="order-modal__promo-balance">
+                        <label class="order-modal__promo-balance-label">
+                            Баланс:
+                        </label>
+                        <span class="order-modal__promo-balance-val">
+                            {{data.promo_balance}} бонусов
+                        </span>
+                    </div>
                 </div>
-                <el-button  type="primary" @click.prevent="payment">Оплатить</el-button>
-                <el-button  type="default" @click.prevent="closeModal">Отмена</el-button>
+                <div class="form-group order-modal__promo-form">
+                    <input placeholder="Сумма списания"
+                           class="form-control order-modal__promo-input"
+                           :class="{'is-invalid': errors.has('discount')}"
+                           v-model="discount"
+                           @input="calculateDiscount"
+                    ></input>
+                    <div class="invalid-feedback"  v-text="errors.get('discount')"></div>
+                </div>
+                <div class="order-modal__promo-descr">
+                    Есть сертификат? Введите его в <a href="/profile">личном кабинете</a>  и получите бонусы на счет
+                </div>
+                <div class="order-modal__sum">
+                   <label class="order-modal__sum-label">
+                       Сумма с учетом бонусов:
+                   </label>
+                    <span class="order-modal__sum-val">
+                         {{data.discount_price}} ₽
+                    </span>
+                </div>
+                <button class="btn button mb-4"  @click.prevent="payment">Оплатить</button>
             </el-form>
         </el-dialog>
 </template>
 <script>
 import EventBus from "../../EventBus";
 import { Errors } from  '@/common/js/services/errors.js';
+import Button from "./button";
     export default {
+        components: {Button},
         data() {
             return {
+                discount:"",
                 data: {
                     id: null,
                     type: '',
                     title:'',
                     price:0,
+                    edu_type_title:'',
+                    preview:'',
                     discount_price:0,
                     account_id:null,
                     promo_balance:0,
@@ -51,28 +85,19 @@ import { Errors } from  '@/common/js/services/errors.js';
         },
         methods: {
             calculateDiscount(){
-                if(this.data.discount_price !== 0) {
-                    if(this.data.price > this.data.promo_balance) {
-                        this.data.discount_price  = this.data.price - this.data.promo_balance;
-                        this.data.promo_balance = 0;
-                    } else {
-                        this.data.discount_price = 0;
-                        this.data.promo_balance  = this.data.promo_balance - this.data.price;
-                    }
+                let discount = this.discount;
+                if(this.discount === '') {
+                    discount = 0;
                 }
-
-            },
-
-            addPromo() {
-                axios.post('/api/promo-code/handle',{name:this.PromoCode.name, id:this.data.account_id})
-                    .then((response)=>{
-                        this.data.promo_balance = response.data;
-                        this.PromoCode.name = '';
-                        this.errors.clear();
-                    })
-                    .catch((error)=>{
-                        this.errors.record(error.response.data.errors)
-                    })
+                axios.post('/api/buying/handle-discount', {discount:discount, price:this.data.price, balance:this.data.promo_balance})
+                .then((response) => {
+                    this.errors.clear();
+                    this.data.discount_price = response.data.discount_price;
+                    this.data.promo_balance = response.data.promo_balance;
+                })
+                .catch((error) => {
+                    this.errors.record(error.response.data.errors);
+                })
             },
             getData(data) {
                 axios.get('/api/buying/data', {params:data})
@@ -82,6 +107,7 @@ import { Errors } from  '@/common/js/services/errors.js';
                     })
             },
             closeModal() {
+                this.discount = '';
                 this.errors.clear();
                 this.PromoCode.name="";
                 this.dialogVisible=false;

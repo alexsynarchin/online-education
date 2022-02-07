@@ -11956,7 +11956,7 @@ a {
   cursor: pointer !important;
   display: inline-block;
   position: relative;
-  padding: 0.6rem 1.2rem;
+  padding: 10px 30px;
   text-align: center;
   background-color: #6A89CC;
   border: none;
@@ -14250,4 +14250,98 @@ a {
 }
 .test-result-list__item-question {
   margin-left: 0.5rem;
+}
+
+.order-modal__title {
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 35px;
+}
+.order-modal .el-dialog {
+  width: 800px;
+  border-radius: 10px;
+}
+.order-modal .el-dialog__body {
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 55px;
+}
+.order-modal .el-dialog__headerbtn {
+  font-size: 25px;
+  top: 6px;
+  right: 15px;
+  color: rgba(201, 201, 201, 0.7);
+}
+.order-modal__item {
+  border-top: 1px solid rgba(39, 39, 39, 0.16);
+  border-bottom: 1px solid rgba(39, 39, 39, 0.16);
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.order-modal__item-preview {
+  margin-right: 54px;
+  margin-bottom: 0;
+  width: 82px;
+}
+.order-modal__item-title-1 {
+  margin-top: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.order-modal__item-title-2 {
+  color: rgba(39, 39, 39, 0.45);
+  font-weight: 500;
+  font-size: 16px;
+}
+.order-modal__item-price {
+  margin-left: auto;
+  font-size: 16px;
+  font-weight: 700;
+}
+.order-modal__promo-heading {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.order-modal__promo-label {
+  font-weight: bold;
+  font-size: 18px;
+}
+.order-modal__promo-balance {
+  font-size: 16px;
+  font-weight: 600;
+}
+.order-modal__promo-balance-label {
+  color: rgba(39, 39, 39, 0.5);
+}
+.order-modal__promo-balance-val {
+  color: #6a89cc;
+}
+.order-modal__promo-descr {
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+.order-modal__promo-descr a {
+  text-decoration: underline;
+  color: #6a89cc;
+}
+.order-modal__promo-form {
+  margin-bottom: 10px;
+}
+.order-modal__promo-input {
+  height: 55px;
+  background: #F6F6F6;
+}
+.order-modal__sum {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.order-modal__sum-val {
+  color: #6a89cc;
 }

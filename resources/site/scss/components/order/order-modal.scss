@@ -1,0 +1,98 @@
+.order-modal {
+    &__title {
+        font-weight: bold;
+        font-size: 28px;
+        margin-bottom: 35px;
+    }
+    .el-dialog {
+        width: 800px;
+        border-radius: 10px;
+    }
+    .el-dialog__body {
+        padding-right: 50px;
+        padding-left: 50px;
+        padding-bottom: 55px;
+    }
+    .el-dialog__headerbtn{
+        font-size: 25px;
+        top: 6px;
+        right: 15px;
+        color: rgba(201, 201, 201, 0.7);;
+    }
+    &__item {
+        border-top: 1px solid rgba(39, 39, 39, 0.16);
+        border-bottom:  1px solid rgba(39, 39, 39, 0.16);
+        padding: 15px 0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        &-preview {
+            margin-right: 54px;
+            margin-bottom: 0;
+            width: 82px;
+        }
+        &-title-1 {
+            margin-top: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        &-title-2 {
+            color: rgba(39, 39, 39, 0.45);
+            font-weight: 500;
+            font-size: 16px;
+
+        }
+        &-price {
+          margin-left: auto;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+    &__promo {
+        &-heading {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        &-label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+       &-balance {
+           font-size: 16px;
+           font-weight: 600;
+           &-label {
+           color:rgba(39, 39, 39, 0.5);
+           }
+           &-val {
+               color: $edu-primary;
+           }
+       }
+        &-descr {
+            color: rgba(39, 39, 39, 0.5);
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            a {
+                text-decoration: underline;
+                color: $edu-primary;
+            }
+        }
+        &-form {
+            margin-bottom: 10px;
+        }
+        &-input {
+            height: 55px;
+            background: #F6F6F6;
+        }
+    }
+    &__sum {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        &-val {
+            color: $edu-primary;
+        }
+    }
+}
