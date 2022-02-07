@@ -14,6 +14,7 @@ class OrderController extends Controller
 {
     public function success(Request $request)
     {
+        dd($request->all());
         $order = Order::findOrFail($request->get('InvId'));
         if($order->type === 'course') {
             $course = Course::findOrFail($order->buying_id);

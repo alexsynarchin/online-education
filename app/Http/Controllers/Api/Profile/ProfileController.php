@@ -19,4 +19,15 @@ class ProfileController extends Controller
         }
         return $account;
     }
+    public function sidebarBalance()
+    {
+        $balance = 0;
+        if(Auth::user() -> profile_type == 'teacher') {
+            $balance = Auth::user()->teacherAccount -> balance;
+        }
+        if(Auth::user() -> profile_type == 'student') {
+            $balance = Auth::user() -> studentAccount -> promo_balance;
+        }
+        return $balance;
+    }
 }

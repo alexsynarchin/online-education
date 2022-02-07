@@ -52,7 +52,7 @@
                          {{data.discount_price}} ₽
                     </span>
                 </div>
-                <button class="btn button mb-4"  @click.prevent="payment">Оплатить</button>
+                <button class="btn button"  @click.prevent="payment">Оплатить</button>
             </el-form>
         </el-dialog>
 </template>

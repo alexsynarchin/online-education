@@ -77,9 +77,10 @@
         </ul>
 
         <div class="my-count">
-            <span class="my-count__text">На счету:</span>
+            <span class="my-count__text" v-if="user.profile_type==='teacher'">На счету:</span>
+            <span class="my-count__text" v-if="user.profile_type==='student'">Бонусы:</span>
             <span class="my-count__check">{{balance}}</span>
-            <span class="my-count__ruble">руб</span>
+            <span class="my-count__ruble" v-if="user.profile_type==='teacher'">руб</span>
         </div>
     </aside>
 </div>
