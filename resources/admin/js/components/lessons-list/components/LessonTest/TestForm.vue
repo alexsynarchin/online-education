@@ -48,6 +48,7 @@
         </section>
         <el-dialog
             title="Новый вопрос"
+            append-to-body
             :visible.sync="questionModal"
             :fullscreen="true"
             center>
