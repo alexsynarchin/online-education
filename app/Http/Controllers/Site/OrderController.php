@@ -40,7 +40,7 @@ class OrderController extends Controller
             ]);
         }
         $teacher = $teacher -> teacherAccount;
-        $teacher->balance = $teacher->balance + $request->get('OutSum');
+        $teacher->balance = $teacher->balance + $price;
         $teacher->save();
         $teacher_id = $teacher -> id;
         $student = StudentAccount::findOrFail($order->student_id);
