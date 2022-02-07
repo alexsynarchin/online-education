@@ -16,7 +16,7 @@ class BuyingController extends Controller
         $student_account = \Auth::user()->studentAccount;
         if($request->get('type') === 'course') {
             $course = Course::findOrFail($request->get('id'));
-            $preview = $course->preview;
+            $preview = $course->image;
             $title = $course -> title;
             $price = $course->price;
             $id = $course->id;
@@ -25,7 +25,7 @@ class BuyingController extends Controller
         } else {
             $lesson = Lesson::findOrFail($request->get('id'));
             $title = $lesson -> title;
-            $preview = $lesson -> course -> preview;
+            $preview = $lesson -> course -> image;
             $edu_type_id = $lesson ->course -> edu_type_id;
             $price = $lesson->price? $lesson->price : $lesson->price_user;
             $id = $lesson->id;
