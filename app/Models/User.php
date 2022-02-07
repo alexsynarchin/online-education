@@ -151,4 +151,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Course::class, 'author_id');
     }
+
+    public function messages()
+    {
+        return $this -> morphMany(Message::class, 'messagable');
+    }
 }

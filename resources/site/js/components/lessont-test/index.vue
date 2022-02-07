@@ -1,6 +1,6 @@
 <template>
     <section class="lesson-test" v-if="loaded && tests.length > 0">
-        <button  class="button" @click="startTest">Пройти тест</button>
+        <button  class="button" style="margin-right: 20px" @click="startTest">Пройти тест</button>
         <el-dialog
             :visible.sync="dialogVisible"
             :fullscreen="true"

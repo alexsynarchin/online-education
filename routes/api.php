@@ -113,6 +113,16 @@ Route::get('/education/test/{id}', [StudentTestController::class, 'index'])->nam
 Route::post('/education/test/{id}/pass', [StudentTestController::class, 'pass'])->name('test-student.pass');
 
 
+// Chat controller
+use App\Http\Controllers\Api\Profile\ChatController;
+Route::get('/profile/chats',[ChatController::class, 'index']) ->name('chat.index');
+Route::post('/profile/chats/createOrGo', [ChatController::class, 'createOrGo']) -> name('chat.create-or-go');
+Route::get('/profile/chats/{id}',[ChatController::class, 'show'])->name('chat.show');
+Route::post('/profile/chats/{id}/send-message', [ChatController::class, 'sendMessage'])->name('chat.send-message');
+Route::get('/profile/chats/{id}/messages', [ChatController::class, 'messages'])->name('chat.messages');
+
+use App\Http\Controllers\Api\Profile\StudentLessonController;
+
 
 
 

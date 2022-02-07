@@ -3,6 +3,7 @@
 namespace App\Models\Lesson;
 
 use App\Models\Category\Course;
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -60,5 +61,10 @@ class Lesson extends Model
     public function students()
     {
         return $this->belongsToMany(User::class, 'student_lesson','lesson_id','student_id')->withTimestamps();
+    }
+
+    public function chat()
+    {
+        return $this->morphOne(Chat::class, 'chatable');
     }
 }

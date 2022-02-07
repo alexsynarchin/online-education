@@ -20,7 +20,7 @@ class StudentCourseController extends Controller
             $query->whereHas('students', function ($query) use ($student_id){
                 $query->where('student_id', $student_id);
             });
-        }]) -> get() ;
+        }]) -> get();
         return $courses;
     }
 }

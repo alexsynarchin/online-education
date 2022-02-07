@@ -39,6 +39,7 @@ Route::get('/profile/courses/{slug}/lesson/{lesson_slug}/edit', [DashboardContro
     -> name('profile.course.lesson.edit');
 Route::get('/profile/students' ,[DashboardController::class, 'index']) -> name('profile.students');
 Route::get('/profile/messages' ,[DashboardController::class, 'index']) -> name('profile.messages');
+Route::get('/profile/messages/{id}' ,[DashboardController::class, 'index']) -> name('profile.messages.show');
 Route::get('/profile/transactions' ,[DashboardController::class, 'index']) -> name('profile.transactions');
 Route::get('/profile/notifications' ,[DashboardController::class, 'index']) -> name('profile.notifications');
 
