@@ -1,13 +1,13 @@
 <template>
     <section class="lessons-list">
-        <lesson-item @handle-view="handleView" :index="index" :lesson="lesson" :key="lesson.id" v-for="(lesson, index) in lessons"></lesson-item>
+        <lesson-item @handle-view="handleView" :index="index" :lesson="lesson"
+                     :key="lesson.id" v-for="(lesson, index) in lessons"></lesson-item>
         <el-dialog
             :visible.sync="dialogVisible"
             width="80%"
             center>
-            <lesson-show :id="lesson_id" v-if="dialogVisible" @change-status="changeStatus"></lesson-show>
+            <lesson-show @close="closeModal" :id="lesson_id" v-if="dialogVisible" @change-status="changeStatus"></lesson-show>
             <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">Закрыть</el-button>
   </span>
         </el-dialog>
     </section>
@@ -33,6 +33,13 @@ import LessonShow from './show';
             }
         },
         methods: {
+            closeModal(title) {
+                this.dialogVisible=false;
+                if(title) {
+                    this.lessons[this.lesson_index].title =title;
+                }
+
+            },
             handleView(data) {
                 this.lesson_id = data.id;
                 this.lesson_index = data.index;

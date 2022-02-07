@@ -53,7 +53,7 @@
         },
         data() {
             return {
-                activeTab:'content',
+                activeTab:'description',
                 loaded:false,
                 course: {},
                 lesson: {},

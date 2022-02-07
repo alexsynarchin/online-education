@@ -12,28 +12,19 @@
             </div>
         </div>
 
-        <el-tabs type="card" >
-            <el-tab-pane label="Основная информация">
-                <div class="mb-2">
-                    <label>Стоимость урока:</label>
-                    <span>{{lesson.price}} руб.</span>
-                </div>
-                <div class="mb-2">
-                    <label>Стоимость урока, предложенная преподавателем:</label>
-                    <span>{{lesson.price_user}} руб.</span>
-                </div>
-                <div class="mb-2">
-                    <label style="font-weight: 700; font-size: 17px; margin-bottom: 15px;">Контент урока:</label>
-                    <div v-html="lesson.content.text"></div>
-                </div>
+        <el-tabs v-model="activeTab"  class="edu-tabs">
+            <el-tab-pane label="Основная информация" name="description">
+                <description-form :lesson="lesson"></description-form>
             </el-tab-pane>
-            <el-tab-pane label="Тест к уроку">
-                <test v-for="(test, index) in lesson.tests"
-                      :key="test.id"
-                      :test="test"
-                ></test>
+            <el-tab-pane label="Содержимое урока" name="content">
+                <content-form :data="lesson.content" v-if="loaded"></content-form>
+            </el-tab-pane>
+            <el-tab-pane label="Тест к уроку" name="test">
+                <test-form :data="test"   v-if="loaded"></test-form>
             </el-tab-pane>
         </el-tabs>
+        <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
+        <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
         <el-dialog title="Отклонить Урок" width="40%" :visible.sync="dialogCancel" append-to-body>
             <el-form :model="cancelForm" ref="cancelForm" :rules="rules_cancel">
                 <el-form-item label="Причина отклонения урока" prop="text">
@@ -54,7 +45,9 @@
 
 </template>
 <script>
-import Test from './components/test'
+import DescriptionForm from "./components/form";
+import ContentForm from "./components/ContentForm";
+import TestForm from "./components/LessonTest/TestForm";
     export default {
         props: {
           id: {
@@ -63,10 +56,13 @@ import Test from './components/test'
           }
         },
         components: {
-            Test,
+            DescriptionForm, ContentForm, TestForm,
         },
         data() {
             return {
+                activeTab:'description',
+                course: {},
+                test: {},
                 lesson: {},
                 loaded:false,
                 dialogCancel:false,
@@ -82,9 +78,20 @@ import Test from './components/test'
             getData() {
                 axios.get('/api/admin/lesson/show/' + this.id)
                 .then((response) => {
-                    this.lesson = response.data;
+                    this.course = response.data.course;
+                    this.lesson = response.data.lesson;
+                    this.test = response.data.test;
                     this.loaded = true;
                 })
+            },
+            canselUpdate() {
+                this.$emit('close');
+            },
+            updateLesson() {
+                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, test:this.test})
+                    .then((response) => {
+                        this.$emit('close', this.lesson.title);
+                    })
             },
             lessonChangeStatus(status) {
                 axios.post('/api/admin/lesson/change-status', {id:this.lesson.id, status:status})

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category\Course;
 use App\Models\Lesson\Lesson;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,11 @@ class LessonController extends Controller
 {
     public function show($id)
     {
-        $lesson = Lesson::with(['content', 'tests.questions.options']) -> findOrFail($id);
-        return $lesson;
+
+        $lesson = Lesson::with(['content'])-> findOrFail($id);
+        $course = Course::findOrFail($lesson->course_id);
+        $test = $lesson->tests() -> with('questions.options')->first();
+        return ['lesson' => $lesson, 'course' => $course, 'test' => $test];
     }
     public function changeStatus(Request $request)
     {
