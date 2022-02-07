@@ -14,10 +14,10 @@ class OrderController extends Controller
 {
     public function success(Request $request)
     {
-        dd($request->all());
         $order = Order::findOrFail($request->get('InvId'));
         if($order->type === 'course') {
             $course = Course::findOrFail($order->buying_id);
+            $price = $course->price;
             $lessons = $course->lessons()->get();
             foreach ($lessons as $lesson) {
                 $this->lessonToStudent($lesson, $order->student_id);
@@ -29,6 +29,7 @@ class OrderController extends Controller
             $teacher = User::findOrFail($course->author_id);
         } else {
             $lesson = Lesson::findOrFail($order->buying_id);
+            $price = $lesson->price? $lesson->price : $lesson->price_user;
             $this->lessonToStudent($lesson, $order->student_id);
             $teacher = User::findOrFail($lesson->user_id);
             $course = Course::findOrFail($lesson->course_id);
@@ -39,10 +40,14 @@ class OrderController extends Controller
             ]);
         }
         $teacher = $teacher -> teacherAccount;
-        $teacher->balance = $teacher->balance + $request->get('price');
+        $teacher->balance = $teacher->balance + $request->get('OutSum');
         $teacher->save();
         $teacher_id = $teacher -> id;
         $student = StudentAccount::findOrFail($order->student_id);
+        if($price > $request->get('OutSum')) {
+            $student->promo_balance = $student -> promo_balance - ($price - $request->get('OutSum'));
+            $student -> save();
+        }
         if(!$student->teachers()->where('student_id', $student->id)->exists()) {
             $student->teachers()->attach($teacher_id);
         }
