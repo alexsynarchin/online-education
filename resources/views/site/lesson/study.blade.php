@@ -47,3 +47,11 @@
         </div>
 
 @endsection
+@section('scripts')
+<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=ae937f4d0688ad66c46a55"></script>
+<script>
+    document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+        iframely.load( element, element.attributes.url.value );
+    } );
+</script>
+@endsection
