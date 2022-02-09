@@ -21,11 +21,15 @@ class StudentTestController extends Controller
         //dd($now->addHours($test->repeat_period));
         $test_result = $test ->results() ->where('user_id', \Auth::user()->id)->first();
         //dd($test_result->updated_at->addHours($test->repeat_period));
-        if($test_result->updated_at->addHours($test->repeat_period) < Carbon::now()) {
-           $can_test = true;
-        } else {
-            $can_test = false;
+        $can_test = true;
+        if($test_result) {
+            if($test_result->updated_at->addHours($test->repeat_period) < Carbon::now()) {
+                $can_test = true;
+            } else {
+                $can_test = false;
+            }
         }
+
         return ['test' => $test, 'can_test' => $can_test];
     }
     public function pass(Request $request, $id)
