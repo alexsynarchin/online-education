@@ -93,7 +93,7 @@
                 .then((response) => {
                     this.test = response.data.test;
                     this.can_test = response.data.can_test
-                    if(this.test.passed) {
+                    if(response.data.test.passed) {
                         this.getResult();
                     }
                     this.loaded =true;
