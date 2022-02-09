@@ -110,6 +110,7 @@ Route::get('/education', [StudentCourseController::class,'index'])->name('studen
 // Student Test Controller
 use App\Http\Controllers\Api\Profile\StudentTestController;
 Route::get('/education/test/{id}', [StudentTestController::class, 'index'])->name('student-test.index');
+Route::get('/education/test/{id}/result', [StudentTestController::class, 'result'])->name('student-test.result');
 Route::post('/education/test/{id}/pass', [StudentTestController::class, 'pass'])->name('test-student.pass');
 
 
