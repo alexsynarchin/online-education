@@ -14347,12 +14347,13 @@ a {
 }
 
 .message-files {
+  margin-top: 15px;
   list-style-type: none;
   margin-left: 0;
   padding-left: 0;
 }
 .message-files__item {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 .message-files__link {
   color: #67C23A;
