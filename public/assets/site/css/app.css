@@ -14345,3 +14345,19 @@ a {
 .order-modal__sum-val {
   color: #6a89cc;
 }
+
+.message-files {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.message-files__item {
+  margin-bottom: 15px;
+}
+.message-files__link {
+  color: #67C23A;
+  text-decoration: none;
+}
+.message-files__link:hover, .message-files__link:focus {
+  color: #67C23A;
+}

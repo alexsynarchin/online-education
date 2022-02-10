@@ -53,5 +53,7 @@
         "vue-template-compiler": "^2.6.14",
         "vue-the-mask": "^0.11.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "obj2fd": "^1.0.6"
+    }
 }

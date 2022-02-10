@@ -55,7 +55,12 @@ return [
             'url'        => env('APP_URL') . '/storage/courses',
             'visibility' => 'public'
         ],
-
+        'message' => [
+            'driver' =>'local',
+            'root' => storage_path('app/public/messages'),
+            'url'        => env('APP_URL') . '/storage/messages',
+            'visibility' => 'public'
+        ],
         'question' => [
             'driver' =>'local',
             'root' => storage_path('app/public/questions'),

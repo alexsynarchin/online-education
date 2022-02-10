@@ -17,6 +17,17 @@
                             {{message.text}}
                         </p>
                     </div>
+                    <ul class="message-files">
+                        <li class="message-files__item" v-for="file in message.files">
+                            <a class="message-files__link" :href="file.url" download>
+                                <i class="el-icon-document"></i>
+                                {{file.name}}
+                                <i class="el-icon-download"></i>
+
+                            </a>
+
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -29,19 +40,37 @@
                     v-model="sendMsg.text">
                 </el-input>
             </el-form-item>
+            <el-upload
+                v-if="loaded"
+                style="max-width:400px; margin-bottom: 10px"
+                class="upload-demo"
+                action=""
+                :auto-upload="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-change="uploadFile"
+                multiple
+                >
+                <el-button size="small" type="primary">Загрузить файлы</el-button>
+                <div slot="tip" class="el-upload__tip">размер файла меньше 5 мегабайт</div>
+            </el-upload>
+
             <el-button type="success" @click.prevent="sendMessage('sendMsg')">Отправить</el-button>
         </el-form>
 
     </section>
 </template>
 <script>
+    import obj2fd from "obj2fd";
     export default {
         props:['chat'],
         data(){
             return {
                 sendMsg:{
-                    text:""
+                    text:"",
+                    files:[],
                 },
+                loaded:true,
                 messages:[],
                 rules:{
                     text:{required:true,message:'Введите текст сообщения'}
@@ -52,6 +81,31 @@
             this.getMessages();
         },
         methods:{
+            handleRemove(file, fileList) {
+             this.sendMsg.files.splice(this.sendMsg.files.indexOf(file), 1);
+            },
+            handlePreview(file) {
+                console.log(file);
+            },
+            beforeUpload(file) {
+                const isLt5M = file.size / 1024 / 1024 < 5;
+                if (!isLt5M) {
+                    this.$message.error('Размер файла не может быть больше 5 мегабайт');
+                }
+                return isLt5M;
+            },
+            uploadFile(file) {
+                let cond = this.beforeUpload(file.raw);
+                if(cond) {
+                    this.createFile(file);
+                }
+            },
+            createFile(file) {
+                let item =  {
+                    file:file.raw
+                }
+                this.sendMsg.files.push(item);
+            },
             getMessages()
             {
                 axios.get('/api/profile/chats/'+ this.chat.id + '/messages')
@@ -63,13 +117,23 @@
                     })
             },
             sendMessage(formName){
+                let formData = obj2fd(this.sendMsg);
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        axios.post('/api/profile/chats/' + this.chat.id + '/send-message',{message:this.sendMsg.text})
+                        this.loaded = false;
+
+                        console.log(formData);
+                        axios.post('/api/profile/chats/' + this.chat.id + '/send-message',formData, {headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        })
                             .then((response)=>{
                                 this.$refs[formName].resetFields();
+                                this.sendMsg.files = [];
                                 console.log(response.data)
                                 this.getMessages();
+
+                                this.loaded = true;
                             })
                             .catch((error)=>{
 

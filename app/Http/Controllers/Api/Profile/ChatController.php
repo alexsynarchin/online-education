@@ -57,8 +57,14 @@ class ChatController extends Controller
         $user = \Auth::user();
         $message = $user->messages()->create([
             'chat_id' => $id,
-            'text' => $request -> get('message')
+            'text' => $request -> get('text')
         ]);
+        if($request->file('files')) {
+
+            foreach ($request->file('files') as $key => $file) {
+                $message ->addMedia($request->file('files')[$key]['file'])->toMediaCollection('messages');
+            }
+        }
         return 'Сообщение успешно отправлено';
     }
     public function messages($id)

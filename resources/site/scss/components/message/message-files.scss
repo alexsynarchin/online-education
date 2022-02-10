@@ -1,0 +1,15 @@
+.message-files {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    &__item {
+        margin-bottom: 15px;
+    }
+    &__link {
+        color: #67C23A;
+        text-decoration: none;
+        &:hover, &:focus {
+            color: #67C23A;
+        }
+    }
+}
