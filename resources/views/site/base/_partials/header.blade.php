@@ -5,7 +5,7 @@
             <div class="page-header-top__right">
                 <ul class="page-header-top-nav__list">
                     <li class="page-header-top-nav__item">
-                        <a class="page-header-top-nav__link header-top-nav__link--icon" href="/faq">
+                        <a class="page-header-top-nav__link header-top-nav__link--icon" href="{!! Config::get('settings.faq_link') !!}">
                             <svg class="page-header-top-nav__icon">
                                 <use xlink:href="{{URL::asset('images/sprite.svg#help')}}"></use>
                             </svg>
@@ -18,7 +18,7 @@
                         <use xlink:href="{{URL::asset('images/sprites.svg#sprite-phone_icon')}}"></use>
                     </svg>
                     <span>
-                        8 800 555 35 35
+                        {!! Config::get('settings.phone_header') !!}
                     </span>
                 </div>
             </div>

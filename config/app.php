@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\SettingServiceProvider::class,
     ],
 
     /*

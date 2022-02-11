@@ -9,6 +9,7 @@ import AdminTeachers from './views/teacher/index'
 import AdminModerators from './views/moderator/index';
 import AdminWithdraws from './views/withdraw/index';
 import AdminPromoCodes from './views/promo/index';
+import Settings from "./views/settings";
 Vue.use(VueRouter);
 let routes = [
     { name: 'home', path: '/admin', component: AdminHome},
@@ -20,6 +21,7 @@ let routes = [
     { name: 'moderators', path: '/admin/moderators', component: AdminModerators},
     { name: 'withdraws', path: '/admin/withdraws', component: AdminWithdraws},
     { name: 'promo-codes', path: '/admin/promo-codes', component: AdminPromoCodes},
+    { name: 'settings', path: '/admin/settings', component: Settings},
 ];
 export default new VueRouter({
     mode: 'history',

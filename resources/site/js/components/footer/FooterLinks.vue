@@ -47,7 +47,6 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
 .b-footer-links__item
     display block
     margin-bottom 20px
-    font-family "RobotoRegular", sans-serif
     font-size rem(14px)
     font-weight 200
     color #3D3D3D

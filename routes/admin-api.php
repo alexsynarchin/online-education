@@ -43,3 +43,7 @@ use App\Http\Controllers\Admin\Api\PromoCodeController;
 Route::post('/promo-code/store', [PromoCodeController::class, 'store'])->name('promo-code.store');
 Route::get('/promo-code/list', [PromoCodeController::class, 'getList'])->name('promo-code.list');
 
+use App\Http\Controllers\Admin\Api\SettingController;
+Route::get('/setting/common/get', [SettingController::class, 'getCommon'])->name('setting.get-common');
+Route::post('/setting/common-update', [SettingController::class, 'updateCommon'])->name('setting.update-common');
+

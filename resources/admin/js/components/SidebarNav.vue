@@ -65,6 +65,11 @@ export default {
                     title:"Промокоды",
                     icon:"el-icon-magic-stick"
                 },
+                {
+                    id:"/admin/settings",
+                    title:"Настройки",
+                    icon:"el-icon-setting"
+                },
             ]
         }
     }
