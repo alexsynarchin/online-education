@@ -54,6 +54,7 @@
         "vue-the-mask": "^0.11.1"
     },
     "dependencies": {
-        "obj2fd": "^1.0.6"
+        "obj2fd": "^1.0.6",
+        "vuedraggable": "^2.24.3"
     }
 }

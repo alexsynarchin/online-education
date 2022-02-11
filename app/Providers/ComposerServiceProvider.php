@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category\CategoryType;
+use App\Models\Menu;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
 use View;
@@ -60,6 +61,11 @@ class ComposerServiceProvider extends ServiceProvider
             ];
 
             $view->with(['filter' => $filter]);
+        });
+
+        View::composer('site.base.header.top-nav', function($view){
+            $top_nav = Menu::where('position', 'header-top')->orderBy('menuindex')->get();
+            $view->with(['top_nav' => $top_nav]);
         });
     }
 }

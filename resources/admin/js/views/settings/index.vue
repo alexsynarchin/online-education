@@ -3,18 +3,21 @@
         <el-tab-pane label="Общие" name="common">
             <common></common>
         </el-tab-pane>
-
+        <el-tab-pane label="Навигация" name="navigation">
+            <navigation></navigation>
+        </el-tab-pane>
     </el-tabs>
 </template>
 <script>
 import common from "./components/common";
+import navigation from './components/navigation';
     export default {
         components:{
-            common,
+            common, navigation
         },
         data() {
             return {
-                activeTab: 'common'
+                activeTab: 'navigation'
             };
         },
         methods: {

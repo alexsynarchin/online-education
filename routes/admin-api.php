@@ -47,3 +47,9 @@ use App\Http\Controllers\Admin\Api\SettingController;
 Route::get('/setting/common/get', [SettingController::class, 'getCommon'])->name('setting.get-common');
 Route::post('/setting/common-update', [SettingController::class, 'updateCommon'])->name('setting.update-common');
 
+use App\Http\Controllers\Admin\Api\MenuController;
+Route::post('/menu/store',[MenuController::class, 'store'])->name('menu.store');
+Route::post('/menu/{id}/update', [MenuController::class, 'update'])->name('menu.update');
+Route::post('/menu/{id}/remove',[MenuController::class, 'remove'])->name('menu.remove');
+Route::get('/menu/get/{position}',[MenuController::class, 'list'])->name('menu.list');
+

@@ -14,7 +14,7 @@ Vue.use(VueRouter);
 let routes = [
     { name: 'home', path: '/admin', component: AdminHome},
     { name: 'course-item', path: '/admin/courses/:id', component: CourseItem, props: true},
-    { name: 'course-item', path: '/admin/courses/:slug/edit', component: CourseEdit, props: true},
+    { name: 'course-edit', path: '/admin/courses/:slug/edit', component: CourseEdit, props: true},
     { name: 'category-types', path: '/admin/categories', component: CategoryType},
     { name: 'students', path: '/admin/students', component: AdminStudents},
     { name: 'teachers', path: '/admin/teachers', component: AdminTeachers},
