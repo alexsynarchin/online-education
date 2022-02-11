@@ -12,7 +12,7 @@
                 Поддержка
             </a>
             <a class="b-footer-links__item" :href="email">{{ email }}</a>
-            <a class="b-footer-links__item" :href="footer_phone">{{ footer_phone }}</a>
+            <a class="b-footer-links__item" :href="phone_footer">{{ phone_footer }}</a>
         </div>
     </div>
 </template>
@@ -29,7 +29,7 @@ export default {
         email: {
             required:true,
         },
-        footer_phone: {
+        phone_footer: {
             required:true,
         },
     },

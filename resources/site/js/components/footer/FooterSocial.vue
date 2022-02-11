@@ -13,21 +13,24 @@
 
 <script>
 export default {
+    props:[
+        'instagram_link','vk_link','facebook_link'
+    ],
     data () {
         return {
             socialLinks: [
                 {
-                    href: 'instagram',
+                    href: this.instagram_link,
                     src: ('/images/instagram.svg'),
                     alt: 'instagram'
                 },
                 {
-                    href: 'vk',
+                    href: this.vk_link,
                     src: '/images/vk_verni_stenu.svg',
                     alt: 'vk'
                 },
                 {
-                    href: 'facebook',
+                    href: this.facebook_link,
                     src: ('/images/facebook.svg'),
                     alt: 'facebook'
                 }
