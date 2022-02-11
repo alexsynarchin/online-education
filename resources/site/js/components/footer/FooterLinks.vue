@@ -1,28 +1,41 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-2">
         <div class="b-footer-links">
-            <a class="b-footer-links__item b-footer-links__item--legal-info" :href="legalLink">
+
+            <a class="b-footer-links__item b-footer-links__item--legal-info" :href="justice_link">
                 Юридическая информация
             </a>
-            <a class="b-footer-links__item b-footer-links__item--legal-info" href="/faq">
+            <a class="b-footer-links__item b-footer-links__item--legal-info" :href="faq_link">
                 <svg class="page-header-top-nav__icon">
                     <use xlink:href="/images/sprite.svg#help"></use>
                 </svg>
                 Поддержка
             </a>
-            <a class="b-footer-links__item" :href="mainMail">{{ mainMail }}</a>
-            <a class="b-footer-links__item" :href="mainPhone">{{ mainPhone }}</a>
+            <a class="b-footer-links__item" :href="email">{{ email }}</a>
+            <a class="b-footer-links__item" :href="footer_phone">{{ footer_phone }}</a>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        justice_link: {
+            required:true,
+        },
+        faq_link: {
+            required:true,
+        },
+        email: {
+            required:true,
+        },
+        footer_phone: {
+            required:true,
+        },
+    },
     data () {
         return {
-            legalLink: '/legallink',
-            mainMail: 'mail@domains.com',
-            mainPhone: '8 (800) 500-82-64'
+
         }
     }
 }
