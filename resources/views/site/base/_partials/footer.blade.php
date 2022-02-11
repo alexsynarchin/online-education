@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <footer-logo></footer-logo>
-            <footer-menu></footer-menu>
+            <footer-menu :menu="{{json_encode($footer_nav)}}" ></footer-menu>
             <footer-social
                 :instagram_link="{{json_encode(Config::get('settings.instagram_link'))}}"
                 :vk_link="{{json_encode(Config::get('settings.vk_link'))}}"

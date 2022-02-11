@@ -67,5 +67,10 @@ class ComposerServiceProvider extends ServiceProvider
             $top_nav = Menu::where('position', 'header-top')->orderBy('menuindex')->get();
             $view->with(['top_nav' => $top_nav]);
         });
+
+        View::composer('site.base._partials.footer', function($view){
+            $footer_nav = Menu::where('position', 'footer')->orderBy('menuindex')->get();
+            $view->with(['footer_nav' => $footer_nav]);
+        });
     }
 }

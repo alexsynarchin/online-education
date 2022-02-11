@@ -2,7 +2,7 @@
     <div class="col-lg-6">
         <nav class="b-footer-nav">
             <ul class="b-footer-menu">
-                <li class="b-footer-menu-nav__item b-footer-menu-nav__item--hover"  v-for="(menuLinkItem, index) in footerMenuItemsOne" :key="index">
+                <li class="b-footer-menu-nav__item b-footer-menu-nav__item--hover"  v-for="(menuLinkItem, index) in menu" :key="index">
                     <a class="b-footer-menu-nav__item_link" :href="menuLinkItem.link">{{ menuLinkItem.title }}</a>
                 </li>
             </ul>
@@ -13,6 +13,11 @@
 
 <script>
 export default {
+    props:{
+        menu:{
+            type:Array,
+        }
+    },
     data () {
         return {
             footerMenuItemsOne: [
