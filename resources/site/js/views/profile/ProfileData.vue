@@ -228,7 +228,7 @@
             uploadImage(file){
                 let cond = this.beforeImageUpload(file.raw);
                 console.log(cond);
-                this.user['imageName'] = file.raw.name;
+                this.formData['imageName'] = file.raw.name;
                 if(cond){
                     this.createImage(file);
                 }
@@ -249,9 +249,10 @@
                 let reader = new FileReader();
                 let vm = this;
                 reader.onload = (e) => {
-                    vm.user.avatar = e.target.result;
+                    vm.formData.avatar = e.target.result;
                 };
                 reader.readAsDataURL(file.raw);
+                this.formSubmit();
             },
         },
         async mounted() {

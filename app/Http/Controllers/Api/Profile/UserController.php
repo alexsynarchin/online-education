@@ -32,6 +32,10 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user ->update($request->except('teacher_account', 'student_account', 'edu_institutions'));
+        if($request -> has('imageName')) {
+            $user ->addMediaFromBase64($request->get('avatar'))
+                ->toMediaCollection('users');
+        }
         if($request->has('edu_institutions')) {
             $edu_institutions_ids=[];
             foreach ($request->get('edu_institutions') as $item) {
