@@ -63,7 +63,7 @@
                                 <el-radio label="2" border>Мужской</el-radio>
                             </el-radio-group>
                         </el-form-item>
-                        <span class="profile-data-item__value" v-else>{{formData.gender_string}}</span>
+                        <span class="profile-data-item__value" v-else>{{user.gender_string}}</span>
 
                     </div>
                     <div class="profile-data-body__item profile-data-item">

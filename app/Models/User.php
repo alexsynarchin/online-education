@@ -65,9 +65,9 @@ class User extends Authenticatable implements HasMedia
         'notifications' => 'boolean',
     ];
     public function getGenderStringAttribute() {
-        if(isset($this->attributes['gender'])){
-            $gender = $this->attributes['gender'];
-            if($gender === 1) {
+        if(isset($this->gender)){
+            $gender = $this->gender;
+            if($gender == 1) {
                 $genderString = 'Женский';
             } else {
                 $genderString = 'Мужской';
