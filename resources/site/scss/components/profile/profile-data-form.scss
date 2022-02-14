@@ -1,0 +1,20 @@
+.profile-data-form {
+    .el-form-item {
+        margin-bottom: 0;
+    }
+    &__fullname {
+        display: flex;
+        margin-bottom: 22px;
+        .el-form-item {
+            &:first-child {
+                margin-right: 15px;
+            }
+        }
+    }
+    .el-input__inner {
+        border-radius: 0;
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+    }
+}

@@ -30,6 +30,7 @@
 @import "components/breadcrumb";
 @import "components/button";
 @import "components/avatar-uploader";
+@import "components/step-progressbar";
 //Form
 @import "components/form/form-checkbox";
 //Search
@@ -63,7 +64,8 @@
 //Profile
 @import "components/profile/profile-data";
 @import "components/profile/add-promo-modal";
-@import "components/step-progressbar";
+
+@import "components/profile/profile-data-form";
 @import "components/profile/work-places";
 
 //Question

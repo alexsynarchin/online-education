@@ -11,7 +11,9 @@
         <h1 class="b-profile-user__title">Мой профиль<span v-if="editing">: редактирование</span></h1>
     <!--<edit-profile v-if="editing " :user="user" @update-user="update" @changeEmail="changeEmail" @cancelEdit="cancelEdit" ></edit-profile>
     <view-profile v-else :user="user"  @handleEdit="handleEdit"></view-profile>-->
-        <profile-data :user="user"></profile-data>
+        <profile-data v-bind:user="user"
+                      @update-user="update"
+        ></profile-data>
         <el-dialog
             :title=" email_modal_title"
             :visible.sync="email_modal"
@@ -100,7 +102,6 @@ export default {
             },
             email_modal:false,
             profile_modal:false,
-            editing:false,
             errors: new Errors(),
         }
     },
@@ -121,8 +122,6 @@ export default {
             });
         },
         update() {
-            console.log('success');
-            this.editing = false;
             this.loading = false;
             this.getUser();
         },

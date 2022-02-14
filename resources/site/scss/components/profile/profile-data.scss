@@ -63,13 +63,10 @@
     margin-bottom: 25px;
     margin-top: 25px;
 }
-.profile-data-body {
-    &__item {
-        display: flex;
 
-    }
-}
 .profile-data-item {
+    display: flex;
+    align-items: center;
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 15px;
@@ -120,7 +117,7 @@
         color:#6A89CC;
     }
     &__content {
-        padding: 15px 12px;
+        padding: 12px;
     }
 }
 

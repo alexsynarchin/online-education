@@ -101,6 +101,7 @@
                     <div class="profile-data-body__item">
                         <span class="profile-data-text__left">E-mail</span>
                         <span class="profile-data-text__right">{{user.email}}</span>
+                        <el-button @click.prevent="changeEmail">Изменить эл. почту</el-button>
                     </div>
                     <div class="profile-data-body__item">
                         <span class="profile-data-text__left">Телефон</span>
