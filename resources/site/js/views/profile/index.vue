@@ -8,9 +8,8 @@
                 Профиль пользователя
             </li>
         </ul>
-        <h1 class="b-profile-user__title">Мой профиль<span v-if="editing">: редактирование</span></h1>
-    <!--<edit-profile v-if="editing " :user="user" @update-user="update" @changeEmail="changeEmail" @cancelEdit="cancelEdit" ></edit-profile>
-    <view-profile v-else :user="user"  @handleEdit="handleEdit"></view-profile>-->
+        <h1 class="b-profile-user__title">Мой профиль</h1>
+
         <profile-data v-bind:user="user"
                       @update-user="update"
         ></profile-data>
@@ -128,9 +127,7 @@ export default {
         changeEmail() {
             this.email_modal = true;
         },
-        cancelEdit() {
-            this.editing = false;
-        },
+
         selectProfileType(formName) {
             this.$refs[formName].validate((valid) => {
                if(valid) {
@@ -146,9 +143,7 @@ export default {
                }
             });
         },
-        handleEdit() {
-            this.editing = true;
-        },
+
             getUser() {
             axios.get('/api/profile/user/show')
                 .then((response) => {

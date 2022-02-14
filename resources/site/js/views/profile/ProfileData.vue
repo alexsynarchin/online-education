@@ -16,7 +16,10 @@
                     <label class="profile-data-notifications__label">
                         Уведомления
                     </label>
-                    <el-switch v-model="formData.notifications" class="profile-data-notifications__switch">
+                    <el-switch
+                        v-model="formData.notifications"
+                        @change="formSubmit"
+                        class="profile-data-notifications__switch">
                     </el-switch>
                 </div>
 

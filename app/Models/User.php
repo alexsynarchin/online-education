@@ -35,7 +35,8 @@ class User extends Authenticatable implements HasMedia
         'birthday',
         'phone',
         'gender',
-        'city'
+        'city',
+        'notifications'
     ];
 
 
@@ -61,6 +62,7 @@ class User extends Authenticatable implements HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
         'birthday' => 'date',
+        'notifications' => 'boolean',
     ];
     public function getGenderStringAttribute() {
         if(isset($this->attributes['gender'])){
