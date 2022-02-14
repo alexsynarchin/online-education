@@ -30,4 +30,8 @@ class MenuController extends Controller
         $menuItem ->delete();
         return 'success';
     }
+
+    public function sort() {
+
+    }
 }

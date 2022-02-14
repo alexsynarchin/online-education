@@ -13,7 +13,7 @@
     transition: all 0.25s ease;
     overflow: hidden;
     z-index: 2;
-    &:hover, & :focus {
+    &:hover, &:focus {
         box-shadow: none;
     }
     &:hover{
@@ -76,7 +76,12 @@
         cursor: not-allowed !important;
         color: rgba(255,255,255,0.7);
     }
+    &--transparent {
+        color: #6A89CC;
+        background-color: transparent;
+        border: 1px solid #6A89CC;
 
+    }
 }
 .el-button{
     &:hover{

@@ -8,9 +8,10 @@
                 Профиль пользователя
             </li>
         </ul>
-    <h1 class="b-profile-user__title">Мой профиль<span v-if="editing">: редактирование</span></h1>
-    <edit-profile v-if="editing " :user="user" @update-user="update" @changeEmail="changeEmail" @cancelEdit="cancelEdit" ></edit-profile>
-    <view-profile v-else :user="user"  @handleEdit="handleEdit"></view-profile>
+        <h1 class="b-profile-user__title">Мой профиль<span v-if="editing">: редактирование</span></h1>
+    <!--<edit-profile v-if="editing " :user="user" @update-user="update" @changeEmail="changeEmail" @cancelEdit="cancelEdit" ></edit-profile>
+    <view-profile v-else :user="user"  @handleEdit="handleEdit"></view-profile>-->
+        <profile-data :user="user"></profile-data>
         <el-dialog
             :title=" email_modal_title"
             :visible.sync="email_modal"
@@ -49,6 +50,7 @@
 import { Errors } from  '@/common/js/services/errors.js';
 import EditProfile from "./EditProfile";
 import ViewProfile from "./ViewProfile";
+import ProfileData from "./ProfileData";
 export default {
     computed:{
 
@@ -73,6 +75,7 @@ export default {
     components: {
         'EditProfile':EditProfile,
         'ViewProfile':ViewProfile,
+        ProfileData,
     },
 
     data(){
@@ -182,6 +185,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
     margin-top 20px
     font-family 'Raleway', sans-serif
     font-size rem(36px)
+    margin-bottom:25px
     font-weight 700
     color #4B4B4B
     +below(md)

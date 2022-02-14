@@ -4,6 +4,7 @@
             <div slot="header">
                 <h5 class="mb-0">{{menu.title}}</h5>
             </div>
+            {{menu}}
             <draggable v-model="menu.items"  tag="ul" class="building-option-item__values-list" @end="endSort" handle=".building-option-value-item__handle">
                 <menu-item
                     :key="menu.id"

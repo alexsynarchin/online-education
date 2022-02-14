@@ -36,7 +36,7 @@
 @import "components/search/search-autocomplete";
 @import "components/search/search";
 //profile user
-@import "components/user-profile";
+@import "components/profile/user-profile";
 @import "components/profile/profile-user-form";
 
 //auth
@@ -62,6 +62,7 @@
 
 //Profile
 @import "components/profile/profile-data";
+@import "components/profile/add-promo-modal";
 @import "components/step-progressbar";
 @import "components/profile/work-places";
 

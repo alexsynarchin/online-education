@@ -1,27 +1,33 @@
 <template>
     <el-dialog
-        title="Введите промокод"
         :visible.sync="promoModal"
-        width="30%"
         :before-close="closeModal"
+        class="add-promo-modal"
     >
-    <el-form :model="PromoCode" label-position="top" :rules="rules" ref="PromoCode" class="mb-3">
-        <el-form-item label="Промокод" prop="text" :error="errors.get('name')">
+        <h3 class="add-promo-modal__title">
+            Промокоды
+        </h3>
+    <el-form  :model="PromoCode" label-position="top" :rules="rules" ref="PromoCode" class="add-promo-modal__form">
+        <el-form-item  prop="text" class="add-promo-modal__form-item" :error="errors.get('name')">
             <el-input
+                placeholder="Введите промокод для зачисления бонусов"
+                class="add-promo-modal__input"
                 v-model="PromoCode.name">
             </el-input>
         </el-form-item>
-        <div class="d-flex justify-content-center">
-            <el-button type="success" @click.prevent="AddPromo('PromoCode')" >Ввести</el-button>
-            <el-button @click.prevent="closeModal">Отменить</el-button>
-        </div>
+        <el-form-item>
+            <button class="btn button" @click.prevent="AddPromo('PromoCode')" >Активировать промокод</button>
+        </el-form-item>
+
 
     </el-form>
     </el-dialog>
 </template>
 <script>
 import { Errors } from  '@/common/js/services/errors.js';
+import Button from "../../components/buying/button";
     export default {
+        components: {Button},
         props:{
             promoModal: {
                 type:Boolean,

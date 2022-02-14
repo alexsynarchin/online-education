@@ -1,0 +1,168 @@
+
+
+.b-profile-user__title{
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #4B4B4B;
+    @include media-breakpoint-down(md){
+        font-size: 26px;
+    }
+}
+.profile-user{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0px;
+    padding: 30px 20px;
+    border: 1px dashed #99AEDB;
+    border-radius: 5px;
+    @include media-breakpoint-down(md){
+        flex-direction: column;
+    }
+}
+.profile-user-avatar{
+    width: 30%;
+    @include media-breakpoint-down(lg){
+        width: auto;
+        margin-bottom: 10px;
+    }
+    &__content{
+        display: flex;
+        align-items: center;
+    }
+    &__img{
+        margin-right: 15px;
+        border-radius: 50%;
+        width: 82px;
+        height: 82px;
+    }
+    &__fullname{
+        font: 400 rem(16px) "RobotoMedium", sans-serif;
+        color: #4B4B4B;
+    }
+
+
+}
+.profile-user-edit{
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
+    &__icon{
+        width:  15px;
+        height: 15px;
+        margin-right: 10px;
+        fill: #99AEDB;
+    }
+    &__text{
+        font: 400 rem(14px) "RobotoItalic", sans-serif;
+        text-decoration: underline;
+        color: #4B4B4B;
+    }
+}
+.profile-user-transac{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 0px 15px 0px;
+
+}
+
+
+.profile-user-count{
+    display: flex;
+    align-items: center;
+    &__icon{
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+        fill: #99AEDB;
+    }
+
+}
+
+.profile-user-text{
+    margin-right: 5px;
+    color: #4B4B4B;
+    &__score,&__currency{
+        margin-right: 5px;
+        font: 400 14px "RobotoMedium", sans-serif;
+    }
+
+}
+.profile-user-withdraw{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    &__icon{
+        width:  15px;
+        height: 15px;
+        margin-right: 10px;
+        fill: #99AEDB;
+    }
+
+    &__text{
+        font: 400 14px "RobotoItalic", sans-serif;
+        text-decoration: underline;
+        color: #4B4B4B;
+    }
+
+}
+.file-upload{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-user-questation:hover .profile-user-questation__popup{
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+
+.profile-user-questation{
+    position: relative;
+    &__icon{
+        position: relative;
+        top: -8px;
+        width:  15px;
+        height: 15px;
+        cursor: pointer;
+    }
+    &__popup{
+        position: absolute;
+        top: -80px;
+        left: -100px;
+        width: 350px;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #6A89CC;
+        font: 400 14px "RobotoRegular", sans-serif;
+        color: #fff;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all .35s ease;
+        @include media-breakpoint-down(md){
+            width: 280px;
+            top: -100px;
+            left: -100px;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            bottom: -19px;
+            left: 98px;
+            width:  10px;
+            height: 10px;
+            border: 10px solid transparent;
+            border-top: 10px solid #6A89CC
+        }
+
+    }
+}
+
+
+
+

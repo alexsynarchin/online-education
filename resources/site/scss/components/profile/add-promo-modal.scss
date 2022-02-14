@@ -1,0 +1,30 @@
+.add-promo-modal {
+     &__form {
+        display: flex;
+     }
+    &__form-item {
+        flex: 1;
+
+    }
+    &__input {
+        .el-input__inner {
+            height: 44px;
+            background-color: #F6F6F6;
+            border-color: #F6F6F6;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            &:focus {
+                border-color: #F6F6F6;
+            }
+            &::placeholder {
+                font-size: 16px;
+                color: rgba(39, 39, 39, 0.5);
+            }
+        }
+    }
+    &__title {
+        font-weight: 700;
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+}
