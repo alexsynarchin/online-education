@@ -1,6 +1,6 @@
 <template>
   <section class="mb-4">
-    <h4>Мы помогаем</h4>
+    <h4>Список приемуществ</h4>
     <el-button class="mb-4" icon="el-icon-plus" type="primary" @click="addItem">Добавить элемент</el-button>
     <draggable v-model="localList" class="row" tag="div" @end="endSort">
       <item
