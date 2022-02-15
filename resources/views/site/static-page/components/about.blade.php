@@ -3,7 +3,7 @@
             src="{{$page->blocks['youtube_link']}}">
     </iframe>
     <div class="row mb-4">
-        <div class="col-md-7">
+        <div class="col-md-7 about-page__left">
             <h1 class="about-page__title">
                 {{$page->name}}
             </h1>

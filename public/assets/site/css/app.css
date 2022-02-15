@@ -14616,7 +14616,12 @@ a {
   margin-bottom: 45px;
 }
 @media (min-width: 1200px) {
-  .about-page__content {
+  .about-page__left {
+    padding-right: 60px;
+  }
+}
+@media (min-width: 1400px) {
+  .about-page__left {
     padding-right: 100px;
   }
 }
