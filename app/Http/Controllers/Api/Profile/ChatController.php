@@ -68,9 +68,10 @@ class ChatController extends Controller
             }
         }
             $chat = Chat::findOrFail($id);
-            if($user->type ==='student') {
+
+            if($user->profile_type ==='student') {
                 $toUser = User::findOrFail($chat->teacher_id);
-                if($toUser->notifiction) {
+                if($toUser->notification) {
                     $toUser->notify(new NewMessage($message, $user));
                 }
             }

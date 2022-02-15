@@ -21,8 +21,8 @@ export default {
             default: 'title'
         },
         count: {
-            type: String,
-            default: 'count'
+            type:Number,
+            default: 0
         }
     },
 }
