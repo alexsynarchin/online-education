@@ -13,7 +13,7 @@
                         <use xlink:href="/images/sprite.svg#zvonok"></use>
                     </svg>
                     <span class="notification-item__count">{{notifications.length}}</span>
-                    <Notification title="Сообщения" count="0" :class="newPopup ? 'notification-popup--open' : 'notification-popup--close'">
+                    <Notification title="Сообщения" :count="notifications.length" :class="newPopup ? 'notification-popup--open' : 'notification-popup--close'">
                         <div class="notification-message" v-for="(item, index) in notifications">
                             <span class="notification-message__title">{{item.data.type}}: {{item.data.text}}</span>
                             <a :href="item.data.link" class="notification-message__link">Перейти</a>
