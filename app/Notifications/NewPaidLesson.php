@@ -2,12 +2,16 @@
 
 namespace App\Notifications;
 
+use App\Models\Category\CategoryType;
+use App\Models\Category\Course;
+use App\Models\Lesson\Lesson;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Payment extends Notification
+class NewPaidLesson extends Notification
 {
     use Queueable;
 
@@ -16,9 +20,12 @@ class Payment extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public $lesson;
+    public $fromUser;
+    public function __construct(Lesson $lesson, User $fromUser)
     {
-        //
+        $this->fromUser = $fromUser;
+        $this->lesson = $lesson;
     }
 
     /**
@@ -29,7 +36,7 @@ class Payment extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -54,8 +61,17 @@ class Payment extends Notification
      */
     public function toArray($notifiable)
     {
+      $text = $this->fromUser->name . ' ' . $this->fromUser->surname . ' купил урок "' . $this->lesson->title . '"';
+        $course = Course::findOrFail($this->lesson->course_id);
+        $edu_type = CategoryType::findOrFail($course->edu_type_id);
+        $link = route('lesson.show', [
+            'edu_slug' => $edu_type->slug,
+            'course_slug' => $course->slug,
+            'slug' => $this->lesson->slug]);
         return [
-            //
+            'type' => 'Покупка',
+            'text' => $text,
+            'link' => $link
         ];
     }
 }

@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Services;
+use App\Models\Account\StudentAccount;
 use App\Models\Category\Course;
 use App\Models\Lesson\Lesson;
 use App\Models\User;
+use App\Notifications\NewBuyLesson;
+use App\Notifications\NewPaidLesson;
 use Illuminate\Http\Request;
 
 class BuyService
@@ -50,6 +53,15 @@ class BuyService
     {
         if(!$lesson->students()->where('student_id', $student_id) -> exists()){
             $lesson->students()->attach($student_id);
+            $student = StudentAccount::findOrFail($student_id);
+            $student = $student->user;
+            $teacher = User::findOrFail($lesson->user_id);
+            if($teacher->notifications){
+                $teacher->notify(new NewPaidLesson($lesson, $student));
+            }
+            if($student->notifications) {
+                $student->notify(new NewBuyLesson($lesson));
+            }
         }
     }
 }

@@ -79,6 +79,7 @@ class BuyingController extends Controller
         $url='';
         if($request->get('discount_price') === 0) {
            $url = $buyService->finishBuy($request);
+
         } else {
 
             $order = new Order();
