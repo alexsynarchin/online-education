@@ -67,9 +67,14 @@ class ChatController extends Controller
                 $message ->addMedia($request->file('files')[$key]['file'])->toMediaCollection('messages');
             }
         }
-        $chat = Chat::findOrFail($id);
-        $fromUser = User::findOrFail($chat->sender_id);
-        $user->notify(new NewMessage($message, $fromUser));
+            $chat = Chat::findOrFail($id);
+            if($user->type ==='student') {
+                $toUser = User::findOrFail($chat->teacher_id);
+                if($toUser->notifiction) {
+                    $toUser->notify(new NewMessage($message, $user));
+                }
+            }
+
         return 'Сообщение успешно отправлено';
     }
     public function messages($id)
