@@ -14617,12 +14617,12 @@ a {
 }
 @media (min-width: 1200px) {
   .about-page__left {
-    padding-right: 60px;
+    padding-right: 50px;
   }
 }
 @media (min-width: 1400px) {
   .about-page__left {
-    padding-right: 100px;
+    padding-right: 70px;
   }
 }
 .about-page__image {

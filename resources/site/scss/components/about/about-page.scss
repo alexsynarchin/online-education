@@ -14,10 +14,10 @@
     }
     &__left {
         @include media-breakpoint-up(xl) {
-            padding-right: 60px;
+            padding-right: 50px;
         }
         @include media-breakpoint-up(xxl) {
-            padding-right: 100px;
+            padding-right: 70px;
         }
     }
     &__image {
