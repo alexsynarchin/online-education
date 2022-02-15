@@ -14615,6 +14615,11 @@ a {
 .about-page__content {
   margin-bottom: 45px;
 }
+@media (min-width: 1200px) {
+  .about-page__content {
+    padding-right: 100px;
+  }
+}
 .about-page__image {
   margin-right: -60px;
 }
