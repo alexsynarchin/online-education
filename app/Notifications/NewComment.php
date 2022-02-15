@@ -2,6 +2,9 @@
 
 namespace App\Notifications;
 
+use App\Models\Category\CategoryType;
+use App\Models\Category\Course;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -16,9 +19,13 @@ class NewComment extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public $fromUser;
+    public $course;
+
+    public function __construct(Course $course, User $fromUser)
     {
-        //
+        $this -> fromUser = $fromUser;
+        $this -> course = $course;
     }
 
     /**
@@ -29,7 +36,7 @@ class NewComment extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -54,8 +61,13 @@ class NewComment extends Notification
      */
     public function toArray($notifiable)
     {
+        $text = $this->fromUser->name . ' ' . $this->fromUser->surname . ' оставил отзыв к курсу "' . $this->course->title . '"';
+        $edu_category = CategoryType::findOrFail($this -> course -> edu_type_id);
+        $link = route('catalog.show',['edu_slug' => $edu_category->slug, 'slug' => $this->course->slug]);
         return [
-            //
+            'type' => 'Отзыв',
+            'text' => $text,
+            'link' => $link
         ];
     }
 }

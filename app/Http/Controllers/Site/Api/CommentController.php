@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Site\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category\Course;
+use App\Notifications\NewComment;
 use Illuminate\Http\Request;
 use App\Models\Comment\Comment;
+use App\Models\User;
+use Auth;
 class CommentController extends Controller
 {
 
@@ -26,6 +29,11 @@ class CommentController extends Controller
         $comment = $course -> comments()->create($request->all());
         $comment -> active = 1;
         $comment -> save();
+        $toUser = User::findOrFail($course->author_id);
+        $fromUser = Auth::user();
+        if($toUser -> notifications) {
+            $toUser->notify(new NewComment($course, $fromUser));
+        }
         return $comment;
     }
 }
