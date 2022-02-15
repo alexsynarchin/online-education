@@ -1,0 +1,88 @@
+.b-table-transac {
+ &__head{
+     display: flex;
+     justify-content: space-between;
+     &_item{
+         padding: 15px 0px 15px 15px;
+         &--count {
+             width: 20%;
+         }
+         &--des{
+             width: 58%;
+             border-left: 1px dashed #E5E5E5;
+         }
+         &--date{
+             width: 20%;
+             border-left: 1px dashed #E5E5E5;
+         }
+     }
+ }
+&__item{
+    width: 100%;
+    display: flex;
+    margin: 15px 0px;
+    border: 1px dashed #E5E5E5;
+    border-radius: 5px;
+    &:last-child {
+        margin-bottom: 80px;
+    }
+    &_message{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0px;
+        border-radius: 5px;
+        background-color: #4A69BD;
+        color: #fff;
+        text-align: center;
+        @include media-breakpoint-down(md) {
+            width: 100%;
+        }
+    }
+    &_balance {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0px;
+        border-radius: 5px;
+        background-color: #31C4A7;
+        color: #fff;
+        text-align: center;
+        @include media-breakpoint-down(md) {
+            width: 100%;
+        }
+    }
+    &_des {
+        width: 58%;
+        margin-left: 30px;
+        padding: 12px 0px;
+        @include media-breakpoint-down(md) {
+            width: 100%;
+            margin-left: 0px;
+            padding: 12px 10px;
+        }
+    }
+    &_date {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0px;
+        border-left: 1px dashed #E5E5E5;
+        @include media-breakpoint-down(md) {
+            width: 100%;
+        }
+    }
+}
+}
+.b-table-transac {
+    margin-top: 50px;
+    &__head {
+        border: 1px dashed #E5E5E5;
+        border-radius: 5px;
+    }
+
+}
+

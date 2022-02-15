@@ -17,7 +17,7 @@ import navigation from './components/navigation';
         },
         data() {
             return {
-                activeTab: 'navigation'
+                activeTab: 'common'
             };
         },
         methods: {

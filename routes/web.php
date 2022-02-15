@@ -70,9 +70,6 @@ Route::get('/search', [SearchController::class, 'index']) -> name('search');
 Route::get('/for-teachers', function(){
     return view('site.inner');
 });
-Route::get('/about', function(){
-    return view('site.inner');
-});
 Route::get('/for-student', function(){
     return view('site.inner');
 });
@@ -85,3 +82,5 @@ Route::get('/faq', function(){
 Route::get('/how-it-works', function(){
     return view('site.faq');
 });
+use App\Http\Controllers\Site\StaticPageController;
+Route::get('{path}', [StaticPageController::class, 'show'])->where('path', '[0-9A-Za-zА-Яа-я\/\.-]+') ->name('static-page');

@@ -1,0 +1,21 @@
+.about-page {
+  &__video {
+    margin-top: 40px;
+    margin-bottom: 75px;
+    height: 650px;
+  }
+    &__title {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+    &__content {
+        margin-bottom: 45px;
+    }
+    &__image {
+        margin-right: -60px;
+        @include media-breakpoint-up(xxl) {
+            margin-right: -140px;
+        }
+    }
+}

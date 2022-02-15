@@ -10,11 +10,14 @@
             </li>
         </nav>
         <ul class="b-my-data" v-if="user.profile_type=='teacher'">
-            <li class="b-my-data__item">
+            <li class="b-my-data__item" style="padding-bottom: 0">
                 <svg class="b-my-data__icon">
                     <use xlink:href="/images/sprite.svg#srednee_obrazovanie"></use>
                 </svg>
                 <a href="/profile/my-courses/active" class="b-my-data__link">Мои курсы</a>
+            </li>
+            <li class="b-my-data__item b-my-data__item--sub" v-for="(tab, index) in tabs" :class="{'b-my-data__item--last': index === 3}">
+                <a :href="'/profile/my-courses/' + tab.type" class="b-my-data__link b-my-data__link--sub">{{tab.title}} ({{tab.count}})</a>
             </li>
             <li class="b-my-data__item">
                 <svg class="b-my-data__icon">
@@ -22,18 +25,7 @@
                 </svg>
                 <a href="/profile/students" class="b-my-data__link">Мои ученики</a>
             </li>
-            <li class="b-my-data__item">
-                <svg class="b-my-data__icon">
-                    <use xlink:href="/images/sprite.svg#pencil-edit"></use>
-                </svg>
-                <a href="/profile/my-courses/draft" class="b-my-data__link">Черновики</a>
-            </li>
-            <li class="b-my-data__item">
-                <svg class="b-my-data__icon">
-                    <use xlink:href="/images/sprite.svg#list"></use>
-                </svg>
-                <a href="/profile/my-courses/moderate" class="b-my-data__link">Модерация</a>
-            </li>
+
         </ul>
         <ul class="b-my-data" v-if="user.profile_type=='student'">
             <li class="b-my-data__item">
@@ -91,15 +83,16 @@ export default {
     props :['user'],
     mounted(){
         this.getBalance();
+        this.getCoursesCount();
     },
     data(){
         return{
-            balance: 0
+            balance: 0,
+            tabs:[],
         }
     },
     methods:{
         getBalance(){
-
             axios.get('/api/sidebar-balance')
                 .then((response)=>{
                     console.log(response.data)
@@ -108,7 +101,15 @@ export default {
                 .catch((error)=>{
 
                 });
-        }
+        },
+        getCoursesCount() {
+            axios.get('/api/profile/course/count', {params:{
+                    statuses: [2,1,0,3]
+                }})
+                .then((response) => {
+                    this.tabs = response.data;
+                })
+        },
     }
 }
 </script>
@@ -157,8 +158,11 @@ export default {
     align-items center
     padding 5px 20px
     list-style-type none
-
-
+.b-my-data__item--sub
+    margin-left 30px
+    padding 0 20px
+.b-my-data__item--last
+    margin-bottom:5px
 .b-my-data__icon
     position relative
     top -1px
@@ -170,9 +174,11 @@ export default {
 .b-my-data__link
     display block
     padding 8px 0px
-    font 400 rem(17px) 'RobotoRegular',sans-serif
+    font 400 rem(17px) 'Raleway',sans-serif
     color #4B4B4B
-
+.b-my-data__link--sub
+    color rgba(39, 39, 39, 0.5)
+    padding 4px 0
 .b-my-notification
     padding-left 0
 .b-my-notification__item

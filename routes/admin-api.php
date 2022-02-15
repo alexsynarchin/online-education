@@ -53,3 +53,10 @@ Route::post('/menu/{id}/update', [MenuController::class, 'update'])->name('menu.
 Route::post('/menu/{id}/remove',[MenuController::class, 'remove'])->name('menu.remove');
 Route::get('/menu/get/{position}',[MenuController::class, 'list'])->name('menu.list');
 
+use App\Http\Controllers\Admin\Api\StaticPageController;
+Route::get('/static-pages', [StaticPageController::class, 'index'])->name('static-pages');
+//
+Route::post('/static-page/store', [StaticPageController::class,'store'])->name('static-page.store');
+Route::post('/static-page/{id}/remove',[StaticPageController::class, 'remove']) -> name('page.remove');
+Route::post('/static-page/{id}/update', [StaticPageController::class, 'update']) -> name('page.update');
+Route::get('/static-page/{id}', [StaticPageController::class, 'item']) -> name('page.item');

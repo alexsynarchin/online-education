@@ -1,0 +1,25 @@
+.about-list {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    &__item {
+        display: flex;
+        margin-bottom: 30px;
+    }
+    &__image {
+        background-color: #F2F3F6;
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+        border-radius: 100%;
+        padding: 16px;
+    }
+    &__title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    &__content {
+        padding-left: 20px;
+    }
+}

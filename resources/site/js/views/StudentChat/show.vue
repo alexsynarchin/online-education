@@ -62,6 +62,7 @@
 </template>
 <script>
     import obj2fd from "obj2fd";
+    import EventBus from "../../EventBus";
     export default {
         props:['chat'],
         data(){
@@ -134,6 +135,7 @@
                                 this.getMessages();
 
                                 this.loaded = true;
+                                EventBus.$emit('notifications');
                             })
                             .catch((error)=>{
 

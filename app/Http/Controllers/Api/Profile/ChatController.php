@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Chat;
 use App\Models\Lesson\Lesson;
 use App\Models\Message;
+use App\Models\User;
+use App\Notifications\NewMessage;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -65,6 +67,9 @@ class ChatController extends Controller
                 $message ->addMedia($request->file('files')[$key]['file'])->toMediaCollection('messages');
             }
         }
+        $chat = Chat::findOrFail($id);
+        $fromUser = User::findOrFail($chat->sender_id);
+        $user->notify(new NewMessage($message, $fromUser));
         return 'Сообщение успешно отправлено';
     }
     public function messages($id)

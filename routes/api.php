@@ -125,5 +125,12 @@ Route::get('/profile/chats/{id}/messages', [ChatController::class, 'messages'])-
 use App\Http\Controllers\Api\Profile\StudentLessonController;
 
 
+use App\Http\Controllers\Api\Profile\NotificationController;
+Route::get('/profile/notifications', [NotificationController::class, 'index'])->name('profile.notifications');
+Route::get('/profile/notifications/unread', [NotificationController::class, 'unread'])->name('profile.notifications.unread');
+Route::post('/profile/notifications/read',  [NotificationController::class,'read'])->name('profile.notifications.read');
+
+
+
 
 

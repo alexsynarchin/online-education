@@ -89,6 +89,10 @@ import Button from "./button";
                 if(this.discount === '') {
                     discount = 0;
                 }
+                if(discount > this.data.price) {
+                    this.discount = this.data.price;
+                    discount = this.data.price;
+                }
                 axios.post('/api/buying/handle-discount', {discount:discount, price:this.data.price, balance:this.data.promo_balance})
                 .then((response) => {
                     this.errors.clear();

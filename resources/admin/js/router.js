@@ -9,6 +9,7 @@ import AdminTeachers from './views/teacher/index'
 import AdminModerators from './views/moderator/index';
 import AdminWithdraws from './views/withdraw/index';
 import AdminPromoCodes from './views/promo/index';
+import StaticPages from './views/page';
 import Settings from "./views/settings";
 Vue.use(VueRouter);
 let routes = [
@@ -22,6 +23,7 @@ let routes = [
     { name: 'withdraws', path: '/admin/withdraws', component: AdminWithdraws},
     { name: 'promo-codes', path: '/admin/promo-codes', component: AdminPromoCodes},
     { name: 'settings', path: '/admin/settings', component: Settings},
+    { name: 'static-pages', path: '/admin/static-pages', component: StaticPages},
 ];
 export default new VueRouter({
     mode: 'history',

@@ -8,24 +8,16 @@
                     </svg>
                 </a>
 
-                <div class="notification-item" @click="newPopup = !newPopup">
+                <div class="notification-item" @click="openNotifications">
                     <svg class="notification-item__icon">
                         <use xlink:href="/images/sprite.svg#zvonok"></use>
                     </svg>
-                    <span class="notification-item__count">0</span>
+                    <span class="notification-item__count">{{notifications.length}}</span>
                     <Notification title="Сообщения" count="0" :class="newPopup ? 'notification-popup--open' : 'notification-popup--close'">
-                        <!--<div class="notification-message">
-                            <span class="notification-message__title">Обсуждение урока "Умножение положительных и отрицательн...</span>
-                            <a href="#" class="notification-message__link">Перейти</a>
+                        <div class="notification-message" v-for="(item, index) in notifications">
+                            <span class="notification-message__title">{{item.data.type}}: {{item.data.text}}</span>
+                            <a :href="item.data.link" class="notification-message__link">Перейти</a>
                         </div>
-                        <div class="notification-message">
-                            <span class="notification-message__title">Обсуждение урока "Умножение положительных и отрицательн...</span>
-                            <a href="#" class="notification-message__link">Перейти</a>
-                        </div>
-                        <div class="notification-message">
-                            <span class="notification-message__title">Обсуждение урока "Умножение положительных и отрицательн...</span>
-                            <a href="#" class="notification-message__link">Перейти</a>
-                        </div>-->
                     </Notification>
                 </div>
 
@@ -159,6 +151,7 @@ export default {
         return {
             newPopup: false,
             isProfile: false,
+            notifications:[],
         }
     },
     computed: {
@@ -171,8 +164,18 @@ export default {
 
     },
     methods: {
+        openNotifications() {
+            this.newPopup = !this.newPopup;
+            axios.post('/api/profile/notifications/read');
+        },
         showAuthModal() {
             EventBus.$emit('show-auth-modal')
+        },
+        getNotifications() {
+            axios.get('/api/profile/notifications/unread')
+                .then((response) => {
+                    this.notifications = response.data;
+                })
         },
         logout: function () {
             axios.post('/logout').then(response => {
@@ -186,6 +189,14 @@ export default {
 
             });
         }
+    },
+    mounted() {
+        if(this.signedIn) {
+            this.getNotifications();
+        }
+    },
+    created() {
+        EventBus.$on('notifications', this.getNotifications)
     }
 }
 </script>

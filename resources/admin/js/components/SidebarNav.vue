@@ -66,6 +66,11 @@ export default {
                     icon:"el-icon-magic-stick"
                 },
                 {
+                    id:"/admin/static-pages",
+                    title:"Статические страницы",
+                    icon:"educate-icon educate-library"
+                },
+                {
                     id:"/admin/settings",
                     title:"Настройки",
                     icon:"el-icon-setting"

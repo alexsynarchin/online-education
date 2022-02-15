@@ -121,7 +121,7 @@
                         <span class="profile-data-item__value" v-else>{{user.phone}}</span>
                     </div>
                     <div class="text-center mb-5 mt-5" v-if="profileEdit">
-                        <el-button type="primary" class="" @click.prevent="formSubmit">Сохранить</el-button>
+                        <el-button type="success" class="" @click.prevent="formSubmit">Сохранить</el-button>
                         <el-button type="" class="" @click.prevent="cancelEdit">Отменить</el-button>
                     </div>
                 </el-form>
