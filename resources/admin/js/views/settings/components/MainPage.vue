@@ -3,18 +3,20 @@
         <h3 class="block-title">
             Настройки главной страницы
         </h3>
-        <el-form :model="form">
+        <el-form :model="form" label-position="top">
             <slider :delete_img="form.delete_img" :list="form.slider" @sort="sort"></slider>
+            <banners :list="form.banners" :delete_img="form.delete_img" @sort="sort"></banners>
             <el-button type="success" @click.prevent="store">Сохранить</el-button>
         </el-form>
 
     </section>
 </template>
 <script>
-import Slider from './main-page/slider/index'
+import Slider from './main-page/slider/index';
+import Banners from "./main-page/banners/index"
     export default {
     components: {
-        Slider,
+        Slider, Banners,
     },
         data() {
          return {
@@ -23,6 +25,7 @@ import Slider from './main-page/slider/index'
              form: {
                  slider:[],
                  delete_img:[],
+                 banners:[],
              },
 
          }
@@ -38,6 +41,9 @@ import Slider from './main-page/slider/index'
                 }
                 if(this.blocks.slider) {
                     this.form.slider = this.blocks.slider;
+                }
+                if(this.blocks.banners) {
+                    this.form.banners = this.blocks.banners;
                 }
                 this.loaded = true;
             },

@@ -38,7 +38,7 @@
       },
       uploadImage(file){
         let cond = this.beforeImageUpload(file.raw);
-        this.form.image['imageName'] = file.raw.name;
+        this.item.image['imageName'] = file.raw.name;
         console.log(cond);
 
         if(cond){

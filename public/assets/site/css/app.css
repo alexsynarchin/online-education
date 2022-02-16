@@ -12480,6 +12480,8 @@ a {
   overflow: hidden;
   position: relative;
   padding-top: 50px;
+  margin-bottom: 60px;
+  background-color: #F6F6F6;
 }
 .home-slider__title {
   font-size: 42px;
@@ -12611,6 +12613,44 @@ a {
 }
 .home-slider-step-nav__next {
   margin-right: -80px;
+}
+
+.mp-banners {
+  position: relative;
+}
+.mp-banners .carousel-navigation {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.mp-banners .carousel-navigation__prev, .mp-banners .carousel-navigation__next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  box-sizing: border-box;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+.mp-banners .carousel-navigation__prev svg, .mp-banners .carousel-navigation__next svg {
+  width: 9px;
+  height: 18px;
+}
+.mp-banners .carousel-navigation__prev {
+  margin-left: -15px;
+}
+.mp-banners .carousel-navigation__next {
+  margin-right: -15px;
 }
 
 .course-item {
