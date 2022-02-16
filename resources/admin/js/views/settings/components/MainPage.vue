@@ -1,6 +1,5 @@
 <template>
     <section v-if="loaded">
-        {{form}}
         <h3 class="block-title">
             Настройки главной страницы
         </h3>
