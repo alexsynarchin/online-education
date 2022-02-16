@@ -17,7 +17,7 @@
             </div>
         </div>
         <figure class="home-slider__slide-bg">
-            <img src="/assets/site/images/home-slider.png">
+            <img :src="slide.image">
         </figure>
         <ul class="home-slider-levels">
             <li class="home-slider-levels__item" v-for="(level, index) in slide.levels" @click.prevent="selectlevel(level)">

@@ -43,7 +43,7 @@ import Vue from 'vue'
     },
     methods: {
       endSort(){
-        this.$emit('sort', {list:this.localList, list_name:'we_help'})
+        this.$emit('sort', {list:this.localList, list_name:'about_list'})
       },
     deleteItem(index) {
       if(this.localList[index].image.id) {

@@ -7,14 +7,14 @@ use App\Models\Page;
 use App\Models\Setting;
 use App\Services\RichTextService;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 
 class StaticPageController extends Controller
 {
     public function index()
     {
-        $pages = Page::all();
+        $pages = Page::where('type', '!=', 'main-page') -> get();
         return $pages;
     }
     public function item($id)
@@ -75,7 +75,7 @@ class StaticPageController extends Controller
                 foreach ($blocks['about_list'] as $key => $item) {
                     if(array_key_exists('imageName', $item['image'])) {
                         $image = $page->addMediaFromBase64($item['image']['link'])
-                            ->toMediaCollection('icons');
+                            ->toMediaCollection('pages');
                         $item['image']['link'] = $image->getUrl();
                         $item['image']['id'] = $image -> id;
                         unset($item['image']['imageName']);

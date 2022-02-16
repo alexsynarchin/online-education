@@ -15,7 +15,7 @@ class Page extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
     protected $fillable =[
-        'name', 'active', 'slug', 'blocks', 'text'
+        'name', 'active', 'slug', 'blocks', 'text', 'type'
     ];
     protected $casts = [
         'active' => 'boolean',
@@ -24,7 +24,6 @@ class Page extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('pages')
-            ->singleFile()
             ->useDisk('page');
     }
     public function registerMediaConversions(Media $media = null): void
@@ -40,18 +39,6 @@ class Page extends Model implements HasMedia
             ->width(400)
             ->height(255)
             ->crop(Manipulations::CROP_CENTER, 400, 255)
-            ->performOnCollections('pages')
-            ->nonQueued();
-        $this->addMediaConversion('big_preview')
-            ->width(1100)
-            ->height(500)
-            ->crop(Manipulations::CROP_CENTER, 1100, 500)
-            ->performOnCollections('pages')
-            ->nonQueued();
-        $this->addMediaConversion('big')
-            ->width(580)
-            ->height(360)
-            ->crop(Manipulations::CROP_CENTER, 580, 360)
             ->performOnCollections('pages')
             ->nonQueued();
     }

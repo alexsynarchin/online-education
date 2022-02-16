@@ -55,8 +55,13 @@ Route::get('/menu/get/{position}',[MenuController::class, 'list'])->name('menu.l
 
 use App\Http\Controllers\Admin\Api\StaticPageController;
 Route::get('/static-pages', [StaticPageController::class, 'index'])->name('static-pages');
-//
 Route::post('/static-page/store', [StaticPageController::class,'store'])->name('static-page.store');
 Route::post('/static-page/{id}/remove',[StaticPageController::class, 'remove']) -> name('page.remove');
 Route::post('/static-page/{id}/update', [StaticPageController::class, 'update']) -> name('page.update');
 Route::get('/static-page/{id}', [StaticPageController::class, 'item']) -> name('page.item');
+
+use App\Http\Controllers\Admin\Api\MainPageController;
+Route::get('/main-page/data', [MainPageController::class, 'getData'])->name('main-page.data');
+Route::post('/main-page/store', [MainPageController::class, 'store'])->name('main-page.store');
+
+
