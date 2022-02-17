@@ -52,6 +52,7 @@ class Article extends Model implements HasMedia
         $description = "";
         if($this->text) {
             $description = strip_tags($this->text, '<br>');
+            $description = substr($description, 0, 250);
         }
         return $description;
     }
