@@ -2,8 +2,10 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @if(!$lesson->user_buy)
             <div class="col-lg-3"></div>
-            <div class="col-lg-9">
+            @endif
+            <div class="@if($lesson->user_buy)col-12 @else col-lg-9 @endif">
                 <ul class="breadcrumb">
                     <li class="breadcrumb__item">
                         <a href="/" class="breadcrumb__link">
@@ -33,10 +35,12 @@
             </div>
         </div>
         <div class="row">
+            @if(!$lesson->user_buy)
             <div class="col-lg-3">
                 <filter-sidebar :filter-start="{{json_encode($filter)}}"></filter-sidebar>
             </div>
-            <div class="col-lg-9">
+            @endif
+            <div class="  @if($lesson->user_buy)col-12 @else col-lg-9 @endif">
                 <section class="course-item course-item-block">
                     <div class="course-item__heading">
                         <h1 class="course-item__title course-item__title--big">
@@ -44,32 +48,48 @@
                         </h1>
                     </div>
                     <div class="course-item__content">
-                        <div class="course-item__main">
-                            <div class="course-item__descr course-item__descr--lesson">
-                                {!! $lesson -> content -> text !!}
-                            </div>
-                            @if(!$lesson->user_buy)
-                                <div class="course-item__buy">
-                                    Для просмотра урока его необходимо <buy-btn :type="'link'" :buying_type="'lesson'"
-                                                                                :buying_id="{{$lesson->id}}"
-                                                                                v-if="{{json_encode(!$lesson->user_buy)}}"></buy-btn>
+                        @if($lesson->user_buy)
+                            <div>
+                                <div class="mb-4">
+                                    {!! $lesson -> content -> text !!}
                                 </div>
-                            @endif
-                        </div>
-                        <div class="course-item__right course-item__right--text-right">
-                            @if(!$lesson->user_buy)
-                            <div class="course-item__price">
-                                {{$lesson ->price_user}} ₽
+                                <div class="d-flex mb-4">
+                                    @if($lesson->tests()->exists())
+                                    <lesson-test :lesson_title="'{{json_encode($lesson->title)}}'" :id="{{json_encode($lesson->id)}}"></lesson-test>
+                                    @endif
+                                    <send-msg :lesson_id="{{json_encode($lesson->id)}}"></send-msg>
+                                </div>
                             </div>
 
-                            <div class="course-item__actions">
-                                <buy-btn :buying_type="'lesson'"  :buying_id="{{$lesson->id}}" v-if="{{json_encode(!$lesson->user_buy)}}"></buy-btn>
+                        @else
+                            <div class="course-item__main">
+                                <div class="course-item__descr course-item__descr--lesson">
+                                    {!! $lesson -> content -> text !!}
+                                </div>
+                                @if(!$lesson->user_buy)
+                                    <div class="course-item__buy">
+                                        Для просмотра урока его необходимо <buy-btn :type="'link'" :buying_type="'lesson'"
+                                                                                    :buying_id="{{$lesson->id}}"
+                                                                                    v-if="{{json_encode(!$lesson->user_buy)}}"></buy-btn>
+                                    </div>
+                                @endif
                             </div>
-                            @else
-                                <a href="{{route('lesson.study',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}"
-                                   class="course-item__btn btn">Перейти</a>
-                            @endif
-                        </div>
+                            <div class="course-item__right course-item__right--text-right">
+                                @if(!$lesson->user_buy)
+                                    <div class="course-item__price">
+                                        {{$lesson ->price_user}} ₽
+                                    </div>
+
+                                    <div class="course-item__actions">
+                                        <buy-btn :buying_type="'lesson'"  :buying_id="{{$lesson->id}}" v-if="{{json_encode(!$lesson->user_buy)}}"></buy-btn>
+                                    </div>
+                                @else
+                                    <a href="{{route('lesson.study',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}"
+                                       class="course-item__btn btn">Перейти</a>
+                                @endif
+                            </div>
+                        @endif
+
                     </div>
                     <div class="course-item__footer">
                         <div class="course-item__author">
