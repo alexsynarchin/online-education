@@ -3,6 +3,7 @@
         :visible.sync="promoModal"
         :before-close="closeModal"
         class="add-promo-modal"
+        append-to-body
     >
         <h3 class="add-promo-modal__title">
             Промокоды
@@ -58,6 +59,7 @@ import Button from "../../components/buying/button";
             AddPromo(formName){
                 axios.post('/api/promo-code/handle',{name:this.PromoCode.name, id:this.id})
                     .then((response)=>{
+                        this.$emit('add-promo',response.data);
                         this.closeModal();
                     })
                     .catch((error)=>{

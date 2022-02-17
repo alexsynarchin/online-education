@@ -42,7 +42,7 @@
                     <div class="invalid-feedback"  v-text="errors.get('discount')"></div>
                 </div>
                 <div class="order-modal__promo-descr">
-                    Есть сертификат? Введите его в <a href="/profile">личном кабинете</a>  и получите бонусы на счет
+                    Есть сертификат?  <a href="" @click.prevent="addPromoCode">Введите его </a>  и получите бонусы на счет
                 </div>
                 <div class="order-modal__sum">
                    <label class="order-modal__sum-label">
@@ -54,17 +54,26 @@
                 </div>
                 <button class="btn button"  @click.prevent="payment">Оплатить</button>
             </el-form>
+            <add-student-promo
+                v-if="promoModal"
+                @close="closePromoModal"
+                @add-promo="saveBalance"
+                :promoModal="promoModal"
+                :id="data.account_id"
+            ></add-student-promo>
         </el-dialog>
 </template>
 <script>
 import EventBus from "../../EventBus";
 import { Errors } from  '@/common/js/services/errors.js';
+import AddStudentPromo from '@/site/js/views/profile/AddStudentPromo';
 import Button from "./button";
     export default {
-        components: {Button},
+        components: {Button, AddStudentPromo},
         data() {
             return {
                 discount:"",
+                promoModal:false,
                 data: {
                     id: null,
                     type: '',
@@ -76,14 +85,22 @@ import Button from "./button";
                     account_id:null,
                     promo_balance:0,
                 },
-                PromoCode: {
-                    name:""
-                },
                 dialogVisible:false,
                 errors: new Errors(),
             }
         },
         methods: {
+            addPromoCode() {
+                this.promoModal = true;
+            },
+            closePromoModal() {
+                this.promoModal = false;
+            },
+            saveBalance(balance) {
+                console.log(balance);
+                this.data.promo_balance = balance - this.discount;
+                this.closePromoModal();
+            },
             calculateDiscount(){
                 let discount = this.discount;
                 if(this.discount === '') {
@@ -113,7 +130,6 @@ import Button from "./button";
             closeModal() {
                 this.discount = '';
                 this.errors.clear();
-                this.PromoCode.name="";
                 this.dialogVisible=false;
             },
             handleClose() {
