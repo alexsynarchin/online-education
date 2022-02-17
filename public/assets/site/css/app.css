@@ -12703,6 +12703,9 @@ a {
 .for-whom-item__text {
   font-size: 16px;
 }
+.for-whom-item__text ul {
+  list-style-type: disc;
+}
 .for-whom-item__img {
   margin-bottom: 0;
   width: 20%;
