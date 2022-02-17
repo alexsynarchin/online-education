@@ -73,9 +73,12 @@ Route::get('/for-teachers', function(){
 Route::get('/for-student', function(){
     return view('site.inner');
 });
-Route::get('/blog', function(){
-    return view('site.inner');
-});
+
+use App\Http\Controllers\Site\BlogController;
+Route::get('/blog', [BlogController::class,'index'])->name('blog');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+
 Route::get('/faq', function(){
     return view('site.faq');
 });
