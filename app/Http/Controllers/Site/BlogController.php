@@ -18,6 +18,9 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-
+        $page =  Article::where('slug', $slug) -> firstOrFail();
+        return view('site.blog.show', [
+            'page'=>$page
+        ]);
     }
 }
