@@ -11378,12 +11378,16 @@ a {
 .page-header-bottom {
   margin-bottom: 30px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 @media (max-width: 991.98px) {
   .page-header-bottom {
     display: none;
   }
+}
+.page-header-bottom--auth {
+  margin-bottom: 10px;
 }
 
 .m-btn {

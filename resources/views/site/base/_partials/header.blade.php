@@ -35,7 +35,7 @@
 
         </div>
     </section>
-    <section class="page-header-bottom container">
+    <section class="page-header-bottom container @auth @unlessrole('admin') page-header-bottom--auth @endunlessrole @endauth">
         <header-navigation></header-navigation>
         <header-login/>
     </section>

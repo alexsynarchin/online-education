@@ -40,12 +40,15 @@
     }
 }
 .page-header-bottom {
-
     margin-bottom: 30px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     @include media-breakpoint-down(lg) {
         display: none;
+    }
+    &--auth {
+        margin-bottom: 10px;
     }
 }
 .m-btn {
