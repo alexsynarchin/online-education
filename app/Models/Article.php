@@ -39,12 +39,21 @@ class Article extends Model implements HasMedia
             ->nonQueued();
     }
 
-    protected $appends = ['image'];
+    protected $appends = ['image', 'description'];
 
     public function getImageAttribute()
     {
         $image = $this ->getFirstMediaUrl('articles','thumb');
         return $image;
+    }
+
+    public function getDescriptionAttribute()
+    {
+        $description = "";
+        if($this->text) {
+            $description = strip_tags($this->text, '<br>');
+        }
+        return $description;
     }
 
     public function seo()

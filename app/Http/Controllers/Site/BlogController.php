@@ -11,7 +11,9 @@ class BlogController extends Controller
     public function index()
     {
         $articles = Article::where('active', 1) -> orderBy('menuindex','asc') ->orderBy('created_at','desc') ->get();
-        return view('site.blog.index');
+        return view('site.blog.index', [
+            'articles' => $articles
+        ]);
     }
 
     public function show($slug)

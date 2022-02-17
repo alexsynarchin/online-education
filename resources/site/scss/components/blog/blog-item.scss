@@ -1,0 +1,28 @@
+.blog-item {
+        overflow: hidden;
+    display: block;
+    color: #272727;
+    text-decoration: none;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 22px rgba(150, 150, 150, 0.25);
+    border-radius: 15px;
+    height: 100%;
+    &:hover,&:focus {
+        color: #272727;
+        text-decoration: none;
+    }
+    &__wrap {
+        margin-bottom: 30px;
+    }
+    &__preview {
+        margin-bottom: 25px;
+    }
+    &__title {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    &__content {
+        padding: 0 25px 25px 25px;
+    }
+}

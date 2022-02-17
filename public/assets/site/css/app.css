@@ -12815,6 +12815,35 @@ a {
   padding-left: 20px;
 }
 
+.blog-item {
+  overflow: hidden;
+  display: block;
+  color: #272727;
+  text-decoration: none;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 22px rgba(150, 150, 150, 0.25);
+  border-radius: 15px;
+  height: 100%;
+}
+.blog-item:hover, .blog-item:focus {
+  color: #272727;
+  text-decoration: none;
+}
+.blog-item__wrap {
+  margin-bottom: 30px;
+}
+.blog-item__preview {
+  margin-bottom: 25px;
+}
+.blog-item__title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.blog-item__content {
+  padding: 0 25px 25px 25px;
+}
+
 .course-item {
   padding: 25px 30px;
   background: #FFFFFF;

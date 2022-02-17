@@ -36,6 +36,10 @@ class ArticleController extends Controller
         } else {
             $page -> text = '';
         }
+        if($request->has('image') && $request ->has('imageName')) {
+            $page -> addMediaFromBase64($request->get('image'))
+                ->toMediaCollection('articles');
+        }
         $page -> save();
 
         return'success';
@@ -52,9 +56,13 @@ class ArticleController extends Controller
             'description' =>  $request->get('seo.description'),
             'keywords' =>  $request->get('seo.keywords')
         ]);
+        if($request->has('imageName')) {
+            $page ->addMediaFromBase64($request->get('image'))
+             ->toMediaCollection('articles');
+        }
         if($request -> get('text')) {
             $richTextService = new RichTextService();
-            $text = $richTextService -> store($request->input('text'),'static-pages', $page->id);
+            $text = $richTextService -> store($request->input('text'),'articles', $page->id);
             $page -> text = $text;
         } else {
             $page -> text = '';
