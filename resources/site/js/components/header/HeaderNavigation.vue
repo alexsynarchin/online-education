@@ -1,5 +1,7 @@
 <template>
-  <nav class="filter-nav" v-click-outside="closeEvent">
+  <nav class="filter-nav" v-click-outside="closeEvent" :class="{
+      'filter-nav--auth': signedIn && (user.profile_type === 'student' || user.profile_type === 'teacher')
+  }">
     <ul class="filter-nav__list">
         <li class="filter-nav__item" v-for="(edu_type, index) in edu_types"
 
@@ -218,6 +220,12 @@
       }
     },
     computed: {
+        signedIn() {
+            return window.App.signedIn;
+        },
+        user(){
+            return  window.App.user
+        },
       filteredSubjects() {
         return this.subjects.filter(subject => {
           return subject.title.toLowerCase().includes(this.search.toLowerCase())
