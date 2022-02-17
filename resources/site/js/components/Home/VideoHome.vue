@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <figure class="mp-video" v-bind:style="{backgroundImage:'url(\'' + url +'\')'}">
-            <figure class="mp-video__btn">
-                <img src="/assets/site/images/youtube-play.png" style="margin-left: 10px" @click="openVideo">
+            <figure class="mp-video__btn"  @click="openVideo">
+                <img src="/assets/site/images/youtube-play.png" style="margin-left: 10px">
             </figure>
         </figure>
         <el-dialog
