@@ -28,7 +28,7 @@
         methods: {
             openVideo() {
                 this.dialogVisible = true;
-                this.video_url = 'https://www.youtube.com/embed/' + this.video_id
+                this.video_url = 'https://www.youtube.com/embed/' + this.video_id + '?autoplay=1'
             },
             handleClose() {
                 this.video_url = "";
