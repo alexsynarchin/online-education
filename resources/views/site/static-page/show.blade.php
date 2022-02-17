@@ -16,6 +16,9 @@
              {{$page->name}}
          </h1>
      @endif
+     <div class="mb-5">
+         {!! $page->text !!}
+     </div>
      @if($page->type === 'about')
          @include('site.static-page.components.about')
      @endif
