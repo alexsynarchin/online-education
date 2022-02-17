@@ -96,7 +96,6 @@
                 </el-table-column>
                 <el-table-column
                     label="Уроки на модерации"
-                    sortable
                 >
                     <template v-slot="scope" >
                         <div style="text-align: center; color: red" v-if="scope.row.lessons_count > 0">
