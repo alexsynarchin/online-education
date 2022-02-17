@@ -44,7 +44,7 @@ export default {
     },
     methods: {
         endSort(){
-            this.$emit('sort', {list:this.localList, list_name:'banners'})
+            this.$emit('sort', {list:this.localList, list_name:'for_whom'})
         },
         deleteItem(index) {
             if(this.localList[index].image.id) {

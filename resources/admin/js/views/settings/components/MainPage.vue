@@ -6,6 +6,7 @@
         <el-form :model="form" label-position="top">
             <slider :delete_img="form.delete_img" :list="form.slider" @sort="sort"></slider>
             <banners :list="form.banners" :delete_img="form.delete_img" @sort="sort"></banners>
+            <for-whom :list="form.for_whom" :delete_img="form.delete_img" @sort="sort"></for-whom>
             <el-button type="success" @click.prevent="store">Сохранить</el-button>
         </el-form>
 
@@ -27,6 +28,7 @@ import ForWhom from './main-page/for-whom/index';
                  slider:[],
                  delete_img:[],
                  banners:[],
+                 for_whom:[],
              },
 
          }
@@ -45,6 +47,9 @@ import ForWhom from './main-page/for-whom/index';
                 }
                 if(this.blocks.banners) {
                     this.form.banners = this.blocks.banners;
+                }
+                if(this.blocks.for_whom) {
+                    this.form.for_whom = this.blocks.for_whom;
                 }
                 this.loaded = true;
             },

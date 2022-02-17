@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 col-xl-3 mb-3">
+  <div class="col-md-6 col-xl-4 mb-3">
     <el-card class="box-card">
       <el-form-item prop="image" style="margin-bottom: 0;" label="Картинка">
         <el-upload
@@ -14,17 +14,25 @@
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
-      <el-form-item label="Ссылка баннера">
-        <el-input v-model="item.link"></el-input>
-      </el-form-item>
+        <div  style="flex: 1">
+            <el-form-item label="Заголовок">
+                <el-input v-model="item.title"></el-input>
+            </el-form-item>
+            <el-form-item label="Текст">
+                <richtext v-model="item.text"></richtext>
+            </el-form-item>
+        </div>
       <el-button icon="el-icon-plus" type="danger" @click="deleteItem">Удалить элемент</el-button>
     </el-card>
   </div>
 </template>
 <script>
+import richtext from "@/common/js/components/richtext/index.vue";
 export default {
+    components:{
+        richtext,
+    },
   props:{
-
     item: {
       type:Object,
     }

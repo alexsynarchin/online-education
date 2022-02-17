@@ -52,6 +52,20 @@ class MainPageController extends Controller
         } else {
             $blocks['banners'] = [];
         }
+        if(count($blocks['for_whom']) > 0) {
+            foreach ($blocks['for_whom'] as $key => $item) {
+                if(array_key_exists('imageName', $item['image'])) {
+                    $image = $page->addMediaFromBase64($item['image']['link'])
+                        ->toMediaCollection('pages');
+                    $item['image']['link'] = $image->getUrl();
+                    $item['image']['id'] = $image -> id;
+                    unset($item['image']['imageName']);
+                    $blocks['for_whom'][$key] = $item;
+                }
+            }
+        }else {
+            $blocks['for_whom'] = [];
+        }
         if(count($blocks['delete_img']) > 0) {
             foreach ($blocks['delete_img'] as $id) {
                 $media = Media::findOrFail($id);

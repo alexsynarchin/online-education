@@ -40,15 +40,12 @@ class HomeController extends Controller
                 $slides[0]['label'] = 'класс';
             }
         }
-        if(isset($page->blocks['banners'])){
-            $banners = $page->blocks['banners'];
-        } else {
-            $banners = [];
-        }
-
+        $banners = $page->blocks['banners'] ?? [];
+        $for_whom = $page->blocks['for_whom'] ?? [];
         return view('site.home.index',[
             'slides' => $slides,
             'banners' => $banners,
+            'for_whom' => $for_whom
         ]);
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-6 col-xl-4 mb-3">
+  <div class="col-md-4 col-xl-3 mb-3">
     <el-card class="box-card">
       <el-form-item prop="image" style="margin-bottom: 0;" label="Картинка">
         <el-upload
