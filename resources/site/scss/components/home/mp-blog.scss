@@ -1,4 +1,11 @@
 .mp-blog {
+    margin-bottom: 60px;
+    @include media-breakpoint-up(xl) {
+        margin-bottom: 90px;
+    }
+    @include media-breakpoint-up(xxl) {
+        margin-bottom: 100px;
+    }
     &__title {
         font-weight: bold;
         font-size: 36px;

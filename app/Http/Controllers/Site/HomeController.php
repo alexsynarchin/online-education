@@ -47,6 +47,13 @@ class HomeController extends Controller
         $price_list = $page->blocks['price_list'] ?? [];
         $you_get = $page->blocks['you_get'] ?? [];
         $articles = Article::where('active', 1) -> orderBy('menuindex','asc') ->orderBy('created_at','desc') -> limit(3) -> get();
+        $youtube_id="";
+        if($page->blocks['youtube_link']) {
+            preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $page->blocks['youtube_link'], $match);
+            $youtube_id = $match[1];
+        }
+
+
         return view('site.home.index',[
             'slides' => $slides,
             'banners' => $banners,
@@ -54,7 +61,8 @@ class HomeController extends Controller
             'price_text' => $price_text,
             'price_list' => $price_list,
             'you_get' => $you_get,
-            'articles' => $articles
+            'articles' => $articles,
+            'youtube_id' => $youtube_id,
         ]);
     }
 }

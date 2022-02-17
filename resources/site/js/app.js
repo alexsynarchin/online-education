@@ -30,7 +30,7 @@ Vue.component('HomeHowToUseSite',require('./components/Home/HomeHowUseSite').def
 Vue.component('HomeBanner',require('./components/Home/HomeBanner').default);
 Vue.component('HomePlus',require('./components/Home/HomePluse').default);
 Vue.component('HomeStudyItems',require('./components/Home/HomeStudyItems').default);
-
+Vue.component('HomeVideo', require('./components/Home/VideoHome').default)
 Vue.component('FilterSidebar',require('./components/sidebar/index').default);
 
 Vue.component('Comments',require('./components/comment/index').default);

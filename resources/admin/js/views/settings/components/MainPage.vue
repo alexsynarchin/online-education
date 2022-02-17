@@ -13,6 +13,10 @@
             </el-form-item>
             <price :list="form.price_list"></price>
             <you-get :list="form.you_get" :delete_img="form.delete_img"></you-get>
+            <h4>YouTube Видео</h4>
+            <el-form-item prop="youtube_link" label="Ссылка на youtube">
+                <el-input v-model="form.youtube_link"></el-input>
+            </el-form-item>
             <el-button type="success" @click.prevent="store">Сохранить</el-button>
         </el-form>
 
@@ -42,6 +46,7 @@ import YouGet from "./main-page/you-get";
                  },
                  price_list:[],
                  you_get:[],
+                 youtube_link:'',
              },
 
          }
@@ -52,6 +57,9 @@ import YouGet from "./main-page/you-get";
                 console.log(this.form[data.list_name]);
             },
             prepareForm() {
+                if(this.blocks.youtube_link) {
+                    this.form.youtube_link = this.blocks.youtube_link;
+                }
                 if(this.blocks.youtube_link) {
                     this.form.youtube_link = this.blocks.youtube_link;
                 }

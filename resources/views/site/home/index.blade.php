@@ -97,7 +97,7 @@
         </div>
     </div>
 @if(count($articles) > 0)
-    <div class="container">
+    <div class="mp-blog container">
         <h2 class="mp-blog__title">
             Полезно знать
         </h2>
@@ -121,7 +121,9 @@
             @endforeach
         </div>
     </div>
-
+    @if($youtube_id)
+       <home-video :video_id="{{json_encode($youtube_id)}}"></home-video>
+    @endif
 @endif
 
 @endsection
