@@ -12736,6 +12736,7 @@ a {
 .mp-price-list__item {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 .mp-price-list__card {
   width: 45%;
