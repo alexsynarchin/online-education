@@ -67,13 +67,6 @@ Route::get('/order/fail', [OrderController::class, 'fail']) -> name('order.fail'
 use App\Http\Controllers\Site\SearchController;
 Route::get('/search', [SearchController::class, 'index']) -> name('search');
 
-Route::get('/for-teachers', function(){
-    return view('site.inner');
-});
-Route::get('/for-student', function(){
-    return view('site.inner');
-});
-
 use App\Http\Controllers\Site\BlogController;
 Route::get('/blog', [BlogController::class,'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
