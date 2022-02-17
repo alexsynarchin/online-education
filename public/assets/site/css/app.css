@@ -12617,6 +12617,22 @@ a {
 
 .mp-banners {
   position: relative;
+  margin-bottom: 60px;
+}
+@media (min-width: 992px) {
+  .mp-banners {
+    margin-bottom: 70px;
+  }
+}
+@media (min-width: 1200px) {
+  .mp-banners {
+    margin-bottom: 90px;
+  }
+}
+@media (min-width: 1400px) {
+  .mp-banners {
+    margin-bottom: 120px;
+  }
 }
 .mp-banners .carousel-navigation {
   z-index: 1;

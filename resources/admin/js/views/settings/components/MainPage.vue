@@ -13,10 +13,11 @@
 </template>
 <script>
 import Slider from './main-page/slider/index';
-import Banners from "./main-page/banners/index"
+import Banners from "./main-page/banners/index";
+import ForWhom from './main-page/for-whom/index';
     export default {
     components: {
-        Slider, Banners,
+        Slider, Banners, ForWhom,
     },
         data() {
          return {

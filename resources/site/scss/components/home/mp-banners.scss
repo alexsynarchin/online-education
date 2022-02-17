@@ -1,5 +1,15 @@
 .mp-banners {
     position: relative;
+    margin-bottom: 60px;
+    @include media-breakpoint-up(lg){
+        margin-bottom: 70px;
+    }
+    @include media-breakpoint-up(xl){
+        margin-bottom: 90px;
+    }
+    @include media-breakpoint-up(xxl) {
+        margin-bottom: 120px;
+    }
     .carousel-navigation {
         z-index: 1;
         position: absolute;
