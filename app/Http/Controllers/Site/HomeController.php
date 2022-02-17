@@ -42,10 +42,16 @@ class HomeController extends Controller
         }
         $banners = $page->blocks['banners'] ?? [];
         $for_whom = $page->blocks['for_whom'] ?? [];
+        $price_text = $page->blocks['price']['text'] ?? '';
+        $price_list = $page->blocks['price_list'] ?? [];
+        $you_get = $page->blocks['you_get'] ?? [];
         return view('site.home.index',[
             'slides' => $slides,
             'banners' => $banners,
-            'for_whom' => $for_whom
+            'for_whom' => $for_whom,
+            'price_text' => $price_text,
+            'price_list' => $price_list,
+            'you_get' => $you_get,
         ]);
     }
 }

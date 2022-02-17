@@ -7,6 +7,12 @@
             <slider :delete_img="form.delete_img" :list="form.slider" @sort="sort"></slider>
             <banners :list="form.banners" :delete_img="form.delete_img" @sort="sort"></banners>
             <for-whom :list="form.for_whom" :delete_img="form.delete_img" @sort="sort"></for-whom>
+            <h4>Ценовая политика</h4>
+            <el-form-item label="Текст">
+                <el-input type="textarea" v-model="form.price.text"></el-input>
+            </el-form-item>
+            <price :list="form.price_list"></price>
+            <you-get :list="form.you_get" :delete_img="form.delete_img"></you-get>
             <el-button type="success" @click.prevent="store">Сохранить</el-button>
         </el-form>
 
@@ -16,9 +22,11 @@
 import Slider from './main-page/slider/index';
 import Banners from "./main-page/banners/index";
 import ForWhom from './main-page/for-whom/index';
+import Price from './main-page/price/index'
+import YouGet from "./main-page/you-get";
     export default {
     components: {
-        Slider, Banners, ForWhom,
+        Slider, Banners, ForWhom, Price, YouGet,
     },
         data() {
          return {
@@ -29,6 +37,11 @@ import ForWhom from './main-page/for-whom/index';
                  delete_img:[],
                  banners:[],
                  for_whom:[],
+                 price: {
+                     text:"",
+                 },
+                 price_list:[],
+                 you_get:[],
              },
 
          }
@@ -50,6 +63,15 @@ import ForWhom from './main-page/for-whom/index';
                 }
                 if(this.blocks.for_whom) {
                     this.form.for_whom = this.blocks.for_whom;
+                }
+                if(this.blocks.price) {
+                    this.form.price = this.blocks.price;
+                }
+                if(this.blocks.price_list) {
+                    this.form.price_list = this.blocks.price_list;
+                }
+                if(this.blocks.you_get) {
+                    this.form.you_get = this.blocks.you_get;
                 }
                 this.loaded = true;
             },
