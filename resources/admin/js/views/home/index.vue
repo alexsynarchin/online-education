@@ -95,6 +95,19 @@
                     </template>
                 </el-table-column>
                 <el-table-column
+                    label="Уроки на модерации"
+                    sortable
+                >
+                    <template v-slot="scope" >
+                        <div style="text-align: center; color: red" v-if="scope.row.lessons_count > 0">
+                            +{{scope.row.lessons_count}}
+                        </div>
+                        <div style="text-align: center" v-else>
+                            {{scope.row.lessons_count}}
+                        </div>
+                    </template>
+                </el-table-column>
+                <el-table-column
                     prop="status"
                     label="Статус"
 

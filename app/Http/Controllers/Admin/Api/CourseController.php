@@ -23,7 +23,10 @@ class CourseController extends Controller
         if($request->has('author')) {
             $courses = $courses -> where('author_id', $request->get('author'));
         }
-        $courses = $courses -> with(['author', 'edu_type', 'subject', 'level']) -> get();
+        $courses = $courses -> with(['author', 'edu_type', 'subject', 'level']) ->withCount(['lessons' => function($query){
+            $query->where('status', 1);
+        }]) -> get();
+
         return $courses;
     }
     public function show($id)

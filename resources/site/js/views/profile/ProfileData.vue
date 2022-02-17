@@ -139,6 +139,7 @@
                         Активировать промокод
                     </button>
                 </div>
+
             </div>
         </section>
         <add-student-promo
@@ -155,8 +156,9 @@
     import AddStudentPromo from "./AddStudentPromo";
     import {mask} from 'vue-the-mask';
     import { Errors } from  '@/common/js/services/errors.js';
+    import WorkPlaces from "./work-places";
     export default {
-        components: {AddStudentPromo},
+        components: {AddStudentPromo, WorkPlaces,},
         props: {
             user: {
                 type: Object,
@@ -192,6 +194,9 @@
             },
         },
         methods: {
+            changeWorkPlaces(places) {
+                this.formData.places = places;
+            },
             saveBalance(balance) {
                 this.user.student_account.promo_balance = balance;
                 this.closePromoModal();
