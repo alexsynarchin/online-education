@@ -44,6 +44,6 @@ class Page extends Model implements HasMedia
     }
     public function seo()
     {
-        return $this->morphOne('App\Models\Seo','pageable');
+        return $this->morphOne(Seo::class,'pageable');
     }
 }

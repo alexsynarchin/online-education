@@ -12711,6 +12711,7 @@ a {
   width: 20%;
   padding-top: 20px;
   flex: 1 20%;
+  align-self: flex-end;
 }
 
 .mp-block-title {

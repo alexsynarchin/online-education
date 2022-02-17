@@ -71,6 +71,11 @@ export default {
                     icon:"educate-icon educate-library"
                 },
                 {
+                    id:"/admin/articles",
+                    title:"Блог",
+                    icon:"educate-icon educate-library"
+                },
+                {
                     id:"/admin/settings",
                     title:"Настройки",
                     icon:"el-icon-setting"

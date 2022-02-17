@@ -1,6 +1,6 @@
 <template>
     <section class="items-list">
-
+        <h1>Статические страницы</h1>
         <el-row type="flex" class="mb-3">
             <el-col :span="12">
                 <el-button type="success" icon="el-icon-plus" @click.prevent="newItem">Добавить Страницу</el-button>

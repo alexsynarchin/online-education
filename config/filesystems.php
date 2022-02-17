@@ -61,6 +61,13 @@ return [
             'url'        => env('APP_URL') . '/storage/pages',
             'visibility' => 'public'
         ],
+
+        'article' => [
+            'driver' =>'local',
+            'root' => storage_path('app/public/articles'),
+            'url'        => env('APP_URL') . '/storage/articles',
+            'visibility' => 'public'
+        ],
         'message' => [
             'driver' =>'local',
             'root' => storage_path('app/public/messages'),

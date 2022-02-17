@@ -60,6 +60,13 @@ Route::post('/static-page/{id}/remove',[StaticPageController::class, 'remove']) 
 Route::post('/static-page/{id}/update', [StaticPageController::class, 'update']) -> name('page.update');
 Route::get('/static-page/{id}', [StaticPageController::class, 'item']) -> name('page.item');
 
+use App\Http\Controllers\Admin\Api\ArticleController;
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+Route::post('/article/store', [ArticleController::class,'store'])->name('article.store');
+Route::post('/article/{id}/remove',[ArticleController::class, 'remove']) -> name('article.remove');
+Route::post('/article/{id}/update', [ArticleController::class, 'update']) -> name('article.update');
+Route::get('/article/{id}', [ArticleController::class, 'item']) -> name('article.item');
+
 use App\Http\Controllers\Admin\Api\MainPageController;
 Route::get('/main-page/data', [MainPageController::class, 'getData'])->name('main-page.data');
 Route::post('/main-page/store', [MainPageController::class, 'store'])->name('main-page.store');
