@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row mb-5">
+        <div class="row mp-you-get__margin-bt">
             <div class="mp-price col-md-6">
                 <h3 class="mp-block-title">
                     Ценовая политика
@@ -96,4 +96,32 @@
             </div>
         </div>
     </div>
+@if(count($articles) > 0)
+    <div class="container">
+        <h2 class="mp-blog__title">
+            Полезно знать
+        </h2>
+        <div class="row">
+            @foreach($articles as $article)
+                <div class="col-md-4 blog-item__wrap">
+                    <a href="{{route('blog.show', $article->slug)}}" class="blog-item">
+                        <figure class="blog-item__preview">
+                            <img src="{{$article->image}}">
+                        </figure>
+                        <section class="blog-item__content">
+                            <h3 class="blog-item__title">
+                                {{$article->title}}
+                            </h3>
+                            <p>
+                                {{$article->description}}
+                            </p>
+                        </section>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+@endif
+
 @endsection

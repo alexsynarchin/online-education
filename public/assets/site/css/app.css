@@ -12784,6 +12784,14 @@ a {
   padding: 30px 40px;
   height: 100%;
 }
+.mp-you-get__margin-bt {
+  margin-bottom: 80px;
+}
+@media (min-width: 1200px) {
+  .mp-you-get__margin-bt {
+    margin-bottom: 100px;
+  }
+}
 
 .mp-you-get-list {
   list-style-type: none;
@@ -12813,6 +12821,17 @@ a {
 .mp-you-get-list__content {
   font-size: 15px;
   padding-left: 20px;
+}
+
+.mp-blog__title {
+  font-weight: bold;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+@media (min-width: 1200px) {
+  .mp-blog__title {
+    margin-bottom: 50px;
+  }
 }
 
 .blog-item {

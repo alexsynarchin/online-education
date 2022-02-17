@@ -4,7 +4,15 @@
     border-radius: 15px;
     padding: 30px 40px;
     height: 100%;
+    &__margin-bt {
+        margin-bottom: 80px;
+        @include media-breakpoint-up(xl) {
+            margin-bottom: 100px;
+        }
+    }
 }
+
+
 .mp-you-get-list {
     list-style-type: none;
     margin-left: 0;

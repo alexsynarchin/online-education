@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Category\CategoryType;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $price_text = $page->blocks['price']['text'] ?? '';
         $price_list = $page->blocks['price_list'] ?? [];
         $you_get = $page->blocks['you_get'] ?? [];
+        $articles = Article::where('active', 1) -> orderBy('menuindex','asc') ->orderBy('created_at','desc') -> limit(3) -> get();
         return view('site.home.index',[
             'slides' => $slides,
             'banners' => $banners,
@@ -52,6 +54,7 @@ class HomeController extends Controller
             'price_text' => $price_text,
             'price_list' => $price_list,
             'you_get' => $you_get,
+            'articles' => $articles
         ]);
     }
 }
