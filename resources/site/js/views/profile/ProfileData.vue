@@ -125,8 +125,8 @@
                         <el-button type="" class="" @click.prevent="cancelEdit">Отменить</el-button>
                     </div>
                 </el-form>
-                <div class="profile-data-transactions">
-                    <div class="profile-data-transactions__content" v-if="user.profile_type === 'student'">
+                <div class="profile-data-transactions"  v-if="user.profile_type === 'student'">
+                    <div class="profile-data-transactions__content">
                         <label class="profile-data-transactions__label">
                             Бонусов на счету:
                         </label>
@@ -142,7 +142,8 @@
             </div>
         </section>
         <add-student-promo
-            v-if="promoModal"
+
+            v-if="promoModal && user.profile_type === 'student'"
             @close="closePromoModal"
             @add-promo="saveBalance"
             :promoModal="promoModal"
