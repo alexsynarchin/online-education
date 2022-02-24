@@ -36,9 +36,7 @@
         </form>
         </el-dialog>
         <el-dialog
-            :visible.sync="resultVisible"
-
-            >
+            :visible.sync="resultVisible">
             <section>
                 <h4>Результаты теста</h4>
                 <ul class="test-result-list">

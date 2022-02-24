@@ -1,5 +1,6 @@
 <template>
     <section class="container">
+        <h4>Вопрос к тесту</h4>
         <el-form label-position="top" :model="question" ref="question" :rules="rules">
             <el-row type="flex" :gutter="15">
                 <el-form-item prop="preview" label="Изображение обложки">
@@ -22,6 +23,7 @@
             </el-row>
         </el-form>
         <div class="divider"></div>
+        <h4>Варинты ответа к вопросу </h4>
         <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2" v-show="!newOptionForm && (question.options.length > 0)" @click.prevent = "newOptionForm=true">Добавить новый вариант ответа</el-button>
         <div class="card mt-4" v-show="newOptionForm || (question.options.length == 0)">
             <el-form :model="newOption" ref="newOption" :rules="rules" label-position="top" class="card-body">
@@ -65,8 +67,8 @@
                 ></Option>
             </section>
             <div class="question__btns mb-3 mt-3 text-center">
-                <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Обновить вопрос</el-button>
-                <el-button v-else type="success" @click.prevent="addQuestion('question')">Добавить вопрос</el-button>
+                <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Обновить</el-button>
+                <el-button v-else type="success" @click.prevent="addQuestion('question')">Опубликовать</el-button>
             </div>
         </fieldset>
     </section>

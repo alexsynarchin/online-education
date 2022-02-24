@@ -23,7 +23,7 @@
             </el-row>
         </el-form>
         <el-button icon="el-icon-plus" type="primary" class="button  mb-4" @click.prevent="showQuestionModal">
-            Добавить вопрос
+            Добавить Тест
         </el-button>
 
         <section class="question-list mb-4" v-if="data.questions.length > 0">
