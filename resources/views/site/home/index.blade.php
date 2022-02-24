@@ -62,9 +62,6 @@
                                     {{$item['price']}}
                                 </span>
                             </section>
-                            <section class="mp-price-list__text">
-                                    {{$item['text']}}
-                            </section>
                         </li>
                     @endforeach
                 </ul>

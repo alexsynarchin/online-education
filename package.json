@@ -55,6 +55,7 @@
     },
     "dependencies": {
         "obj2fd": "^1.0.6",
+        "vue-youtube": "^1.4.0",
         "vuedraggable": "^2.24.3"
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="b-search">
+    <div class="b-search b-search--header">
         <input v-model="searchquery"
                v-on:keyup.enter="search('')"
                v-on:keyup="getSearchData"

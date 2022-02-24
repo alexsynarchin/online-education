@@ -35,8 +35,11 @@
         }
     }
     &__search {
-        margin-left: 60px;
-        flex: 1;
+            display: none;
+        @include media-breakpoint-up(lg) {
+            margin-left: 60px;
+            flex: 1;
+        }
     }
 }
 .page-header-bottom {

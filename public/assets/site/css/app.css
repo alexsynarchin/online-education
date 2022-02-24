@@ -11371,8 +11371,13 @@ a {
   }
 }
 .page-header__search {
-  margin-left: 60px;
-  flex: 1;
+  display: none;
+}
+@media (min-width: 992px) {
+  .page-header__search {
+    margin-left: 60px;
+    flex: 1;
+  }
 }
 
 .page-header-bottom {

@@ -12,6 +12,7 @@ export const eventBus = new Vue();
 Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').default);
 Vue.component('HeaderNavigation', require('./components/header/HeaderNavigation').default);
 Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
+Vue.component('HeaderMobile', require('./components/header/HeaderMobile').default);
 //Buying
 Vue.component('BuyBtn',require('./components/buying/button').default);
 Vue.component('BuyModal', require('./components/buying/BuyModal').default);
