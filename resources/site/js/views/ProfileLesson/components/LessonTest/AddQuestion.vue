@@ -22,7 +22,7 @@
 
             </el-row>
         </el-form>
-        <div class="divider"></div>
+        <div class="divider mb-4"></div>
         <h4>Варинты ответа к вопросу </h4>
         <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2" v-show="!newOptionForm && (question.options.length > 0)" @click.prevent = "newOptionForm=true">Добавить новый вариант ответа</el-button>
         <div class="card mt-4" v-show="newOptionForm || (question.options.length == 0)">
