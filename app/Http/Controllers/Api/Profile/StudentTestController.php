@@ -34,18 +34,21 @@ class StudentTestController extends Controller
     }
     public function pass(Request $request, $id)
     {
-        $results = $request->get('results');
 
+        $results = $request->get('results');
         $questions_count = count($results);
         $question_weight = 100 /  $questions_count;
         $test_score = 0;
         $answers =[];
         foreach ($results as $result){
-            $answer_correct = true;
+            $answer_correct = false;
             foreach ($result['answers'] as $answer){
-                if($answer['right_answer'] != $answer['answer']){
-                    $answer_correct = false;
-                }
+                if($answer['answer'] === true) {
+                    if($answer['right_answer'] === true) {
+                        $answer_correct = true;
+                    } else {
+                        $answer_correct = false;
+                    }}
             }
             if($answer_correct){
                 $test_score = $test_score + $question_weight;
@@ -64,13 +67,6 @@ class StudentTestController extends Controller
         }
         $last_test_result = TestResult::where('test_id', $id);
         $update_answers = true;
-        if($last_test_result -> exists()){
-            $last_test_result = $last_test_result->first();
-            if($test_score < $last_test_result ->test_result){
-                $test_score = $last_test_result ->test_result;
-                $update_answers = false;
-            }
-        }
         $test_result = TestResult::updateOrCreate([
             'test_id' => $id,
             'user_id' => \Auth::id(),
