@@ -44,7 +44,7 @@
 
                 <div class="test-body">
                     <div class="test-body-item" v-for="(option, option_index) in question.options">
-                        <input type="checkbox" v-model="option.answer"  class="test-body-item__checkbox">
+                        <input type="checkbox" @change="selectAnswer(index, option_index)" v-model="option.answer"  class="test-body-item__checkbox">
                         <div class="test-body-item__content d-flex">
                             <div class="test-option__image-wrap" v-if="option.preview">
                                 <img :src="option.preview"/>
@@ -113,6 +113,13 @@
             }
         },
         methods: {
+            selectAnswer(index, option_index) {
+                this.test.questions[index].options.forEach(function(item, i, arr) {
+                    if(i !== option_index) {
+                        item.answer = false;
+                    }
+                });
+            },
             startTest(){
                 this.dialogVisible = true;
             },
