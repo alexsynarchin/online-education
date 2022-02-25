@@ -156,8 +156,12 @@ margin-bottom: 30px;
     font: 400 1rem 'RobotoLight', sans-serif;
     color: #fff;
     transition: all .25s ease;
+
     &:hover{
         background: #35529F;
+    }
+    &:disabled {
+        background: linear-gradient(to top,#d1d1d1 0,#e1e1e1 100%);
     }
 
 }

@@ -14721,6 +14721,9 @@ a {
 .test-form-btn:hover {
   background: #35529F;
 }
+.test-form-btn:disabled {
+  background: linear-gradient(to top, #d1d1d1 0, #e1e1e1 100%);
+}
 
 .test-option__image-wrap {
   margin-right: 1rem;

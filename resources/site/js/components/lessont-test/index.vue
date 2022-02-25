@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </fieldset>
-            <button class="test-form-btn" type="submit" @click.prevent="testPass(test)">Ответить</button>
+            <button  class="test-form-btn" type="submit" @click.prevent="testPass(test)" :disabled="!select_answer">Ответить</button>
         </form>
         </el-dialog>
         <el-dialog
@@ -101,6 +101,7 @@
         },
         data() {
             return {
+                select_answer:false,
                 correct_count:0,
                 question_index: 0,
                 loaded:false,
@@ -114,6 +115,11 @@
         },
         methods: {
             selectAnswer(index, option_index) {
+                if(this.test.questions[index].options[option_index].answer) {
+                    this.select_answer = true;
+                } else {
+                    this.select_answer = false;
+                }
                 this.test.questions[index].options.forEach(function(item, i, arr) {
                     if(i !== option_index) {
                         item.answer = false;
@@ -143,6 +149,7 @@
             },
             testPass(test){
                 this.question_index++;
+                this.select_answer = false;
                 if((this.question_index) === test.questions.length) {
                     this.$root.isLoading = true;
                     var results = [];
