@@ -121,7 +121,7 @@
             testPass(test){
                 this.question_index++;
                 if((this.question_index) === test.questions.length) {
-                    this.question_index = 0;
+
                     var results = [];
                     for (var i = 0; i < test.questions.length; i++){
                         results[i] = {question_id: test.questions[i].id, answers: []};
@@ -135,6 +135,7 @@
                     }
                     axios.post('/api/education/test/' + test.id + '/pass', {results:results})
                         .then((response)=>{
+                            this.question_index = 0;
                             this.dialogVisible = false;
                             this.getResult();
                             this.getTests();
