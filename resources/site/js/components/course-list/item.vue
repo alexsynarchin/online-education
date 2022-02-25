@@ -23,15 +23,105 @@
                     {{course.description}}
                 </p>
                 <ul class="course-item-lessons">
-                    <li class="course-item-lessons__item course-item-lessons__item--preview" v-for="(lesson, index) in course.lessons">
+                    <li class="course-item-lessons__item course-item-lessons__item--preview"
+                        v-for="(lesson, index) in course.lessons" v-if="lessons_slice && index < 3">
                         <a :href="'/catalog/' + course.edu_type.slug + '/' + course.slug + '/' + lesson.slug"
                            class="course-item-lessons__link">
-                            {{lesson.title}}
+                            <span class="course-item-lessons__title course-item-lessons__title--icons">
+                                {{lesson.title}}
+                            </span>
+                            <ul class="course-item__types"
+                            v-if="lesson.type_text || lesson.type_video || lesson.type_image || lesson.type_audio"
+                            >
+                                <li class="course-item__types-item" v-if="lesson.type_video">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть видео" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-video-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                                <li class="course-item__types-item" v-if="lesson.type_image">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть изображения" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-image-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                                <li class="course-item__types-item" v-if="lesson.type_text">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть текст" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-text-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                                <li class="course-item__types-item" v-if="lesson.type_audio">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть аудио" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-audio-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                            </ul>
+                            <span class="course-item-lessons__price">
+                                {{lesson.price_user}} ₽
+                            </span>
+                        </a>
+                    </li>
+                    <li class="course-item-lessons__item" v-for="(lesson, index) in course.lessons" v-if="!lessons_slice">
+                        <a :href="'/catalog/' + course.edu_type.slug + '/' + course.slug + '/' + lesson.slug"
+                           class="course-item-lessons__link">
+                             <span class="course-item-lessons__title course-item-lessons__title--icons">
+                                {{lesson.title}}
+                            </span>
+                            <ul class="course-item__types"
+                                v-if="lesson.type_text || lesson.type_video || lesson.type_image || lesson.type_audio"
+                            >
+                                <li class="course-item__types-item" v-if="lesson.type_video">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть видео" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-video-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                                <li class="course-item__types-item" v-if="lesson.type_image">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть изображения" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-image-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                                <li class="course-item__types-item" v-if="lesson.type_text">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть текст" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-text-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                                <li class="course-item__types-item" v-if="lesson.type_audio">
+                                    <el-tooltip class="item" effect="dark" content="В данном уроке есть аудио" placement="top-start">
+                                        <svg class="course-item__icon">
+                                            <use xlink:href="/assets/site/images/sprites.svg?ver=14#sprite-audio-icon"></use>
+                                        </svg>
+                                    </el-tooltip>
+                                </li>
+                            </ul>
+                            <span class="course-item-lessons__price">
+                                {{lesson.price_user}} ₽
+                            </span>
                         </a>
                     </li>
                 </ul>
                 <a :href="'/catalog/' + course.edu_type.slug + '/' + course.slug"
-                   class="course-item-lessons__btn btn">Полный список уроков</a>
+                   @click.prevent="sliceState"
+                   class="course-item-lessons__btn" v-if="course.lessons.length > 3">
+                    <template v-if="lessons_slice">
+                        Полный список уроков
+                    </template>
+                    <template v-else>
+                        Скрыть полный список уроков
+                    </template>
+
+                </a>
             </div>
             <div class="course-item__right course-item__right--text-right">
                 <div class="course-item__price">
@@ -73,6 +163,18 @@ export default {
         course:{
             type:Object,
         }
-    }
+    },
+    data() {
+      return {
+          lessons_slice: true,
+      }
+    },
+    methods: {
+        sliceState()
+        {
+            this.lessons_slice = !this.lessons_slice
+        }
+    },
+
 }
 </script>

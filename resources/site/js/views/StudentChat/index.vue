@@ -1,7 +1,6 @@
 <template>
-    <div class="my-chat">
-        <div class="row">
-            <div class="col-12">
+    <div class="my-chat" v-if="chats.length > 0">
+
                 <div class="my-chat-item" v-for="(chat, index) in chats">
                     <span class="my-chat-item__title">Обсуждение к уроку "{{chat.name}}"</span>
                     <div class="my-chat-item-full">
@@ -9,9 +8,13 @@
                         <a class="my-chat-item__result" :href="'/profile/messages/' + chat.id">Перейти</a>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
+    <el-alert
+        v-else
+        :closable="false"
+        title="У вас пока нет сообщений"
+        type="info">
+    </el-alert>
 </template>
 
 <script>

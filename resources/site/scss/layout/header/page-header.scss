@@ -37,6 +37,7 @@
     &__search {
             display: none;
         @include media-breakpoint-up(lg) {
+            display: block;
             margin-left: 60px;
             flex: 1;
         }

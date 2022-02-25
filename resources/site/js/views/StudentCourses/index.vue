@@ -11,11 +11,21 @@
                 Мои курсы
             </li>
         </ul>
-        <CourseItem
-            v-for="(course, index) in courses"
-            :key="course.id"
-            :course="course"
-        ></CourseItem>
+        <section  v-if="courses.length > 0">
+            <CourseItem
+
+                v-for="(course, index) in courses"
+                :key="course.id"
+                :course="course"
+            ></CourseItem>
+        </section>
+
+        <el-alert
+            v-else
+            :closable="false"
+            title="У вас пока нет купленных курсов"
+            type="info">
+        </el-alert>
     </section>
 </template>
 <script>

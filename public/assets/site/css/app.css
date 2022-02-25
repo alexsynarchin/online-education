@@ -11375,6 +11375,7 @@ a {
 }
 @media (min-width: 992px) {
   .page-header__search {
+    display: block;
     margin-left: 60px;
     flex: 1;
   }
@@ -12130,6 +12131,10 @@ a {
 }
 .step-progressbar .el-step__description {
   font-size: 1.1rem;
+}
+
+.ck-content {
+  min-height: 500px;
 }
 
 .form-checkbox-conf {
@@ -13012,6 +13017,14 @@ a {
 .course-item__footer {
   padding-top: 15px;
   border-top: 1px solid rgba(39, 39, 39, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.course-item__footer-right {
+  display: flex;
+  align-items: center;
 }
 .course-item__author {
   font-size: 14px;
@@ -13056,13 +13069,34 @@ a {
 .course-item__buy-link:hover {
   text-decoration: none;
 }
+.course-item__icon {
+  width: 18px;
+  height: 18px;
+}
+.course-item__types {
+  margin-bottom: 0;
+  list-style-type: none;
+  margin-left: 20px;
+  padding-left: 0;
+  display: flex;
+}
+.course-item__types-item {
+  padding-left: 6px;
+  padding-right: 6px;
+}
 
 .course-item-lessons {
-  margin-top: 20px;
+  margin-top: 15px;
+  padding-top: 10px;
   list-style-type: none;
   margin-left: 0;
   padding-left: 0;
   margin-bottom: 0;
+  border-top: 1px solid rgba(39, 39, 39, 0.16);
+}
+.course-item-lessons__title--icons {
+  display: block;
+  max-width: 65%;
 }
 .course-item-lessons__item {
   font-size: 16px;
@@ -13087,7 +13121,9 @@ a {
   border-bottom-color: transparent;
 }
 .course-item-lessons__link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 500;
   color: #272727;
 }
@@ -13103,10 +13139,8 @@ a {
   font-weight: 700;
 }
 .course-item-lessons__btn {
-  border: 1px solid rgba(106, 137, 204, 0.65) !important;
   color: #6a89cc !important;
-  border-radius: 4px !important;
-  padding: 6px 10px !important;
+  text-decoration: underline !important;
   font-size: 16px !important;
   font-weight: 600 !important;
 }

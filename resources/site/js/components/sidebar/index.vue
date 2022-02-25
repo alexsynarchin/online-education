@@ -42,7 +42,7 @@
         ></sidebar-item>
         <sidebar-item
             v-if="loaded"
-            title="Тема курса"
+            title="Тема"
             :placeholder="'Поиск по темам'"
             :type="'theme'"
             :filter-start="selected.themes"
@@ -138,6 +138,10 @@
             } else {
                 this.level_title = 'Курс';
             }
+            axios.post('/api/catalog/filter', this.selected)
+                .then((response) => {
+                    EventBus.$emit('get-filtered-courses', response.data)
+                })
         }
     }
 </script>

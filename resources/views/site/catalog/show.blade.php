@@ -73,7 +73,52 @@
                                     <li class="course-item-lessons__item">
                                         <a href="{{route('lesson.show',[ $course -> edu_type -> slug, $course->slug, $lesson -> slug])}}"
                                            class="course-item-lessons__link">
-                                            {{$lesson -> title}}
+                                              <span class="course-item-lessons__title course-item-lessons__title--icons">
+                                                    {{$lesson -> title}}
+                                              </span>
+                                            @if($lesson->type_text || $lesson->type_video || $lesson->type_image || $lesson->type_audio)
+                                                <ul class="course-item__types">
+                                                    @if($lesson->type_video)
+                                                        <li class="course-item__types-item">
+                                                            <el-tooltip class="item" effect="dark" content="В данном уроке есть видео" placement="top-start">
+                                                                <svg class="course-item__icon">
+                                                                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=14#sprite-video-icon')}}"></use>
+                                                                </svg>
+                                                            </el-tooltip>
+                                                        </li>
+                                                    @endif
+                                                    @if($lesson->type_image)
+                                                        <li class="course-item__types-item">
+                                                            <el-tooltip class="item" effect="dark" content="В данном уроке есть изображения" placement="top-start">
+                                                                <svg class="course-item__icon">
+                                                                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=14#sprite-image-icon')}}"></use>
+                                                                </svg>
+                                                            </el-tooltip>
+                                                        </li>
+                                                    @endif
+                                                    @if($lesson->type_text)
+                                                        <li class="course-item__types-item">
+                                                            <el-tooltip class="item" effect="dark" content="В данном уроке есть текст" placement="top-start">
+                                                                <svg class="course-item__icon">
+                                                                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=14#sprite-text-icon')}}"></use>
+                                                                </svg>
+                                                            </el-tooltip>
+                                                        </li>
+                                                    @endif
+                                                    @if($lesson->type_audio)
+                                                        <li class="course-item__types-item">
+                                                            <el-tooltip class="item" effect="dark" content="В данном уроке есть аудио" placement="top-start">
+                                                                <svg class="course-item__icon">
+                                                                    <use xlink:href="{{URL::asset('assets/site/images/sprites.svg?ver=14#sprite-audio-icon')}}"></use>
+                                                                </svg>
+                                                            </el-tooltip>
+                                                        </li>
+                                                    @endif
+                                                </ul>
+                                            @endif
+                                            <span class="course-item-lessons__price">
+                                                    {{$lesson->price_user}} ₽
+                                            </span>
                                         </a>
                                     </li>
                                 @endforeach

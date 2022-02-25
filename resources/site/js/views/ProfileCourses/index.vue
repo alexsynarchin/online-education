@@ -30,12 +30,20 @@
             </li>
         </ul>
         <div class="mt-4 mb-4">
-            <course-item v-for="(course, index) in courses"
-                         :key="course.id"
-                         :course="course"
-                         @remove-course="removeCourse"
-            >
-            </course-item>
+            <section v-if="courses.length > 0">
+                <course-item v-for="(course, index) in courses"
+                             :key="course.id"
+                             :course="course"
+                             @remove-course="removeCourse"
+                >
+                </course-item>
+            </section>
+            <el-alert
+                v-else
+                :closable="false"
+                title="В данном разделе нет курсов"
+                type="info">
+            </el-alert>
         </div>
     </section>
 </template>

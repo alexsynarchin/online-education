@@ -50,7 +50,6 @@ class CatalogFilterService
         $courses = $courses
             ->with(['author', 'edu_type']) -> with('lessons', function($query) {
             $query -> where('status', 2);
-            $query -> take(3);
         })->get();
 
         return $courses;

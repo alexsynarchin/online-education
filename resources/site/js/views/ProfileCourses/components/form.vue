@@ -52,8 +52,8 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item :error="errors.get('edu_level_id')" class="col-md-4" label="Уровень образования">
-              <el-select v-model="form.edu_level_id" placeholder="Выберите уровень образования" style="width: 100%;">
+          <el-form-item :error="errors.get('edu_level_id')" class="col-md-4" label="Год обучения">
+              <el-select v-model="form.edu_level_id" placeholder="Год обучения" style="width: 100%;">
                   <el-option
                       v-for="item in edu_levels"
                       :key="item.id"

@@ -14,7 +14,7 @@
         <h1 class="page-title">
             Блог
         </h1>
-        <div class="row">
+        <div class="row" v-if="{{count($articles) > 0}}">
             @foreach($articles as $article)
             <div class="col-md-4 blog-item__wrap">
                 <a href="{{route('blog.show', $article->slug)}}" class="blog-item">
@@ -33,5 +33,11 @@
             </div>
             @endforeach
         </div>
+        <el-alert
+            v-else
+            :closable="false"
+            title="В данном разделе пока нет статей"
+            type="info">
+        </el-alert>
     </div>
 @endsection

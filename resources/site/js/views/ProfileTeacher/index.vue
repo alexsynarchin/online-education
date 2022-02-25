@@ -12,8 +12,8 @@
             </li>
         </ul>
         <h1 class="page-title">Мои преподаватели</h1>
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3" v-for="(teacher, index) in teachers" v-if="teachers.length > 0">
+        <div class="row" v-if="teachers.length > 0">
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3" v-for="(teacher, index) in teachers" >
                 <a  :href="'/search-teachers/' + teacher.id" class="teacher-item">
                     <figure class="teacher-item__avatar">
                         <img :src="teacher.avatar">
@@ -33,6 +33,12 @@
                 </a>
             </div>
         </div>
+        <el-alert
+            v-else
+            :closable="false"
+            title="У вас нет преподавателей"
+            type="info">
+        </el-alert>
     </section>
 </template>
 <script>

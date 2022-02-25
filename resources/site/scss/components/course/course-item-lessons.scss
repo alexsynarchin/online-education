@@ -1,11 +1,18 @@
 .course-item-lessons {
-    margin-top: 20px;
+    margin-top: 15px;
+    padding-top: 10px;
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
     margin-bottom: 0;
+    border-top: 1px solid rgba(39, 39, 39, 0.16);
     $block:&;
-
+    &__title {
+        &--icons {
+            display: block;
+            max-width: 65%;
+        }
+    }
     &__item {
         font-size: 16px;
         padding-bottom: 10px;
@@ -36,7 +43,9 @@
         }
     }
     &__link {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-weight: 500;
         color: $text-color;
         &:hover {
@@ -53,10 +62,8 @@
         font-weight: 700;
     }
     &__btn {
-        border: 1px solid rgba(106, 137, 204, 0.65) !important;
         color: $edu-primary !important;
-        border-radius: 4px !important;
-        padding: 6px 10px !important;
+        text-decoration: underline !important;
         font-size: 16px !important;
         font-weight: 600 !important;
         &:focus {

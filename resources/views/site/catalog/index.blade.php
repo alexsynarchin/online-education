@@ -24,12 +24,7 @@
                 <h1 class="page-title">
                     {{$title}}
                 </h1>
-                <section class="course-list" v-if="!filtered">
-                    @foreach($courses as $course)
-                        @include('site.course.item', ['$course' => $course])
-                    @endforeach
-                </section>
-                <course-list v-if="filtered"></course-list>
+                <course-list></course-list>
             </div>
         </div>
     </div>
