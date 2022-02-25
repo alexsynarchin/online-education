@@ -14734,15 +14734,19 @@ a {
   padding-left: 0;
 }
 .test-result-list__item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+.test-result-list__item-count {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 .test-result-list__item p {
   margin-bottom: 0;
 }
 .test-result-list__item-question {
-  margin-left: 0.5rem;
+  margin-bottom: 10px;
 }
 
 .lesson-test {

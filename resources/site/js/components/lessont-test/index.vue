@@ -58,14 +58,23 @@
         </form>
         </el-dialog>
         <el-dialog
-            :visible.sync="resultVisible">
+            :visible.sync="resultVisible"
+            class="lesson-test-modal"
+            :title="'Тест к уроку: ' + lesson_title"
+        >
             <section>
-                <h4>Результаты теста</h4>
+
                 <ul class="test-result-list">
                     <li class="test-result-list__item" v-for="(answer,index) in answers">
-                        <i class="el-icon-success" style="color:green;" v-if="answer.correct"></i>
-                        <i class="el-icon-error" style="color: red" v-else></i>
+                        <h4 class="test-result-list__item-count">Вопрос {{index+1}}</h4>
                         <section class="test-result-list__item-question" v-html="answer.question.text"></section>
+                        <div class="test-result-list__item-type">
+                            <i class="el-icon-success" style="color:green;" v-if="answer.correct"></i>
+                            <i class="el-icon-error" style="color: red" v-else></i>
+                            Ваш ответ:
+                        </div>
+
+
                     </li>
                 </ul>
             </section>

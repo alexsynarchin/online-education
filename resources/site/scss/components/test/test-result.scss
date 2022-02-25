@@ -3,14 +3,18 @@
     margin-left: 0;
     padding-left: 0;
     &__item{
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
+        padding: 20px 0;
+       border-bottom: 1px solid #ccc;
+        &-count {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
         p {
             margin-bottom: 0;
         }
         &-question{
-            margin-left: 0.5rem;
+            margin-bottom: 10px;
         }
     }
 }
