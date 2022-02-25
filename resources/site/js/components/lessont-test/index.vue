@@ -17,10 +17,11 @@
             <button class="button button--success" @click.prevent="resultVisible= true" v-if="test.passed">Смотреть результаты теста</button>
         </div>
         <el-dialog
+            class="lesson-test-modal"
             :visible.sync="dialogVisible"
-            :fullscreen="true"
+            width="50%"
+            :title="'Тест к уроку: ' + lesson_title"
         >
-        <h2 class="page-title">{{'Тест к уроку ' + lesson_title}}</h2>
         <form action="" class="test-form">
             <fieldset class="test-form-item" v-for="(question, question_index) in test.questions">
                 <div class="test-header">

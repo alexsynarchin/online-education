@@ -14758,6 +14758,10 @@ a {
   font-size: 24px;
 }
 
+.lesson-test-modal .el-dialog__header {
+  background-color: rgba(106, 137, 204, 0.12);
+}
+
 .order-modal__title {
   font-weight: bold;
   font-size: 28px;
