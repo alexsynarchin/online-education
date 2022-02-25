@@ -1,6 +1,5 @@
 {
-    "/js/spritemap.js": "/js/spritemap.js",
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/images/sprites.svg": "/images/sprites.svg"
+    "/js/spritemap.js": "/js/spritemap.js?id=d41d8cd98f00b204e980",
+    "/js/app.js": "/js/app.js?id=0342f5556682ed4965b8",
+    "/css/app.css": "/css/app.css?id=609fae21ab844de9d08d"
 }

@@ -14756,6 +14756,7 @@ a {
   justify-content: space-between;
   background-color: rgba(106, 137, 204, 0.12);
   padding-left: 20px;
+  padding-right: 20px;
 }
 @media (min-width: 1200px) {
   .lesson-test {
