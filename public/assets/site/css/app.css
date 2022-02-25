@@ -14737,6 +14737,12 @@ a {
   padding: 20px 0;
   border-bottom: 1px solid #ccc;
 }
+.test-result-list__item-type--success {
+  color: green;
+}
+.test-result-list__item-type--danger {
+  color: red;
+}
 .test-result-list__item-count {
   font-size: 14px;
   font-weight: 700;

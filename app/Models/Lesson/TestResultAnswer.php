@@ -5,6 +5,7 @@ namespace App\Models\Lesson;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class TestResultAnswer extends Model
 {
     use HasFactory;
@@ -16,5 +17,10 @@ class TestResultAnswer extends Model
     public function question()
     {
         return $this->belongsTo(Question::class, 'question_id');
+    }
+
+    public function option()
+    {
+        return $this->belongsTo(QuestionOption::class, 'option_id');
     }
 }
