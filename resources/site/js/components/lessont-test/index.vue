@@ -95,7 +95,7 @@
                 result:{},
                 answers:[],
                 can_test:true,
-                dialogVisible:true,
+                dialogVisible:false,
                 resultVisible:false,
             }
         },
