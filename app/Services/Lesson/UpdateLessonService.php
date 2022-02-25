@@ -17,12 +17,16 @@ class UpdateLessonService
         $lesson = Lesson::findOrFail($id);
 
         $description = $request->get('lesson');
-        $content = $request->get('lesson')['content'];
+        $content = $request->get('contentData');
 
         $lesson ->fill([
             'title' => $description['title'],
             'price_user' => $description['price'],
             'price' => 0,
+            'type_audio' => $content['type_audio'],
+            'type_text' => $content['type_text'],
+            'type_video' => $content['type_video'],
+            'type_image' => $content['type_image'],
             'time' => $description['time'],
             'status' => 1
         ]);

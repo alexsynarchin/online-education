@@ -38,7 +38,7 @@
         ></content-form>
         <test-form
             v-if="active === 2"
-            :data = "testData"
+            :ContentData = "testData"
             ref="create_test"
             @submitForm="checkTest"
         >
@@ -84,10 +84,10 @@ import TestForm from "./components/LessonTest/TestForm";
 
                 contentData:{
                     text:null,
-                    type_text:null,
-                    type_image:null,
-                    type_video:null,
-                    type_audio:null,
+                    type_text:false,
+                    type_image:false,
+                    type_video:false,
+                    type_audio:false,
                 },
                 testData:{
                     repeat_period:0,

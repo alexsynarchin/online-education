@@ -17,7 +17,12 @@ class Lesson extends Model
     protected $fillable = [ 'title', 'course_id','price', 'time','user_id','status',
         'price_user','type_video','type_text','type_image', 'type_audio', 'slug'];
     protected $appends = ['user_buy'];
-
+    protected $casts = [
+        'type_text' => 'boolean',
+        'type_video' => 'boolean',
+        'type_audio' => 'boolean',
+        'type_image' => 'boolean',
+    ];
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

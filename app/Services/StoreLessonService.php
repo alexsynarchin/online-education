@@ -40,17 +40,22 @@ class StoreLessonService
             'user_id' => Auth::user()->id,
             'status' => $request -> get('status'),
         ]);
-        if(!$request->get('type_video'))
+
+        if($request->get('type_text'))
         {
-            $lesson->type_video = true;
+            $lesson->type_video =$request->get('type_text');
         }
-        if(!$request->get('type_image'))
+        if($request->get('type_image'))
         {
-            $lesson->type_image = true;
+            $lesson->type_image = $request->get('type_image');
         }
-        if(!$request->get('type_video'))
+        if($request->get('type_audio'))
         {
-            $lesson->type_text = true;
+            $lesson->type_audio = $request->get('type_audio');
+        }
+        if($request->get('type_video'))
+        {
+            $lesson->type_text = $request->get('type_video');
         }
         $lesson->save();
 

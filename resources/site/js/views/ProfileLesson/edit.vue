@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="mb-5">
         <div class="b-breadcrumbs">
             <ul class="breadcrumb">
                 <li class="breadcrumb__item">
@@ -25,7 +25,9 @@
                 <description-form :lesson="lesson"></description-form>
             </el-tab-pane>
             <el-tab-pane label="Содержимое урока" name="content">
-                <content-form :data="lesson.content" v-if="loaded"></content-form>
+                <content-form
+                    :ContentData ="contentData"
+                    v-if="loaded"></content-form>
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"   v-if="loaded"></test-form>
@@ -55,6 +57,7 @@
             return {
                 activeTab:'description',
                 loaded:false,
+                contentData:{},
                 course: {},
                 lesson: {},
                 test: {},
@@ -65,7 +68,7 @@
                 window.location.href = '/profile/courses/' + this.slug
             },
             updateLesson() {
-                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, test:this.test})
+                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, test:this.test, contentData:this.contentData})
                 .then((response) => {
                     window.location.href = '/profile/courses/' + this.slug
                 })
@@ -75,6 +78,13 @@
                 .then((response) => {
                     this.course = response.data.course;
                     this.lesson = response.data.lesson;
+                    this.contentData = {
+                        text:response.data.lesson.content.text,
+                        type_video: response.data.lesson.type_video,
+                        type_text: response.data.lesson.type_text,
+                        type_audio: response.data.lesson.type_audio,
+                        type_image: response.data.lesson.type_image
+                    }
                     this.test = response.data.test;
                     this.loaded = true;
                 })
