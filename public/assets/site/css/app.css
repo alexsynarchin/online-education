@@ -14740,6 +14740,24 @@ a {
   margin-left: 0.5rem;
 }
 
+.lesson-test {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(106, 137, 204, 0.12);
+  padding-left: 20px;
+}
+@media (min-width: 1200px) {
+  .lesson-test {
+    width: 70%;
+  }
+}
+.lesson-test__title {
+  font-weight: 600;
+  font-size: 24px;
+}
+
 .order-modal__title {
   font-weight: bold;
   font-size: 28px;

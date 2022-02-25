@@ -1,8 +1,21 @@
 <template>
     <section class="lesson-test" v-if="loaded && test">
-        <button  class="button" style="margin-right: 20px" @click="startTest" v-if="test.passed" :disabled="!can_test">Пройти тест заново</button>
-        <button  class="button" style="margin-right: 20px" @click="startTest" v-else>Пройти тест</button>
-        <button class="button button--success" @click.prevent="resultVisible= true" v-if="test.passed">Смотреть результаты теста</button>
+        <h4 class="lesson-test__title">
+            Тест к уроку
+        </h4>
+        <div class="lesson-test__results">
+            <template v-if="test.passed">
+
+            </template>
+            <template v-else>
+                Не пройден
+            </template>
+        </div>
+        <div class="lesson-test__btns">
+            <button  class="button" style="margin-right: 20px" @click="startTest" v-if="test.passed" :disabled="!can_test">Пройти тест заново</button>
+            <button  class="button" style="margin-right: 20px" @click="startTest" v-else>Пройти тест</button>
+            <button class="button button--success" @click.prevent="resultVisible= true" v-if="test.passed">Смотреть результаты теста</button>
+        </div>
         <el-dialog
             :visible.sync="dialogVisible"
             :fullscreen="true"

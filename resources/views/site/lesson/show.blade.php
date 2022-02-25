@@ -49,14 +49,14 @@
                     </div>
                     <div class="course-item__content">
                         @if($lesson->user_buy)
-                            <div>
+                            <div style="flex:1">
                                 <div class="mb-4">
                                     {!! $lesson -> content -> text !!}
                                 </div>
-                                <div class="d-flex mb-4">
-                                    @if($lesson->tests()->exists())
+                                @if($lesson->tests()->exists())
                                     <lesson-test :lesson_title="'{{json_encode($lesson->title)}}'" :id="{{json_encode($lesson->id)}}"></lesson-test>
-                                    @endif
+                                @endif
+                                <div class="mb-4">
                                     <send-msg :lesson_id="{{json_encode($lesson->id)}}"></send-msg>
                                 </div>
                             </div>

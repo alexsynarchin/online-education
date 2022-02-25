@@ -1,5 +1,5 @@
 <template>
-    <el-button type="primary" icon="el-icon-message" style="margin-left: 1rem; text-transform: uppercase" @click.prevent="sendMsg">
+    <el-button type="primary" icon="el-icon-message" style=" text-transform: uppercase" @click.prevent="sendMsg">
         Написать преподавателю
     </el-button>
 </template>
