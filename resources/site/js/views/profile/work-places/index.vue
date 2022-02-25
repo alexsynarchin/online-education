@@ -1,34 +1,32 @@
 <template>
     <section class="profile-work-places">
-        <div class="profile-work-places__heading">
-            <h4 class="profile-work-places__title">
-                Опыт работы:
-            </h4>
-            <el-button icon="el-icon-plus" type="primary" @click="openModal">
+        <div class="profile-work-places__heading" v-if="edit">
+            <el-button icon="el-icon-plus" type="primary" @click="openModal" >
                 Добавить место работы
             </el-button>
         </div>
         <div class="row">
-            <el-card shadow="always"
-                     class="col-md-4 mb-2"
-                     :key="index"
-                     v-for="(item, index) in edu_institutions">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0" style="margin-right: 10px">
-                        {{item.title}}
-                    </h5>
-                    <el-button size="small" type="danger" icon="el-icon-delete" @click="deleteWorkPlace(index)"></el-button>
-                </div>
-
-            </el-card>
+            <div  class="col-md-4 mb-2"
+                  :key="index"
+                  v-for="(item, index) in edu_institutions">
+                <el-card shadow="always" style="height: 100%">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" style="margin-right: 10px">
+                            {{item.title}}
+                        </h5>
+                        <el-button size="small" type="danger" icon="el-icon-delete" @click="deleteWorkPlace(index)" v-if="edit"></el-button>
+                    </div>
+                    <el-tag class="mt-2" type="success" v-if="item.main">Основное место работы</el-tag>
+                </el-card>
+            </div>
         </div>
-
         <el-dialog
             title="Новое место работы"
             :visible.sync="modalVisible"
             width="30%"
         >
-        <el-form :model="workForm" :rules="rules" ref="workForm" >
+        <el-form :model="workForm" :rules="rules" ref="workForm">
+
             <el-form-item :label="item.label"
                           class="profile-work-places__select-wrap"
                           :prop="item.type"
@@ -46,6 +44,9 @@
                     </el-option>
                 </el-select>
             </el-form-item>
+            <el-form-item>
+                <el-checkbox v-model="workForm.main">Основное место работы</el-checkbox>
+            </el-form-item>
         </el-form>
     <span slot="footer" class="dialog-footer">
     <el-button type="success" @click="addWorkPlace('workForm')">Добавить</el-button>
@@ -58,6 +59,9 @@
 <script>
     export default {
         props: {
+            edit:{
+                default:false,
+            },
             edu_institutions: {
                 type: Array,
                 required:true,
@@ -68,7 +72,8 @@
                 modalVisible:false,
                 workItem : {
                     id: null,
-                    title: null
+                    title: null,
+                    main:false,
                 },
                 filters: [
                     {
@@ -102,6 +107,7 @@
                     },
                 ],
                 workForm : {
+                    main:false,
                     edu_type: null,
                     city: null,
                     edu_institution: null,
@@ -129,6 +135,7 @@
                 this.workForm.edu_type = this.filters[0].value;
                  this.workForm.city = this.filters[1].value;
                  this.workForm.edu_institution = this.filters[2].value;
+
                  if(type != 'edu_institution' && this.filters[0].value && this.filters[1].value) {
                      this.filters[2].value = null;
                      this.filters[2].options = [];
@@ -160,6 +167,13 @@
             addWorkPlace(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        this.workItem.main = this.workForm.main;
+                        if(this.workForm.main) {
+                            this.edu_institutions.forEach(function(item, i, arr) {
+                               item.main = false;
+                            });
+                        }
+                        this.workForm.main = false;
                       this.edu_institutions.push(this.workItem);
                       this.modalVisible = false;
                     } else {

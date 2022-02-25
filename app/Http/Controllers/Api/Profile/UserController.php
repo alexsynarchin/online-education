@@ -18,6 +18,9 @@ class UserController extends Controller
     {
         if(Auth::user() -> hasRole('teacher')) {
             $user = User::with(['eduInstitutions', 'teacherAccount']) ->find(Auth::id());
+            foreach ($user -> eduInstitutions as $item) {
+                $item->main = $item->pivot->main;
+            }
         }
         else if(Auth::user() -> hasRole('student')) {
             $user = User::with('studentAccount') ->find(Auth::id());
@@ -39,9 +42,10 @@ class UserController extends Controller
         if($request->has('edu_institutions')) {
             $edu_institutions_ids=[];
             foreach ($request->get('edu_institutions') as $item) {
-                $edu_institutions_ids[] = $item['id'];
+                $edu_institutions_ids[$item['id']] = ['main' =>$item['main'] ?? false, 'type' =>'work'];
             }
-            $user -> eduInstitutions() -> syncWithPivotValues($edu_institutions_ids, ['type' => 'work']);
+
+            $user -> eduInstitutions() -> sync($edu_institutions_ids);
         }
         return $user -> id;
 

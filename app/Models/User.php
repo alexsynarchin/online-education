@@ -148,7 +148,7 @@ class User extends Authenticatable implements HasMedia
     }
     public function eduInstitutions()
     {
-        return $this -> belongsToMany(EduInstitution::class, 'user_edu_institution');
+        return $this -> belongsToMany(EduInstitution::class, 'user_edu_institution')->withPivot('main');
     }
     public function teacherCourses()
     {

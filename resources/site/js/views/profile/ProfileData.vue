@@ -120,10 +120,21 @@
                         </el-form-item>
                         <span class="profile-data-item__value" v-else>{{user.phone}}</span>
                     </div>
+                    <div class="profile-data-head" v-if="user.profile_type === 'teacher'">
+                        Места работы
+                    </div>
+
+                    <work-places
+                        v-if="user.profile_type === 'teacher'"
+                                :edit="profileEdit"
+                                 :edu_institutions="user.edu_institutions"
+                                 @change-work-places="changeWorkPlaces"></work-places>
+
                     <div class="text-center mb-5 mt-5" v-if="profileEdit">
                         <el-button type="success" class="" @click.prevent="formSubmit">Сохранить</el-button>
                         <el-button type="" class="" @click.prevent="cancelEdit">Отменить</el-button>
                     </div>
+
                 </el-form>
                 <div class="profile-data-transactions"  v-if="user.profile_type === 'student'">
                     <div class="profile-data-transactions__content">
