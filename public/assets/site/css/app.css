@@ -14574,16 +14574,9 @@ a {
   margin-bottom: 30px;
 }
 .test-header__count {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 30px;
-  border-radius: 50%;
   font-weight: 700;
-  color: #fff;
-  background-color: #99AEDB;
+  font-size: 16px;
+  margin: 0 20px 0 0;
 }
 .test-header__title {
   margin-top: 10px;
@@ -14596,6 +14589,21 @@ a {
   }
 }
 
+.test-form-item {
+  display: none;
+}
+.test-form-item--current {
+  display: block;
+}
+
+.test-question {
+  margin-bottom: 25px;
+}
+.test-question__text {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 .test-body--flex {
   display: flex;
   flex-wrap: wrap;
@@ -14603,13 +14611,10 @@ a {
 .test-body-item {
   margin-bottom: 25px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 .test-body-item p {
   margin-bottom: 0;
-}
-.test-body-item:last-child {
-  margin-bottom: 80px;
 }
 .test-body-item--column {
   flex-direction: column;
@@ -14755,7 +14760,7 @@ a {
 }
 .lesson-test__title {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .lesson-test-modal .el-dialog__header {
