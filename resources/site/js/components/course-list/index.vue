@@ -1,5 +1,5 @@
 <template>
-    <section class="course-list" v-if="courses.length > 0">
+    <section class="course-list" v-if="(courses.length > 0) ">
         <CourseItem
             v-for="(course, index) in courses"
             :key="course.id"
@@ -20,18 +20,25 @@ import CourseItem from "./item";
         components: {
             CourseItem,
         },
+        props:{
+
+        },
         data() {
             return {
-                courses: []
+                courses: [],
+                loaded:false,
             }
         },
         methods: {
             getCourses(data) {
                 this.courses = data;
-            }
+            },
+
         },
         created() {
             EventBus.$on('get-filtered-courses', this.getCourses)
         },
+        async mounted() {
+        }
     }
 </script>

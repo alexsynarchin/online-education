@@ -51,7 +51,7 @@ class User extends Authenticatable implements HasMedia
     ];
     protected $appends = [
         'profile_type', 'subjects', 'avatar', 'gender_string','formatted_birthday',
-        'formatted_created_at',
+        'formatted_created_at', 'main_work'
     ];
 
     /**
@@ -123,6 +123,19 @@ class User extends Authenticatable implements HasMedia
             $avatar = '/images/avatar.jpg';
         }
         return $avatar;
+    }
+
+    public function getMainWorkAttribute()
+    {
+        $main_work = "";
+        if($this->profile_type === 'teacher') {
+            if($this->eduInstitutions()->where('main',1)->exists()) {
+                $main_work =  $this->eduInstitutions()->where('main',1)->first();
+                $main_work = $main_work->title;
+            }
+
+        }
+        return $main_work;
     }
 
     public function getSubjectsAttribute()
