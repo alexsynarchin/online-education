@@ -44,6 +44,7 @@ class StudentTestController extends Controller
             $answer_correct = false;
             foreach ($result['answers'] as $answer){
                 if($answer['answer'] === true) {
+                    $option_id = $answer['option_id'];
                     if($answer['right_answer'] === true) {
                         $answer_correct = true;
                     } else {
@@ -55,7 +56,7 @@ class StudentTestController extends Controller
             }
             $answers[] = [
                 'question_id' => $result['question_id'],
-                'option_id' => $answer['option_id'],
+                'option_id' => $option_id,
                 'correct' => $answer_correct
             ];
         }
