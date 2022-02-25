@@ -14766,7 +14766,12 @@ a {
 }
 @media (min-width: 1200px) {
   .lesson-test {
-    width: 70%;
+    width: 90%;
+  }
+}
+@media (min-width: 1400px) {
+  .lesson-test {
+    width: 80%;
   }
 }
 .lesson-test__title {

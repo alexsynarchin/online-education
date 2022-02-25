@@ -6,7 +6,7 @@
         </h4>
         <div class="lesson-test__results">
             <template v-if="test.passed">
-
+                Правильных ответов: {{correct_count}} из {{test.questions.length}}
             </template>
             <template v-else>
                 Не пройден
@@ -15,7 +15,7 @@
         <div class="lesson-test__btns">
             <button  class="button" style="margin-right: 20px" @click="startTest" v-if="test.passed" :disabled="!can_test">Пройти тест заново</button>
             <button  class="button" style="margin-right: 20px" @click="startTest" v-else>Пройти тест</button>
-            <button class="button button--success" @click.prevent="resultVisible= true" v-if="test.passed">Смотреть результаты теста</button>
+            <button class="button button--success" @click.prevent="resultVisible= true" v-if="test.passed">Смотреть результаты</button>
         </div>
         <el-dialog
             class="lesson-test-modal"
@@ -101,6 +101,7 @@
         },
         data() {
             return {
+                correct_count:0,
                 question_index: 0,
                 loaded:false,
                 test: {},
@@ -118,7 +119,8 @@
             getResult() {
                 axios.get('/api/education/test/' + this.id +  '/result')
                     .then((response) => {
-                        this.answers = response.data;
+                        this.answers = response.data.answers;
+                        this.correct_count = response.data.correct_count;
                     })
             },
             getTests() {
@@ -126,7 +128,9 @@
                 .then((response) => {
                     this.test = response.data.test;
                     this.can_test = response.data.can_test
-                    this.getResult();
+                    if(response.data.test.passed) {
+                        this.getResult();
+                    }
                     this.loaded =true;
                 })
             },

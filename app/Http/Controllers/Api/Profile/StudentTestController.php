@@ -93,6 +93,10 @@ class StudentTestController extends Controller
         $course = $lesson ->course;
         $test_result = $test ->results() ->where('user_id', \Auth::user()->id)->first();
         $answers = $test_result ->answers()->with(['question', 'option'])->get();
-        return $answers;
+        $correct_count = $answers->where('correct',1)->count();
+        return [
+            'correct_count' => $correct_count,
+            'answers' => $answers,
+        ];
     }
 }
