@@ -31,7 +31,7 @@
             v-if="active === 0"
         ></description-form>
         <content-form
-            :data="contentData"
+            :content-data="contentData"
             @submitStep="submitStep"
             ref="createContent"
             v-if="active === 1"
@@ -83,7 +83,7 @@ import TestForm from "./components/LessonTest/TestForm";
                 },
 
                 contentData:{
-                    text:null,
+                    text:"",
                     type_text:false,
                     type_image:false,
                     type_video:false,
