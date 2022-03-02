@@ -1,5 +1,6 @@
 <template>
     <section class="filter-sidebar">
+
         <sidebar-item
             v-if="selected.edu_type === 1 && loaded"
             :title="'Подготовка к Егэ'"
@@ -66,7 +67,7 @@
         props:{
             filterStart:{
                 type:Object,
-                default:{levels:[], subjects:[], direction:null, specialties:[], edu_type:null, themes:[]},
+                default:{levels:[], subjects:[], direction:null, specialties:[], edu_type:null, themes:[], sort:{value:'', direction:''}},
             }
         },
         data() {
@@ -141,7 +142,20 @@
                         EventBus.$emit('get-filtered-courses', response.data)
                     }
                 })
-            }
+            },
+            sortCourses(data) {
+                this.selected.sort = {
+                    value: '',
+                    direction: ''
+                }
+                this.selected.sort.value = data.value;
+                this.selected.sort.direction = data.direction;
+                console.log(this.selected.sort)
+                axios.post('/api/catalog/filter', this.selected)
+                    .then((response) => {
+                        EventBus.$emit('get-filtered-courses', response.data)
+                    })
+            },
         },
         mounted() {
             this.selected = this.filterStart;
@@ -155,6 +169,10 @@
                 .then((response) => {
                     EventBus.$emit('get-filtered-courses', response.data)
                 })
+        },
+        created() {
+            EventBus.$on('sort-courses', this.sortCourses)
+
         }
     }
 </script>

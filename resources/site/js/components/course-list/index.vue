@@ -1,32 +1,29 @@
 <template>
-    <section class="course-list" v-if="(courses.length > 0) ">
-        <section class="course-list-sort">
-            <label class="course-list-sort__label">
-                Сортировать по:
-            </label>
-            <span class="course-list-sort__item" v-for="(item, index) in SortList">
-                {{item.title}}
-            </span>
+    <div>
+        <sort></sort>
+        <section class="course-list" v-if="(courses.length > 0) ">
+            <CourseItem
+                v-for="(course, index) in courses"
+                :key="course.id"
+                :course="course"
+            ></CourseItem>
         </section>
-        <CourseItem
-            v-for="(course, index) in courses"
-            :key="course.id"
-            :course="course"
-        ></CourseItem>
-    </section>
-    <el-alert
-        v-else
-        :closable="false"
-        title="По данному запросу курсы не найдены"
-        type="info">
-    </el-alert>
+        <el-alert
+            v-else
+            :closable="false"
+            title="По данному запросу курсы не найдены"
+            type="info">
+        </el-alert>
+    </div>
+
 </template>
 <script>
 import EventBus from "../../EventBus";
 import CourseItem from "./item";
+import Sort from './sort';
     export default {
         components: {
-            CourseItem,
+            CourseItem, Sort
         },
         props:{
 
@@ -35,24 +32,6 @@ import CourseItem from "./item";
             return {
                 courses: [],
                 loaded:false,
-                SortList: [
-                    {
-                        title:'Рейтингу',
-                        value:'rating',
-                        direction:'ASC',
-                    },
-                    {
-                        title:'Новизне',
-                        value:'created_at',
-                        direction:'ASC',
-                    },
-                    {
-                        title:'Цене',
-                        value:'price',
-                        direction:'ASC',
-                    },
-
-                ],
             }
         },
         methods: {

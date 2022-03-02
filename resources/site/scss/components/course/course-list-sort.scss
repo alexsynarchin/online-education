@@ -8,9 +8,10 @@
         color: rgba(39, 39, 39, 0.35);
     }
     &__item {
+        display: block;
         margin-right: 15px;
         cursor: pointer;
-        &__active {
+        &--active {
             color: #6A89CC;
         }
     }

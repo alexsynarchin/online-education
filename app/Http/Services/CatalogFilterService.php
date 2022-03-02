@@ -21,6 +21,7 @@ class CatalogFilterService
         $yege = $filterData['yege'];
         $direction = $filterData['direction'];
         $specialties = $filterData['specialties'];
+        $sort = $filterData['sort'] ?? ['value' => '', 'direction' => ''];
 
         $courses = (new Course) -> newQuery();
         $courses = $courses->where('edu_type_id', $filterData['edu_type'])
@@ -52,6 +53,9 @@ class CatalogFilterService
             $query -> where('status', 2);
         })->get();
 
+        if($sort['value'] != '')  {
+            $courses = $courses->sortBy([[$sort['value'], $sort['direction']]]);
+        }
         return $courses;
     }
 }
