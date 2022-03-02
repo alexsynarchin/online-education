@@ -12,7 +12,7 @@
         <ul class="b-my-data" v-if="user.profile_type=='teacher'">
             <li class="b-my-data__item" style="padding-bottom: 0">
                 <i class="el-icon-plus b-my-data__icon" style="color:#6a89cc; font-size: 20px"></i>
-                <a href="/profile/course/create" class="b-my-data__link">Добавить курс</a>
+                <a href="/profile/course/create" class="b-my-data__link">Создать курс</a>
             </li>
             <li class="b-my-data__item" style="padding-bottom: 0">
                 <svg class="b-my-data__icon">
