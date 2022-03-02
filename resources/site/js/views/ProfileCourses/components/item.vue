@@ -1,5 +1,10 @@
 <template>
     <section class="course-item">
+        <div class="mb-3">
+            <el-tag>{{course.edu_type.title}}</el-tag>
+            <el-tag>{{course.subject.title}}</el-tag>
+            <el-tag>{{course.level.title}}</el-tag>
+        </div>
 
         <div class="course-item__heading">
             <h4 class="course-item__title">
