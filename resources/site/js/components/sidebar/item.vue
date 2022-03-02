@@ -3,7 +3,7 @@
         <h3 class="filter-sidebar-item__title" v-if="type != 'yege'">
             {{title}}
         </h3>
-        <div class="b-search" v-if="type != 'yege'">
+        <div class="b-search" v-if="ShowSearch">
             <input class="b-search__input" type="text" v-model="search" name="query" :placeholder="placeholder">
             <button type="submit" class="b-search__btn"  @click.prevent="">
                 <svg class="b-search__icon">
@@ -47,6 +47,10 @@
 <script>
     export default {
         props: {
+            ShowSearch:{
+                type:Boolean,
+                default:false,
+            },
             title: {
                 type:String,
             },

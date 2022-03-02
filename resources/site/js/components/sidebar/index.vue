@@ -5,6 +5,7 @@
             :title="'Подготовка к Егэ'"
             :placeholder="'Поиск по предметам'"
             :type="'yege'"
+            :show-search="false"
             :filter-start="selected.yege"
             @select-item="selectItem"
             :selected = this.selected
@@ -14,6 +15,7 @@
             :title="'Специальность'"
             :placeholder="'Поиск по специальностям'"
             :type="'specialty'"
+            :show-search="true"
             :filter-start="selected.specialties"
             :direction="selected.direction"
             @select-item="selectItem"
@@ -22,16 +24,18 @@
         ></sidebar-item>
         <sidebar-item
             v-if="loaded"
-        :title="'Предмет'"
-        :placeholder="'Поиск по предметам'"
-        :type="'subject'"
-        :filter-start="selected.subjects"
-        @select-item="selectItem"
-        :selected = this.selected
+            :title="'Предмет'"
+            :placeholder="'Поиск по предметам'"
+            :type="'subject'"
+            :filter-start="selected.subjects"
+            @select-item="selectItem"
+            :show-search="ShowSearch"
+            :selected = this.selected
         ></sidebar-item>
         <sidebar-item
             v-if="loaded"
             :title="level_title"
+            :show-search="false"
             :placeholder="'Поиск по ' + level_title + 'ам'"
             :type="'edu_level'"
             :filter-start="selected.levels"
@@ -42,6 +46,7 @@
         <sidebar-item
             v-if="loaded"
             title="Тема"
+            :show-search="true"
             :placeholder="'Поиск по темам'"
             :type="'theme'"
             :filter-start="selected.themes"
@@ -69,6 +74,15 @@
             selected: {},
             level_title:"",
             loaded:false,
+            }
+        },
+        computed: {
+            ShowSearch:function () {
+                let result = true;
+                if(this.selected.edu_type === 1) {
+                    result = false;
+                }
+                return result;
             }
         },
         methods: {
