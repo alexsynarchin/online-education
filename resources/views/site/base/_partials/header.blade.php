@@ -27,7 +27,7 @@
     <section class="page-header-main">
         <div class="container page-header-main__inner">
             <a href="/" class="page-header__logo">
-                <img class="b-header__logo-img" src="{{URL::asset('images/logo-3.png')}}?ver=12" alt="logo" width="167px">
+                <img class="b-header__logo-img" src="{{URL::asset('assets/site/images/logo.png')}}?ver=12" alt="logo" height="52px">
             </a>
             <div class="page-header__search">
                 @include('site.base.header.headerSearch')
