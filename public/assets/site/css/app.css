@@ -13208,6 +13208,24 @@ a {
   margin-left: 10px;
 }
 
+.course-list-sort {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  display: flex;
+}
+.course-list-sort__label {
+  margin-right: 15px;
+  color: rgba(39, 39, 39, 0.35);
+}
+.course-list-sort__item {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.course-list-sort__item__active {
+  color: #6A89CC;
+}
+
 .filter-nav {
   flex: 1 75%;
   max-width: 75%;

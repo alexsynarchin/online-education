@@ -1,0 +1,17 @@
+.course-list-sort {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    display: flex;
+    &__label {
+        margin-right: 15px;
+        color: rgba(39, 39, 39, 0.35);
+    }
+    &__item {
+        margin-right: 15px;
+        cursor: pointer;
+        &__active {
+            color: #6A89CC;
+        }
+    }
+}
