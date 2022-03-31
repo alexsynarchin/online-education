@@ -21,7 +21,7 @@
                 </div>
             </div>
               <blocks-by-type ref="blocks" v-if="(form.type === 'about')" :blocks="form.blocks"></blocks-by-type>
-
+                <instruction-blocks ref="instructions" v-if="(form.type === 'instruction')" :blocks="form.blocks"></instruction-blocks>
             </el-tab-pane>
             <el-tab-pane label="Настройки и SEO" name="config">
                 <Seo :form = "form.seo" v-if="form.seo"></Seo>
@@ -38,13 +38,14 @@
     import { Errors } from  '@/common/js/services/errors.js';
     import Seo from '@/admin/js/components/seo/seo';
     import BlocksByType from './blocks-by-type'
+    import InstructionBlocks from "./instruction-blocks";
 
     export default {
         props:['form','formAction'],
         components: {
             'Seo':Seo,
             'richtext':richtext,
-            BlocksByType,
+            BlocksByType, InstructionBlocks,
         },
         data() {
             return {
@@ -66,8 +67,8 @@
             if(this.form.type === 'about') {
               return this.form.blocks =  this.$refs.blocks.submitForm();
             }
-            if(this.form.type === 'contest') {
-              return this.form.blocks =  this.$refs.contest.submitForm();
+            if(this.form.type === 'instruction') {
+                return this.form.blocks =  this.$refs.instructions.submitForm();
             }
 
           },
