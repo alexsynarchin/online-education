@@ -1,6 +1,5 @@
 <template>
     <el-form ref="form" :model="form" label-position="top" :rules="rules">
-        {{form.blocks}}
         <el-tabs type="card" v-model="activeTab">
             <el-tab-pane label="Основная информация" name="main">
                 <div class="row">

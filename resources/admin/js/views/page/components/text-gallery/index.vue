@@ -1,6 +1,5 @@
 <template>
     <section>
-        {{blocks}}
         <el-button class="mb-4" icon="el-icon-plus" type="primary" @click="addItem">Добавить Блок</el-button>
         <draggable v-model="localBlocks" class="row" tag="div" @end="endSort">
             <item
