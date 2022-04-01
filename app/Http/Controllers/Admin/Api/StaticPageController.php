@@ -93,7 +93,36 @@ class StaticPageController extends Controller
             $page->blocks = $blocks;
             $page->save();
         }
-
+        if($page->type === 'instruction') {
+            $blocks = $request->get('blocks');
+            //instr_blocks
+            if (count($blocks['instr_blocks']) > 0) {
+                foreach ($blocks['instr_blocks'] as $key => $item) {
+                    if(count($item['images'])) {
+                        foreach ($item['images'] as $image_key =>  $image) {
+                            if(array_key_exists('name', $image)) {
+                                $picture = $page->addMediaFromBase64($image['link'])
+                                    ->toMediaCollection('pages');
+                                $image['link'] = $picture->getUrl();
+                                $image['id'] = $picture -> id;
+                                unset($image['name']);
+                                $item['images'][$image_key] = $image;
+                            }
+                        }
+                    }
+                    $blocks['instr_blocks'][$key] = $item;
+                }
+            }
+            if(count($blocks['delete_img']) > 0) {
+                foreach ($blocks['delete_img'] as $id) {
+                    $media = Media::findOrFail($id);
+                    $media ->delete();
+                }
+            }
+            unset($blocks['delete_img']);
+            $page->blocks = $blocks;
+            $page->save();
+        }
         return'success';
     }
     public function remove($id)

@@ -9,6 +9,11 @@ export default {
     components: {
         TextGallery,
     },
+    props: {
+        blocks: {
+            type:Object,
+        },
+    },
     data() {
         return {
             form: {
@@ -16,6 +21,20 @@ export default {
                 delete_img:[],
             },
         }
+    },
+    methods: {
+        prepareForm() {
+
+            if(this.blocks.instr_blocks) {
+                this.form.instr_blocks = this.blocks.instr_blocks;
+            }
+        },
+        submitForm() {
+            return this.form;
+        },
+    },
+    async mounted() {
+        await this.prepareForm();
     },
 }
 </script>

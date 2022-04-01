@@ -15067,3 +15067,42 @@ a {
 .about-list__content {
   padding-left: 20px;
 }
+
+.instruction-page__title {
+  margin-top: 70px;
+  font-size: 42px;
+  margin-bottom: 30px;
+  color: #6A89CC;
+  font-weight: 700;
+}
+.instruction-page__content {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 100px;
+}
+
+.instruction-block {
+  padding-bottom: 70px;
+  border-bottom: 1px solid #BED1FB;
+  margin-bottom: 50px;
+}
+.instruction-block:last-child {
+  border-bottom: none;
+}
+.instruction-block__title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 45px;
+}
+.instruction-block__gal {
+  margin-top: 40px;
+  text-align: center;
+}
+.instruction-block__gal img {
+  margin-bottom: 20px;
+}
+.instruction-block__text {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}

@@ -1,6 +1,7 @@
 @extends('site.base.base')
 @section('content')
  <div class="container">
+     @if($page->type != 'instruction')
      <ul class="breadcrumb">
          <li class="breadcrumb__item">
              <a href="/" class="breadcrumb__link">
@@ -11,12 +12,13 @@
              {{$page->name}}
          </li>
      </ul>
-     @if($page->type != 'about')
+     @endif
+     @if($page->type != 'about' && $page->type != 'instruction')
          <h1 class="page-title">
              {{$page->name}}
          </h1>
      @endif
-     @if($page->type != 'about')
+     @if($page->type != 'about' && $page->type != 'instruction')
      <div class="mb-5" >
          {!! $page->text !!}
      </div>
@@ -24,5 +26,8 @@
      @if($page->type === 'about')
          @include('site.static-page.components.about')
      @endif
+         @if($page->type === 'instruction')
+             @include('site.static-page.components.instruction')
+         @endif
  </div>
 @endsection
