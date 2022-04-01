@@ -15084,10 +15084,15 @@ a {
 .instruction-block {
   padding-bottom: 70px;
   border-bottom: 1px solid #BED1FB;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 .instruction-block:last-child {
   border-bottom: none;
+}
+.instruction-block--none-border {
+  border-bottom: none;
+  margin-bottom: 40px;
+  padding-bottom: 0;
 }
 .instruction-block__title {
   font-size: 22px;
@@ -15099,6 +15104,8 @@ a {
   text-align: center;
 }
 .instruction-block__gal img {
+  margin-left: 15px;
+  margin-right: 15px;
   margin-bottom: 20px;
 }
 .instruction-block__text {

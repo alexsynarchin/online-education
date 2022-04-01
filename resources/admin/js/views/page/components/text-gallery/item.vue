@@ -1,6 +1,7 @@
 <template>
     <div style="padding: 40px">
         <el-card class="box-card">
+            <el-checkbox v-model="item.border">Нижняя граница</el-checkbox>
             <el-form-item label="Заголовок" >
                 <el-input v-model="item.title"></el-input>
             </el-form-item>

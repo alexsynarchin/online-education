@@ -1,6 +1,7 @@
 <template>
     <section>
         <el-form :model="form" label-position="top" ref="form" :rules="rules">
+            <el-checkbox v-model="form.border">Нижняя граница</el-checkbox>
             <el-form-item label="Заголовок" >
                 <el-input v-model="form.title"></el-input>
             </el-form-item>
@@ -45,14 +46,13 @@ import richtext from "@/common/js/components/richtext/index.vue";
             return {
                 upload_image:"",
                 form: {
+                    border:true,
                     title: "",
                     text: "",
                     images:[],
                 },
                 rules: {
-                    title: [
-                        {required:true, message: "Заполните заголовок"}
-                    ]
+
                 },
             }
         },

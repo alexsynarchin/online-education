@@ -6,7 +6,7 @@
 </div>
 @if(isset($page->blocks['instr_blocks']) && $page->blocks['instr_blocks'] )
     @foreach($page->blocks['instr_blocks'] as $item)
-        <section class="instruction-block">
+        <section class="instruction-block @if(isset($item['border']) &&  $item['border'] == false) instruction-block--none-border @endif"  >
             <h3 class="instruction-block__title">
                 {{$item['title']}}
             </h3>
