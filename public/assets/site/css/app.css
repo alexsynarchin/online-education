@@ -15091,7 +15091,7 @@ a {
 }
 .instruction-block--none-border {
   border-bottom: none;
-  margin-bottom: 40px;
+  margin-bottom: 0;
   padding-bottom: 0;
 }
 .instruction-block__title {
