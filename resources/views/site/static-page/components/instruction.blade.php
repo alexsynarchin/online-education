@@ -7,9 +7,11 @@
 @if(isset($page->blocks['instr_blocks']) && $page->blocks['instr_blocks'] )
     @foreach($page->blocks['instr_blocks'] as $item)
         <section class="instruction-block @if(isset($item['border']) &&  $item['border'] == false) instruction-block--none-border @endif"  >
+            @if($item['title'])
             <h3 class="instruction-block__title">
                 {{$item['title']}}
             </h3>
+            @endif
             @if($item['text'])
                 <div class="instruction-block__text">
                     {!! $item['text'] !!}
