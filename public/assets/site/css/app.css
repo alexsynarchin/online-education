@@ -15105,9 +15105,9 @@ a {
   display: flex;
   justify-content: space-between;
 }
-.instruction-block__gal img {
-  margin-left: 15px;
-  margin-right: 15px;
+.instruction-block__gal figure {
+  padding-left: 15px;
+  padding-right: 15px;
   margin-bottom: 20px;
 }
 .instruction-block__text {
