@@ -43,8 +43,9 @@
             }
         },
         methods: {
-            deleteItem() {
+            deleteItem(index) {
 
+                this.localBlocks.splice(index,1);
             },
             endSort(){
                 this.$emit('sort', {list:this.localBlocks, list_name:'instruction'})
