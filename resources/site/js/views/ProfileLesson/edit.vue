@@ -23,18 +23,20 @@
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Основная информация" name="description">
                 <description-form :lesson="lesson"></description-form>
-            </el-tab-pane>
-            <el-tab-pane label="Содержимое урока" name="content">
                 <content-form
                     :ContentData ="contentData"
                     v-if="loaded"></content-form>
+                <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
+                <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
+            </el-tab-pane>
+            <el-tab-pane label="Содержимое урока" name="content">
+
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"   v-if="loaded"></test-form>
             </el-tab-pane>
         </el-tabs>
-        <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
-        <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
+
     </section>
 </template>
 <script>

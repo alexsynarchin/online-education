@@ -9,46 +9,29 @@
             </div>
             <h1 class="b-profile-user__title">Создание урока</h1>
         </div>
-        <el-steps :active="active" finish-status="success" process-status="finish" class="step-progressbar mb-3">
-            <el-step
-                title="Шаг 1"
-                description="Основная информация"
-            >
-            </el-step>
-            <el-step
-                title="Шаг 2"
-                description="Контент урока"
-            ></el-step>
-            <el-step
-                title="Шаг 3"
-                description="Тест к уроку"
-            ></el-step>
-        </el-steps>
-        <description-form
-            ref="description"
-            :lesson="descriptionData"
-            @submitStep="submitStep"
-            v-if="active === 0"
-        ></description-form>
-        <content-form
-            :content-data="contentData"
-            @submitStep="submitStep"
-            ref="createContent"
-            v-if="active === 1"
-        ></content-form>
-        <test-form
-            v-if="active === 2"
-            :ContentData = "testData"
-            ref="create_test"
-            @submitForm="checkTest"
-        >
-        </test-form>
-        <div class="text-center mb-3">
-            <el-button @click.prevent="prev()" v-if="active > 0" style="text-transform: uppercase">Назад</el-button>
-            <el-button type="primary"  @click.prevent="nextStep" v-if="active < 2" style="margin-top: 12px; text-transform: uppercase">Продолжить</el-button>
-            <el-button  type="primary" @click.prevent="store(0)" v-if="active === 2" style="text-transform: uppercase">Сохранить как черновик</el-button>
-            <el-button type="success" @click.prevent="store(1)" v-if="active === 2" style="text-transform: uppercase">Опубликовать</el-button>
-        </div>
+        <el-tabs v-model="activeTab"  class="edu-tabs">
+            <el-tab-pane label="Урок" name="description">
+                <lesson-form :lesson="lesson"></lesson-form>
+                <div class="text-center mb-3">
+                    <el-button  type="primary" @click.prevent="store(0)"  style="text-transform: uppercase">
+                        Сохранить как черновик
+                    </el-button>
+                    <el-button type="success" @click.prevent="store(1)"  style="text-transform: uppercase">
+                        Опубликовать
+                    </el-button>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane label="Тест к уроку" name="test">
+                <test-form
+                    :data = "testData"
+                    ref="create_test"
+                    @submitForm="checkTest"
+                >
+                </test-form>
+            </el-tab-pane>
+        </el-tabs>
+
+
         <div class="overlay" v-if="isLoading">
             <div class="overlay__inner">
                 <div class="overlay__content"><span class="spinner"></span></div>
@@ -57,12 +40,11 @@
     </section>
 </template>
 <script>
-import DescriptionForm from "./components/form";
-import ContentForm from "./components/ContentForm";
 import TestForm from "./components/LessonTest/TestForm";
+import LessonForm from "./components/lessonForm";
     export default {
     components: {
-        DescriptionForm, ContentForm, TestForm
+        LessonForm, TestForm
     },
         props:{
             slug:String,
@@ -70,19 +52,17 @@ import TestForm from "./components/LessonTest/TestForm";
         data() {
             return {
                 isLoading:false,
+                activeTab:'description',
                 course: {},
                 active:0,
                 min_price:250,
                 without_test:false,
                 loaded:false,
-                descriptionData:{
+                lesson: {
                     course_id:null,
                     title:null,
                     price:null,
                     time:null,
-                },
-
-                contentData:{
                     text:"",
                     type_text:false,
                     type_image:false,
@@ -144,7 +124,7 @@ import TestForm from "./components/LessonTest/TestForm";
                 axios.get('/api/profile/course/' + this.slug + '/show')
                     .then ((response) => {
                         this.course = response.data;
-                        this.descriptionData.course_id = response.data.id;
+                        this.lesson.course_id = response.data.id;
                         this.loaded = true;
                     })
             },

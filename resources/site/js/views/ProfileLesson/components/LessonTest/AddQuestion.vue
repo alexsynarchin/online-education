@@ -23,7 +23,7 @@
             </el-row>
         </el-form>
         <div class="divider mb-4"></div>
-        <h4>Варинты ответа к вопросу </h4>
+        <h4>Ответы</h4>
         <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2" v-show="!newOptionForm && (question.options.length > 0)" @click.prevent = "newOptionForm=true">Добавить новый вариант ответа</el-button>
         <div class="card mt-4" v-show="newOptionForm || (question.options.length == 0)">
             <el-form :model="newOption" ref="newOption" :rules="rules" label-position="top" class="card-body">
@@ -31,7 +31,7 @@
                     <el-form-item prop="right_answer" style="margin-bottom: 0">
                         <el-checkbox style="margin-bottom: 0" v-model="newOption.right_answer" label="Это правильный ответ?" border></el-checkbox>
                     </el-form-item>
-                    <el-button icon="el-icon-plus" type="primary" style="margin-left: auto"  class="button button--default" @click.prevent="addNewOption('newOption')">Добавить вариант ответа</el-button>
+
                 </el-row>
                 <el-row type="flex" :gutter="15">
                     <el-form-item prop="image" label="Картинка к ответу">
@@ -66,11 +66,18 @@
                     ref="options"
                 ></Option>
             </section>
-            <div class="question__btns mb-3 mt-3 text-center">
-                <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Обновить</el-button>
-                <el-button v-else type="success" @click.prevent="addQuestion('question')">Опубликовать</el-button>
-            </div>
+
         </fieldset>
+        <div class="mt-3">
+            <el-button icon="el-icon-plus" type="primary" style="margin-left: auto"  class="button button--default" @click.prevent="addNewOption('newOption')">
+                Добавить вариант ответа
+            </el-button>
+        </div>
+        <div class="question__btns mb-3 mt-3 text-center">
+            <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Обновить</el-button>
+
+            <el-button v-else type="success" @click.prevent="addQuestion('question')">Опубликовать</el-button>
+        </div>
     </section>
 </template>
 <script>
