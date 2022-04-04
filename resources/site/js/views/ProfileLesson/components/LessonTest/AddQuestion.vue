@@ -73,10 +73,9 @@
                 Добавить вариант ответа
             </el-button>
         </div>
-        <div class="question__btns mb-3 mt-3 text-center">
-            <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Обновить</el-button>
-
-            <el-button v-else type="success" @click.prevent="addQuestion('question')">Опубликовать</el-button>
+        <div class="question__btns mb-3 mt-3">
+            <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Сохранить</el-button>
+            <el-button v-else type="success" @click.prevent="addQuestion('question')">Сохранить</el-button>
         </div>
     </section>
 </template>
