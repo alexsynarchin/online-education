@@ -78,11 +78,16 @@
             <span class="my-count__check">{{balance}}</span>
             <span class="my-count__ruble" v-if="user.profile_type==='teacher'">руб</span>
         </div>
+        <button class="btn button" @click="addPromo" v-if="user.profile_type==='student'" style="width: 100%; margin-top: 15px">
+            Активировать промокод
+        </button>
     </aside>
 </div>
 </template>
 
 <script>
+import EventBus from "../../EventBus";
+
 export default {
     props :['user'],
     mounted(){
@@ -96,6 +101,9 @@ export default {
         }
     },
     methods:{
+        addPromo() {
+            EventBus.$emit('show-promo-modal');
+        },
         getBalance(){
             axios.get('/api/sidebar-balance')
                 .then((response)=>{

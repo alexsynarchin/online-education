@@ -166,6 +166,7 @@
     </div>
 </template>
 <script>
+    import EventBus from '@/site/js/EventBus.js'
     import AddStudentPromo from "./AddStudentPromo";
     import {mask} from 'vue-the-mask';
     import { Errors } from  '@/common/js/services/errors.js';
@@ -279,6 +280,9 @@
         },
         async mounted() {
 
-        }
+        },
+        created() {
+            EventBus.$on('show-promo-modal', this.addPromo);
+        },
     }
 </script>
