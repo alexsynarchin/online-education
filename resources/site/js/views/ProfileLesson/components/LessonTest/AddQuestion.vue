@@ -11,7 +11,7 @@
         </el-form>
         <div class="divider mb-4"></div>
         <h4>Ответы</h4>
-        <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2" v-show="!newOptionForm && (question.options.length > 0)" @click.prevent = "newOptionForm=true">Добавить новый вариант ответа</el-button>
+
         <div class="card mt-4" v-show="newOptionForm || (question.options.length == 0)">
             <el-form :model="newOption" ref="newOption" :rules="rules" label-position="top" class="card-body">
                 <el-row type="flex" class="align-items-center ">
@@ -21,19 +21,6 @@
 
                 </el-row>
                 <el-row type="flex" :gutter="15">
-                    <el-form-item prop="image" label="Картинка к ответу">
-                        <el-upload
-                            action=""
-                            v-model="newOption.preview"
-                            class="avatar-uploader"
-                            :auto-upload="false"
-                            :show-file-list="false"
-                            :on-change="onFileOptionChange"
-                        >
-                            <img v-if="newOption.preview" :src="newOption.preview" class="avatar">
-                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                        </el-upload>
-                    </el-form-item>
                 <el-form-item label="Текст ответа" prop="text" style="flex:  auto; margin-left: 1rem">
                     <richtext  v-model="newOption.text"></richtext>
                 </el-form-item>
@@ -56,13 +43,16 @@
 
         </fieldset>
         <div class="mt-3">
-            <el-button icon="el-icon-plus" type="primary" style="margin-left: auto"  class="button button--default" @click.prevent="addNewOption('newOption')">
-                Добавить вариант ответа
+            <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2" v-show="!newOptionForm && (question.options.length > 0)" @click.prevent = "newOptionForm=true">
+                Добавить новый вариант ответа
+            </el-button>
+            <el-button v-show="newOptionForm || question.options.length === 0"  type="primary" style="margin-left: auto"  class="button button--default" @click.prevent="addNewOption('newOption')">
+                Сохранить вариант ответа
             </el-button>
         </div>
         <div class="question__btns mb-3 mt-3">
-            <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Сохранить</el-button>
-            <el-button v-else type="success" @click.prevent="addQuestion('question')">Сохранить</el-button>
+            <el-button v-if="editing" type="success" @click.prevent="updateQuestion('question')">Сохранить тест</el-button>
+            <el-button v-else type="success" @click.prevent="addQuestion('question')">Сохранить тест</el-button>
         </div>
     </section>
 </template>
