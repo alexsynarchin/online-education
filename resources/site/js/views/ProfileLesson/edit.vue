@@ -21,16 +21,13 @@
         </div>
         <h1 class="b-profile-user__title">{{lesson.title}} : редактирование</h1>
         <el-tabs v-model="activeTab"  class="edu-tabs">
-            <el-tab-pane label="Основная информация" name="description">
+            <el-tab-pane label="Урок" name="description">
                 <description-form :lesson="lesson"></description-form>
                 <content-form
                     :ContentData ="contentData"
                     v-if="loaded"></content-form>
                 <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
                 <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
-            </el-tab-pane>
-            <el-tab-pane label="Содержимое урока" name="content">
-
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"   v-if="loaded"></test-form>
