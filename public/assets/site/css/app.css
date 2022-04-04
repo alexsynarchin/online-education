@@ -11331,6 +11331,10 @@ a {
   text-decoration: none !important;
 }
 
+.create-lesson__test .ck-content {
+  min-height: 250px;
+}
+
 .page-header {
   background-color: #fff;
   position: relative;

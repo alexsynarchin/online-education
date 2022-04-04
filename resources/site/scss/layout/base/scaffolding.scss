@@ -39,3 +39,8 @@ img{max-width: 100%}
 a {
     text-decoration: none !important;
 }
+.create-lesson__test {
+    .ck-content {
+        min-height: 250px;
+    }
+}
