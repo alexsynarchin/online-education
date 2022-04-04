@@ -11335,6 +11335,10 @@ a {
   min-height: 250px;
 }
 
+.question-option {
+  min-height: 150px;
+}
+
 .page-header {
   background-color: #fff;
   position: relative;

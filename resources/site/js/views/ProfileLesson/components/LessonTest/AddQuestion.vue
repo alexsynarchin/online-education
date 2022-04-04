@@ -11,22 +11,6 @@
         </el-form>
         <div class="divider mb-4"></div>
         <h4>Ответы</h4>
-
-        <div class="card mt-4" v-show="newOptionForm || (question.options.length == 0)">
-            <el-form :model="newOption" ref="newOption" :rules="rules" label-position="top" class="card-body">
-                <el-row type="flex" class="align-items-center ">
-                    <el-form-item prop="right_answer" style="margin-bottom: 0">
-                        <el-checkbox style="margin-bottom: 0" v-model="newOption.right_answer" label="Это правильный ответ?" border></el-checkbox>
-                    </el-form-item>
-
-                </el-row>
-                <el-row type="flex" :gutter="15">
-                <el-form-item label="Текст ответа" prop="text" style="flex:  auto; margin-left: 1rem">
-                    <richtext  v-model="newOption.text"></richtext>
-                </el-form-item>
-                </el-row>
-            </el-form>
-        </div>
         <fieldset v-show="!newOptionForm && (question.options.length > 0)">
             <section
                 v-for="(item, index) in question.options"
@@ -43,11 +27,8 @@
 
         </fieldset>
         <div class="mt-3">
-            <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2" v-show="!newOptionForm && (question.options.length > 0)" @click.prevent = "newOptionForm=true">
+            <el-button type="primary" icon="el-icon-plus" class="mt-3 mb-2"  @click.prevent = "addNewOption">
                 Добавить новый вариант ответа
-            </el-button>
-            <el-button v-show="newOptionForm || question.options.length === 0"  type="primary" style="margin-left: auto"  class="button button--default" @click.prevent="addNewOption('newOption')">
-                Сохранить вариант ответа
             </el-button>
         </div>
         <div class="question__btns mb-3 mt-3">
@@ -91,7 +72,13 @@
             this.initData();
         },
         mounted(){
-
+            if(this.question.options.length === 0) {
+                this.question.options.push({
+                    text: "",
+                    preview:"",
+                    right_answer: false,
+                });
+            }
         },
         methods:{
             writeDeletedId(id){
@@ -164,66 +151,13 @@
 
 
             },
-            onFileChange(file) {
-                let cond = this.beforeImageUpload(file.raw);
-                console.log(cond);
-                if(cond){
-                    this.createImage(file);
-                }
-            },
-            onFileOptionChange(file) {
-                let cond = this.beforeImageUpload(file.raw);
-                console.log(cond);
-                if(cond){
-                    this.createOptionImage(file);
-                }
-            },
-            beforeImageUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isPNG = file.type === 'image/png';
-                const isLt2M = file.size / 1024 / 1024 < 2;
 
-                if (!isJPG && !isPNG) {
-                    this.$message.error('Картинка должна быть в формате jpeg или png');
-                }
-                if (!isLt2M) {
-                    this.$message.error('Размер не может превышать 2МБ');
-                }
-                return (isJPG || isPNG) && isLt2M;
-            },
-            createImage(file) {
-                let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    vm.question.preview = e.target.result;
-                };
-                reader.readAsDataURL(file.raw);
-            },
-            createOptionImage(file) {
-                let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    vm.newOption.preview = e.target.result;
-                };
-                reader.readAsDataURL(file.raw);
-            },
-            addNewOption:function(formName){
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.question.options.push({
-                            text: this.newOption.text,
-                            preview:this.newOption.preview,
-                            right_answer: this.newOption.right_answer
-                        });
-                        this.newOption.text = '';
-                        this.newOption.right_answer = false;
-                        this.newOption.preview = '';
-                        this.newOptionForm = false;
-                    } else {
-                        return false;
-                    }
+            addNewOption:function(){
+                this.question.options.push({
+                    text: "",
+                    preview:"",
+                    right_answer: false,
                 });
-
             }
         }
 
