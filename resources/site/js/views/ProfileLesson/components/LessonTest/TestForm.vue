@@ -34,7 +34,6 @@
             >
                 <div  class="d-flex justify-content-between">
                     <div class="question-item__content">
-                        <figure class="question-item__img" v-if="question.image"><img :src="question.preview"> </figure>
                         <div v-html="question.text"></div>
                     </div>
 

@@ -1,5 +1,6 @@
 <template>
     <section>
+        {{localBlocks}}
         <el-button class="mb-4" icon="el-icon-plus" type="primary" @click="addItem">Добавить Блок</el-button>
         <draggable v-model="localBlocks" class="row" tag="div" @end="endSort">
             <item
@@ -44,7 +45,8 @@
         },
         methods: {
             deleteItem(index) {
-                this.localBlocks.splice(index,1);
+                this.localBlocks.splice(1, index);
+                console.log(index)
             },
             endSort(){
                 this.$emit('sort', {list:this.localBlocks, list_name:'instruction'})

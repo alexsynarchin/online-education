@@ -8,19 +8,6 @@
                     <el-button style="margin-left: auto" icon="el-icon-delete" circle type="danger" v-on:click.prevent="removeOption"></el-button>
                 </el-row>
         <el-row type="flex" :gutter="15">
-            <el-form-item prop="image" label="Картинка к ответу">
-                <el-upload
-                    action=""
-                    v-model="option_data.preview"
-                    class="avatar-uploader"
-                    :auto-upload="false"
-                    :show-file-list="false"
-                    :on-change="onFileChange"
-                >
-                    <img v-if="option_data.preview" :src="option_data.preview" class="avatar">
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-            </el-form-item>
                 <el-form-item label="Текст ответа" prop="text" style="flex:  auto; margin-left: 1rem">
                     <richtext :id="'option_text_' + index" v-model="option_data.text"></richtext>
                 </el-form-item>

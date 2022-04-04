@@ -3,19 +3,6 @@
         <h4>Вопрос к тесту</h4>
         <el-form label-position="top" :model="question" ref="question" :rules="rules">
             <el-row type="flex" :gutter="15">
-                <el-form-item prop="preview" label="Изображение обложки">
-                    <el-upload
-                        action=""
-                        v-model="question.preview"
-                        class="avatar-uploader"
-                        :auto-upload="false"
-                        :show-file-list="false"
-                        :on-change="onFileChange"
-                    >
-                        <img v-if="question.preview" :src="question.preview" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
-                </el-form-item>
                 <el-form-item  label="Текст вопроса" prop="text" style="flex:  auto; margin-left: 1rem">
                     <richtext v-model="question.text"></richtext>
                 </el-form-item>
