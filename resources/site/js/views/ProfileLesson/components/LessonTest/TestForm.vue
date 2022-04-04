@@ -73,6 +73,7 @@
         methods: {
             addQuestion(value) {
                 this.data.questions.push(value);
+                this.$emit('update');
             },
             showQuestionModal()
             {
@@ -93,6 +94,7 @@
             onUpdateQuestion(question){
                 this.editQuestion = question;
                 this.editing = false;
+                this.$emit('update');
                 this.closeQuestionModal();
             },
             submitForm(formName){

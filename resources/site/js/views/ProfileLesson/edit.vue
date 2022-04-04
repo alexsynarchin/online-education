@@ -30,7 +30,7 @@
                 <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
-                <test-form :data="test"   v-if="loaded"></test-form>
+                <test-form :data="test"  @update="updateTest"  v-if="loaded"></test-form>
             </el-tab-pane>
         </el-tabs>
 
@@ -87,6 +87,12 @@
                     this.test = response.data.test;
                     this.loaded = true;
                 })
+            },
+            updateTest() {
+                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, test:this.test, contentData:this.contentData})
+                    .then((response) => {
+
+                    })
             }
         },
         mounted() {

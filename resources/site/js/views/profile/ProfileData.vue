@@ -89,6 +89,7 @@
                         </el-select>
                         <span class="profile-data-item__value" v-else>{{user.city}}</span>
                     </div>
+                    <!--
                     <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">Образование:</span>
                         <span class="profile-data-item__value"></span>
@@ -97,6 +98,7 @@
                         <span class="profile-data-item__label">Профильные предметы:</span>
                         <span class="profile-data-item__value"></span>
                     </div>
+                    -->
                     <div class="profile-data-head">
                         Контакты
                     </div>
