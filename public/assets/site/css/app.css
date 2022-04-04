@@ -11335,7 +11335,7 @@ a {
   min-height: 250px;
 }
 
-.question-option {
+.question-option .ck-content {
   min-height: 150px;
 }
 

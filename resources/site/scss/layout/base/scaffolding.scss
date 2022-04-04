@@ -45,5 +45,8 @@ a {
     }
 }
 .question-option {
-    min-height: 150px;
+    .ck-content {
+        min-height: 150px;
+    }
+
 }
