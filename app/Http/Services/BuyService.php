@@ -41,7 +41,7 @@ class BuyService
             ]);
         }
         $teacher = $teacher -> teacherAccount;
-        $teacher->balance = $teacher->promo_balance + $request->get('price');
+        $teacher->promo_balance = $teacher->promo_balance + $request->get('price');
         $teacher->save();
         $teacher_id = $teacher -> id;
         if(!$student->teachers()->where('student_id', $student->id)->exists()) {
