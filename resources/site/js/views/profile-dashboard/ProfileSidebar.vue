@@ -75,8 +75,10 @@
         <div class="my-count">
             <span class="my-count__text" v-if="user.profile_type==='teacher'">На счету:</span>
             <span class="my-count__text" v-if="user.profile_type==='student'">Бонусы:</span>
-            <span class="my-count__check">{{balance}}</span>
-            <span class="my-count__ruble" v-if="user.profile_type==='teacher'">руб</span>
+            <span class="my-count__check" v-if="user.profile_type==='student'">{{balance}}</span>
+            <span class="my-count__check" v-if="user.profile_type==='teacher'">{{balance}} &#x20bd;</span>
+            <span class="my-count__check" v-if="user.profile_type==='teacher'">(+{{promo_balance}} бонусов)</span>
+
         </div>
         <button class="btn button" @click="addPromo" v-if="user.profile_type==='student'" style="width: 100%; margin-top: 15px">
             Активировать промокод
@@ -97,6 +99,7 @@ export default {
     data(){
         return{
             balance: 0,
+            promo_balance: 0,
             tabs:[],
         }
     },
@@ -108,7 +111,13 @@ export default {
             axios.get('/api/sidebar-balance')
                 .then((response)=>{
                     console.log(response.data)
-                    this.balance = response.data
+                    if(this.user.profile_type==='teacher') {
+                        this.balance = response.data.balance;
+                        this.promo_balance = response.data.promo_balance;
+                    }  else {
+                        this.balance = response.data;
+                    }
+
                 })
                 .catch((error)=>{
 

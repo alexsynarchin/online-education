@@ -24,10 +24,16 @@ class ProfileController extends Controller
         $balance = 0;
         if(Auth::user() -> profile_type == 'teacher') {
             $balance = Auth::user()->teacherAccount -> balance;
+            $promo_balance = Auth::user()->teacherAccount -> promo_balance;
+            return [
+              'balance' =>  (int) $balance,
+              'promo_balance' => (int) $promo_balance
+            ];
         }
         if(Auth::user() -> profile_type == 'student') {
             $balance = Auth::user() -> studentAccount -> promo_balance;
+            return (int) $balance;
         }
-        return $balance;
+
     }
 }
