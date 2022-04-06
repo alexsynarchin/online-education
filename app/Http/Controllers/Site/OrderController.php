@@ -19,7 +19,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($request->get('InvId'));
         if($order->type === 'course') {
             $course = Course::findOrFail($order->buying_id);
-            $price = $order->price;
+            $price = $course->price;
             $lessons = $course->lessons()->get();
             foreach ($lessons as $lesson) {
                 $this->lessonToStudent($lesson, $order->student_id);
