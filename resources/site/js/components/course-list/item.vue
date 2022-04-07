@@ -1,5 +1,5 @@
 <template>
-    <section class="course-item">
+    <section class="course-item" :class="{'course-item--yege' : course.yege}">
         <div class="course-item__heading">
             <a :href="'/catalog/' + course.edu_type.slug + '/' + course.slug"   class="course-item__link">
                 <h4 class="course-item__title">
