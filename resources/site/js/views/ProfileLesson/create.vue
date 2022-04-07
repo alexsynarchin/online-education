@@ -99,13 +99,12 @@ import LessonForm from "./components/lessonForm";
                     });
                     return;
                 }
-                var descriptionData = this.descriptionData;
-                var contentData = this.contentData;
+                var lesson = this.lesson;
                 var testData = this.testData;
                 var formData = {};
                 var status_item = {status: status};
 
-                Object.assign(formData,descriptionData,testData,contentData, status_item);
+                Object.assign(formData,lesson, testData, status_item);
                 this.isLoading = true;
                 axios.post('/api/profile/lesson/store',formData)
                     .then( (response) => {
