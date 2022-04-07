@@ -190,7 +190,7 @@ class TeacherCourseController extends Controller
             $tab = [
                 'type' => $names[$key]['type'],
                 'title' => $names[$key]['title'],
-                'count' => Course::where('status', $status)->count()
+                'count' => Course::where('status', $status)->where('author_id', Auth::user()->id)->count()
             ];
             $tabs[]=$tab;
         }
