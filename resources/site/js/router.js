@@ -6,7 +6,8 @@ import StudentCourses from "./views/StudentCourses";
 import ProfileTeacher from "./views/ProfileTeacher";
 import Chat from "./views/Chat/index"
 import ChatShow from "./views/Chat/show";
-import Notifications from "./views/Notification/index"
+import Notifications from "./views/Notification/index";
+import StudentTests from "./views/ProfileTest/index";
 //Course teacher
 import CourseCreate from "./views/ProfileCourses/create";
 import CourseEdit from './views/ProfileCourses/edit';
@@ -28,6 +29,7 @@ let routes = [
     {name: 'chat.index', path: '/profile/messages', component:Chat},
     {name: 'chat.show', path: '/profile/messages/:id', component:ChatShow, props: true},
     {name: 'notifications', path:'/profile/notifications', component: Notifications},
+    {name: 'test.index', path:'/profile/tests', component: StudentTests},
 ];
 export default new VueRouter({
     mode: 'history',

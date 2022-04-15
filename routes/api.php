@@ -131,6 +131,10 @@ Route::get('/profile/notifications/unread', [NotificationController::class, 'unr
 Route::post('/profile/notifications/read',  [NotificationController::class,'read'])->name('profile.notifications.read');
 
 
+use App\Http\Controllers\Api\Profile\TestResultController;
+Route::get('/profile/tests', [TestResultController::class, 'index'])->name('profile.test.index');
+
+
 
 
 

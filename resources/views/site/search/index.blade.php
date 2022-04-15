@@ -27,6 +27,7 @@
                 <h3 class="search__title mt-4">
                     Результаты по названию темы:
                 </h3>
+
                 @foreach($themes as $course)
                     @include('site.course.item', ['course' => $course])
                 @endforeach

@@ -11,10 +11,26 @@
               Результаты тестов
             </li>
         </ul>
+        <h1 class="b-profile-user__title">Мои Тесты</h1>
     </section>
 </template>
 <script>
     export default {
-
+        data() {
+            return {
+                tests:[],
+            }
+        },
+        methods: {
+            getTests() {
+                axios.get('/api/profile/tests')
+                .then((response) => {
+                    console.log(response.data);
+                })
+            },
+        },
+         mounted() {
+            this.getTests();
+         }
     }
 </script>

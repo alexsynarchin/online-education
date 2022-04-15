@@ -33,6 +33,8 @@ class TeacherController extends Controller
             $query -> with(['lessons' => function($query) {
                 $query->where('status',2);
             }]);
+            $query->with('edu_type');
+            $query->with('author');
         }]) -> findOrFail($id);
         return view('site.teacher.show', [
             'teacher' => $teacher,
