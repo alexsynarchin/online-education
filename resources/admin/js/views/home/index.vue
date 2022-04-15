@@ -231,7 +231,7 @@ export default {
                     value: ""
                 }
             ],
-            status:null,
+            status:1,
             subject:null,
             edu_type:null,
             author:null,

@@ -2,6 +2,7 @@
 
 
 namespace App\Services\Lesson;
+use App\Models\Category\Course;
 use App\Models\Description;
 use App\Models\Lesson\LessonContent;
 use Auth;
@@ -15,10 +16,11 @@ class UpdateLessonService
     public function update(Request $request, $id)
     {
         $lesson = Lesson::findOrFail($id);
-
         $description = $request->get('lesson');
         $content = $request->get('contentData');
-
+        $course = Course::findOrFail($lesson->course_id);
+        $course->status = 1;
+        $course->save();
         $lesson ->fill([
             'title' => $description['title'],
             'price_user' => $description['price'],
