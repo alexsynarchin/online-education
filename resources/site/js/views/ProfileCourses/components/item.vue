@@ -7,7 +7,7 @@
         </div>
 
         <div class="course-item__heading">
-            <h4 class="course-item__title">
+            <h4 class="course-item__title" @click="handleShow">
                 {{course.title}}
             </h4>
         </div>
@@ -71,8 +71,11 @@
             addLesson() {
                 window.location.href = '/profile/courses/' + this.course.slug + '/lesson-create'
             },
-            handleEdit() {
+            handleShow() {
                 window.location.href = '/profile/courses/' + this.course.slug;
+            },
+            handleEdit() {
+                window.location.href = '/profile/course/' + this.course.slug + '/edit';
             },
             async handleRemove() {
                 const result = await this.deleteDialog('Удалить курс. Все связанные уроки будут также удалены.')
