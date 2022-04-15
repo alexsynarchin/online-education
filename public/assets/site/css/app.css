@@ -13102,6 +13102,7 @@ a {
   margin-left: 20px;
   padding-left: 0;
   display: flex;
+  min-width: 12%;
 }
 .course-item__types-item {
   padding-left: 6px;
