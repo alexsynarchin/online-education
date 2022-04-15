@@ -12259,6 +12259,7 @@ a {
   font-size: 36px;
   font-weight: 700;
   color: #4B4B4B;
+  word-wrap: break-word;
 }
 @media (max-width: 767.98px) {
   .b-profile-user__title {

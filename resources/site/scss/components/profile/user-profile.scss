@@ -5,6 +5,7 @@
     font-size: 36px;
     font-weight: 700;
     color: #4B4B4B;
+    word-wrap: break-word;
     @include media-breakpoint-down(md){
         font-size: 26px;
     }
