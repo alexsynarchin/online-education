@@ -1,0 +1,19 @@
+.profile-test-result {
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__title {
+        font-weight: 500;
+        font-size: 18px;
+    }
+    &__link {
+        color:$text-color;
+        font-weight: 300;
+        text-decoration: underline !important;
+        &:hover {
+          color: $text-color;
+            text-decoration: none;
+        }
+    }
+}

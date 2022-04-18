@@ -12,20 +12,28 @@
             </li>
         </ul>
         <h1 class="b-profile-user__title">Мои Тесты</h1>
+        <section class="course-item"  v-for="(lesson, index) in lessons">
+            <h4 class="profile-test-result__title">
+                Тест к уроку "{{lesson.title}}"
+            </h4>
+            <a :href="'/catalog/' + lesson.course.edu_type.slug + '/' + lesson.course.slug + '/' + lesson.slug" class="profile-test-result__link">
+                Смотреть результат
+            </a>
+        </section>
     </section>
 </template>
 <script>
     export default {
         data() {
             return {
-                tests:[],
+                lessons:[],
             }
         },
         methods: {
             getTests() {
                 axios.get('/api/profile/tests')
                 .then((response) => {
-                    console.log(response.data);
+                   this.lessons = response.data;
                 })
             },
         },

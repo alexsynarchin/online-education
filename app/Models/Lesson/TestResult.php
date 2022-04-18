@@ -14,4 +14,6 @@ class TestResult extends Model
     {
         return $this->hasMany(TestResultAnswer::class,'test_result_id');
     }
+
+
 }

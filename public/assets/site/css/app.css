@@ -13103,7 +13103,7 @@ a {
   margin-left: 20px;
   padding-left: 0;
   display: flex;
-  min-width: 12%;
+  min-width: 18%;
 }
 .course-item__types-item {
   padding-left: 6px;
@@ -14829,6 +14829,24 @@ a {
 
 .lesson-test-modal .el-dialog__header {
   background-color: rgba(106, 137, 204, 0.12);
+}
+
+.profile-test-result__heading {
+  display: flex;
+  justify-content: space-between;
+}
+.profile-test-result__title {
+  font-weight: 500;
+  font-size: 18px;
+}
+.profile-test-result__link {
+  color: #272727;
+  font-weight: 300;
+  text-decoration: underline !important;
+}
+.profile-test-result__link:hover {
+  color: #272727;
+  text-decoration: none;
 }
 
 .order-modal__title {

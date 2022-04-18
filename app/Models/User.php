@@ -6,6 +6,7 @@ use App\Models\Account\StudentAccount;
 use App\Models\Account\TeacherAccount;
 use App\Models\Category\CategoryType;
 use App\Models\Category\Course;
+use App\Models\Lesson\TestResult;
 use App\Models\Reference\EduInstitution;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -171,5 +172,10 @@ class User extends Authenticatable implements HasMedia
     public function messages()
     {
         return $this -> morphMany(Message::class, 'messagable');
+    }
+
+    public function testResults()
+    {
+        return $this->hasMany(TestResult::class, 'user_id');
     }
 }
