@@ -28,7 +28,7 @@
         <el-alert
             v-else
             :closable="false"
-            title="По данному запросу преподаватели не найдены"
+            title="У вас нет студентов"
             type="info">
         </el-alert>
     </section>
