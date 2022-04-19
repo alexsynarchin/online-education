@@ -110,7 +110,7 @@
                                 {{$article->title}}
                             </h3>
                             <p>
-                                {{$article->description}}
+                                {!! $article->description  !!}
                             </p>
                         </section>
                     </a>
