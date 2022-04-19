@@ -52,10 +52,8 @@ class OrderController extends Controller
         $teacher->save();
         $teacher_id = $teacher -> id;
         $student = StudentAccount::findOrFail($order->student_id);
-        if($price > $request->get('OutSum')) {
-            $student->promo_balance = $student -> promo_balance - ($price - $request->get('OutSum'));
+            $student->promo_balance = $student -> promo_balance - $promo_balance;
             $student -> save();
-        }
         if(!$student->teachers()->where('student_id', $student->id)->exists()) {
             $student->teachers()->attach($teacher_id);
         }
