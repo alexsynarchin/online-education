@@ -25,6 +25,23 @@
 
         </el-row>
         <el-form-item prop="text" label="Содержимое урока">
+            <editor
+                v-model="lesson.text"
+                api-key="no-api-key"
+                :init="{
+         height: 500,
+         menubar: false,
+         plugins: [
+           'advlist autolink lists link image charmap print preview anchor',
+           'searchreplace visualblocks code fullscreen',
+           'insertdatetime media table paste code help wordcount'
+         ],
+         toolbar:
+           'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help'
+       }"
+            />
             <richtext v-model="lesson.text"></richtext>
         </el-form-item>
         <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 0">
@@ -44,10 +61,12 @@
     </el-form>
 </template>
 <script>
+import Editor from '@tinymce/tinymce-vue'
 import richtext from '@/common/js/components/richtext/index';
 export default {
     components: {
         richtext,
+        'editor': Editor,
     },
     props: {
         lesson: {
