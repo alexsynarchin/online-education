@@ -12788,8 +12788,8 @@ a {
   margin-bottom: 5px;
 }
 .mp-price-list__price {
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 400;
   margin-bottom: 0;
 }
 .mp-price-list__text {
@@ -12836,6 +12836,7 @@ a {
   min-width: 80px;
   border-radius: 100%;
   padding: 16px;
+  margin-bottom: 0;
 }
 .mp-you-get-list__title {
   font-size: 18px;
