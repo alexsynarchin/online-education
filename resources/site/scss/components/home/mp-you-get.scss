@@ -20,6 +20,7 @@
     &__item {
         display: flex;
         margin-bottom: 45px;
+        margin-top: 26px;
     }
     &__image {
         background-color: rgba(106, 137, 204, 0.15);
@@ -34,7 +35,7 @@
     }
     &__title {
         font-size: 18px;
-        font-weight: 700;
+        font-weight: 400;
         margin-bottom: 10px;
     }
     &__content {

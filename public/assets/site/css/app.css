@@ -12783,7 +12783,7 @@ a {
   background: #3FB1B5;
 }
 .mp-price-list__title {
-  font-size: 16px;
+  font-size: 32px;
   font-weight: 600;
   margin-bottom: 5px;
 }
@@ -12824,6 +12824,7 @@ a {
 .mp-you-get-list__item {
   display: flex;
   margin-bottom: 45px;
+  margin-top: 26px;
 }
 .mp-you-get-list__image {
   background-color: rgba(106, 137, 204, 0.15);
@@ -12838,7 +12839,7 @@ a {
 }
 .mp-you-get-list__title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 10px;
 }
 .mp-you-get-list__content {
