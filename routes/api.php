@@ -134,6 +134,9 @@ Route::post('/profile/notifications/read',  [NotificationController::class,'read
 use App\Http\Controllers\Api\Profile\TestResultController;
 Route::get('/profile/tests', [TestResultController::class, 'index'])->name('profile.test.index');
 
+use App\Http\Controllers\Api\Profile\TeacherStudentController;
+Route::get('/profile/my-students', [TeacherStudentController::class, 'index'])->name('profile.my-students.index');
+
 
 
 
