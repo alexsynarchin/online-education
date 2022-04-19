@@ -14,14 +14,14 @@
         <h1 class="b-profile-user__title">Мои Студенты</h1>
         <div class="row" v-if="students.length > 0">
             <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3" v-for="(student, index) in students" >
-                <a  :href="'/search-teachers/' + teacher.id" class="teacher-item">
+                <div  class="teacher-item">
                     <figure class="teacher-item__avatar">
-                        <img :src="student.avatar">
+                        <img :src="student.user.avatar">
                     </figure>
                     <h4 class="teacher-item__title">
-                        {{student.name}} {{student.surname}}
+                        {{student.user.name}} {{student.user.surname}}
                     </h4>
-                </a>
+                </div>
             </div>
 
         </div>
@@ -39,6 +39,17 @@
             return {
                 students: [],
             }
+        },
+        methods: {
+            getStudents() {
+                axios.get('/api/profile/my-students')
+                    .then((response) => {
+                        this.students = response.data;
+                    })
+            },
+        },
+        mounted() {
+            this.getStudents();
         }
     }
 </script>
