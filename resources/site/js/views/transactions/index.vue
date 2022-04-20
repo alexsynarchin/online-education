@@ -12,7 +12,7 @@
             </li>
         </ul>
         <h1 class="b-profile-user__title">Вывести средства</h1>
-        <div class="row">
+        <div class="row" v-if="user.profile_type === 'teacher'">
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <form class="form-pay">
                     <fieldset class="form-pay-group">
@@ -57,6 +57,22 @@
 </template>
 <script>
     export default {
+        data() {
+            return {
+                user: {}
+            }
+        },
+         methods: {
+             getUser() {
+                 axios.get('/api/profile/user/show')
+                     .then((response) => {
+                         this.user = response.data;
 
+                     })
+             }
+         },
+        async mounted() {
+            await this.getUser();
+        }
     }
 </script>
