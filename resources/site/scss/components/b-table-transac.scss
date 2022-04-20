@@ -38,6 +38,9 @@
         background-color: #99aedb;
         color: #fff;
         text-align: center;
+        &--danger {
+            background-color: #e74c3c;
+        }
     }
     &_message{
         width: 20%;

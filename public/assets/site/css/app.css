@@ -15078,6 +15078,9 @@ a {
   color: #fff;
   text-align: center;
 }
+.b-table-transac__item_count--danger {
+  background-color: #e74c3c;
+}
 .b-table-transac__item_message {
   width: 20%;
   display: flex;
