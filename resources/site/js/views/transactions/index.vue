@@ -62,13 +62,15 @@
             v-if="user.profile_type==='teacher'"
             ref="teacher"
         ></transaction-teacher>
+        <transaction-student v-else></transaction-student>
     </section>
 </template>
 <script>
 import transactionTeacher from './components/teacher'
+import TransactionStudent from './components/student'
     export default {
     components: {
-        transactionTeacher,
+        transactionTeacher, TransactionStudent,
     },
         data() {
             return {

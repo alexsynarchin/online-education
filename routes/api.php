@@ -140,6 +140,9 @@ use App\Http\Controllers\Api\Profile\WithdrawController;
 Route::post('/profile/withdraw', [WithdrawController::class, 'withdraw']) ->name('profile.withdraw');
 Route::get('/profile/withdraw/list', [WithdrawController::class, 'list'])->name('profile.withdraw.list');
 
+use App\Http\Controllers\Api\OrderController;
+Route::get('/profile/orders', [OrderController::class, 'index'])->name('order.index');
+
 
 
 
