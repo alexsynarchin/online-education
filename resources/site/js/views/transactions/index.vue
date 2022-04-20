@@ -14,10 +14,15 @@
         <h1 class="b-profile-user__title" v-if="user.profile_type === 'teacher'">Вывести средства</h1>
         <div class="row" v-if="user.profile_type === 'teacher'">
             <div class="col-sm-12 col-md-12 col-lg-6">
+
                 <form class="form-pay">
                     <fieldset class="form-pay-group">
                         <label for="#number-cart" class="form-pay-group__label">Номер карты</label>
-                        <input type="text" id="number-cart" class="form-pay-group__input" placeholder="">
+                        <input  v-model="user.teacher_account.card_number"
+                                type="text"
+                                id="number-cart"
+                                class="form-pay-group__input"
+                                placeholder="">
                     </fieldset>
                     <fieldset class="form-pay-group">
                         <label for="#sum" class="form-pay-group__label">Сумма</label>
@@ -25,7 +30,7 @@
                     </fieldset>
                     <div class="availibale-sum">
                         <span class="availibale-sum__text">Доступно к выводу:</span>
-                        <span class="availibale-sum__cout">  </span>
+                        <span class="availibale-sum__cout"> {{Sum}} </span>
                         <span class="availibale-sum__rub">руб</span>
                     </div>
                     <button class="form-pay__btn" type="submit">Вывести</button>
@@ -59,7 +64,8 @@
     export default {
         data() {
             return {
-                user: {}
+                user: {},
+                Sum: 0,
             }
         },
          methods: {
@@ -67,7 +73,9 @@
                  axios.get('/api/profile/user/show')
                      .then((response) => {
                          this.user = response.data;
-
+                            if(this.user.profile_type === 'teacher') {
+                                this.Sum = parseInt(this.user.teacher_account.balance) + parseInt(this.user.teacher_account.promo_balance)
+                            }
                      })
              }
          },
