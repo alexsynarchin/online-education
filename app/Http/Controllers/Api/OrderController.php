@@ -12,7 +12,7 @@ class OrderController extends Controller
     {
         $user= \Auth::user();
         $student = $user->studentAccount;
-        $orders = Order::where('student_id', $student->id) -> get();
+        $orders = Order::where('student_id', $student->id) ->where('status', 'success') -> get();
         return $orders;
     }
 }
