@@ -14371,6 +14371,11 @@ a {
   color: #4a4a4a;
 }
 
+.tarif-title {
+  font-weight: 400;
+  font-size: 15px;
+}
+
 .rating-list {
   list-style-type: none;
   margin-left: 0;
@@ -15035,6 +15040,8 @@ a {
 .b-table-transac__head {
   display: flex;
   justify-content: space-between;
+  border: 1px dashed #e5e5e5;
+  border-radius: 5px;
 }
 .b-table-transac__head_item {
   padding: 15px 0px 15px 15px;
@@ -15059,6 +15066,17 @@ a {
 }
 .b-table-transac__item:last-child {
   margin-bottom: 80px;
+}
+.b-table-transac__item_count {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+  border-radius: 5px;
+  background-color: #99aedb;
+  color: #fff;
+  text-align: center;
 }
 .b-table-transac__item_message {
   width: 20%;

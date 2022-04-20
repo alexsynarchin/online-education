@@ -136,6 +136,9 @@ Route::get('/profile/tests', [TestResultController::class, 'index'])->name('prof
 
 use App\Http\Controllers\Api\Profile\TeacherStudentController;
 Route::get('/profile/my-students', [TeacherStudentController::class, 'index'])->name('profile.my-students.index');
+use App\Http\Controllers\Api\Profile\WithdrawController;
+Route::post('/profile/withdraw', [WithdrawController::class, 'withdraw']) ->name('profile.withdraw');
+Route::get('/profile/withdraw/list', [WithdrawController::class, 'list'])->name('profile.withdraw.list');
 
 
 

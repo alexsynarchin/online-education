@@ -17,6 +17,7 @@ class CreateWithdrawsTable extends Migration
             $table->id();
             $table->bigInteger('teacher_id')->unsigned();
             $table->bigInteger('moderator_id')->unsigned()->nullable();
+            $table->boolean('done')->default(false);
             $table->bigInteger('sum')->unsigned();
             $table->timestamps();
         });

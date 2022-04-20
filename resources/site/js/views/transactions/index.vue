@@ -26,14 +26,14 @@
                     </fieldset>
                     <fieldset class="form-pay-group">
                         <label for="#sum" class="form-pay-group__label">Сумма</label>
-                        <input type="text" id="sum" class="form-pay-group__input" placeholder="">
+                        <input v-model="withdrawSum" type="text" id="sum" class="form-pay-group__input" placeholder="">
                     </fieldset>
                     <div class="availibale-sum">
                         <span class="availibale-sum__text">Доступно к выводу:</span>
                         <span class="availibale-sum__cout"> {{Sum}} </span>
                         <span class="availibale-sum__rub">руб</span>
                     </div>
-                    <button class="form-pay__btn" type="submit">Вывести</button>
+                    <button class="form-pay__btn" @click.prevent="withdraw">Вывести</button>
                 </form>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6">
@@ -58,14 +58,23 @@
                 </div>
             </div>
         </div>
+        <transaction-teacher
+            v-if="user.profile_type==='teacher'"
+            ref="teacher"
+        ></transaction-teacher>
     </section>
 </template>
 <script>
+import transactionTeacher from './components/teacher'
     export default {
+    components: {
+        transactionTeacher,
+    },
         data() {
             return {
                 user: {},
                 Sum: 0,
+                withdrawSum:0,
             }
         },
          methods: {
@@ -74,10 +83,37 @@
                      .then((response) => {
                          this.user = response.data;
                             if(this.user.profile_type === 'teacher') {
-                                this.Sum = parseInt(this.user.teacher_account.balance) + parseInt(this.user.teacher_account.promo_balance)
+                                this.Sum = parseInt(this.user.teacher_account.balance) + parseInt(this.user.teacher_account.promo_balance);
+
                             }
                      })
-             }
+             },
+
+              withdraw() {
+                 if(this.withdrawSum > this.Sum) {
+                     this.$notify({
+                         title: 'Выводимая сумма больше доступной для вывода',
+                         type: 'error'
+                     });
+                 } else {
+                     axios.post('/api/profile/withdraw',
+                         {user_id:this.user.id,
+                             sum:this.Sum,
+                             withdraw_sum:this.withdrawSum,
+                             card_number:this.user.teacher_account.card_number
+                         })
+                         .then((response) => {
+                             console.log(response.data);
+                             this.$notify({
+                                 title: 'Запрос на вывод средств отправлен',
+                                 type: 'success'
+                             });
+                             this.$refs.teacher.getWithdraws();
+                             this.getUser();
+                         })
+                 }
+                 }
+
          },
         async mounted() {
             await this.getUser();
