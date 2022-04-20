@@ -1,0 +1,27 @@
+.payment-types {
+    margin: 30px 0px;
+    padding: 40px 25px;
+    border: 1px dashed #ced8ee;
+    border-radius: 5px;
+}
+.payment-types-head {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    &__item {
+        width: 30%;
+        height: 60px;
+    }
+}
+.payment-head {
+    margin-top: 20px;
+}
+.payment-text {
+    margin-top: 20px;
+    p {
+        margin-bottom: 20px;
+    }
+}
