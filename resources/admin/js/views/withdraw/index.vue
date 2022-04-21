@@ -27,7 +27,7 @@
             <el-table-column
                 sortable
                 label="Дата"
-                prop="created_at"
+                prop="formatted_created_at"
             >
 
             </el-table-column>
