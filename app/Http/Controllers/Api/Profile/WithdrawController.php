@@ -31,7 +31,8 @@ class WithdrawController extends Controller
         $withdraw = Withdraw::create([
             'teacher_id' => $user->id,
             'sum' => $request->get('withdraw_sum'),
-            'balance' =>
+            'balance' => $balance,
+            'promo_balance' => $promo_balance,
         ]);
         return $request->all();
     }
