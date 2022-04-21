@@ -96,6 +96,9 @@ export default {
         this.getBalance();
         this.getCoursesCount();
     },
+    created() {
+        EventBus.$on('sidebar-balance', this.getBalance)
+    },
     data(){
         return{
             balance: 0,

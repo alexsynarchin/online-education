@@ -66,8 +66,9 @@
     </section>
 </template>
 <script>
-import transactionTeacher from './components/teacher'
-import TransactionStudent from './components/student'
+import transactionTeacher from './components/teacher';
+import EventBus from '../../EventBus';
+import TransactionStudent from './components/student';
     export default {
     components: {
         transactionTeacher, TransactionStudent,
@@ -112,6 +113,7 @@ import TransactionStudent from './components/student'
                              });
                              this.$refs.teacher.getWithdraws();
                              this.getUser();
+                             EventBus.$emit('sidebar-balance');
                          })
                  }
                  }
