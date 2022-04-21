@@ -34,14 +34,14 @@
             </el-table-column>
             <el-table-column
                 sortable
-                label="Сумма c баланса"
+                label="С баланса"
                 prop="balance"
             >
 
             </el-table-column>
             <el-table-column
                 sortable
-                label="Сумма с промо баланса"
+                label="С промо баланса"
                 prop="promo_balance"
             >
 
