@@ -81,6 +81,7 @@ export default {
             axios.post('/api/admin/withdraw/done', item)
                 .then((response) => {
                     this.getWithdraws();
+                    this.$emit('done');
                     this.$notify({
                         title: 'Вывод средств подтвержден',
                         type: 'success',

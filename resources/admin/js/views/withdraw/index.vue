@@ -1,10 +1,10 @@
 <template>
     <el-tabs type="card">
         <el-tab-pane label="Запросы">
-            <withdraws></withdraws>
+            <withdraws @done="updateHistory"></withdraws>
         </el-tab-pane>
         <el-tab-pane label="История">
-            <history></history>
+            <history ref="history"></history>
         </el-tab-pane>
     </el-tabs>
 </template>
@@ -14,6 +14,11 @@ import History  from "./components/history";
     export default {
         components: {
             Withdraws, History
+        },
+        methods: {
+            updateHistory() {
+                this.$refs.history.getWithdraws();
+            }
         }
     }
 </script>
