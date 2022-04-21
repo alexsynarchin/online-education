@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $withdraws = Withdraw::where('done', 0)->with('teacher', function ($query){
+        $withdraws = Withdraw::where('done', $request->get('done'))->with('teacher', function ($query){
             $query->with('teacherAccount');
         }) ->get();
         return $withdraws;
