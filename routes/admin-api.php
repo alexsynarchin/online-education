@@ -73,4 +73,4 @@ Route::post('/main-page/store', [MainPageController::class, 'store'])->name('mai
 
 use App\Http\Controllers\Admin\Api\WithdrawController;
 Route::get('/withdraws', [WithdrawController::class, 'index'])->name('withdraw.index');
-
+Route::post('/withdraw/done', [WithdrawController::class, 'done'])->name('withdraw.done');

@@ -55,8 +55,16 @@
             }
         },
       methods: {
-            handleEdit() {
-
+            handleEdit(index, item) {
+                axios.post('/api/admin/withdraw/done', item)
+                    .then((response) => {
+                        this.getWithdraws();
+                        this.$notify({
+                            title: 'Вывод средств подтвержден',
+                            type: 'success',
+                            duration:4000
+                        });
+                    })
             },
           getWithdraws() {
             axios.get('/api/admin/withdraws')
