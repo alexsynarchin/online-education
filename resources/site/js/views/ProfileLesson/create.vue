@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="mb-4">
         <div class="b-breadcrumbs">
             <div class="b-breadcrumbs__item">
                 <a href="/">Главная</a> / <a href="/profile">Профиль</a> /

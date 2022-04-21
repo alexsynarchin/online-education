@@ -44,7 +44,7 @@
             />
             <richtext v-model="lesson.text"></richtext>
         </el-form-item>
-        <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 0">
+        <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 22px">
             <el-form-item style="margin-bottom: 0">
                 <el-checkbox v-model="lesson.type_text">Текст</el-checkbox>
             </el-form-item>

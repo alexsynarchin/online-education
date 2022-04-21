@@ -1,5 +1,5 @@
 <template>
-    <section class="mb-5">
+    <section class="mb-4">
         <div class="b-breadcrumbs">
             <ul class="breadcrumb">
                 <li class="breadcrumb__item">
