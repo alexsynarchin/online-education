@@ -15,17 +15,23 @@ class WithdrawController extends Controller
         $withdraw_sum = $request->get('withdraw_sum');
         $teacher_account= $user->teacherAccount;
         $teacher_account->card_number = $request->get('card_number');
+        $balance = 0;
+        $promo_balance = 0;
         if($teacher_account->balance < $withdraw_sum) {
+            $balance = $withdraw_sum - $teacher_account->balance;
             $withdraw_sum = $withdraw_sum - $teacher_account->balance;
             $teacher_account->balance = 0;
             $teacher_account->promo_balance = $teacher_account->promo_balance - $withdraw_sum;
+            $promo_balance = $withdraw_sum;
         } else {
             $teacher_account->balance = $teacher_account->balance - $withdraw_sum;
+            $balance = $withdraw_sum;
         }
         $teacher_account->save();
         $withdraw = Withdraw::create([
             'teacher_id' => $user->id,
-            'sum' => $request->get('withdraw_sum')
+            'sum' => $request->get('withdraw_sum'),
+            'balance' =>
         ]);
         return $request->all();
     }

@@ -10,7 +10,7 @@ class Withdraw extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'teacher_id', 'sum',
+        'teacher_id', 'sum', 'balance', 'promo_balance'
     ];
     protected $casts = [
         'done' => 'boolean',
