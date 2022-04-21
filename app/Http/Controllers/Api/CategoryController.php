@@ -19,9 +19,12 @@ class CategoryController extends Controller
         if($request->has('edu_type_id') && $type === 'specialty') {
             $categories = $categories -> where(function($query) use ($request) {
                 $query->where('edu_type_id', $request->get('edu_type_id'));
-                $query -> orWhereNull('edu_type_id');
+                if($request->get('edu_type_id') != 4) {
+                    $query -> orWhereNull('edu_type_id');
+                }
+
             });
-            if(!$parent_id) {
+            if(!$parent_id && $request->get('edu_type_id') != 4) {
                 $categories = $categories->whereNull('parent_id');
             }
         }

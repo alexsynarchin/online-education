@@ -3,6 +3,7 @@
       <el-form ref="form" :model="form" class="mb-4 mt-4">
       <div class="row align-items-end" >
           <el-form-item :error="errors.get('edu_type_id')" class="col-md-4" label="Тип образования">
+              {{form.edu_type_id}}
               <el-select v-model="form.edu_type_id"
                          placeholder="Выберите тип образования"
                          style="width: 100%;"
@@ -16,7 +17,7 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item label="Направление"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3">
+          <el-form-item label="Направление"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3 || form.edu_type_id === 4">
               <el-select v-model="form.direction_id"  placeholder="Выберите направление"
                          @change="selectDirection(form.direction_id)"
                          style="width: 100%;">
@@ -193,7 +194,7 @@ import { Errors } from  '@/common/js/services/errors.js';
               url = url + '/' + parent_id;
           }
           let request = {};
-          if(this.form.edu_type_id === 2 || this.form.edu_type_id === 3) {
+          if(this.form.edu_type_id === 2 || this.form.edu_type_id === 3 || this.form.edu_type_id === 4) {
               request = {edu_type_id:this.form.edu_type_id}
           }
           axios.get(url, {params:request})
@@ -224,7 +225,7 @@ import { Errors } from  '@/common/js/services/errors.js';
            this.form.yege = false;
             this.form.direction_id = null;
             this.form.specialty_id = null;
-           if(id === 2 || id === 3) {
+           if(id === 2 || id === 3 || id === 4) {
                this.getCategories('specialty');
            }
         },

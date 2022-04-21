@@ -47,6 +47,9 @@
                     <span v-if="scope.row.edu_type_id===3">
                         Высшее образование
                     </span>
+                        <span v-if="scope.row.edu_type_id===4">
+                        Дошкольное образование
+                    </span>
                         <span v-if="!scope.row.edu_type_id">
                         Высшее и среднее образование
                     </span>
@@ -89,7 +92,7 @@
                     </el-form-item>
                 </div>
 
-                <speciality-list v-if="subjectItem.id" :parent_id="subjectItem.id"></speciality-list>
+                <speciality-list v-if="subjectItem.id && (subjectItem.edu_type_id !== 4)" :parent_id="subjectItem.id"></speciality-list>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="showModal = false">Закрыть</el-button>
@@ -134,6 +137,10 @@ export default {
                 {
                     label:'Высшее образование',
                     value:3,
+                },
+                {
+                    label:'Дошкольное образование',
+                    value:4,
                 },
             ],
         }
