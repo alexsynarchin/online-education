@@ -36,10 +36,12 @@ class UpdateLessonService
         $directory = 'users/user-' . Auth::user()->id .'/courses/course-'. $lesson->course_id . '/lesson-' . $lesson->id . '/';
         $contentModel = $contentService -> update($content['text'],$id,$directory);
         $contentModel->save();
-        $testService = new UpdateTestService();
-        $test_id = $request->get('test')['id'];
-        $test = $testService -> update($request->get('test'), $test_id, $directory);
-        $test->save();
+        if($request->get('updateTest')) {
+            $testService = new UpdateTestService();
+            $test_id = $request->get('test')['id'];
+            $test = $testService -> update($request->get('test'), $test_id, $directory);
+            $test->save();
+        }
         $lesson->save();
         return $lesson;
     }
