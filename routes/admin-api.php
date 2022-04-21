@@ -71,4 +71,6 @@ use App\Http\Controllers\Admin\Api\MainPageController;
 Route::get('/main-page/data', [MainPageController::class, 'getData'])->name('main-page.data');
 Route::post('/main-page/store', [MainPageController::class, 'store'])->name('main-page.store');
 
+use App\Http\Controllers\Admin\Api\WithdrawController;
+Route::get('/withdraws', [WithdrawController::class, 'index'])->name('withdraw.index');
 

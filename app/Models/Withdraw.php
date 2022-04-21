@@ -23,4 +23,9 @@ class Withdraw extends Model
     public function getFormattedCreatedAtAttribute() {
         return isset($this->attributes['created_at']) ? Carbon::parse($this->attributes['created_at'])->format('d.m.Y') : null;
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo(User::class, 'teacher_id');
+    }
 }

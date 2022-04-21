@@ -3,10 +3,70 @@
         <h1 class="page-title">
             Запросы на вывод средств
         </h1>
+        <data-tables :data="withdraws" >
+            <el-table-column
+                type="index"
+            >
+            </el-table-column>
+            <el-table-column
+                label="Преподаватель"
+                sortable
+            >
+                <template slot-scope="scope">
+                    {{scope.row.teacher.name}}
+                    {{scope.row.teacher.surname}}
+                </template>
+            </el-table-column>
+            <el-table-column
+                sortable
+                label="Сумма"
+                prop="sum"
+            >
+
+            </el-table-column>
+            <el-table-column
+                sortable
+                label="Дата"
+                prop="created_at"
+            >
+
+            </el-table-column>
+            <el-table-column
+                label="Действия"
+            >
+
+                <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleEdit(scope.$index, scope.row)">Подтвердить</el-button>
+
+                </template>
+            </el-table-column>
+        </data-tables>
     </section>
 </template>
 <script>
   export default {
+        data() {
+            return {
+                withdraws: [],
 
+            }
+        },
+      methods: {
+            handleEdit() {
+
+            },
+          getWithdraws() {
+            axios.get('/api/admin/withdraws')
+                .then((response) => {
+                    this.withdraws = response.data;
+                })
+          }
+      },
+      mounted() {
+            this.getWithdraws();
+      }
   }
 </script>
