@@ -19,6 +19,14 @@
             </el-table-column>
             <el-table-column
                 sortable
+                label="Номер карты"
+            >
+                <template slot-scope="scope">
+                    {{scope.row.teacher.teacher_account.card_number}}
+                </template>
+            </el-table-column>
+            <el-table-column
+                sortable
                 label="Сумма"
                 prop="sum"
             >
