@@ -26,6 +26,20 @@
             </el-table-column>
             <el-table-column
                 sortable
+                label="Сумма c баланса"
+                prop="balance"
+            >
+
+            </el-table-column>
+            <el-table-column
+                sortable
+                label="Сумма с промо баланса"
+                prop="promo_balance"
+            >
+
+            </el-table-column>
+            <el-table-column
+                sortable
                 label="Дата"
                 prop="formatted_created_at"
             >
