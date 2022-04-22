@@ -77,10 +77,10 @@
             <span class="my-count__text" v-if="user.profile_type==='student'">Бонусы:</span>
             <span class="my-count__check" v-if="user.profile_type==='student'">{{balance}}</span>
             <span class="my-count__check" v-if="user.profile_type==='teacher'">{{balance}} &#x20bd;</span>
-            <span class="my-count__check" v-if="user.profile_type==='teacher'">(+{{promo_balance}} бонусов)</span>
+            <div style="margin-top:5px" class="my-count__check" v-if="user.profile_type==='teacher'">Бонусов: {{promo_balance}}</div>
 
         </div>
-        <button class="btn button" @click="addPromo" v-if="user.profile_type==='student'" style="width: 100%; margin-top: 15px">
+        <button class="btn button" @click="addPromo" v-if="user.profile_type==='student'" style="width: 100%;margin-top: 15px">
             Активировать промокод
         </button>
     </aside>
