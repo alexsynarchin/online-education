@@ -1,10 +1,25 @@
 <template>
-    <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+    <editor
+        api-key="n5vevbezoz59y0xm5lm9351k04wpcdlod46tt4h2ilw0x2er"
+        v-model="editorData"
+        :init="{
+         height: 500,
+         menubar: false,
+         plugins: [
+           'advlist autolink lists link image charmap print preview anchor',
+           'searchreplace visualblocks code fullscreen',
+           'insertdatetime media table paste code help wordcount'
+         ],
+         toolbar:
+           'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help'
+       }"
+    />
 </template>
 <script>
-import CkeEditor from "@ckeditor/ckeditor5-vue2";
-import ClassicEditor from 'ckeditor5-karta-metrov-build/build/ckeditor';
-import '@ckeditor/ckeditor5-build-classic/build/translations/ru';
+import Editor from '@tinymce/tinymce-vue'
+
 export default {
     model: {
         prop: 'text',
@@ -20,11 +35,10 @@ export default {
         }
     },
     components: {
-        ckeditor: CkeEditor.component
+        'editor': Editor
     },
     data() {
         return {
-            editor:ClassicEditor,
             editorData:this.text,
             editorConfig: {
                 toolbar: {
@@ -48,34 +62,7 @@ export default {
                         'redo'
                     ]
                 },
-                image: {
-                    resizeUnit: 'px',
-                    toolbar: [
-                        'imageTextAlternative',
-                        'imageStyle:full',
 
-                        'imageStyle:alignLeft',
-                        'imageStyle:alignRight'
-                    ],
-                    styles: [
-                        // This option is equal to a situation where no style is applied.
-                        'full',
-
-                        // This represents an image aligned to the left.
-                        'alignLeft',
-
-                        // This represents an image aligned to the right.
-                        'alignRight'
-                    ]
-                },
-                table: {
-                    contentToolbar: [
-                        'tableColumn',
-                        'tableRow',
-                        'mergeTableCells'
-                    ]
-                },
-                language: 'ru'
             }
         }
     }
