@@ -4,6 +4,7 @@
         v-model="editorData"
         :init="{
          height: 500,
+         language: 'ru',
          menubar: 'file edit view insert format tools table help',
          plugins: [
            'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
