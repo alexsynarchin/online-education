@@ -11339,6 +11339,10 @@ a {
   min-height: 150px;
 }
 
+.tox-tinymce-aux {
+  z-index: 6000 !important;
+}
+
 .page-header {
   background-color: #fff;
   position: relative;

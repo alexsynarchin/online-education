@@ -9,7 +9,7 @@
                 </el-row>
         <el-row type="flex" :gutter="15">
                 <el-form-item label="Текст ответа" prop="text" style="flex:  auto; margin-left: 1rem">
-                    <richtext  v-model="option_data.text"></richtext>
+                    <richtext   v-model="option_data.text"></richtext>
                 </el-form-item>
         </el-row>
     </el-form>

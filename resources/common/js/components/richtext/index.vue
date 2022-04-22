@@ -1,8 +1,10 @@
 <template>
     <editor
+        class="myeditablediv"
         api-key="n5vevbezoz59y0xm5lm9351k04wpcdlod46tt4h2ilw0x2er"
         v-model="editorData"
         :init="{
+        selector: '.myeditablediv',
          height: 500,
          language: 'ru',
          menubar: 'file edit view insert format tools table help',

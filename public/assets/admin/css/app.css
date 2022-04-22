@@ -11328,6 +11328,10 @@ a {
   text-decoration: none;
 }
 
+.tox-tinymce-aux {
+  z-index: 3000;
+}
+
 .auth {
   min-height: 100vh;
   display: flex;
