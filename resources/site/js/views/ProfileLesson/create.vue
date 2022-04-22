@@ -1,14 +1,23 @@
 <template>
     <section class="mb-4">
-        <div class="b-breadcrumbs">
-            <div class="b-breadcrumbs__item">
-                <a href="/">Главная</a> / <a href="/profile">Профиль</a> /
-                <a href="/profile/my-courses/active">Мои курсы</a> /
-                <a :href="'/profile/courses/' + slug">{{course.title}}</a> /
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/profile">Профиль</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/profile/my-courses/active">Мои курсы</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a class="breadcrumb__link" :href="'/profile/courses/' + slug">{{course.title}}</a>
+            </li>
+            <li class="breadcrumb__item">
                 Новый урок
-            </div>
-            <h1 class="b-profile-user__title">Создание урока</h1>
-        </div>
+            </li>
+        </ul>
+        <h1 class="b-profile-user__title">Создание урока</h1>
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Урок" name="description">
                 <lesson-form :lesson="lesson"></lesson-form>
