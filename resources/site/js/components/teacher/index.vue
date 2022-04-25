@@ -18,6 +18,12 @@
                            {{item.title}}<template v-if="(teacher.edu_institutions.length - 1) != index">,</template>
                            </span>
                        </li>
+                       <li class="teacher-item__list-item">
+                           Предметы:
+                           <span v-for="(item, index) in teacher.subjects">
+                           {{item}}<template v-if="(teacher.subjects - 1) != index">,</template>
+                           </span>
+                       </li>
                    </ul>
                </a>
             </div>

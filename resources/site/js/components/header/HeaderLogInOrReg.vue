@@ -2,11 +2,7 @@
     <div class="auth">
         <div class="login" v-if="signedIn">
             <div class="login-notification">
-                <a href="/profile" class="notification-item">
-                    <svg class="notification-item__icon">
-                        <use xlink:href="/images/sprite.svg#login"></use>
-                    </svg>
-                </a>
+
 
                 <div class="notification-item" @click="openNotifications">
                     <svg class="notification-item__icon">
@@ -20,13 +16,6 @@
                         </div>
                     </Notification>
                 </div>
-
-                <a href="/profile/transactions" class="notification-item" >
-                    <svg class="notification-item__icon">
-                        <use xlink:href="/images/sprite.svg#ruble"></use>
-                    </svg>
-
-                </a>
             </div>
 
             <div class="login-in">
