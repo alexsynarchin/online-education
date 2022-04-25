@@ -24,6 +24,8 @@ class TeacherLessonController extends Controller
         $storeLesson = new StoreLessonService();
         $lesson = $storeLesson -> make($request);
         $course = Course::findOrFail($lesson -> course_id);
+        $course->status = 1;
+        $course->save();
         return redirect(route('profile.course.show',[
             'slug' => $course -> slug
         ]))->with(['msg', 'The Message']);
