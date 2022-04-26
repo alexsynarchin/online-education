@@ -17,7 +17,7 @@
               </el-select>
           </el-form-item>
           <el-form-item :error="errors.get('edu_level_id')" class="col-md-4" label="Возраст" v-if="form.edu_type_id === 4">
-              <el-select v-model="form.edu_level_id" placeholder="Год обучения" style="width: 100%;">
+              <el-select v-model="form.edu_level_id" placeholder="Возраст" style="width: 100%;">
                   <el-option
                       v-for="item in edu_levels"
                       :key="item.id"
@@ -39,7 +39,7 @@
               </el-select>
           </el-form-item>
           <el-form-item :label="specialty"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 || form.edu_type_id === 3 || form.edu_type_id === 4 ">
-              <el-select v-model="form.specialty_id"  placeholder="Выберите специальность" style="width: 100%;">
+              <el-select v-model="form.specialty_id"  :placeholder="'Выберите ' + (form.edu_type_id === 4 ? 'программу' :  'специальность')" style="width: 100%;">
                   <el-option
                       v-for="item in specialties"
                       :key="item.id"
