@@ -46,10 +46,11 @@
             </el-card>
         </section>
         <el-dialog
+            class="test-modal"
             title="Новый вопрос"
             :visible.sync="questionModal"
-            :fullscreen="true"
-            center>
+            width="50%"
+            >
             <add-question :editing="editing" :editQuestion="editQuestion" v-if="questionModal" @close="closeQuestionModal"
                           @update="onUpdateQuestion"
                           @add="addQuestion">

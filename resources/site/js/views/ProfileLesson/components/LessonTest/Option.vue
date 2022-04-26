@@ -1,5 +1,5 @@
 <template>
-    <el-form class="question-option mt-3 list-group-item" :rules="rules" label-position="top" :model="option_data" ref="option_data">
+    <el-form class="question-option list-group-item" :rules="rules" label-position="top" :model="option_data" ref="option_data">
                 <el-row type="flex" class="align-items-center">
                     <h6 style="margin-bottom: 0"> Вариант ответа {{index + 1}}</h6>
                     <el-form-item prop="right_answer" style="margin-left:1rem; margin-bottom: 0">

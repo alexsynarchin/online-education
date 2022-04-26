@@ -14930,6 +14930,35 @@ a {
   text-decoration: none;
 }
 
+.test-modal__question {
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 30px;
+  background-color: #f7f7f7;
+}
+.test-modal__answers {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.test-modal .el-dialog__header {
+  background-color: #f7f7f7;
+  text-align: center;
+}
+.test-modal .el-dialog__body {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.question-option__wrap {
+  padding-bottom: 30px;
+  padding-top: 30px;
+  border-bottom: 2px solid #ccc;
+}
+.question-option__wrap:last-child {
+  border-bottom-width: 0;
+}
+
 .order-modal__title {
   font-weight: bold;
   font-size: 28px;

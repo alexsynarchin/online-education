@@ -1,0 +1,11 @@
+.question-option {
+
+    &__wrap {
+        padding-bottom: 30px;
+        padding-top: 30px;
+        border-bottom: 2px solid #ccc;
+        &:last-child {
+            border-bottom-width: 0;
+        }
+    }
+}

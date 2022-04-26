@@ -92,7 +92,7 @@
                     </el-form-item>
                 </div>
 
-                <speciality-list v-if="subjectItem.id && (subjectItem.edu_type_id !== 4)" :parent_id="subjectItem.id"></speciality-list>
+                <speciality-list v-if="subjectItem.id" :parent_id="subjectItem.id"></speciality-list>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="showModal = false">Закрыть</el-button>

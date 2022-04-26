@@ -1,0 +1,21 @@
+.test-modal {
+    &__question {
+        padding-right: 25px;
+        padding-left: 25px;
+        padding-top: 30px;
+        background-color: #f7f7f7;
+    }
+    &__answers {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+    .el-dialog__header {
+        background-color: #f7f7f7;
+        text-align: center;
+    }
+.el-dialog__body {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+}
