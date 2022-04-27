@@ -74,7 +74,7 @@
           </el-form-item>
           <el-form-item class="col-md-12 col-xl-6 " v-if="themes_loaded && form.edu_type_id !== 4">
                     <div>
-                        <label style="text-align: left" class="el-form-item__label">Ключевых фразы темы</label>
+                        <label style="text-align: left" class="el-form-item__label">Ключевые фразы темы</label>
                         <el-tooltip class="item" effect="dark" content=" это слова или словосочетания, которые помогают при поиске темы" placement="top-start">
                             <svg class="course-item__author-icon">
                                 <use xlink:href="/assets/site/images/sprites.svg?ver=12#sprite-question-icon"></use>
