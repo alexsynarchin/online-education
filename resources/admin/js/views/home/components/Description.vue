@@ -6,6 +6,12 @@
                 {{theme.title}}
             </el-tag>
         </div>
+        <div v-if="course.subject.active === 0">
+            <h6>Неопобликованный предмет:</h6>
+            <el-tag type="danger" >
+                {{course.subject.title}}
+            </el-tag>
+        </div>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="preview-lesson-wrap">

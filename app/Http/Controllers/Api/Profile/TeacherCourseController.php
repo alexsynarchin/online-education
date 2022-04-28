@@ -52,21 +52,38 @@ class TeacherCourseController extends Controller
             'subject_id.required' => 'Выберите предмет',
             'edu_level_id.required' => 'Выберите  уровень образования',
         ]);
+
         $edu_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_type_id')
         ]);
+        $subject_id = $request->get('subject_id');
+        if(!CategoryType::where('id', $subject_id)->exists()) {
+            if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
+                $subject = CategoryType::where('type', 'subject') -> where('title', $subject_id)->first();
+                $subject_id = $subject->id;
+            } else {
+                $subject = CategoryType::create([
+                   'type' => 'subject',
+                   'title' => $subject_id,
+                   'active' => 0
+                ]);
+                $subject_id = $subject ->id;
+            }
+        }
         $subject_cat = Category::firstOrCreate([
-            'category_type_id' => $request->get('subject_id'),
+            'category_type_id' =>$subject_id,
             'parent_id' => $edu_cat -> id,
         ]);
+
         $edu_level_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_level_id'),
             'parent_id' => $subject_cat -> id,
         ]);
-        $course = Course::create($request->except(['image','imageName']));
+        $course = Course::create($request->except(['image','imageName', 'subject_id']));
         $course -> category_id = $edu_level_cat -> id;
         $course -> author_id = Auth::user()-> id;
         $course -> status = 1;
+        $course->subject_id = $subject_id;
         $course -> save();
         if($request->has('image') && $request->get('image')) {
             $course ->addMediaFromBase64($request->get('image'))

@@ -27,7 +27,11 @@
               </el-select>
           </el-form-item>
           <el-form-item label="Направление"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3 || form.edu_type_id === 4">
-              <el-select v-model="form.direction_id"  placeholder="Выберите направление"
+              <el-select v-model="form.direction_id"
+                         placeholder="Выберите направление"
+                         allow-create
+                         default-first-option
+                         filterable
                          @change="selectDirection(form.direction_id)"
                          style="width: 100%;">
                   <el-option
@@ -39,7 +43,13 @@
               </el-select>
           </el-form-item>
           <el-form-item :label="specialty"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 || form.edu_type_id === 3 || form.edu_type_id === 4 ">
-              <el-select v-model="form.specialty_id"  :placeholder="'Выберите ' + (form.edu_type_id === 4 ? 'программу' :  'специальность')" style="width: 100%;">
+              <el-select
+                  v-model="form.specialty_id"
+                  allow-create
+                  default-first-option
+                  filterable
+                  :placeholder="'Выберите ' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
+                  style="width: 100%;">
                   <el-option
                       v-for="item in specialties"
                       :key="item.id"
@@ -50,7 +60,10 @@
           </el-form-item>
           <el-form-item :error="errors.get('subject_id')" class="col-md-4" label="Предмет" v-if="form.edu_type_id !== 4">
               <el-select v-model="form.subject_id"
-                         filterable placeholder="Выберите предмет"
+                         allow-create
+                         default-first-option
+                         filterable
+                         placeholder="Выберите предмет"
                          style="width: 100%;"
                          @change="selectSubject"
               >
@@ -63,7 +76,10 @@
               </el-select>
           </el-form-item>
           <el-form-item :error="errors.get('edu_level_id')" class="col-md-4" label="Год обучения" v-if="form.edu_type_id !== 4">
-              <el-select v-model="form.edu_level_id" placeholder="Год обучения" style="width: 100%;">
+              <el-select
+                  v-model="form.edu_level_id"
+                  placeholder="Год обучения"
+                  style="width: 100%;">
                   <el-option
                       v-for="item in edu_levels"
                       :key="item.id"

@@ -31,7 +31,7 @@ class CourseController extends Controller
     }
     public function show($id)
     {
-        $course = Course::with(['author', 'lessons', 'themes' => function($query) {
+        $course = Course::with(['author', 'subject', 'lessons', 'themes' => function($query) {
             $query -> where('active', 0);
         }])->findOrFail($id);
         return $course;
@@ -48,6 +48,9 @@ class CourseController extends Controller
                 $theme -> active = 1;
                 $theme -> save();
             }
+            $subject = $course->subject;
+            $subject->active = 1;
+            $subject->save();
         }
         $message='';
         switch ($course->status){
