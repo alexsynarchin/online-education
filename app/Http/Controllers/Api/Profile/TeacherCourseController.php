@@ -52,7 +52,6 @@ class TeacherCourseController extends Controller
             'subject_id.required' => 'Выберите предмет',
             'edu_level_id.required' => 'Выберите  уровень образования',
         ]);
-
         $edu_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_type_id')
         ]);
@@ -79,6 +78,9 @@ class TeacherCourseController extends Controller
             'category_type_id' => $request->get('edu_level_id'),
             'parent_id' => $subject_cat -> id,
         ]);
+        if($request->get('edu_type_id') != 1) {
+
+        }
         $course = Course::create($request->except(['image','imageName', 'subject_id']));
         $course -> category_id = $edu_level_cat -> id;
         $course -> author_id = Auth::user()-> id;
