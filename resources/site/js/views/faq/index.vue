@@ -23,7 +23,7 @@
             <el-input type="textarea" v-model="form.text" placeholder="Текст сообщения"></el-input>
         </el-form-item>
         <div class="text-center">
-            <button class="btn button">Отправить сообщение</button>
+            <button class="btn button" @click.prevent="sendMessage">Отправить сообщение</button>
         </div>
     </el-form>
 </template>
@@ -40,6 +40,18 @@
                     email: '',
                     text: '',
                 }
+            }
+        },
+        methods: {
+            sendMessage() {
+                axios.post('/api/contact', this.form)
+                    .then((response) =>  {
+                        console.log(response.data);
+                        this.$notify({
+                            title: 'Ваше сообщение отправлено',
+                            type: 'success'
+                        });
+                    })
             }
         }
     }

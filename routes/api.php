@@ -143,6 +143,9 @@ Route::get('/profile/withdraw/list', [WithdrawController::class, 'list'])->name(
 use App\Http\Controllers\Api\OrderController;
 Route::get('/profile/orders', [OrderController::class, 'index'])->name('order.index');
 
+use App\Http\Controllers\Api\ContactController;
+Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
+
 
 
 
