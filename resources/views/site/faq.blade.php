@@ -1,20 +1,19 @@
 @extends('site.base.base')
 @section('content')
-    <div class="b-tab-questation">
-
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="b-breadcrumbs">
-                        <div class="b-breadcrumbs__item">
-                            <a href="{{route('home')}}">Главная</a> /
-                            Вопросы и ответы
-                        </div>
-                    </div>
-                    <h1 class="tab-questation__title">Вопросы и ответы</h1>
-                </div>
-            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb__item">
+                    <a href="/" class="breadcrumb__link">
+                        Главная
+                    </a>
+                </li>
+                <li class="breadcrumb__item">
+                    Поддержка
+                </li>
+            </ul>
+            <h1 class="page-title">
+                Страница поддержки
+            </h1>
             <faq></faq>
         </div>
-    </div>
 @endsection

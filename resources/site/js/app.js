@@ -36,8 +36,8 @@ Vue.component('FilterSidebar',require('./components/sidebar/index').default);
 
 Vue.component('Comments',require('./components/comment/index').default);
 
-//FAQ
-Vue.component('Faq', require('./components/page/QuestationAndAnswers/TheQuestationAndAnswers').default);
+//faq
+Vue.component('Faq', require('./views/faq/index').default);
 
 //Teacher search
 Vue.component('SearchTeachers',require('./components/teacher/index').default);
@@ -57,6 +57,7 @@ Vue.component('TeacherCourseList', require('./components/teacher/components/cour
 import router from './router'
 
 Vue.component('ProfileDashboard', require('./views/profile-dashboard/index').default);
+
 const app = new Vue({
     el: '#app',
     router,
