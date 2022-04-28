@@ -1,9 +1,17 @@
 <template>
     <div class="b-tab-questation">
-
+        
         <div class="container">
             <div class="row">
+                <div class="col-12">
+                    <div class="b-breadcrumbs">
+                        <div class="b-breadcrumbs__item">
+                            Главная / Вопросы и ответы
+                        </div>
+                    </div>
 
+                    <h1 class="tab-questation__title">Вопросы и ответы</h1>
+                </div>
                 <div class="col-12">
                     <div class="list-tab">
                         <tabs
@@ -99,9 +107,8 @@
 </template>
 
 <script>
-import Tabs from '../../RepeatComponents/Tab'
-import Accardion from '../../RepeatComponents/AccordionItem'
-
+import Tabs from '../RepeatComponents/Tab'
+import Accardion from '../RepeatComponents/AccordionItem'
 
 const TABS = [{
     title: 'Ученикам',
@@ -138,8 +145,8 @@ export default {
 
 <style lang="stylus">
 
-@import '../../../../stylus/_mixins.styl'
-@import '../../../../stylus/_rapture.styl'
+@import '../../../assets/style/_mixins'
+@import '../../../assets/style/_rapture'
 rupture.scale =       0    576px    768px    992px    1200px
 rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
 
@@ -160,7 +167,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
 .list-tab
     margin-bottom 40px
 
-.b-tab-questation
+.b-tab-questation 
     position: relative
     margin: 0 auto
     margin-top 30px
@@ -169,7 +176,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         flex-direction column
         justify-content flex-start
 
-    &__item
+    &__item 
         display: inline-block
         margin: 0 30px
         padding-bottom: 2px
@@ -187,18 +194,18 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         +below(md)
             margin-bottom 20px
             margin-left 0px
-        &:first-child
+        &:first-child 
             margin-left: 0
             padding-left 0
 
 
-
-        &:last-child
+        
+        &:last-child 
             margin-right: 0
         &_active
-            font-family 'RobotoMedium'
+            font-family 'RobotoMedium' 
             color: #000
-    &__active-line
+    &__active-line 
         position: absolute
         bottom: 0
         left: 0
@@ -208,7 +215,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         +below(md)
             display none
 
-.content
+.content 
     margin-top: 30px
     font-size: 20px
 
@@ -349,7 +356,7 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         position static
         width 200px
         margin-top 15px
-
+        
 
 .form-questation-alert
     margin-top 20px

@@ -14,6 +14,7 @@
                     <h1 class="tab-questation__title">Вопросы и ответы</h1>
                 </div>
             </div>
+            <faq></faq>
         </div>
     </div>
 @endsection
