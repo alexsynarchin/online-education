@@ -12,7 +12,7 @@ class ContactController extends Controller
         $request->validate([
             'theme' => 'required',
             'name'=> 'required',
-            'email' => 'required',
+            'email' => 'required|email:rfc,dns',
             'type' => 'required',
             'text' => 'required',
         ],
@@ -20,8 +20,8 @@ class ContactController extends Controller
             'theme.required' => 'Заполните тему обращения',
             'type.required' => 'Выберите тип профиля',
             'name.required' => 'Введите ваше имя',
-            'email.required' => 'Введите ваш t-mail',
-            'text.required' => 'Введиете текст обращения'
+            'email.required' => 'Введите ваш e-mail',
+            'text.required' => 'Введите текст обращения'
         ]
         );
         return $request->all();

@@ -19,8 +19,8 @@
                 <el-input v-model="form.email" placeholder="e-mail"></el-input>
             </el-form-item>
         </div>
-        <el-form-item>
-            <el-input type="textarea" v-model="form.text" placeholder="Текст сообщения" :error="errors.get('text')"></el-input>
+        <el-form-item :error="errors.get('text')">
+            <el-input type="textarea" v-model="form.text" placeholder="Текст сообщения" ></el-input>
         </el-form-item>
         <div class="text-center">
             <button class="btn button" @click.prevent="sendMessage">Отправить сообщение</button>
