@@ -28,7 +28,7 @@ class ContactEmail extends Mailable
      */
     public function build()
     {
-        $mail = $this->from('admin@edu.ru')
+        $mail = $this->from('admin@welcome-rb.ru')
             -> subject('Заявка с сайта edu.ru');
         return $mail-> view('mails.contact');
     }
