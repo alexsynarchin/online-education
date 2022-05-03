@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category\Course;
 use App\Models\Lesson\Lesson;
 use Illuminate\Http\Request;
+use Auth;
 
 class LessonController extends Controller
 {
@@ -40,6 +41,16 @@ class LessonController extends Controller
     }
     public function canselMsg(Request $request, $id)
     {
+        $sender_id = Auth::user() -> id;
+        $lesson = Lesson::findOrFail($id);
+        $lesson -> status = 3;
+        $lesson->save();
+        $lesson->messages()->create([
+            'sender_id' => $sender_id,
+            'recipient_id' => $lesson->user_id,
+            'text' => $request->get('message'),
+            'cansel_reason' => true,
+        ]);
         return 'success';
     }
 }
