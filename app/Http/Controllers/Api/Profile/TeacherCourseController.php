@@ -37,7 +37,10 @@ class TeacherCourseController extends Controller
             $status='moderate';
             $empty_message = "В данный момент у вас нет уроков ожидающих модерации";
         }
-        $courses = Course::where('author_id', $user -> id)->where('status', $status)->with(['edu_type', 'subject', 'level']) -> get();
+        $courses = Course::where('author_id', $user -> id)->where('status', $status)->with(['edu_type', 'subject', 'level', 'messages'=> function ($query) {
+            $query->where('cansel_reason', 1);
+            return $query->orderBy('id', 'desc')->limit(1);
+        }]) -> get();
         return $courses;
     }
     public function store(Request $request)

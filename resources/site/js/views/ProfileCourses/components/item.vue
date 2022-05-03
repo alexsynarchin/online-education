@@ -5,7 +5,12 @@
             <el-tag>{{course.subject.title}}</el-tag>
             <el-tag>{{course.level.title}}</el-tag>
         </div>
-
+        <el-alert v-if="course.status  === 3" v-for="(item, index) in course.messages"
+                  :key="item.id"
+                  :title="item.text"
+                  class="mb-4"
+                  type="error">
+        </el-alert>
         <div class="course-item__heading">
             <h4 class="course-item__title" @click="handleShow">
                 {{course.title}}
