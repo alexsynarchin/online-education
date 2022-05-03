@@ -146,6 +146,10 @@ Route::get('/profile/orders', [OrderController::class, 'index'])->name('order.in
 use App\Http\Controllers\Api\ContactController;
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
+use App\Http\Controllers\Api\Profile\EduChatController;
+
+Route::get('/profile/course/{id}/messages',[EduChatController::class, 'index']) ->name('course.messages');
+
 
 
 

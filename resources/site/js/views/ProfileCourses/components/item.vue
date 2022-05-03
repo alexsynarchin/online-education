@@ -11,6 +11,9 @@
                   class="mb-4"
                   type="error">
         </el-alert>
+        <div class="mb-4">
+            <el-button type="primary" round @click="openChat">Чат с модератором</el-button>
+        </div>
         <div class="course-item__heading">
             <h4 class="course-item__title" @click="handleShow">
                 {{course.title}}
@@ -56,6 +59,47 @@
 
             </div>
         </div>
+        <el-dialog
+            title="Чат с модератором"
+            :visible.sync="dialogVisible"
+            width="60%"
+            >
+            <section class="chat">
+                <div class="messages-item" v-for="(message,index) in messages">
+                    <div class="messages-item__head">
+                        <img class="messages-item__avatar" :src="message.user_avatar" alt="">
+                        <div class="messages-item-des">
+                            <div class="messages-item-user">
+                                <div class="messages-item-prof">
+                                    <a href="#" class="messages-fullname">{{message.user_full_name}}</a>
+                                </div>
+                                <div class="messages-item-data">
+                                    <span class="messages-item-data__time">{{message.formatted_date}}</span>
+                                </div>
+                            </div>
+                            <div class="messages-comment">
+                                <p class="messages-comment__text">
+                                    {{message.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <el-form :model="sendMsg" label-position="top" :rules="rules" ref="sendMsg" class="mb-3">
+                    <el-form-item label="Новое сообщение" prop="text">
+                        <el-input
+                            type="textarea"
+                            :rows="3"
+                            placeholder="Введите сообщение"
+                            v-model="sendMsg.text">
+                        </el-input>
+                    </el-form-item>
+
+                    <el-button type="success" @click.prevent="sendMessage('sendMsg')">Отправить</el-button>
+                </el-form>
+
+            </section>
+        </el-dialog>
     </section>
 </template>
 <script>
@@ -64,7 +108,14 @@
         mixins:[deleteDialog],
         data() {
             return {
-
+                dialogVisible:false,
+                messages: [],
+                sendMsg:{
+                    text:"",
+                },
+                rules:{
+                    text:{required:true,message:'Введите текст сообщения'}
+                }
             }},
         props:{
             course:{
@@ -73,6 +124,14 @@
             }
         },
         methods: {
+            sendMessage() {},
+            openChat() {
+                this.dialogVisible = true;
+                axios.get('/api/profile/course/' + this.course.id + '/messages')
+                    .then ((response) => {
+                        this.messages = response.data;
+                    })
+            },
             addLesson() {
                 window.location.href = '/profile/courses/' + this.course.slug + '/lesson-create'
             },

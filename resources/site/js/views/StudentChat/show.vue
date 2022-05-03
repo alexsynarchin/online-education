@@ -150,7 +150,7 @@
         }
     }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
 
     @import '../../../stylus/_mixins.styl'
     @import '../../../stylus/_rapture.styl'
