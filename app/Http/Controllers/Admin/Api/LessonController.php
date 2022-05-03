@@ -13,7 +13,7 @@ class LessonController extends Controller
     public function show($id)
     {
 
-        $lesson = Lesson::with(['content'])-> findOrFail($id);
+        $lesson = Lesson::with(['content', 'messages'])-> findOrFail($id);
         $course = Course::findOrFail($lesson->course_id);
         $test = $lesson->tests() -> with('questions.options')->first();
         return ['lesson' => $lesson, 'course' => $course, 'test' => $test];
@@ -52,5 +52,19 @@ class LessonController extends Controller
             'cansel_reason' => true,
         ]);
         return 'success';
+    }
+
+    public function sendMsg(Request $request, $id)
+    {
+        $sender_id = Auth::user() -> id;
+        $lesson = Lesson::findOrFail($id);
+        $lesson->status = 3;
+        $lesson->save();
+        $message = $lesson->messages()->create([
+            'sender_id' => $sender_id,
+            'recipient_id' => $lesson->user_id,
+            'text' => $request->get('message'),
+        ]);
+        return $message;
     }
 }

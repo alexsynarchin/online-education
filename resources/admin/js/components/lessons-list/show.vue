@@ -22,9 +22,49 @@
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"   v-if="loaded"></test-form>
             </el-tab-pane>
+            <el-tab-pane label="Чат с преподавателем" name="chat">
+                <section class="chat">
+                    <div class="messages-item" v-for="(message,index) in lesson.messages">
+                        <div class="messages-item__head">
+                            <img class="messages-item__avatar" :src="message.user_avatar" alt="">
+                            <div class="messages-item-des">
+                                <div class="messages-item-user">
+                                    <div class="messages-item-prof">
+                                        <a href="#" class="messages-fullname">{{message.user_full_name}}</a>
+                                    </div>
+                                    <div class="messages-item-data">
+                                        <span class="messages-item-data__time">{{message.formatted_date}}</span>
+                                    </div>
+                                </div>
+                                <div class="messages-comment">
+                                    <p class="messages-comment__text">
+                                        {{message.text}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <el-form :model="sendMsg" label-position="top" :rules="rules" ref="sendMsg" class="mb-3">
+                        <el-form-item label="Новое сообщение" prop="text">
+                            <el-input
+                                type="textarea"
+                                :rows="3"
+                                placeholder="Введите сообщение"
+                                v-model="sendMsg.text">
+                            </el-input>
+                        </el-form-item>
+
+                        <el-button type="success" @click.prevent="sendMessage('sendMsg')">Отправить</el-button>
+                    </el-form>
+
+                </section>
+            </el-tab-pane>
         </el-tabs>
-        <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
-        <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
+        <div v-if="activeTab != 'chat'">
+            <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
+            <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
+        </div>
+
         <el-dialog title="Отклонить Урок" width="40%" :visible.sync="dialogCancel" append-to-body>
             <el-form :model="cancelForm" ref="cancelForm" :rules="rules_cancel">
                 <el-form-item label="Причина отклонения урока" prop="text">
@@ -60,6 +100,12 @@ import TestForm from "./components/LessonTest/TestForm";
         },
         data() {
             return {
+                sendMsg:{
+                    text:"",
+                },
+                rules:{
+                    text:{required:true,message:'Введите текст сообщения'}
+                },
                 activeTab:'description',
                 course: {},
                 test: {},
@@ -70,11 +116,29 @@ import TestForm from "./components/LessonTest/TestForm";
                     text:""
                 },
                 rules_cancel:{
-                    text:[{required:true,message:'Введите причину отклонения Курса'}]
+                    text:[{required:true,message:'Введите причину отклонения Урока'}]
                 }
             }
         },
         methods: {
+            sendMessage(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+
+                        axios.post('/api/admin/lesson/' + this.lesson.id + '/send-message', {type:'lesson', message:this.sendMsg.text})
+                            .then((response)=>{
+                                this.$refs[formName].resetFields();
+                                this.lesson.messages.push(response.data);
+                            })
+                            .catch((error)=>{
+
+                            })
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
             getData() {
                 axios.get('/api/admin/lesson/show/' + this.id)
                 .then((response) => {

@@ -27,7 +27,7 @@ use App\Http\Controllers\Admin\Api\LessonController;
 Route::get('/lesson/show/{id}', [LessonController::class, 'show']) -> name('lesson.show');
 Route::post('/lesson/change-status', [LessonController::class, 'changeStatus']) -> name('lesson.change-status');
 Route::post('/lesson/{id}/cancel-message', [LessonController::class, 'canselMsg'])-> name('lesson.cansel-msg');
-
+Route::post('/lesson/{id}/send-message', [LessonController::class, 'sendMsg']) -> name('lesson.sendMsg');
 use App\Http\Controllers\Admin\Api\CategoryTypeController;
 Route::get('/category-types/{type}', [CategoryTypeController::class, 'getList']) ->name('category-type.list');
 Route::get('/category-types/theme/list', [CategoryTypeController::class, 'getThemes']) ->name('category-type.theme-list');
