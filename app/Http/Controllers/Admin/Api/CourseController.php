@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -37,7 +38,18 @@ class CourseController extends Controller
         }])->findOrFail($id);
         return $course;
     }
+    public function readMsg($id)
+    {
+        $course = Course::findOrFail($id);
+        $unread_messages = $course->messages()->where('read', 0)->get();
+        foreach ($unread_messages as $message) {
+            if($message->sender_type = 'teacher') {
+                $message->read = 1;
+                $message->save();
+            }
+        }
 
+    }
     public function changeStatus(Request $request)
     {
         $course = Course::findOrFail($request->get('id'));
@@ -90,6 +102,7 @@ class CourseController extends Controller
             'sender_id' => $sender_id,
             'recipient_id' => $course->author_id,
             'text' => $request->get('message'),
+            'sender_type' => 'moderator',
             'cansel_reason' => true,
         ]);
         return 'success';
@@ -104,6 +117,7 @@ class CourseController extends Controller
         $message = $course->messages()->create([
             'sender_id' => $sender_id,
             'recipient_id' => $course->author_id,
+            'sender_type' => 'moderator',
             'text' => $request->get('message'),
         ]);
         return $message;

@@ -37,7 +37,12 @@ export default {
                     title:"Категории контента",
                     icon:"educate-icon educate-library"
                 },
+                {
 
+                    id:"/admin/cities",
+                    title:"Города и учебные заведения",
+                    icon:"educate-icon educate-library"
+                },
                 {
 
                     id:"/admin/students",

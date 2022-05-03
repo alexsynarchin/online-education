@@ -36,6 +36,8 @@ class Message extends Model implements HasMedia
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $date)->format('H:i d.m.Y');
         return $date;
     }
+
+
     public function getFilesAttribute()
     {
         $mediaGallery = $this ->getMedia('messages');

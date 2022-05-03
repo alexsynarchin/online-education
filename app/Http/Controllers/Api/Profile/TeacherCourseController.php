@@ -86,6 +86,7 @@ class TeacherCourseController extends Controller
                     $direction =  CategoryType::create([
                         'type' => 'specialty',
                         'title' => $direction_id,
+                        'edu_type_id' =>$request->get('edu_type_id'),
                         'active' => 0,
                     ]);
                 }
@@ -187,6 +188,7 @@ class TeacherCourseController extends Controller
                     $direction =  CategoryType::create([
                         'type' => 'specialty',
                         'title' => $direction_id,
+                        'edu_type_id' =>$request->get('edu_type_id'),
                         'active' => 0,
                     ]);
                 }

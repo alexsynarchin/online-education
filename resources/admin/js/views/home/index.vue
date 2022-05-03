@@ -107,6 +107,15 @@
                     </template>
                 </el-table-column>
                 <el-table-column
+                label="Сообщений"
+                >
+                    <template v-slot="scope">
+                        <span style="color:red">
+                              +{{scope.row.unread_teacher_messages_count}}
+                        </span>
+                    </template>
+                </el-table-column>
+                <el-table-column
                     prop="status"
                     label="Статус"
 

@@ -62,7 +62,7 @@ class Course extends Model implements HasMedia
 
 
     protected $appends = [
-        'image','rating', 'price', 'user_buy', 'rating_count'
+        'image','rating', 'price', 'user_buy', 'rating_count', 'unread_teacher_messages_count'
     ];
     public function getRatingAttribute()
     {
@@ -91,6 +91,13 @@ class Course extends Model implements HasMedia
 
         return $result;
     }
+
+    public function getUnreadTeacherMessagesCountAttribute()
+    {
+        $count = $this->messages()->where('read', 0) ->where('sender_type', 'teacher') -> count();
+        return $count;
+    }
+
     public function getPriceAttribute()
     {
         $price = $this -> lessons -> sum('price_user');

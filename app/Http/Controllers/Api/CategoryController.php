@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         $categories = (new CategoryType) -> newQuery();
 
-        $categories = $categories -> where('type', $type);
+        $categories = $categories -> where('type', $type)->where('active', 1);
         if($parent_id) {
             $categories = $categories -> where('parent_id', $parent_id);
         }

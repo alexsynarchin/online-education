@@ -4,8 +4,8 @@
             <el-breadcrumb-item><a href="/admin">Курсы</a></el-breadcrumb-item>
             <el-breadcrumb-item>{{course.title}}</el-breadcrumb-item>
         </el-breadcrumb>
-        <el-tabs type="card" class="mt-4">
-            <el-tab-pane label="Курс">
+        <el-tabs type="card" class="mt-4" @tab-click="handleTabClick" v-model="activeTab">
+            <el-tab-pane label="Курс" name="course">
                 <section class="lesson__heading d-flex align-items-center justify-content-between">
                     <h1 class="teacher-lesson__title">{{course.title}}</h1>
                     <div class="lesson__btns d-flex justify-content-end">
@@ -26,7 +26,8 @@
                     </el-tab-pane>
                 </el-tabs>
             </el-tab-pane>
-            <el-tab-pane label="Чат с преподавателем">
+            <el-tab-pane name="chat">
+                <span slot="label">Чат с преподавателем <span style="color:red">+{{course.unread_teacher_messages_count}}</span> </span>
                 <section class="chat">
                     <div class="messages-item" v-for="(message,index) in course.messages">
                         <div class="messages-item__head">
@@ -93,6 +94,7 @@ import LessonsList from "@/admin/js/components/lessons-list/index";
         },
         data() {
             return {
+                activeTab:'course',
                 sendMsg:{
                     text:"",
                 },
@@ -112,6 +114,11 @@ import LessonsList from "@/admin/js/components/lessons-list/index";
             }
         },
         methods: {
+            handleTabClick(tab, event) {
+                if(this.activeTab === 'chat') {
+                    axios.post('/api/admin/course/' + this.course.id + '/read-message')
+                }
+            },
             sendMessage(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {

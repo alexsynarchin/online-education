@@ -23,6 +23,7 @@ Route::get('/courses/{id}', [CourseController::class, 'show']) -> name('course.s
 Route::post('/course/{id}/cancel-message', [CourseController::class,'canselMsg']) -> name('course.cansel-msg');
 Route::post('/course/change-status', [CourseController::class, 'changeStatus']) -> name('course.change-status');
 Route::post('/course/{id}/send-message', [CourseController::class, 'sendMsg']) -> name('course.sendMsg');
+Route::post('/course/{id}/read-message', [CourseController::class, 'readMsg'])->name('course.readMsg');
 use App\Http\Controllers\Admin\Api\LessonController;
 Route::get('/lesson/show/{id}', [LessonController::class, 'show']) -> name('lesson.show');
 Route::post('/lesson/change-status', [LessonController::class, 'changeStatus']) -> name('lesson.change-status');
@@ -74,5 +75,8 @@ Route::post('/main-page/store', [MainPageController::class, 'store'])->name('mai
 use App\Http\Controllers\Admin\Api\WithdrawController;
 Route::get('/withdraws', [WithdrawController::class, 'index'])->name('withdraw.index');
 Route::post('/withdraw/done', [WithdrawController::class, 'done'])->name('withdraw.done');
+
+use App\Http\Controllers\Admin\Api\CityController;
+Route::get('/cities', [CityController::class, 'index'])->name('cities');
 
 

@@ -12,7 +12,7 @@ class EduChat extends Model
 
     protected $fillable = [
         'educationable_id', 'educationable_type', 'sender_id',
-        'recipient_id', 'text', 'read', 'cansel_reason',
+        'recipient_id', 'text', 'read', 'cansel_reason', 'sender_type'
     ];
     protected $appends = [
         'formatted_date','user_avatar', 'user_full_name'

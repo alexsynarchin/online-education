@@ -49,6 +49,7 @@ class LessonController extends Controller
             'sender_id' => $sender_id,
             'recipient_id' => $lesson->user_id,
             'text' => $request->get('message'),
+            'sender_type' => 'moderator',
             'cansel_reason' => true,
         ]);
         return 'success';
@@ -63,6 +64,7 @@ class LessonController extends Controller
         $message = $lesson->messages()->create([
             'sender_id' => $sender_id,
             'recipient_id' => $lesson->user_id,
+            'sender_type' => 'moderator',
             'text' => $request->get('message'),
         ]);
         return $message;
