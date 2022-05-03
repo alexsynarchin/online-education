@@ -14,7 +14,10 @@ class TeacherLessonController extends Controller
     public function show($course_slug, $slug)
     {
         $course = Course::where('slug', $course_slug) -> firstOrFail();
-        $lesson = Lesson::where('course_id', $course -> id) -> where('slug', $slug) ->with(['content']) -> firstOrFail();
+        $lesson = Lesson::where('course_id', $course -> id) -> where('slug', $slug) ->with(['content', 'messages' => function($query){
+            $query->where('cansel_reason', 1);
+            return $query->orderBy('id', 'desc')->limit(1);
+        }]) -> firstOrFail();
         $test = $lesson->tests() -> with('questions.options')->first();
         return ['lesson' => $lesson, 'course' => $course, 'test' => $test];
     }

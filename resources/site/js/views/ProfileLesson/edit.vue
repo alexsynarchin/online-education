@@ -20,6 +20,15 @@
             </ul>
         </div>
         <h1 class="b-profile-user__title">{{lesson.title}} : редактирование</h1>
+        <el-alert
+            v-if="lesson.status === 3"
+            v-for="(item, index) in lesson.messages"
+            :key="item.id"
+            title="Причина отклонения урока:"
+            class="mb-4"
+            :description="item.text"
+            type="error">
+        </el-alert>
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Урок" name="description">
                 <description-form :lesson="lesson"></description-form>
