@@ -1,5 +1,6 @@
 <template>
     <section class="mb-4">
+        {{lesson.id}}
         <div class="b-breadcrumbs">
             <ul class="breadcrumb">
                 <li class="breadcrumb__item">
@@ -41,6 +42,43 @@
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"  @update="updateTest"  v-if="loaded"></test-form>
             </el-tab-pane>
+            <el-tab-pane label="Чат с модератором" name="chat">
+                <section class="chat">
+                    <div class="messages-item" v-for="(message,index) in messages">
+                        <div class="messages-item__head">
+                            <img class="messages-item__avatar" :src="message.user_avatar" alt="">
+                            <div class="messages-item-des">
+                                <div class="messages-item-user">
+                                    <div class="messages-item-prof">
+                                        <a href="#" class="messages-fullname">{{message.user_full_name}}</a>
+                                    </div>
+                                    <div class="messages-item-data">
+                                        <span class="messages-item-data__time">{{message.formatted_date}}</span>
+                                    </div>
+                                </div>
+                                <div class="messages-comment">
+                                    <p class="messages-comment__text">
+                                        {{message.text}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <el-form :model="sendMsg" label-position="top" :rules="rules" ref="sendMsg" class="mb-3">
+                        <el-form-item label="Новое сообщение" prop="text">
+                            <el-input
+                                type="textarea"
+                                :rows="3"
+                                placeholder="Введите сообщение"
+                                v-model="sendMsg.text">
+                            </el-input>
+                        </el-form-item>
+
+                        <el-button type="success" @click.prevent="sendMessage('sendMsg')">Отправить</el-button>
+                    </el-form>
+
+                </section>
+            </el-tab-pane>
         </el-tabs>
 
     </section>
@@ -69,9 +107,37 @@
                 course: {},
                 lesson: {},
                 test: {},
+                messages: [],
+                sendMsg:{
+                    text:"",
+                },
             }
         },
         methods: {
+            sendMessage(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+
+                        axios.post('/api/profile/edu-chat/' + this.lesson.id + '/send', {type:'lesson', message:this.sendMsg.text})
+                            .then((response)=>{
+                                this.$refs[formName].resetFields();
+                                this.getMessages();
+                            })
+                            .catch((error)=>{
+
+                            })
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            getMessages() {
+                axios.get('/api/profile/edu-chat/' + this.lesson.id + '/messages', {params:{type:'lesson'}})
+                    .then ((response) => {
+                        this.messages = response.data;
+                    })
+            },
             canselUpdate() {
                 window.location.href = '/profile/courses/' + this.slug
             },
@@ -86,6 +152,7 @@
                 .then((response) => {
                     this.course = response.data.course;
                     this.lesson = response.data.lesson;
+                    this.getMessages();
                     this.contentData = {
                         text:response.data.lesson.content.text,
                         type_video: response.data.lesson.type_video,
@@ -106,6 +173,7 @@
         },
         mounted() {
             this.getData();
+
         }
     }
 </script>
