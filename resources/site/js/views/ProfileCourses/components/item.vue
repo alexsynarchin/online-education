@@ -127,7 +127,7 @@
             sendMessage() {},
             openChat() {
                 this.dialogVisible = true;
-                axios.get('/api/profile/course/' + this.course.id + '/messages')
+                axios.get('/api/profile/edu-chat/' + this.course.id + '/messages', {params:{type:'course'}})
                     .then ((response) => {
                         this.messages = response.data;
                     })

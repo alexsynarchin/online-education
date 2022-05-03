@@ -8,10 +8,18 @@ use Illuminate\Http\Request;
 
 class EduChatController extends Controller
 {
-    public function index($course_id)
+    public function index(Request $request, $id)
     {
-        $course = Course::findOrFail($course_id);
-        $messages = $course->messages()->get();
+        if($request->get('type') === 'course') {
+            $course = Course::findOrFail($id);
+            $messages = $course->messages()->get();
+        }
+
         return $messages;
+    }
+
+    public function sendMsg($id)
+    {
+
     }
 }
