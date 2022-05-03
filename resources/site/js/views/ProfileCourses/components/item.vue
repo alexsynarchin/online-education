@@ -15,7 +15,7 @@
             <el-button type="primary" round @click="openChat">Чат с модератором</el-button>
         </div>
         <div class="course-item__heading">
-            <h4 class="course-item__title" @click="handleShow">
+            <h4 class="course-item__title" @click="handleShow" style="cursor: pointer">
                 {{course.title}}
             </h4>
         </div>

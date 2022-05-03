@@ -1,5 +1,11 @@
 <template>
     <section class="course-item">
+        <el-alert v-if="lesson.status  === 3" v-for="(item, index) in lesson.messages"
+                  :key="item.id"
+                  :title="item.text"
+                  class="mb-4"
+                  type="error">
+        </el-alert>
         <div class="d-flex align-items-center justify-content-between">
             <h4 class="course-item__title">
                 {{lesson.title}}

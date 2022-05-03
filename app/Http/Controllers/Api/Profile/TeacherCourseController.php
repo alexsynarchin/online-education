@@ -253,7 +253,10 @@ class TeacherCourseController extends Controller
 
     public function show($slug)
     {
-        $course = Course::where('slug', $slug) ->with(['lessons', 'themes' => function($query){
+        $course = Course::where('slug', $slug) ->with(['lessons.messages'=>function($query) {
+            $query->where('cansel_reason', 1);
+            return $query->orderBy('id', 'desc')->limit(1);
+        }, 'themes' => function($query){
             $query ->select('theme_id');
         }]) -> firstOrFail();
         $themes = [];
