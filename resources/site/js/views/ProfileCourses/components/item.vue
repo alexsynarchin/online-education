@@ -36,7 +36,7 @@
                         <li class="course-item-lessons__item course-item-lessons__item--preview" v-for="(lesson, index) in course.lessons">
                             <a :href="'/profile/courses/' + course.slug + '/lesson/' + lesson.slug + '/edit'"
                                class="course-item-lessons__link">
-                                {{lesson.title}}
+                                {{lesson.title}} <el-tag type="danger" v-if="lesson.status === 3">Отклонен</el-tag>
                             </a>
                         </li>
                     </ul>
