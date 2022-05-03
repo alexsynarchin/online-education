@@ -1,15 +1,30 @@
 <template>
     <div class="teacher-container" style="max-width: 900px">
-        <h6>Неопобликованные теги:</h6>
-        <div class="d-flex flex-wrap mb-4">
-            <el-tag type="danger" :key="theme.id" v-for="theme in course.themes">
-                {{theme.title}}
-            </el-tag>
+        <div class="mb-4" v-if="course.themes.length > 0">
+            <h6>Неопобликованные теги:</h6>
+            <div class="d-flex flex-wrap">
+                <el-tag type="danger" :key="theme.id" v-for="theme in course.themes">
+                    {{theme.title}}
+                </el-tag>
+            </div>
         </div>
-        <div v-if="course.subject.active === 0">
+
+        <div v-if="course.subject.active === 0" class="mb-4">
             <h6>Неопобликованный предмет:</h6>
             <el-tag type="danger" >
                 {{course.subject.title}}
+            </el-tag>
+        </div>
+        <div v-if="course.direction.active === 0" class="mb-4">
+            <h6>Неопобликованное направление:</h6>
+            <el-tag type="danger" >
+                {{course.direction.title}}
+            </el-tag>
+        </div>
+        <div v-if="course.specialty.active === 0" class="mb-4">
+            <h6>Неопобликованная специальность:</h6>
+            <el-tag type="danger" >
+                {{course.specialty.title}}
             </el-tag>
         </div>
         <div class="row">

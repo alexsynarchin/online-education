@@ -73,16 +73,47 @@ class TeacherCourseController extends Controller
             'category_type_id' =>$subject_id,
             'parent_id' => $edu_cat -> id,
         ]);
+        $direction_id = $request->get('direction_id');
+        if($direction_id) {
+            if(!CategoryType::where('id', $direction_id)->exists()){
+                if(CategoryType::where('type', 'specialty') ->where('parent_id', 0) -> where('title', $direction_id)->exists()) {
+                    $direction = CategoryType::where('type', 'specialty') ->where('parent_id', 0) -> where('title', $direction_id)->first();
+                } else {
+                    $direction =  CategoryType::create([
+                        'type' => 'specialty',
+                        'title' => $direction_id,
+                        'active' => 0,
+                    ]);
+                }
+                $direction_id = $direction->id;
+            }
+        }
+        $specialty_id = $request->get('specialty_id');
+        if($direction_id && $specialty_id) {
+            if(!CategoryType::where('id', $specialty_id)->exists()) {
+                if(CategoryType::where('type', 'specialty')->where('parent_id', $direction_id)->where('title', $specialty_id)->exists()) {
+                    $specialty = CategoryType::where('type', 'specialty')->where('parent_id', $direction_id)->where('title', $specialty_id)->first();
+                } else {
+                    $specialty = CategoryType::create([
+                        'type' => 'specialty',
+                        'title' => $specialty_id,
+                        'active' => 0,
+                        'parent_id' => $direction_id
+                    ]);
+                }
+                $specialty_id = $specialty->id;
+            }
+        }
+
 
         $edu_level_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_level_id'),
             'parent_id' => $subject_cat -> id,
         ]);
-        if($request->get('edu_type_id') != 1) {
-
-        }
-        $course = Course::create($request->except(['image','imageName', 'subject_id']));
+        $course = Course::create($request->except(['image','imageName', 'subject_id', 'direction_id', 'specialty_id']));
         $course -> category_id = $edu_level_cat -> id;
+        $course->direction_id = $direction_id;
+        $course -> specialty_id = $specialty_id;
         $course -> author_id = Auth::user()-> id;
         $course -> status = 1;
         $course->subject_id = $subject_id;
@@ -125,16 +156,66 @@ class TeacherCourseController extends Controller
         $edu_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_type_id')
         ]);
+        $subject_id = $request->get('subject_id');
+        if(!CategoryType::where('id', $subject_id)->exists()) {
+            if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
+                $subject = CategoryType::where('type', 'subject') -> where('title', $subject_id)->first();
+                $subject_id = $subject->id;
+            } else {
+                $subject = CategoryType::create([
+                    'type' => 'subject',
+                    'title' => $subject_id,
+                    'active' => 0
+                ]);
+                $subject_id = $subject ->id;
+            }
+        }
         $subject_cat = Category::firstOrCreate([
-            'category_type_id' => $request->get('subject_id'),
+            'category_type_id' => $subject_id,
             'parent_id' => $edu_cat -> id,
         ]);
+        $direction_id = $request->get('direction_id');
+        if($direction_id) {
+            if(!CategoryType::where('id', $direction_id)->exists()){
+                if(CategoryType::where('type', 'specialty') ->where('parent_id', 0) -> where('title', $direction_id)->exists()) {
+                    $direction = CategoryType::where('type', 'specialty') ->where('parent_id', 0) -> where('title', $direction_id)->first();
+                } else {
+                    $direction =  CategoryType::create([
+                        'type' => 'specialty',
+                        'title' => $direction_id,
+                        'active' => 0,
+                    ]);
+                }
+                $direction_id = $direction->id;
+            }
+        }
+        $specialty_id = $request->get('specialty_id');
+        if($direction_id && $specialty_id) {
+            if(!CategoryType::where('id', $specialty_id)->exists()) {
+                if(CategoryType::where('type', 'specialty')->where('parent_id', $direction_id)->where('title', $specialty_id)->exists()) {
+                    $specialty = CategoryType::where('type', 'specialty')->where('parent_id', $direction_id)->where('title', $specialty_id)->first();
+                } else {
+                    $specialty = CategoryType::create([
+                        'type' => 'specialty',
+                        'title' => $specialty_id,
+                        'active' => 0,
+                        'parent_id' => $direction_id
+                    ]);
+                }
+                $specialty_id = $specialty->id;
+            }
+        }
         $edu_level_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_level_id'),
             'parent_id' => $subject_cat -> id,
         ]);
         $course = Course::findOrFail($request->get('id'));
-        $course -> update(($request->except(['image','imageName'])));
+        $course -> update(($request->except(['image','imageName', 'subject_id', 'direction_id', 'specialty_id'])));
+        $course->direction_id = $direction_id;
+        $course -> specialty_id = $specialty_id;
+        $course -> status = 1;
+        $course->subject_id = $subject_id;
+        $course -> save();
         if($request -> has('imageName')) {
             $course ->addMediaFromBase64($request->get('image'))
                 ->toMediaCollection('courses');

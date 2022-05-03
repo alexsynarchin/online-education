@@ -23,7 +23,7 @@ class CourseController extends Controller
         if($request->has('author')) {
             $courses = $courses -> where('author_id', $request->get('author'));
         }
-        $courses = $courses -> with(['author', 'edu_type', 'subject', 'level']) ->withCount(['lessons' => function($query){
+        $courses = $courses -> with(['author', 'edu_type',  'subject', 'level']) ->withCount(['lessons' => function($query){
             $query->where('status', 1);
         }]) -> get();
 
@@ -31,7 +31,7 @@ class CourseController extends Controller
     }
     public function show($id)
     {
-        $course = Course::with(['author', 'subject', 'lessons', 'themes' => function($query) {
+        $course = Course::with(['author', 'direction', 'specialty', 'subject', 'lessons', 'themes' => function($query) {
             $query -> where('active', 0);
         }])->findOrFail($id);
         return $course;
@@ -51,6 +51,16 @@ class CourseController extends Controller
             $subject = $course->subject;
             $subject->active = 1;
             $subject->save();
+            if($course->direction_id) {
+                $direction  = $course->direction;
+                $direction->active = 1;
+                $direction->save();
+            }
+            if($course->specialty_id) {
+                $specialty= $course->specialty;
+                $specialty->active = 1;
+                $specialty->save();
+            }
         }
         $message='';
         switch ($course->status){

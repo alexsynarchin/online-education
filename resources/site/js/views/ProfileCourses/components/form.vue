@@ -1,7 +1,6 @@
 <template>
   <section>
       <el-form ref="form" :model="form" class="mb-4 mt-4">
-          {{form}}
       <div class="row align-items-end" >
           <el-form-item :error="errors.get('edu_type_id')" class="col-md-4" label="Тип образования">
               <el-select v-model="form.edu_type_id"
@@ -29,7 +28,7 @@
           </el-form-item>
           <el-form-item label="Направление"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3 || form.edu_type_id === 4">
               <el-select v-model="form.direction_id"
-                         placeholder="Выберите направление"
+                         placeholder="Выберите или добавьте направление"
                          allow-create
                          default-first-option
                          filterable
@@ -49,7 +48,7 @@
                   allow-create
                   default-first-option
                   filterable
-                  :placeholder="'Выберите ' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
+                  :placeholder="'Выберите или добавьте' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
                   style="width: 100%;">
                   <el-option
                       v-for="item in specialties"
@@ -64,7 +63,7 @@
                          allow-create
                          default-first-option
                          filterable
-                         placeholder="Выберите предмет"
+                         placeholder="Выберите или добавьте предмет"
                          style="width: 100%;"
                          @change="selectSubject"
               >
@@ -92,7 +91,8 @@
           <el-form-item class="col-md-12 col-xl-6 " v-if="themes_loaded && form.edu_type_id !== 4">
                     <div>
                         <label style="text-align: left" class="el-form-item__label">Ключевые фразы темы</label>
-                        <el-tooltip class="item" effect="dark" content=" это слова или словосочетания, которые помогают при поиске темы" placement="top-start">
+                        <el-tooltip class="item" effect="dark"
+                                    content=" это слова или словосочетания, которые помогают при поиске темы" placement="top-start">
                             <svg class="course-item__author-icon">
                                 <use xlink:href="/assets/site/images/sprites.svg?ver=12#sprite-question-icon"></use>
                             </svg>

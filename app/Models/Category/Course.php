@@ -109,6 +109,16 @@ class Course extends Model implements HasMedia
     {
         return $this -> belongsTo(User::class, 'author_id');
     }
+    public function direction()
+    {
+        return $this->belongsTo(CategoryType::class,'direction_id');
+    }
+
+    public function specialty()
+    {
+        return $this->belongsTo(CategoryType::class, 'specialty_id');
+    }
+
     public function edu_type()
     {
         return $this -> belongsTo(CategoryType::class, 'edu_type_id');
