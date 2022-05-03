@@ -94,4 +94,18 @@ class CourseController extends Controller
         ]);
         return 'success';
     }
+
+    public function sendMsg(Request $request, $id)
+    {
+        $sender_id = Auth::user() -> id;
+        $course = Course::findOrFail($id);
+        $course->status = 3;
+        $course->save();
+        $message = $course->messages()->create([
+            'sender_id' => $sender_id,
+            'recipient_id' => $course->author_id,
+            'text' => $request->get('message'),
+        ]);
+        return $message;
+    }
 }

@@ -116,10 +116,10 @@ import LessonsList from "@/admin/js/components/lessons-list/index";
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
 
-                        axios.post('/api/profile/edu-chat/' + this.course.id + '/send', {type:'course', message:this.sendMsg.text})
+                        axios.post('/api/admin/course/' + this.course.id + '/send-message', {type:'course', message:this.sendMsg.text})
                             .then((response)=>{
                                 this.$refs[formName].resetFields();
-                                this.getMessages();
+                                this.course.messages.push(response.data);
                             })
                             .catch((error)=>{
 

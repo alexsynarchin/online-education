@@ -22,7 +22,7 @@ Route::get('/courses', [CourseController::class, 'index']) -> name('course.index
 Route::get('/courses/{id}', [CourseController::class, 'show']) -> name('course.show');
 Route::post('/course/{id}/cancel-message', [CourseController::class,'canselMsg']) -> name('course.cansel-msg');
 Route::post('/course/change-status', [CourseController::class, 'changeStatus']) -> name('course.change-status');
-
+Route::post('/course/{id}/send-message', [CourseController::class, 'sendMsg']) -> name('course.sendMsg');
 use App\Http\Controllers\Admin\Api\LessonController;
 Route::get('/lesson/show/{id}', [LessonController::class, 'show']) -> name('lesson.show');
 Route::post('/lesson/change-status', [LessonController::class, 'changeStatus']) -> name('lesson.change-status');
