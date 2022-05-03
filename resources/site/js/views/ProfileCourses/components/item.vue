@@ -104,6 +104,7 @@
 </template>
 <script>
     import deleteDialog from "../../../mixins/deleteDialog";
+    import EventBus from "../../../EventBus";
     export default {
         mixins:[deleteDialog],
         data() {
@@ -124,13 +125,33 @@
             }
         },
         methods: {
-            sendMessage() {},
-            openChat() {
-                this.dialogVisible = true;
+            sendMessage(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+
+                        axios.post('/api/profile/edu-chat/' + this.course.id + '/send', {type:'course', message:this.sendMsg.text})
+                            .then((response)=>{
+                                this.$refs[formName].resetFields();
+                                this.getMessages();
+                            })
+                            .catch((error)=>{
+
+                            })
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            getMessages() {
                 axios.get('/api/profile/edu-chat/' + this.course.id + '/messages', {params:{type:'course'}})
                     .then ((response) => {
                         this.messages = response.data;
                     })
+            },
+            openChat() {
+                this.dialogVisible = true;
+                this.getMessages();
             },
             addLesson() {
                 window.location.href = '/profile/courses/' + this.course.slug + '/lesson-create'

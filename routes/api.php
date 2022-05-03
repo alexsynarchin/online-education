@@ -148,7 +148,8 @@ Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
 use App\Http\Controllers\Api\Profile\EduChatController;
 
-Route::get('/profile/edu-chat/{id}/messages',[EduChatController::class, 'index']) ->name('course.messages');
+Route::get('/profile/edu-chat/{id}/messages',[EduChatController::class, 'index'])->name('eduChat.messages');
+Route::post('/profile/edu-chat/{id}/send', [EduChatController::class, 'sendMsg'])->name('eduChat.send');
 
 
 
