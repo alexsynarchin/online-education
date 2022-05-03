@@ -3,6 +3,7 @@
 namespace App\Models\Category;
 
 use App\Models\Comment\Comment;
+use App\Models\EduChat;
 use App\Models\Lesson\Lesson;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -149,5 +150,10 @@ class Course extends Model implements HasMedia
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function messages()
+    {
+        return $this->morphMany(EduChat::class, 'educationable');
     }
 }

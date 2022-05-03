@@ -28,7 +28,8 @@ class TeacherCourseController extends Controller
             $status = 2;
             $empty_message = "В данный момент у вас нет уроков прошедщих модерацию";
         }
-        elseif($type === 'cancel'){
+        elseif($type === 'cansel'){
+
             $status = 3;
             $empty_message = "В данный момент у вас нет отклоненных уроков";
         }

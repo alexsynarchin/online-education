@@ -20,7 +20,7 @@ Route::post('/logout',[LoginController::class, 'logout']) -> name('logout');
 use App\Http\Controllers\Admin\Api\CourseController;
 Route::get('/courses', [CourseController::class, 'index']) -> name('course.index');
 Route::get('/courses/{id}', [CourseController::class, 'show']) -> name('course.show');
-Route::post('/course/{id}/cansel-msg', [CourseController::class,'canselMsg']) -> name('course.cansel-msg');
+Route::post('/course/{id}/cancel-message', [CourseController::class,'canselMsg']) -> name('course.cansel-msg');
 Route::post('/course/change-status', [CourseController::class, 'changeStatus']) -> name('course.change-status');
 
 use App\Http\Controllers\Admin\Api\LessonController;
@@ -74,3 +74,5 @@ Route::post('/main-page/store', [MainPageController::class, 'store'])->name('mai
 use App\Http\Controllers\Admin\Api\WithdrawController;
 Route::get('/withdraws', [WithdrawController::class, 'index'])->name('withdraw.index');
 Route::post('/withdraw/done', [WithdrawController::class, 'done'])->name('withdraw.done');
+
+

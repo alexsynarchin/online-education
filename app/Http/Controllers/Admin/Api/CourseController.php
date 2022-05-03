@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category\Course;
 use Illuminate\Http\Request;
+use Auth;
 
 class CourseController extends Controller
 {
@@ -81,6 +82,16 @@ class CourseController extends Controller
 
     public function canselMsg(Request $request, $id)
     {
+        $sender_id = Auth::user() -> id;
+        $course = Course::findOrFail($id);
+        $course->status = 3;
+        $course->save();
+        $course->messages()->create([
+            'sender_id' => $sender_id,
+            'recipient_id' => $course->author_id,
+            'text' => $request->get('message'),
+            'cansel_reason' => true,
+        ]);
         return 'success';
     }
 }
