@@ -32,7 +32,7 @@ class CourseController extends Controller
     }
     public function show($id)
     {
-        $course = Course::with(['author', 'direction', 'specialty', 'subject', 'lessons', 'themes' => function($query) {
+        $course = Course::with(['author', 'messages', 'direction', 'specialty', 'subject', 'lessons', 'themes' => function($query) {
             $query -> where('active', 0);
         }])->findOrFail($id);
         return $course;
