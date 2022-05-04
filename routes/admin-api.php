@@ -78,5 +78,6 @@ Route::post('/withdraw/done', [WithdrawController::class, 'done'])->name('withdr
 
 use App\Http\Controllers\Admin\Api\CityController;
 Route::get('/cities', [CityController::class, 'index'])->name('cities');
-
+Route::post('/city/store', [CityController::class, 'store'])->name('city.store');
+Route::post('/city/{id}/update', [CityController::class, 'update'])->name('city.update');
 

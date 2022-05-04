@@ -5,7 +5,7 @@
         </h1>
         <el-row type="flex" class="mb-3">
             <el-col :span="12">
-                <el-button type="success" icon="el-icon-plus" @click.prevent="addCity()">Добавить город</el-button>
+                <el-button type="success" icon="el-icon-plus" @click.prevent="addCity">Добавить город</el-button>
             </el-col>
             <el-col :span="12">
                 <el-input
@@ -40,20 +40,54 @@
                     @click="handleRemove(scope.$index, scope.row)">Удалить</el-button>
             </el-table-column>
         </data-tables>
+        <el-dialog
+            :title="ModalTitle"
+            :visible.sync="dialogVisible"
+            width="50%"
+            :before-close="handleClose">
+            <create v-if="formState === 'create'" @close="handleClose"></create>
+        </el-dialog>
     </section>
 </template>
 <script>
+    import create from './create';
+    import edit from './edit';
     export default {
+        components: {
+            create, edit,
+        },
+        computed: {
+            ModalTitle() {
+                let title = '';
+                if(this.formState === 'create') {
+                  title = 'Добавить город'
+              }
+              if(this.formState === 'edit') {
+                  title = 'Редактировать'
+              }
+              return title;
+            },
+        },
         data() {
             return {
+                formState:'',
+                cityForm: {
+                    title:'',
+                },
+                dialogVisible:false,
                 cities:[],
                 filters: [{
                     prop: 'title',
                     value: ''
                 }],
+
             }
         },
         methods: {
+            handleClose() {
+                this.dialogVisible = false;
+                this.formState = '';
+            },
             handleEdit() {
 
             },
@@ -61,7 +95,9 @@
 
             },
             addCity() {
-
+                console.log('test');
+               this.formState = 'create';
+                this.dialogVisible = true;
             },
             getCities() {
                 axios.get('/api/admin/cities')
