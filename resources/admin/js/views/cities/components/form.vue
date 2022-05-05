@@ -3,7 +3,7 @@
         <el-form-item label="Название города" prop="title" :error="errors.get('title')">
             <el-input v-model="cityForm.title" ></el-input>
         </el-form-item>
-        <el-button type="success">Сохранить</el-button>
+        <el-button type="success" @click="saveForm">Сохранить</el-button>
         <el-button type="default" @click="closeModal">Отмена</el-button>
     </el-form>
 </template>
@@ -11,6 +11,9 @@
     import { Errors } from  '@/common/js/services/errors.js';
     export default {
         props: {
+            action: {
+                type: String
+            },
             cityForm: {
                 type: Object,
             }
@@ -23,6 +26,19 @@
         methods: {
             closeModal() {
                 this.$emit('close');
+            },
+            saveForm() {
+              axios.post(this.action, this.cityForm)
+                  .then((response)=>{
+                      this.$notify({
+                          title: 'Информация о городе сохранена',
+                          type: 'success'
+                      });
+                      this.closeModal();
+                  })
+                  .catch((error)=>{
+                      this.errors.record(error.response.data.errors);
+                  })
             },
         },
     }

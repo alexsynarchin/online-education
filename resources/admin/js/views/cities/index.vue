@@ -30,14 +30,16 @@
             <el-table-column
                 label="Действия"
             >
-                <el-button
-                    size="mini"
-                    type="primary"
-                    @click="handleEdit(scope.$index, scope.row)">Редактировать</el-button>
-                <el-button
-                    size="mini"
-                    type="danger"
-                    @click="handleRemove(scope.$index, scope.row)">Удалить</el-button>
+                <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleEdit(scope.row)">Редактировать</el-button>
+                    <el-button
+                        size="mini"
+                        type="danger"
+                        @click="handleRemove(scope.row)">Удалить</el-button>
+                </template>
             </el-table-column>
         </data-tables>
         <el-dialog
@@ -46,6 +48,7 @@
             width="50%"
             :before-close="handleClose">
             <create v-if="formState === 'create'" @close="handleClose"></create>
+            <edit :id="id" v-if="formState === 'edit'" @close="handleClose"></edit>
         </el-dialog>
     </section>
 </template>
@@ -70,6 +73,7 @@
         },
         data() {
             return {
+                id:"",
                 formState:'',
                 cityForm: {
                     title:'',
@@ -87,17 +91,19 @@
             handleClose() {
                 this.dialogVisible = false;
                 this.formState = '';
+                this.getCities();
             },
-            handleEdit() {
-
+            handleEdit(row) {
+                this.id = row.id;
+                this.formState = 'edit';
+                this.dialogVisible = true;
             },
             handleRemove() {
 
             },
             addCity() {
-                console.log('test');
                this.formState = 'create';
-                this.dialogVisible = true;
+               this.dialogVisible = true;
             },
             getCities() {
                 axios.get('/api/admin/cities')

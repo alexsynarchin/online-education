@@ -1,5 +1,5 @@
 <template>
-    <city-form :city-form="cityForm" @close="closeModal"></city-form>
+    <city-form action="/api/admin/city/store" :city-form="cityForm" @close="closeModal"></city-form>
 </template>
 <script>
     import CityForm from './components/form';
