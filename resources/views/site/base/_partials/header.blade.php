@@ -7,7 +7,7 @@
                     <li class="page-header-top-nav__item">
                         <a class="page-header-top-nav__link header-top-nav__link--icon" href="{!! Config::get('settings.faq_link') !!}">
                             <svg class="page-header-top-nav__icon">
-                                <use xlink:href="'/images/sprite.svg#help"></use>
+                                <use xlink:href="/images/sprite.svg#help"></use>
                             </svg>
                             Поддержка
                         </a>
