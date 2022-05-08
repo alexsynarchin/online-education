@@ -69,7 +69,7 @@
                     },
                     {
                         slug:"school",
-                        title: "Щкола",
+                        title: "Школа",
                     }
                 ],
                 errors: new Errors(),
