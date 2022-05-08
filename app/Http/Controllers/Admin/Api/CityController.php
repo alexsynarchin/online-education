@@ -10,7 +10,7 @@ class CityController extends Controller
 {
     public function index()
     {
-        $cities = City::all();
+        $cities = City::with('region')->get();
         return $cities;
     }
 

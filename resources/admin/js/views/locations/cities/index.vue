@@ -28,6 +28,16 @@
             >
             </el-table-column>
             <el-table-column
+                label="Регион"
+                prop="title"
+                width="200"
+                sortable
+            >
+                <template slot-scope="scope">
+                    {{scope.row.region.title}}
+                </template>
+            </el-table-column>
+            <el-table-column
                 label="Действия"
             >
                 <template slot-scope="scope">

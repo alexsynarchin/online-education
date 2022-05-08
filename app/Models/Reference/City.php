@@ -19,6 +19,12 @@ class City extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+    public function region()
+    {
+        return $this ->belongsTo(Region::class, 'region_id');
+    }
+
     public function eduInstitutions()
     {
         return $this -> hasMany(EduInstitution::class);
