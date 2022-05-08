@@ -34,7 +34,7 @@ class ContactController extends Controller
             $email = $setting -> value;
             $email = explode(',', $email);
         } else {
-            $email = ['gwynbleid11@yandex.ru'];
+            $email = ['alexsynarchin@gmail.com'];
         }
         foreach ($email as $recipient) {
             Mail::to($recipient)->send(new ContactEmail($form));
