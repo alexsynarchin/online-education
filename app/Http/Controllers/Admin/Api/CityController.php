@@ -53,4 +53,11 @@ class CityController extends Controller
         $city = City::findOrFail($id);
         return $city;
     }
+
+    public function remove($id)
+    {
+        $city = City::findOrFail($id);
+        $city->delete();
+        return 'success';
+    }
 }

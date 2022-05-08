@@ -48,7 +48,7 @@
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="handleRemove(scope.row)">Удалить</el-button>
+                        @click="handleRemove(scope.row.id)">Удалить</el-button>
                 </template>
             </el-table-column>
         </data-tables>
@@ -108,8 +108,26 @@
                 this.formState = 'edit';
                 this.dialogVisible = true;
             },
-            handleRemove() {
-
+            handleRemove(id) {
+                this.$confirm('Это действие удалит Город со связанными с ним учебными заведениями. Продолжить?', 'Удаление город', {
+                    confirmButtonText: 'Удалить',
+                    cancelButtonText: 'Отмена',
+                    type: 'warning'
+                }).then(() => {
+                    axios.post('/api/admin/city/' + id + '/remove')
+                        .then((response) => {
+                            this.$message({
+                                type: 'success',
+                                message: 'Город удален'
+                            })
+                            this.getCities();
+                        });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Действие отменено '
+                    });
+                });
             },
             addCity() {
                this.formState = 'create';

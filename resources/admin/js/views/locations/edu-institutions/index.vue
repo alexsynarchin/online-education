@@ -66,7 +66,7 @@
                     <el-button
                         size="mini"
                         type="primary"
-                        @click="handleEdit(scope.row.id)">Редактировать</el-button>
+                        @click="handleEdit(scope.row)">Редактировать</el-button>
                     <el-button
                         size="mini"
                         type="danger"
