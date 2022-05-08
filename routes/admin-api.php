@@ -82,3 +82,8 @@ Route::get('/city/{id}/show', [CityController::class, 'show'])->name('city.show'
 Route::post('/city/store', [CityController::class, 'store'])->name('city.store');
 Route::post('/city/{id}/update', [CityController::class, 'update'])->name('city.update');
 
+use App\Http\Controllers\Admin\Api\RegionController;
+Route::get('/regions', [RegionController::class, 'index'])->name('regions');
+Route::get('/region/{id}/show', [RegionController::class, 'show'])->name('region.show');
+Route::post('/region/store', [RegionController::class, 'store'])->name('region.store');
+Route::post('/region/{id}/update', [RegionController::class, 'update'])->name('region.update');

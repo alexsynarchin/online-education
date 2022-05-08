@@ -12,7 +12,7 @@ import AdminPromoCodes from './views/promo/index';
 import Articles from "./views/articles";
 import StaticPages from './views/page';
 import Settings from "./views/settings";
-import Cities from "./views/cities";
+import Locations from "./views/locations/index";
 Vue.use(VueRouter);
 let routes = [
     { name: 'home', path: '/admin', component: AdminHome},
@@ -27,7 +27,7 @@ let routes = [
     { name: 'settings', path: '/admin/settings', component: Settings},
     { name: 'static-pages', path: '/admin/static-pages', component: StaticPages},
     { name: 'articles', path: '/admin/articles', component: Articles},
-    { name: 'cities', path: '/admin/cities', component: Cities},
+    { name: 'locations', path: '/admin/locations', component: Locations},
 ];
 export default new VueRouter({
     mode: 'history',

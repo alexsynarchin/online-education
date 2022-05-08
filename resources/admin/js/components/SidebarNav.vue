@@ -39,7 +39,7 @@ export default {
                 },
                 {
 
-                    id:"/admin/cities",
+                    id:"/admin/locations",
                     title:"Города и учебные заведения",
                     icon:"educate-icon educate-library"
                 },

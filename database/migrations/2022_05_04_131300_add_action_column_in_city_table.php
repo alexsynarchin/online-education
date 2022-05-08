@@ -14,7 +14,8 @@ class AddActionColumnInCityTable extends Migration
     public function up()
     {
         Schema::table('cities', function (Blueprint $table) {
-            //
+            $table->boolean('active')->default(true);
+            $table->BigInteger('region_id')->unsigned();
         });
     }
 
@@ -26,7 +27,7 @@ class AddActionColumnInCityTable extends Migration
     public function down()
     {
         Schema::table('cities', function (Blueprint $table) {
-            //
+            $table->dropColumn(['active', 'region_id']);
         });
     }
 }
