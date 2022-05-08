@@ -11,7 +11,7 @@ class City extends Model
 {
     use HasFactory, HasSlug;
     protected $fillable = [
-        'title', 'slug'
+        'title', 'slug', 'region_id', 'active'
     ];
     public function getSlugOptions() : SlugOptions
     {

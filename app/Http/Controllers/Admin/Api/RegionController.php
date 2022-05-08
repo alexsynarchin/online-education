@@ -17,7 +17,7 @@ class RegionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:cities'
+            'title' => 'required|unique:regions'
         ], [
             'title.required' => 'Введите название региона',
             'title.unique' => 'Регион с таким названием уже существует'
@@ -29,10 +29,10 @@ class RegionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|unique:cities,title,' . $id
+            'title' => 'required|unique:regions,title,' . $id
         ], [
-            'title.required' => 'Введите название города',
-            'title.unique' => 'Город с таким названием уже существует'
+            'title.required' => 'Введите название региона',
+            'title.unique' => 'Регион с таким названием уже существует'
         ]);
         $region = Region::findOrFail($id);
         $region = $region-> update($request->all());

@@ -10,7 +10,8 @@
         data() {
             return {
                 cityForm: {
-                    title: ""
+                    title: "",
+                    region_id: null,
                 }
             }
         },

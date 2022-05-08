@@ -17,8 +17,10 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:cities'
+            'title' => 'required|unique:cities',
+            'region_id' => 'required'
         ], [
+            'region_id.required' => 'Выберите регион',
             'title.required' => 'Введите название города',
             'title.unique' => 'Город с таким названием уже существует'
         ]);
@@ -29,8 +31,10 @@ class CityController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|unique:cities,title,' . $id
+            'title' => 'required|unique:cities,title,' . $id,
+            'region_id' => 'required'
         ], [
+            'region_id.required' => 'Выберите регион',
             'title.required' => 'Введите название города',
             'title.unique' => 'Город с таким названием уже существует'
         ]);
