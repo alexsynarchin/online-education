@@ -31,7 +31,7 @@
               axios.post(this.action, this.cityForm)
                   .then((response)=>{
                       this.$notify({
-                          title: 'Информация о городе сохранена',
+                          title: 'Информация  сохранена',
                           type: 'success'
                       });
                       this.closeModal();

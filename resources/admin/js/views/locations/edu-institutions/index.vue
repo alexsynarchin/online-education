@@ -5,17 +5,17 @@
         </h1>
         <el-row type="flex" class="mb-3">
             <el-col :span="12">
-                <el-button type="success" icon="el-icon-plus" @click.prevent="addCity">Добавить город</el-button>
+                <el-button type="success" icon="el-icon-plus" @click.prevent="addCity">Добавить Учебное заведение</el-button>
             </el-col>
             <el-col :span="12">
                 <el-input
                     v-model="filters[0].value"
                     size="large"
                     width="100%"
-                    placeholder="Название города"/>
+                    placeholder="Название учебного заведения"/>
             </el-col>
         </el-row>
-        <data-tables :data="cities"  :filters="filters">
+        <data-tables :data="items"  :filters="filters">
             <el-table-column
                 type="index"
             >
@@ -63,10 +63,10 @@
             ModalTitle() {
                 let title = '';
                 if(this.formState === 'create') {
-                  title = 'Добавить город'
+                  title = 'Добавить учебное заведение'
               }
               if(this.formState === 'edit') {
-                  title = 'Редактировать'
+                  title = 'Редактировать учебное заведение'
               }
               return title;
             },
@@ -79,7 +79,7 @@
                     title:'',
                 },
                 dialogVisible:false,
-                cities:[],
+                items:[],
                 filters: [{
                     prop: 'title',
                     value: ''
@@ -91,7 +91,7 @@
             handleClose() {
                 this.dialogVisible = false;
                 this.formState = '';
-                this.getCities();
+                this.getItems();
             },
             handleEdit(row) {
                 this.id = row.id;
@@ -105,15 +105,15 @@
                this.formState = 'create';
                this.dialogVisible = true;
             },
-            getCities() {
-                axios.get('/api/admin/cities')
+            getItems() {
+                axios.get('/api/admin/edu-institutions')
                     .then((response) => {
-                        this.cities = response.data;
+                        this.items = response.data;
                     })
             },
         },
         mounted() {
-            this.getCities();
+            this.getItems();
         }
     }
 </script>

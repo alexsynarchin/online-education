@@ -15,7 +15,9 @@ class EduInstitution extends Model
     protected $fillable = [
         'type', 'title', 'slug', 'city_id'
     ];
-
+    protected $appends = [
+        'region'
+    ];
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -30,5 +32,14 @@ class EduInstitution extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+    public function getRegionAttribute()
+    {
+        $city = $this->city;
+        $region = Region::find($city->region_id);
+        return [
+            'id' => $region->id,
+            'title' => $region->title
+        ];
     }
 }

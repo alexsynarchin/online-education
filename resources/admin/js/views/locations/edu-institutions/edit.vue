@@ -1,6 +1,6 @@
 <template>
     <section>
-        <city-form v-if="loaded" :action="'/api/admin/city/' + id + '/update'" :city-form="cityForm"  @close="closeModal"></city-form>
+        <city-form v-if="loaded" :action="'/api/admin/edu-institution/' + id + '/update'" :city-form="cityForm"  @close="closeModal"></city-form>
     </section>
 
 </template>
@@ -22,7 +22,7 @@
                 this.$emit('close');
             },
             getData() {
-                axios.get('/api/admin/city/'+this.id+ '/show')
+                axios.get('/api/admin/edu-institution/'+this.id+ '/show')
                     .then((response) => {
                         this.cityForm = response.data;
                         this.loaded = true;

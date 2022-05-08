@@ -1,5 +1,5 @@
 <template>
-    <city-form action="/api/admin/city/store" :city-form="cityForm" @close="closeModal"></city-form>
+    <city-form action="/api/admin/edu-institution/store" :city-form="cityForm" @close="closeModal"></city-form>
 </template>
 <script>
     import CityForm from './components/form';
@@ -10,7 +10,13 @@
         data() {
             return {
                 cityForm: {
-                    title: ""
+                    title: "",
+                    city_id: null,
+                    type: "",
+                    region: {
+                        id:null,
+                        title:"",
+                    }
                 }
             }
         },

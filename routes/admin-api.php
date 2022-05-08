@@ -87,3 +87,9 @@ Route::get('/regions', [RegionController::class, 'index'])->name('regions');
 Route::get('/region/{id}/show', [RegionController::class, 'show'])->name('region.show');
 Route::post('/region/store', [RegionController::class, 'store'])->name('region.store');
 Route::post('/region/{id}/update', [RegionController::class, 'update'])->name('region.update');
+
+use App\Http\Controllers\Admin\Api\EduInstitutionController;
+Route::get('/edu-institutions', [EduInstitutionController::class, 'index'])->name('edu-institutions');
+Route::get('/edu-institution/{id}/show', [EduInstitutionController::class, 'show'])->name('edu-institution.show');
+Route::post('/edu-institution/store', [EduInstitutionController::class, 'store'])->name('edu-institution.store');
+Route::post('/edu-institution/{id}/update', [EduInstitutionController::class, 'update'])->name('edu-institution.update');

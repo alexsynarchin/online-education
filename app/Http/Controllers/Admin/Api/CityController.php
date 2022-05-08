@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cities = City::with('region')->get();
+        if($request->has('region_id')) {
+            $cities = City::where('region_id', $request->get('region_id'))->with('region')->get();
+        } else {
+            $cities = City::with('region')->get();
+        }
+
         return $cities;
     }
 
