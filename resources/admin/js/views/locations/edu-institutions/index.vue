@@ -28,6 +28,38 @@
             >
             </el-table-column>
             <el-table-column
+                label="Тип"
+                width="200"
+                sortable
+            >
+                <template slot-scope="scope">
+                    <template v-if="scope.row.type === 'university'">
+                        Высшее
+                    </template>
+                    <template v-else>
+                        Школа
+                    </template>
+                </template>
+            </el-table-column>
+            <el-table-column
+                label="Регион"
+                width="200"
+                sortable
+            >
+                <template slot-scope="scope">
+                    {{scope.row.region.title}}
+                </template>
+            </el-table-column>
+            <el-table-column
+                label="Город"
+                width="200"
+                sortable
+            >
+                <template slot-scope="scope">
+                    {{scope.row.city.title}}
+                </template>
+            </el-table-column>
+            <el-table-column
                 label="Действия"
             >
                 <template slot-scope="scope">
