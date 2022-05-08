@@ -19,4 +19,17 @@ class Region extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($region) { // before delete() method call this
+            $region->cities()->delete();
+            // do the rest of the cleanup...
+        });
+    }
 }

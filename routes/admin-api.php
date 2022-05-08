@@ -81,15 +81,17 @@ Route::get('/cities', [CityController::class, 'index'])->name('cities');
 Route::get('/city/{id}/show', [CityController::class, 'show'])->name('city.show');
 Route::post('/city/store', [CityController::class, 'store'])->name('city.store');
 Route::post('/city/{id}/update', [CityController::class, 'update'])->name('city.update');
-
+Route::post('/city/{id}/remove', [CityController::class, 'remove'])->name('city.remove');
 use App\Http\Controllers\Admin\Api\RegionController;
 Route::get('/regions', [RegionController::class, 'index'])->name('regions');
 Route::get('/region/{id}/show', [RegionController::class, 'show'])->name('region.show');
 Route::post('/region/store', [RegionController::class, 'store'])->name('region.store');
 Route::post('/region/{id}/update', [RegionController::class, 'update'])->name('region.update');
+Route::post('/region/{id}/remove', [RegionController::class, 'remove'])->name('region.remove');
 
 use App\Http\Controllers\Admin\Api\EduInstitutionController;
 Route::get('/edu-institutions', [EduInstitutionController::class, 'index'])->name('edu-institutions');
 Route::get('/edu-institution/{id}/show', [EduInstitutionController::class, 'show'])->name('edu-institution.show');
 Route::post('/edu-institution/store', [EduInstitutionController::class, 'store'])->name('edu-institution.store');
 Route::post('/edu-institution/{id}/update', [EduInstitutionController::class, 'update'])->name('edu-institution.update');
+Route::post('/edu-institution/{id}/remove', [EduInstitutionController::class, 'remove'])->name('edu-institution.remove');

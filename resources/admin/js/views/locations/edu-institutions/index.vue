@@ -66,11 +66,11 @@
                     <el-button
                         size="mini"
                         type="primary"
-                        @click="handleEdit(scope.row)">Редактировать</el-button>
+                        @click="handleEdit(scope.row.id)">Редактировать</el-button>
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="handleRemove(scope.row)">Удалить</el-button>
+                        @click="handleRemove(scope.row.id)">Удалить</el-button>
                 </template>
             </el-table-column>
         </data-tables>
@@ -130,7 +130,26 @@
                 this.formState = 'edit';
                 this.dialogVisible = true;
             },
-            handleRemove() {
+            handleRemove(id) {
+                this.$confirm('Это действие удалит Учебное заведение. Продолжить?', 'Удаление учебного заведения', {
+                    confirmButtonText: 'Удалить',
+                    cancelButtonText: 'Отмена',
+                    type: 'warning'
+                }).then(() => {
+                    axios.post('/api/admin/edu-institution/' + id + '/remove')
+                        .then((response) => {
+                            this.$message({
+                                type: 'success',
+                                message: 'Учебное заведение удалено'
+                            })
+                            this.getItems();
+                        });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Действие отменено '
+                    });
+                });
 
             },
             addCity() {

@@ -44,4 +44,11 @@ class RegionController extends Controller
         $region = Region::findOrFail($id);
         return $region;
     }
+
+    public function remove($id)
+    {
+        $region = Region::findOrFail($id);
+        $region->delete();
+        return 'success';
+    }
 }

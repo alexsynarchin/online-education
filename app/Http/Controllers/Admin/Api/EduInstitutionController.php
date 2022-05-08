@@ -52,4 +52,11 @@ class EduInstitutionController extends Controller
         $city = EduInstitution::findOrFail($id);
         return $city;
     }
+
+    public function remove($id)
+    {
+        $edu_institution = EduInstitution::findOrFail($id);
+        $edu_institution->delete();
+        return 'success';
+    }
 }

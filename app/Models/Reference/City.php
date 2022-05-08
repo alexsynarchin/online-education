@@ -29,4 +29,13 @@ class City extends Model
     {
         return $this -> hasMany(EduInstitution::class);
     }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($city) { // before delete() method call this
+            $city->eduInstitutions()->delete();
+            // do the rest of the cleanup...
+        });
+    }
 }
