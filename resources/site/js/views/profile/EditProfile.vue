@@ -125,6 +125,7 @@
                         {required:true, message: 'Повторите новый пароль'}
                     ],
                 },
+                cities: [],
                 passwordForm: {
                     current_password:"",
                     new_password: "",

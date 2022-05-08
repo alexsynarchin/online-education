@@ -184,9 +184,7 @@
                 promoModal:false,
                 profileEdit:false,
                 formData: this.user,
-                cities: [
-                    'Москва', 'Уфа'
-                ],
+                cities: [],
                 errors: new Errors(),
             }
         },
@@ -208,6 +206,12 @@
             },
         },
         methods: {
+            getRegions() {
+
+            },
+            getCities() {
+                axios.get('/api/cities')
+            },
             changeWorkPlaces(places) {
                 this.formData.places = places;
             },
