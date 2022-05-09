@@ -34,7 +34,7 @@ class PromoCodeController extends Controller
                     $promo_code  = PromoCode::where('name', $request->get('name')) ->first();
                     $date1 = Carbon::parse(date('Y-m-d'));
                     $date2 = Carbon::parse(date('Y-m-d', strtotime($promo_code->end_time)));
-                    if($date1< $date2) {
+                    if($date1> $date2) {
                         $fail('Данный промокод не может больше  использоваться');
                     }
                 }, function ($attribute, $value, $fail) use ($request) {
