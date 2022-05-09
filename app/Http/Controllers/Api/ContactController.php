@@ -28,9 +28,9 @@ class ContactController extends Controller
         ]
         );
         $form = $request->all();
-        $exists= Setting::where('group', 'common')->where('name','contact_email')->exists();
+        $exists= Setting::where('group', 'common')->where('name','email')->exists();
         if($exists) {
-            $setting = Setting::where('group', 'common')->where('name','contact_email') ->firstOrFail();
+            $setting = Setting::where('group', 'common')->where('name','email') ->firstOrFail();
             $email = $setting -> value;
             $email = explode(',', $email);
         } else {
