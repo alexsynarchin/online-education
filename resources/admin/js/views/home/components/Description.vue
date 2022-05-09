@@ -21,7 +21,7 @@
                 {{course.direction.title}}
             </el-tag>
         </div>
-        <div v-if="course.specialty.active === 0" class="mb-4">
+        <div v-if="course.specialty && course.specialty.active === 0" class="mb-4" >
             <h6>Неопобликованная специальность:</h6>
             <el-tag type="danger" >
                 {{course.specialty.title}}
