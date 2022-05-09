@@ -42,7 +42,7 @@ class PromoCodeController extends Controller
                     $date1 = Carbon::parse(date('Y-m-d'));
                     $date2 = Carbon::parse(date('Y-m-d', strtotime($promo_code->start_time)));
                     if($date2 > $date1) {
-                        $fail('Данный промокод не может   использоваться');
+                        $fail('Данный промокод не может использоваться');
                     }
                 },  ]],  [
             'name.required' => 'Введите промокод',
