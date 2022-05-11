@@ -38,7 +38,8 @@ class User extends Authenticatable implements HasMedia
         'phone',
         'gender',
         'city',
-        'notifications'
+        'notifications',
+        'city_id'
     ];
 
 

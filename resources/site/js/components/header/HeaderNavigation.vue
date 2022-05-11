@@ -6,10 +6,8 @@
         <li class="filter-nav__item" v-for="(edu_type, index) in edu_types"
 
         >
-            <a href="" class="filter-nav__link" @click.prevent="" v-if="edu_type.id === 4">
-                {{edu_type.title}}
-            </a>
-          <a href="" class="filter-nav__link" @click.prevent="selectEdu(index)" v-else>
+
+          <a href="" class="filter-nav__link" @click.prevent="selectEdu(index)">
             {{edu_type.title}}
           </a>
           <div class="filter-nav__sub"
@@ -62,7 +60,7 @@
               </section>
             </div>
 
-          <div class="filter-nav__sub-inner" v-if="edu_type.id === 2 || edu_type.id === 3">
+          <div class="filter-nav__sub-inner" v-if="edu_type.id === 2 || edu_type.id === 3 || edu_type.id === 4">
               <ul class="filter-nav-list filter-nav-list--directions" >
                   <li class="filter-nav-list__item "
                       v-for="(direction, index) in directions"
@@ -161,6 +159,7 @@
             })
       },
         getDirections(id) {
+            this.directions = [];
             axios.get('/api/header-nav/directions', {params: {edu_type_id:id}})
             .then((response) => {
                 this.directions = response.data;
@@ -172,13 +171,11 @@
             this.getLevels(this.edu_types[index]['id']);
             this.getSubjects(this.edu_types[index]['id']);
         }
-        if(index ===1 || index === 2) {
+        if(index ===1 || index === 2 || index === 3) {
             this.getDirections(index+1);
         }
-        if(index != 3) {
-          this.Eduselected = true
-          this.selectedEdu = index;
-        }
+        this.Eduselected = true
+        this.selectedEdu = index;
         this.level_selected =null;
         this.subject_selected=null;
       },

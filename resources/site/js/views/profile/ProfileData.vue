@@ -80,11 +80,12 @@
                     </div>
                     <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">Город:</span>
-                        <el-select  v-model="formData.city" placeholder="Выберите город" v-if="profileEdit">
+                        <el-select  v-model="formData.city_id" placeholder="Выберите город" v-if="profileEdit">
                             <el-option
                                 v-for="item in cities"
-                                :key="item"
-                                :value="item">
+                                :key="item.id"
+                                :label="item.title"
+                                :value="item.id">
                             </el-option>
                         </el-select>
                         <span class="profile-data-item__value" v-else>{{user.city}}</span>
@@ -182,7 +183,7 @@
         data() {
             return {
                 promoModal:false,
-                profileEdit:false,
+                profileEdit:true,
                 formData: this.user,
                 cities: [],
                 errors: new Errors(),
@@ -211,6 +212,9 @@
             },
             getCities() {
                 axios.get('/api/cities')
+                    .then((response) => {
+                        this.cities = response.data;
+                    })
             },
             changeWorkPlaces(places) {
                 this.formData.places = places;
@@ -283,7 +287,7 @@
             },
         },
         async mounted() {
-
+            this.getCities();
         },
         created() {
             EventBus.$on('show-promo-modal', this.addPromo);
