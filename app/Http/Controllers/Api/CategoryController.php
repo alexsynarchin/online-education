@@ -43,9 +43,6 @@ class CategoryController extends Controller
             })-> get(['id', 'title']);
             $categories = $categories -> merge($categories_teacher);
         }
-        if(Auth::check() && Auth::user()->profile_type === '') {
-            $moderate_categories =
-        }
         return $categories;
     }
 }
