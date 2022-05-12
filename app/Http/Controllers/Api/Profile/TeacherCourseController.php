@@ -48,12 +48,12 @@ class TeacherCourseController extends Controller
         $request -> validate([
             'title' =>'required',
             'edu_type_id' => 'required',
-            'subject_id' => 'required',
+            'subject_id' => 'required_unless:edu_type_id,4',
             'edu_level_id' => 'required'
         ], [
             'title.required' => 'Введите название курса',
             'edu_type_id.required' => 'Выберите  уровень образования',
-            'subject_id.required' => 'Выберите предмет',
+            'subject_id.required_unless' => 'Выберите предмет',
             'edu_level_id.required' => 'Выберите  уровень образования',
         ]);
         $edu_cat = Category::firstOrCreate([
@@ -61,24 +61,30 @@ class TeacherCourseController extends Controller
         ]);
         $user = Auth::user();
         $subject_id = $request->get('subject_id');
-        if(!CategoryType::where('id', $subject_id)->exists()) {
-            if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
-                $subject = CategoryType::where('type', 'subject') -> where('title', $subject_id)->first();
-                $subject_id = $subject->id;
-            } else {
-                $subject = CategoryType::create([
-                   'type' => 'subject',
-                   'title' => $subject_id,
-                   'active' => 0
-                ]);
-                $subject_id = $subject ->id;
+        if($subject_id) {
+            if(!CategoryType::where('id', $subject_id)->exists()) {
+                if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
+                    $subject = CategoryType::where('type', 'subject') -> where('title', $subject_id)->first();
+                    $subject_id = $subject->id;
+                } else {
+                    $subject = CategoryType::create([
+                        'type' => 'subject',
+                        'title' => $subject_id,
+                        'active' => 0
+                    ]);
+                    $subject_id = $subject ->id;
 
+                }
+                if($subject->active === 0) {
+                    $user -> categoryTypes() ->attach($subject_id, [
+                        'type' => 'subject',
+                    ]);
+                }
             }
-            if($subject->active === 0) {
-                $user -> categoryTypes() ->attach($subject_id, [
-                    'type' => 'subject',
-                ]);
-            }
+
+        } else {
+            $subject = CategoryType::where('active', 1)->where('type', 'subject')->first();
+            $subject_id = $subject->id;
         }
         $subject_cat = Category::firstOrCreate([
             'category_type_id' =>$subject_id,
@@ -126,14 +132,12 @@ class TeacherCourseController extends Controller
                 }
             }
         }
-
-
         $edu_level_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_level_id'),
             'parent_id' => $subject_cat -> id,
         ]);
         $course = Course::create($request->except(['image','imageName', 'subject_id', 'direction_id', 'specialty_id']));
-        $course -> category_id = $edu_level_cat -> id;
+        $course -> category_id = $edu_level_cat->id;
         $course->direction_id = $direction_id;
         $course -> specialty_id = $specialty_id;
         $course -> author_id = Auth::user()-> id;
@@ -167,12 +171,12 @@ class TeacherCourseController extends Controller
         $request -> validate([
             'title' =>'required',
             'edu_type_id' => 'required',
-            'subject_id' => 'required',
+            'subject_id' => 'required_unless:edu_type_id,4',
             'edu_level_id' => 'required'
         ], [
             'title.required' => 'Введите название курса',
             'edu_type_id.required' => 'Выберите  уровень образования',
-            'subject_id.required' => 'Выберите предмет',
+            'subject_id.required_unless' => 'Выберите предмет',
             'edu_level_id.required' => 'Выберите  уровень образования',
         ]);
         $edu_cat = Category::firstOrCreate([
@@ -180,23 +184,29 @@ class TeacherCourseController extends Controller
         ]);
         $user = Auth::user();
         $subject_id = $request->get('subject_id');
-        if(!CategoryType::where('id', $subject_id)->exists()) {
-            if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
-                $subject = CategoryType::where('type', 'subject') -> where('title', $subject_id)->first();
-                $subject_id = $subject->id;
-            } else {
-                $subject = CategoryType::create([
-                    'type' => 'subject',
-                    'title' => $subject_id,
-                    'active' => 0
-                ]);
-                $subject_id = $subject ->id;
+        if($subject_id) {
+            if(!CategoryType::where('id', $subject_id)->exists()) {
+                if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
+                    $subject = CategoryType::where('type', 'subject') -> where('title', $subject_id)->first();
+                    $subject_id = $subject->id;
+                } else {
+                    $subject = CategoryType::create([
+                        'type' => 'subject',
+                        'title' => $subject_id,
+                        'active' => 0
+                    ]);
+                    $subject_id = $subject ->id;
+                }
+                if($subject->active === 0) {
+                    $user -> categoryTypes() ->attach($subject_id, [
+                        'type' => 'subject',
+                    ]);
+                }
             }
-            if($subject->active === 0) {
-                $user -> categoryTypes() ->attach($subject_id, [
-                    'type' => 'subject',
-                ]);
-            }
+
+        } else {
+            $subject = CategoryType::where('active', 1)-> where('type', 'subject')->first();
+            $subject_id = $subject->id;
         }
         $subject_cat = Category::firstOrCreate([
             'category_type_id' => $subject_id,
@@ -248,6 +258,10 @@ class TeacherCourseController extends Controller
             'category_type_id' => $request->get('edu_level_id'),
             'parent_id' => $subject_cat -> id,
         ]);
+        if(!$subject_id) {
+            $subject = CategoryType::where('active', 1)-> where('type', 'subject')->first();
+            $subject_id = $subject->id;
+        }
         $course = Course::findOrFail($request->get('id'));
         $course -> update(($request->except(['image','imageName', 'subject_id', 'direction_id', 'specialty_id'])));
         $course->direction_id = $direction_id;

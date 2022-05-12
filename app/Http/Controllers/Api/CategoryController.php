@@ -20,6 +20,7 @@ class CategoryController extends Controller
             $categories = $categories ->where('active', 1);
         }
         if($parent_id) {
+
             $categories = $categories -> where('parent_id', $parent_id);
         }
         if($request->has('edu_type_id') && $type === 'specialty') {
@@ -38,9 +39,16 @@ class CategoryController extends Controller
         $categories = $categories -> get(['id', 'title']);
         if(Auth::check() && Auth::user()->profile_type === 'teacher') {
             $user_id = Auth::user()->id;
-            $categories_teacher = CategoryType::where('active', 0) ->  where('type', $type) -> whereHas('teacherModerate', function ($query) use($user_id){
-                $query->where('user_id', $user_id);
-            })-> get(['id', 'title']);
+            if($parent_id) {
+                $categories_teacher = CategoryType::where('active', 0) -> where('parent_id', $parent_id) ->  where('type', $type) -> whereHas('teacherModerate', function ($query) use($user_id){
+                    $query->where('user_id', $user_id);
+                })-> get(['id', 'title']);
+            } else {
+                $categories_teacher = CategoryType::where('active', 0)  -> where('parent_id', null)->  where('type', $type) -> whereHas('teacherModerate', function ($query) use($user_id){
+                    $query->where('user_id', $user_id);
+                })-> get(['id', 'title']);
+            }
+
             $categories = $categories -> merge($categories_teacher);
         }
         return $categories;
