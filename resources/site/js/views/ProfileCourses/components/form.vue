@@ -1,7 +1,6 @@
 <template>
   <section>
       <el-form ref="form" :model="form" class="mb-4 mt-4">
-          {{form}}
       <div class="row align-items-end" >
           <el-form-item :error="errors.get('edu_type_id')" class="col-md-4" label="Тип образования">
               <el-select v-model="form.edu_type_id"
