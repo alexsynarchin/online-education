@@ -12,10 +12,13 @@ class CategoryController extends Controller
     public function typeList(Request  $request, $type, $parent_id = null)
     {
 
-
+        $active = 1;
+        if(Auth::check() && Auth::user()->profile_type === '') {
+            $active = 0;
+        }
         $categories = (new CategoryType) -> newQuery();
 
-        $categories = $categories -> where('type', $type)->where('active', 1);
+        $categories = $categories -> where('type', $type)->where('active', $active);
         if($parent_id) {
             $categories = $categories -> where('parent_id', $parent_id);
         }
