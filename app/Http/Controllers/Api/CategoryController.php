@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $categories = $categories -> get(['id', 'title']);
         if(Auth::check() && Auth::user()->profile_type === 'teacher') {
             $user_id = Auth::user()->id;
-            $categories_teacher = CategoryType::where('active', 0) -> whereHas('teacherModerate', function ($query) use($user_id){
+            $categories_teacher = CategoryType::where('active', 0) ->  where('type', $type) -> whereHas('teacherModerate', function ($query) use($user_id){
                 $query->where('user_id', $user_id);
             })-> get(['id', 'title']);
             $categories = $categories -> merge($categories_teacher);
