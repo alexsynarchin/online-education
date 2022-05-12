@@ -75,6 +75,10 @@ import deleteDialog from "../../../../mixins/deleteDialog";
                         label:'Высшее образование',
                         value:3,
                     },
+                    {
+                        label:'Дошкольное образование',
+                        value:4,
+                    },
                 ],
             }
         },
