@@ -15,9 +15,9 @@ class CategoryController extends Controller
 
         $categories = (new CategoryType) -> newQuery();
 
-        $categories = $categories -> where('type', $type)->where('active', 1);
-        if(Auth::check() && Auth::user()->profile_type === '') {
-            $categories = $categories -> where('type', $type)->where('active', 0);
+        $categories = $categories -> where('type', $type);
+        if(Auth::check() && Auth::user()->profile_type != '') {
+            $categories = $categories ->where('active', 1);
         }
         if($parent_id) {
             $categories = $categories -> where('parent_id', $parent_id);
