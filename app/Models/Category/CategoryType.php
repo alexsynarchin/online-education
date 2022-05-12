@@ -49,5 +49,8 @@ class CategoryType extends Model
         return $this->belongsTo(CategoryType::class, 'parent_id');
     }
 
-
+    public function teacherModerate()
+    {
+        return $this->belongsToMany(CategoryType::class, 'category_type_teacher', 'category_type_id', 'user_id');
+    }
 }

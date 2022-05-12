@@ -180,4 +180,10 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(TestResult::class, 'user_id');
     }
+
+    public function categoryTypes()
+    {
+        return $this->belongsToMany(CategoryType::class, 'category_type_teacher', 'user_id', 'category_type_id')
+            ->withPivot('type');
+    }
 }

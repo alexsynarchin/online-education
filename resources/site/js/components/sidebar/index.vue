@@ -12,7 +12,7 @@
             :selected = this.selected
         ></sidebar-item>
         <sidebar-item
-            v-if="(selected.edu_type === 2 || selected.edu_type === 3) && loaded"
+            v-if="(selected.edu_type === 2 || selected.edu_type === 3 || selected.edu_type === 4) && loaded"
             :title="'Специальность'"
             :placeholder="'Поиск по специальностям'"
             :type="'specialty'"

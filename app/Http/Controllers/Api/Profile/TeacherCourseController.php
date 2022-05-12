@@ -59,6 +59,7 @@ class TeacherCourseController extends Controller
         $edu_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_type_id')
         ]);
+        $user = Auth::user();
         $subject_id = $request->get('subject_id');
         if(!CategoryType::where('id', $subject_id)->exists()) {
             if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
@@ -71,6 +72,12 @@ class TeacherCourseController extends Controller
                    'active' => 0
                 ]);
                 $subject_id = $subject ->id;
+
+            }
+            if($subject->active === 0) {
+                $user -> categoryTypes() ->attach($subject_id, [
+                    'type' => 'subject',
+                ]);
             }
         }
         $subject_cat = Category::firstOrCreate([
@@ -91,6 +98,11 @@ class TeacherCourseController extends Controller
                     ]);
                 }
                 $direction_id = $direction->id;
+                if($direction->active === 0) {
+                    $user -> categoryTypes() ->attach($direction_id, [
+                        'type' => 'direction',
+                    ]);
+                }
             }
         }
         $specialty_id = $request->get('specialty_id');
@@ -107,6 +119,11 @@ class TeacherCourseController extends Controller
                     ]);
                 }
                 $specialty_id = $specialty->id;
+                if($specialty->active === 0) {
+                    $user -> categoryTypes() ->attach($specialty_id, [
+                        'type' => 'specialty',
+                    ]);
+                }
             }
         }
 
@@ -161,6 +178,7 @@ class TeacherCourseController extends Controller
         $edu_cat = Category::firstOrCreate([
             'category_type_id' => $request->get('edu_type_id')
         ]);
+        $user = Auth::user();
         $subject_id = $request->get('subject_id');
         if(!CategoryType::where('id', $subject_id)->exists()) {
             if(CategoryType::where('type', 'subject') -> where('title', $subject_id)->exists()) {
@@ -173,6 +191,11 @@ class TeacherCourseController extends Controller
                     'active' => 0
                 ]);
                 $subject_id = $subject ->id;
+            }
+            if($subject->active === 0) {
+                $user -> categoryTypes() ->attach($subject_id, [
+                    'type' => 'subject',
+                ]);
             }
         }
         $subject_cat = Category::firstOrCreate([
@@ -193,6 +216,11 @@ class TeacherCourseController extends Controller
                     ]);
                 }
                 $direction_id = $direction->id;
+                if($direction->active === 0) {
+                    $user -> categoryTypes() ->attach($direction_id, [
+                        'type' => 'direction',
+                    ]);
+                }
             }
         }
         $specialty_id = $request->get('specialty_id');
@@ -209,6 +237,11 @@ class TeacherCourseController extends Controller
                     ]);
                 }
                 $specialty_id = $specialty->id;
+                if($specialty->active === 0) {
+                    $user -> categoryTypes() ->attach($specialty_id, [
+                        'type' => 'specialty',
+                    ]);
+                }
             }
         }
         $edu_level_cat = Category::firstOrCreate([

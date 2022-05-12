@@ -16,8 +16,13 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item :error="errors.get('edu_level_id')" class="col-md-4" label="Возраст" v-if="form.edu_type_id === 4">
-              <el-select v-model="form.edu_level_id" placeholder="Возраст" style="width: 100%;">
+          <el-form-item :error="errors.get('edu_level_id')"
+                        class="col-md-4"
+                        label="Возраст"
+                        v-if="form.edu_type_id === 4">
+              <el-select v-model="form.edu_level_id"
+                         placeholder="Возраст"
+                         style="width: 100%;">
                   <el-option
                       v-for="item in edu_levels"
                       :key="item.id"
@@ -26,7 +31,9 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item label="Направление"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 ||form.edu_type_id === 3 || form.edu_type_id === 4">
+          <el-form-item label="Направление"
+                        class="col-md-6 col-xl-4"
+                        v-if="form.edu_type_id === 2 ||form.edu_type_id === 3 || form.edu_type_id === 4">
               <el-select v-model="form.direction_id"
                          placeholder="Выберите или добавьте направление"
                          allow-create
@@ -43,7 +50,10 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item :label="specialty"  class="col-md-6 col-xl-4"  v-if="form.edu_type_id === 2 || form.edu_type_id === 3 || form.edu_type_id === 4 ">
+          <el-form-item
+              :label="specialty"
+              class="col-md-6 col-xl-4"
+              v-if="form.edu_type_id === 2 || form.edu_type_id === 3 || form.edu_type_id === 4 ">
               <el-select
                   v-model="form.specialty_id"
                   allow-create
@@ -77,7 +87,11 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item :error="errors.get('edu_level_id')" class="col-md-4" label="Год обучения" v-if="form.edu_type_id !== 4">
+          <el-form-item
+              :error="errors.get('edu_level_id')"
+              class="col-md-4"
+              label="Год обучения"
+              v-if="form.edu_type_id !== 4">
               <el-select
                   v-model="form.edu_level_id"
                   placeholder="Год обучения"
@@ -90,7 +104,8 @@
                   </el-option>
               </el-select>
           </el-form-item>
-          <el-form-item class="col-md-12 col-xl-6 " v-if="themes_loaded && form.edu_type_id !== 4">
+          <el-form-item class="col-md-12 col-xl-6 "
+                        v-if="themes_loaded && form.edu_type_id !== 4">
                     <div>
                         <label style="text-align: left" class="el-form-item__label">Ключевые фразы темы</label>
                         <el-tooltip class="item" effect="dark"
@@ -113,9 +128,6 @@
                           :value="item.id">
                       </el-option>
                   </el-select>
-
-
-
           </el-form-item>
           <el-form-item class="col-md-6 col-xl-6" v-if="form.edu_type_id === 1">
               <el-checkbox border v-model="form.yege">Это подготовка к ЕГЭ</el-checkbox>

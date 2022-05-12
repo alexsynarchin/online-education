@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category\CategoryType;
 use Illuminate\Http\Request;
+use Auth;
 
 class CategoryController extends Controller
 {
     public function typeList(Request  $request, $type, $parent_id = null)
     {
+
+
         $categories = (new CategoryType) -> newQuery();
 
         $categories = $categories -> where('type', $type)->where('active', 1);
@@ -30,6 +33,13 @@ class CategoryController extends Controller
         }
 
         $categories = $categories -> get(['id', 'title']);
+        if(Auth::check() && Auth::user()->profile_type === 'teacher') {
+            $user_id = Auth::user()->id;
+            $categories_teacher = CategoryType::where('active', 0) -> whereHas('teacherModerate', function ($query) use($user_id){
+                $query->where('user_id', $user_id);
+            })-> get(['id', 'title']);
+            $categories = $categories -> merge($categories_teacher);
+        }
         return $categories;
     }
 }
