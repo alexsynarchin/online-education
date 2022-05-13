@@ -82,8 +82,11 @@ class MainPageController extends Controller
         }
         if(count($blocks['delete_img']) > 0) {
             foreach ($blocks['delete_img'] as $id) {
-                $media = Media::findOrFail($id);
-                $media ->delete();
+                if(Media::where('id', $id) ->exists()){
+                    $media = Media::findOrFail($id);
+                    $media ->delete();
+                }
+
             }
         }
         unset($blocks['delete_img']);
