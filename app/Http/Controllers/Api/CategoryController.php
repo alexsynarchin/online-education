@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
             $categories = $categories -> where('parent_id', $parent_id);
         }
-        if($request->has('edu_type_id') && $type === 'specialty') {
+        if($request->has('edu_type_id') && $type === 'specialty' && $parent_id == null)  {
             $categories = $categories -> where(function($query) use ($request) {
                 $query->where('edu_type_id', $request->get('edu_type_id'));
                 if($request->get('edu_type_id') != 4) {

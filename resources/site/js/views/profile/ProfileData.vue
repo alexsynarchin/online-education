@@ -188,6 +188,7 @@
             title="Добавить регион"
             :visible.sync="RegionModal"
             width="40%"
+            v-if="RegionModal"
         >
             <el-form label-position="top" :model="RegionForm">
                 <el-form-item :error="errors.get('title')">
@@ -202,6 +203,7 @@
         <el-dialog
             title="Добавить город"
             :visible.sync="CityModal"
+            v-if="CityModal"
             width="40%"
             >
             <el-form label-position="top" :model="CityForm">
@@ -279,12 +281,13 @@
             },
 
             closeRegionModal() {
-                this.errors.clear();
+                this.errors.clear('title');
+
                 this.RegionForm.title = "";
                 this.RegionModal = false;
             },
             closeCityModal(){
-                this.errors.clear();
+                this.errors.clear('title');
                 this.CityForm.title = "";
                 this.CityModal = false;
             },
