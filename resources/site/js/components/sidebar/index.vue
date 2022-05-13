@@ -13,8 +13,8 @@
         ></sidebar-item>
         <sidebar-item
             v-if="(selected.edu_type === 2 || selected.edu_type === 3 || selected.edu_type === 4) && loaded"
-            :title="'Специальность'"
-            :placeholder="'Поиск по специальностям'"
+            :title="selected.edu_type === 4 ? 'Программы':'Специальность'"
+            :placeholder="'Поиск по ' + (selected.edu_type === 4?'программам':'специальностям')"
             :type="'specialty'"
             :show-search="true"
             :filter-start="selected.specialties"
@@ -24,7 +24,7 @@
             :selected = this.selected
         ></sidebar-item>
         <sidebar-item
-            v-if="loaded"
+            v-if="loaded && selected.edu_type !== 4"
             :title="'Предмет'"
             :placeholder="'Поиск по предметам'"
             :type="'subject'"
@@ -160,8 +160,10 @@
         mounted() {
             this.selected = this.filterStart;
             this.loaded = true;
-            if(this.selected.edu_type == 1) {
+            if(this.selected.edu_type === 1) {
                 this.level_title = 'Класс';
+            } else if (this.selected.edu_type === 4){
+                this.level_title = 'Возраст';
             } else {
                 this.level_title = 'Курс';
             }
