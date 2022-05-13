@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="form" ref="form" :rules="rules">
+  <el-form :model="form" ref="form" :rules="rules" label-position="top">
     <div class="d-flex align-items-center">
       <el-form-item prop="image" style="margin-bottom: 0; margin-right: 20px" label="Картинка">
         <el-upload
@@ -14,12 +14,14 @@
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
-      <el-form-item label="Ссылка баннера" style="flex: 1">
-        <el-input v-model="form.link"></el-input>
-      </el-form-item>
-        <el-form-item label="Текст">
-            <richtext v-model="form.text"></richtext>
-        </el-form-item>
+        <div style="flex: 1">
+            <el-form-item label="Ссылка баннера" >
+                <el-input v-model="form.link"></el-input>
+            </el-form-item>
+            <el-form-item label="Текст">
+                <richtext v-model="form.text"></richtext>
+            </el-form-item>
+        </div>
     </div>
     <el-button icon="el-icon-plus" type="primary" @click="submitForm('form')">Добавить элемент</el-button>
   </el-form>

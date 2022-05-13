@@ -21,7 +21,7 @@ import MainPage from "./components/MainPage";
         },
         data() {
             return {
-                activeTab: 'common'
+                activeTab: 'main-page'
             };
         },
         methods: {
