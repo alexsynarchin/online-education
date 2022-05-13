@@ -31,7 +31,10 @@ class CategoryController extends Controller
                 }
 
             });
-            $categories = $categories->whereNull('parent_id');
+            if(!$parent_id) {
+                $categories = $categories->whereNull('parent_id');
+            }
+
         }
 
         $categories = $categories -> get(['id', 'title']);
