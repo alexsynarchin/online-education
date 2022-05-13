@@ -7,6 +7,7 @@ use App\Models\Account\TeacherAccount;
 use App\Models\Category\CategoryType;
 use App\Models\Category\Course;
 use App\Models\Lesson\TestResult;
+use App\Models\Reference\City;
 use App\Models\Reference\EduInstitution;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -54,7 +55,7 @@ class User extends Authenticatable implements HasMedia
     ];
     protected $appends = [
         'profile_type', 'subjects', 'avatar', 'gender_string','formatted_birthday',
-        'formatted_created_at', 'main_work'
+        'formatted_created_at', 'main_work', 'region_id', 'region_title'
     ];
 
     /**
@@ -185,5 +186,32 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsToMany(CategoryType::class, 'category_type_teacher', 'user_id', 'category_type_id')
             ->withPivot('type');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function getRegionIdAttribute()
+    {
+        $region_id = null;
+        if($this->city()->exists()) {
+            $city = $this -> city()->first();
+
+            $region_id = $city->region_id;
+        }
+        return $region_id;
+    }
+
+
+    public function getRegionTitleAttribute()
+    {
+        $region_title = null;
+        if($this->city()->exists()) {
+            $city = $this -> city()->first();
+            $region_title = $city->region->title;
+        }
+        return $region_title;
     }
 }

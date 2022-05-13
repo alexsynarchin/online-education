@@ -147,13 +147,16 @@ use App\Http\Controllers\Api\ContactController;
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
 use App\Http\Controllers\Api\Profile\EduChatController;
-
 Route::get('/profile/edu-chat/{id}/messages',[EduChatController::class, 'index'])->name('eduChat.messages');
 Route::post('/profile/edu-chat/{id}/send', [EduChatController::class, 'sendMsg'])->name('eduChat.send');
 
+use App\Http\Controllers\Api\Profile\RegionController;
+Route::get('/regions', [RegionController::class, 'index'])->name('regions');
+Route::post('/region/store', [RegionController::class, 'store'])->name('region.store');
+
 use App\Http\Controllers\Api\Profile\CityController;
 Route::get('/cities', [CityController::class, 'index'])->name('cities');
-
+Route::post('/city/store', [CityController::class, 'store'])->name('city.store');
 
 
 

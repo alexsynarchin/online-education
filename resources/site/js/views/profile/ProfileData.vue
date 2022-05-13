@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <section class="profile-data">
             <section class="profile-data__left">
                 <figure class="profile-data-avatar">
@@ -79,8 +80,25 @@
                         <span class="profile-data-item__value" v-else>{{user.formatted_birthday}}</span>
                     </div>
                     <div class="profile-data-body__item profile-data-item">
+                        <span class="profile-data-item__label">Регион:</span>
+                        <div class="d-flex align-items-center" v-if="profileEdit">
+                            <el-select  v-model="formData.region_id" placeholder="Выберите регион"  @change="selectRegion(formData.region_id)">
+                                <el-option
+                                    v-for="item in regions"
+                                    :key="item.id"
+                                    :label="item.title"
+                                    :value="item.id">
+                                </el-option>
+                            </el-select>
+                            <el-button size="small" style="margin-left: 10px" icon="el-icon-plus" type="primary" @click="RegionModal = true">Добавить</el-button>
+                        </div>
+
+                        <span class="profile-data-item__value" v-else>{{user.region_title}}</span>
+                    </div>
+                    <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">Город:</span>
-                        <el-select  v-model="formData.city_id" placeholder="Выберите город" v-if="profileEdit">
+                        <div class="d-flex align-items-center" v-if="profileEdit">
+                        <el-select  v-model="formData.city_id" placeholder="Выберите город" >
                             <el-option
                                 v-for="item in cities"
                                 :key="item.id"
@@ -88,6 +106,8 @@
                                 :value="item.id">
                             </el-option>
                         </el-select>
+                            <el-button size="small" style="margin-left: 10px" icon="el-icon-plus" type="primary" @click="CityModal = true">Добавить</el-button>
+                        </div>
                         <span class="profile-data-item__value" v-else>{{user.city}}</span>
                     </div>
                     <!--
@@ -164,6 +184,36 @@
             :promoModal="promoModal"
             :id="user.student_account.id"
         ></add-student-promo>
+        <el-dialog
+            title="Добавить регион"
+            :visible.sync="RegionModal"
+            width="40%"
+        >
+            <el-form label-position="top" :model="RegionForm">
+                <el-form-item :error="errors.get('title')">
+                    <el-input v-model="RegionForm.title"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addRegion">Добавить</el-button>
+                <el-button type="primary" @click="closeRegionModal">Отмена</el-button>
+            </span>
+        </el-dialog>
+        <el-dialog
+            title="Добавить город"
+            :visible.sync="CityModal"
+            width="40%"
+            >
+            <el-form label-position="top" :model="CityForm">
+                <el-form-item :error="errors.get('title')">
+                    <el-input v-model="CityForm.title"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="addCity">Добавить</el-button>
+    <el-button type="primary" @click="closeCityModal">Отмена</el-button>
+  </span>
+</el-dialog>
     </div>
 </template>
 <script>
@@ -182,10 +232,19 @@
         directives: {mask},
         data() {
             return {
+                RegionForm: {
+                    title: ""
+                },
+                CityForm: {
+                    title: ""
+                },
+                CityModal:false,
+                RegionModal:false,
                 promoModal:false,
-                profileEdit:true,
+                profileEdit:false,
                 formData: this.user,
                 cities: [],
+                regions:[],
                 errors: new Errors(),
             }
         },
@@ -207,11 +266,52 @@
             },
         },
         methods: {
+            addRegion() {
+                axios.post('/api/region/store', this.RegionForm)
+                    .then((response)=> {
+                        this.formData.region_id = response.data.id;
+                        this.getRegions();
+                        this.closeRegionModal();
+                    })
+                    .catch((error) => {
+                        this.errors.record(error.response.data.errors);
+                    })
+            },
+
+            closeRegionModal() {
+                this.errors.clear();
+                this.RegionForm.title = "";
+                this.RegionModal = false;
+            },
+            closeCityModal(){
+                this.errors.clear();
+                this.CityForm.title = "";
+                this.CityModal = false;
+            },
+            addCity() {
+                axios.post('/api/city/store', {title:this.CityForm.title, region_id:this.formData.region_id})
+                    .then((response)=> {
+                        this.formData.city_id = response.data.id;
+                        this.getCities();
+                        this.closeCityModal();
+                    })
+                    .catch((error) => {
+                        this.errors.record(error.response.data.errors);
+                    })
+            },
             getRegions() {
+                axios.get('/api/regions')
+                    .then((response) => {
+                        this.regions = response.data;
+                    })
 
             },
-            getCities() {
-                axios.get('/api/cities')
+            selectRegion(region_id) {
+                this.formData.city_id = null;
+                this.getCities(region_id)
+            },
+            getCities(region_id) {
+                axios.get('/api/cities', {params:{region_id:region_id}})
                     .then((response) => {
                         this.cities = response.data;
                     })
@@ -287,7 +387,10 @@
             },
         },
         async mounted() {
-            this.getCities();
+            this.getRegions();
+            if(this.formData.region_id) {
+                this.getCities(this.formData.region_id);
+            }
         },
         created() {
             EventBus.$on('show-promo-modal', this.addPromo);
