@@ -8,9 +8,15 @@
             :dots="false"
             :nav="false"
         >
-            <a style="display: block" :href="banner.link"  v-for="(banner, index) in banners">
-                <img :src="banner.image.link">
-            </a>
+            <template  v-for="(banner, index) in banners">
+                <div class="mp-banner-item" v-if="banner.text" @click.prevent="openModal(banner.text)">
+                    <img :src="banner.image.link">
+                </div>
+                <a class="mp-banner-item" style="display: block" target="_blank" :href="banner.link"  v-else>
+                    <img :src="banner.image.link">
+                </a>
+            </template>
+
             <template  slot="prev">
                 <svg viewBox="0 0 14 22" >
                     <use xlink:href="/assets/site/images/sprites.svg#sprite-right-slider-arr"></use>
@@ -21,6 +27,12 @@
                 </svg>
             </template>
         </carousel>
+        <el-dialog
+            :visible.sync="dialogVisible"
+            width="50%"
+        >
+            <div v-html="currentText"></div>
+        </el-dialog>
     </section>
 </template>
 <script>
@@ -32,8 +44,16 @@ export default {
                 type:Array,
             }
         },
+        methods: {
+            openModal(text) {
+                this.dialogVisible = true;
+                this.currentText = text;
+            }
+        },
         data() {
             return {
+                dialogVisible:false,
+                currentText: "",
                 options: {
                     0:{
                         items:1,

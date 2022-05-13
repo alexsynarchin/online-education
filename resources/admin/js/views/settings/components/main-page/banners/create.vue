@@ -17,12 +17,19 @@
       <el-form-item label="Ссылка баннера" style="flex: 1">
         <el-input v-model="form.link"></el-input>
       </el-form-item>
+        <el-form-item label="Текст">
+            <richtext v-model="form.text"></richtext>
+        </el-form-item>
     </div>
     <el-button icon="el-icon-plus" type="primary" @click="submitForm('form')">Добавить элемент</el-button>
   </el-form>
 </template>
 <script>
+import richtext from "@/common/js/components/richtext/index.vue";
 export default {
+    components: {
+        richtext,
+    },
   data() {
     return {
       form: {

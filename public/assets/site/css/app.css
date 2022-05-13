@@ -12662,11 +12662,13 @@ a {
   }
 }
 .mp-banners .carousel-navigation {
+  height: 0;
   z-index: 1;
+  background: transparent;
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-25px);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -12694,6 +12696,14 @@ a {
 }
 .mp-banners .carousel-navigation__next {
   margin-right: -15px;
+}
+.mp-banners .owl-item.active {
+  z-index: 3;
+}
+
+.mp-banner-item {
+  cursor: pointer;
+  display: block;
 }
 
 .for-whom {
