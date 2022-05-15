@@ -35,8 +35,9 @@
                     <div class="d-flex">
                         <el-select class="profile-work-places__select"
                                    v-model="region_id"
+                                   filterable
                                    @change="selectRegion(region_id)"
-                                   placeholder="Выберите регион">
+                                   placeholder="Выберите или найдите регион">
                             <el-option
                                 v-for="item in regions"
                                 :key="item.id"
@@ -55,9 +56,9 @@
                     <div class="d-flex">
                         <el-select class="profile-work-places__select"
                                    v-model="workForm.city"
-
+                                   filterable
                                    @change="selectCity(workForm.city)"
-                                   placeholder="Выберите город">
+                                   placeholder="Выберите или найдите город">
                             <el-option
                                 v-for="item in cities"
                                 :key="item.id"
@@ -94,6 +95,7 @@
                         <el-select class="profile-work-places__select"
                                    v-model="workForm.edu_institution"
                                    @change="selectEduInstitution"
+                                   filterable
                                    :placeholder="filters[1].label">
                             <el-option
                                 v-for="item in filters[1].options"
@@ -174,7 +176,7 @@
 
                     {
                         type:'edu_institution',
-                        label:'Выберите учебное заведение:',
+                        label:'Выберите или найдите учебное заведение',
                         options: [],
                         value:null,
                     },
