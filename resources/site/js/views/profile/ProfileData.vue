@@ -246,7 +246,7 @@
                 CityModal:false,
                 RegionModal:false,
                 promoModal:false,
-                profileEdit:true,
+                profileEdit:false,
                 formData: this.user,
                 cities: [],
                 regions:[],
