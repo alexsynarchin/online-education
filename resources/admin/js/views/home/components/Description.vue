@@ -1,5 +1,20 @@
 <template>
     <div class="teacher-container" style="max-width: 900px">
+        <section class="mb-3">
+            <div class="mb-1" style="font-size: 19px">
+                <label style="font-weight: bold">Тип образования:</label>
+                <span>{{edu_type_title}}</span>
+            </div>
+            <div class="mb-1" style="font-size: 19px" v-if="course.direction">
+                <label style="font-weight: bold">Направление:</label>
+                <span>{{course.direction.title}}</span>
+            </div>
+            <div class="mb-1" style="font-size: 19px" v-if="course.specialty">
+                <label style="font-weight: bold">{{(course.edu_type_id === 4) ? 'Программа' : 'Специальность' }}:</label>
+                <span>{{course.specialty.title}}</span>
+            </div>
+        </section>
+
         <div class="mb-4" v-if="course.themes.length > 0">
             <h6>Неопобликованные теги:</h6>
             <div class="d-flex flex-wrap">
@@ -27,9 +42,7 @@
                 {{course.specialty.title}}
             </el-tag>
         </div>
-        <div class="mb-3">
-            <label>Тип образования</label>
-        </div>
+
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="preview-lesson-wrap">
