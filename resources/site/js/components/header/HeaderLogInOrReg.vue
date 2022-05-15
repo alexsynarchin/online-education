@@ -75,19 +75,7 @@
                                 </svg>
                                 <span class="nav-profile-item__text">Мои ученики</span>
                             </a>
-                            <a href="/profile/my-courses/draft" class="nav-profile-item">
-                                <svg class="nav-profile-item__icon">
-                                    <use xlink:href="/images/sprite.svg#pencil-edit"></use>
-                                </svg>
-                                <span class="nav-profile-item__text">Черновики</span>
-                            </a>
-                            <a href="/profile/my-courses/moderate"
-                               class="nav-profile-item nav-profile-item--border">
-                                <svg class="nav-profile-item__icon">
-                                    <use xlink:href="/images/sprite.svg#list"></use>
-                                </svg>
-                                <span class="nav-profile-item__text">Модерация</span>
-                            </a>
+
                         </section>
 
                         <a href="/profile/messages" class="nav-profile-item">
