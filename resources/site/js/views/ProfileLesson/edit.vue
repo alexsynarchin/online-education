@@ -1,6 +1,5 @@
 <template>
     <section class="mb-4">
-        {{lesson.id}}
         <div class="b-breadcrumbs">
             <ul class="breadcrumb">
                 <li class="breadcrumb__item">
@@ -64,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <el-form :model="sendMsg" label-position="top" :rules="rules" ref="sendMsg" class="mb-3">
+                    <el-form :model="sendMsg" label-position="top"  ref="sendMsg" class="mb-3">
                         <el-form-item label="Новое сообщение" prop="text">
                             <el-input
                                 type="textarea"

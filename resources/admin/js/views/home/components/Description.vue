@@ -27,6 +27,9 @@
                 {{course.specialty.title}}
             </el-tag>
         </div>
+        <div class="mb-3">
+            <label>Тип образования</label>
+        </div>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="preview-lesson-wrap">
@@ -103,7 +106,24 @@
                 required:true
             }
         },
-
+        computed: {
+            edu_type_title:function (){
+                let title = '';
+                if(this.course.edu_type_id === 1) {
+                    title = 'Школьное образование'
+                }
+                if(this.course.edu_type_id === 2) {
+                    title = 'Среднее образование'
+                }
+                if(this.course.edu_type_id === 3) {
+                    title = 'Высшее образование'
+                }
+                if(this.course.edu_type_id === 4) {
+                    title = 'Дошкольное образование'
+                }
+                return title;
+            }
+        }
     }
 </script>
 <style src="./styles/description.styl" lang="stylus"></style>

@@ -212,9 +212,10 @@
                 this.filters[1].options = [];
                 this.modalVisible = false;
             },
-            addEduInstitution(id) {
+            addEduInstitution(data) {
                 this.getEduInstitutions(this.workForm.edu_type);
-                this.workForm.edu_institution = id;
+                this.workForm.edu_institution = data.id;
+                this.workItem.title = data.title;
             },
             openEduInstitutionModal() {
                 this.$refs.add_edu_institution.modalVisible = true;

@@ -45,7 +45,7 @@ import { Errors } from  '@/common/js/services/errors.js';
             addItem(){
                 axios.post('/api/edu-institution/store', {title:this.form.title, city_id:this.city_id, type:this.type})
                     .then((response)=> {
-                        this.$emit('addEduInstitution', response.data.id);
+                        this.$emit('addEduInstitution', {id:response.data.id, title: response.data.title});
                         this.closeModal();
                     })
                     .catch((error) => {
