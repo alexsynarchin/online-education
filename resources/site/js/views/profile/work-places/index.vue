@@ -26,7 +26,6 @@
                 width="50%"
                 :before-close="handleModalClose"
             >
-                {{workForm}}
             <el-form :model="workForm" :rules="rules" ref="workForm">
                 <label class="el-form-item__label" style="display: block; float:none; text-align: left;">Регион</label>
 
