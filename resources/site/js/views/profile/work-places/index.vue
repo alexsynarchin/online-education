@@ -214,6 +214,7 @@
             },
             addEduInstitution(data) {
                 this.getEduInstitutions(this.workForm.edu_type);
+                this.workItem.id = data.id;
                 this.workForm.edu_institution = data.id;
                 this.workItem.title = data.title;
             },
