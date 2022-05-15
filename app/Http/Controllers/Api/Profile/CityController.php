@@ -25,8 +25,8 @@ class CityController extends Controller
             'region_id' => 'required'
         ], [
             'region_id.required' => 'Выберите регион',
-            'title.required' => 'Введите название города',
-            'title.unique' => 'Город с таким названием уже существует'
+            'title.required' => 'Введите название города ',
+            'title.unique' => 'Город с таким названием уже существует '
         ]);
         $city = City::create($request->all());
         return $city;

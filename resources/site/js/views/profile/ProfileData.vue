@@ -150,8 +150,11 @@
                     <work-places
                         v-if="user.profile_type === 'teacher'"
                                 :edit="profileEdit"
-                                 :edu_institutions="user.edu_institutions"
-                                 @change-work-places="changeWorkPlaces"></work-places>
+                                :edu_institutions="user.edu_institutions"
+                                :regions="regions"
+                                @getRegions="getRegions"
+                                 @change-work-places="changeWorkPlaces"
+                    ></work-places>
 
                     <div class="text-center mb-5 mt-5" v-if="profileEdit">
                         <el-button type="success" class="" @click.prevent="formSubmit">Сохранить</el-button>
@@ -243,7 +246,7 @@
                 CityModal:false,
                 RegionModal:false,
                 promoModal:false,
-                profileEdit:false,
+                profileEdit:true,
                 formData: this.user,
                 cities: [],
                 regions:[],

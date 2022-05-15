@@ -158,6 +158,10 @@ use App\Http\Controllers\Api\Profile\CityController;
 Route::get('/cities', [CityController::class, 'index'])->name('cities');
 Route::post('/city/store', [CityController::class, 'store'])->name('city.store');
 
+use App\Http\Controllers\Api\Profile\EduInstitutionController;
+Route::get('/edu-institutions', [EduInstitutionController::class, 'index'])->name('edu-institutions');
+Route::post('/edu-institution/store', [EduInstitutionController::class,'store'])->name('edu-institution.store');
+
 
 
 
