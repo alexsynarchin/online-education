@@ -5,13 +5,14 @@
                 <span style="margin-right: 10px">{{lesson.title}}</span>
                 <status :active_status="lesson.status"></status>
             </h3>
+
             <div class="lesson__btns d-flex justify-content-end">
                 <el-button type="success" @click.prevent="lessonChangeStatus(2)" v-if="lesson.status != 2">Опубликовать</el-button>
                 <el-button type="warning" @click.prevent="lessonChangeStatus(1)" v-if="lesson.status === 2">Снять с публикации</el-button>
                 <el-button type="danger" @click.prevent="dialogCancel = true" v-if="lesson.status === 1">Отклонить</el-button>
             </div>
         </div>
-
+        {{course_status}}
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Основная информация" name="description">
                 <description-form :lesson="lesson"></description-form>
@@ -93,7 +94,8 @@ import TestForm from "./components/LessonTest/TestForm";
           id: {
               type:Number,
               required:true,
-          }
+          },
+            course_status: {},
         },
         components: {
             DescriptionForm, ContentForm, TestForm,
@@ -158,20 +160,27 @@ import TestForm from "./components/LessonTest/TestForm";
                     })
             },
             lessonChangeStatus(status) {
-                axios.post('/api/admin/lesson/change-status', {id:this.lesson.id, status:status})
-                    .then((response)=>{
-                        this.lesson.status = status;
-                        this.$emit('change-status',status);
-                        this.$notify({
-                            title: 'Отлично',
-                            message: response.data,
-                            type: 'success',
-                            duration:4000
-                        });
-                    })
-                    .catch((error)=>{
-                        console.log(error)
+                if(status===2 && this.course_status !==2 ) {
+                    this.$notify.error({
+                        title: 'Нельзя опубликовать урок в неопубликованном курсе',
                     });
+                } else {
+                    axios.post('/api/admin/lesson/change-status', {id:this.lesson.id, status:status})
+                        .then((response)=>{
+                            this.lesson.status = status;
+                            this.$emit('change-status',status);
+                            this.$notify({
+                                title: 'Отлично',
+                                message: response.data,
+                                type: 'success',
+                                duration:4000
+                            });
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        });
+                }
+
             },
             publishCancel(formName) {
                 this.$refs[formName].validate((valid) => {

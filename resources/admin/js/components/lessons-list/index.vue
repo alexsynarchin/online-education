@@ -6,7 +6,7 @@
             :visible.sync="dialogVisible"
             width="80%"
             center>
-            <lesson-show @close="closeModal" :id="lesson_id" v-if="dialogVisible" @change-status="changeStatus"></lesson-show>
+            <lesson-show :course_status="course_status" @close="closeModal"  :id="lesson_id" v-if="dialogVisible" @change-status="changeStatus"></lesson-show>
             <span slot="footer" class="dialog-footer">
   </span>
         </el-dialog>
@@ -20,6 +20,9 @@ import LessonShow from './show';
             LessonItem, LessonShow,
         },
         props: {
+            course_status: {
+                default:1,
+            },
             lessons: {
                 type:Array,
                 required:true,

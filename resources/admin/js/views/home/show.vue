@@ -22,7 +22,7 @@
                 </el-tabs>
                 <el-tabs type="card" >
                     <el-tab-pane label="Уроки">
-                        <lessons-list :lessons="course.lessons" v-if="loaded"></lessons-list>
+                        <lessons-list :course_status="course.status" :lessons="course.lessons" v-if="loaded"></lessons-list>
                     </el-tab-pane>
                 </el-tabs>
             </el-tab-pane>
