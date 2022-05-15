@@ -95,3 +95,6 @@ Route::get('/edu-institution/{id}/show', [EduInstitutionController::class, 'show
 Route::post('/edu-institution/store', [EduInstitutionController::class, 'store'])->name('edu-institution.store');
 Route::post('/edu-institution/{id}/update', [EduInstitutionController::class, 'update'])->name('edu-institution.update');
 Route::post('/edu-institution/{id}/remove', [EduInstitutionController::class, 'remove'])->name('edu-institution.remove');
+
+use App\Http\Controllers\Admin\Api\ChatController;
+Route::post('/edu-chat/read', [ChatController::class, 'readMessages'])->name('edu-chat.read');

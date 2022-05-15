@@ -12,7 +12,9 @@
                 <el-button type="danger" @click.prevent="dialogCancel = true" v-if="lesson.status === 1">Отклонить</el-button>
             </div>
         </div>
-        {{course_status}}
+        <el-badge :value="unreadMsgCount" class="item mt-2 mb-2">
+            <el-button  type="primary" @click="openChat">Чат с преподавателем</el-button>
+        </el-badge>
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Основная информация" name="description">
                 <description-form :lesson="lesson"></description-form>
@@ -22,43 +24,6 @@
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"   v-if="loaded"></test-form>
-            </el-tab-pane>
-            <el-tab-pane label="Чат с преподавателем" name="chat">
-                <section class="chat">
-                    <div class="messages-item" v-for="(message,index) in lesson.messages">
-                        <div class="messages-item__head">
-                            <img class="messages-item__avatar" :src="message.user_avatar" alt="">
-                            <div class="messages-item-des">
-                                <div class="messages-item-user">
-                                    <div class="messages-item-prof">
-                                        <a href="#" class="messages-fullname">{{message.user_full_name}}</a>
-                                    </div>
-                                    <div class="messages-item-data">
-                                        <span class="messages-item-data__time">{{message.formatted_date}}</span>
-                                    </div>
-                                </div>
-                                <div class="messages-comment">
-                                    <p class="messages-comment__text">
-                                        {{message.text}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <el-form :model="sendMsg" label-position="top" :rules="rules" ref="sendMsg" class="mb-3">
-                        <el-form-item label="Новое сообщение" prop="text">
-                            <el-input
-                                type="textarea"
-                                :rows="3"
-                                placeholder="Введите сообщение"
-                                v-model="sendMsg.text">
-                            </el-input>
-                        </el-form-item>
-
-                        <el-button type="success" @click.prevent="sendMessage('sendMsg')">Отправить</el-button>
-                    </el-form>
-
-                </section>
             </el-tab-pane>
         </el-tabs>
         <div v-if="activeTab != 'chat'">
@@ -82,8 +47,54 @@
                 <el-button type="primary" @click="dialogCancel  = false">Отменить</el-button>
             </span>
         </el-dialog>
-    </section>
 
+
+        <el-dialog
+            title="Чат с преподавателем"
+            :visible.sync="chatVisible"
+            width="50%"
+            append-to-body
+            :before-close="handleCloseChat">
+            <section class="chat">
+                <div class="messages-item" v-for="(message,index) in lesson.messages">
+                    <div class="messages-item__head">
+                        <img class="messages-item__avatar" :src="message.user_avatar" alt="">
+                        <div class="messages-item-des">
+                            <div class="messages-item-user">
+                                <div class="messages-item-prof">
+                                    <a href="#" class="messages-fullname">{{message.user_full_name}}</a>
+                                </div>
+                                <div class="messages-item-data">
+                                    <span class="messages-item-data__time">{{message.formatted_date}}</span>
+                                </div>
+                            </div>
+                            <div class="messages-comment">
+                                <p class="messages-comment__text">
+                                    {{message.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <el-form :model="sendMsg" label-position="top" :rules="rules" ref="sendMsg" class="mb-3">
+                    <el-form-item label="Новое сообщение" prop="text">
+                        <el-input
+                            type="textarea"
+                            :rows="3"
+                            placeholder="Введите сообщение"
+                            v-model="sendMsg.text">
+                        </el-input>
+                    </el-form-item>
+
+                    <el-button type="success" @click.prevent="sendMessage('sendMsg')">Отправить</el-button>
+                </el-form>
+
+            </section>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="chatVisible = false">Закрыть</el-button>
+  </span>
+        </el-dialog>
+    </section>
 </template>
 <script>
 import DescriptionForm from "./components/form";
@@ -100,8 +111,17 @@ import TestForm from "./components/LessonTest/TestForm";
         components: {
             DescriptionForm, ContentForm, TestForm,
         },
+        computed: {
+            unreadMsgCount:function (){
+                let unread = this.lesson.messages.filter(obj => {
+                    return (obj.read === 0) && (obj.sender_id === this.lesson.user_id)
+                })
+                return unread.length
+            }
+        },
         data() {
             return {
+                chatVisible:false,
                 sendMsg:{
                     text:"",
                 },
@@ -123,6 +143,21 @@ import TestForm from "./components/LessonTest/TestForm";
             }
         },
         methods: {
+            openChat() {
+                this.chatVisible = true;
+                axios.post('/api/admin/edu-chat/read', {type:'lesson', id:this.lesson.id})
+                    .then((response) => {
+                        this.lesson.messages.forEach((item, i) => {
+                        if((item.read === 0) && (item.sender_id === this.lesson.user_id)) {
+                            console.log(item.read);
+                            this.lesson.messages[i].read = 1;
+                        }
+                        });
+                    })
+            },
+            handleCloseChat() {
+                this.chatVisible = false;
+            },
             sendMessage(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
