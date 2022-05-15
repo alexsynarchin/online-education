@@ -104,7 +104,12 @@
                                 :value="item.id">
                             </el-option>
                         </el-select>
-                        <el-button size="small" style="margin-left: 10px" icon="el-icon-plus" type="primary" @click="openEduInstitutionModal">Добавить</el-button>
+                        <el-button size="small" style="margin-left: 10px"
+                                   icon="el-icon-plus"
+                                   type="primary"
+                                   @click="openEduInstitutionModal">
+                            Добавить
+                        </el-button>
                     </div>
                 </el-form-item>
                 <el-form-item>
@@ -210,6 +215,10 @@
                     city: null,
                     edu_institution: null,
                 }
+                this.workItem.id = null;
+                this.workItem.title = "";
+                this.workItem.main = false;
+
                 this.cities = [];
                 this.filters[1].options = [];
                 this.modalVisible = false;
@@ -272,8 +281,17 @@
                         this.cities = response.data;
                     })
             },
+
             openModal() {
-                this.modalVisible = true;
+                if(this.edu_institutions.length < 4 ) {
+                    this.modalVisible = true;
+                } else {
+                    this.$notify.error({
+                        title: 'Количество мест работы не может быть больше 4',
+                    });
+
+                }
+
             },
             selectEduType() {
                 this.workForm.edu_institution = null;
@@ -309,6 +327,7 @@
                     })
             },
             addWorkPlace(formName) {
+
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.workItem.main = this.workForm.main;
@@ -318,14 +337,27 @@
                             });
                         }
                         this.workForm.main = false;
-                      this.edu_institutions.push(this.workItem);
+                      this.edu_institutions.push({id:this.workItem.id, main:this.workItem.main, title:this.workItem.title});
+                        this.workForm = {
+                            main:false,
+                            edu_type: null,
+                            city: null,
+                            edu_institution: null,
+                        }
+                        this.workItem.id = null;
+                        this.workItem.title = "";
+                        this.workItem.main = false;
+
+                        this.cities = [];
+                        this.filters[1].options = [];
                       this.modalVisible = false;
                     } else {
                         console.log('error submit!!');
                         return false;
                     }
                 });
-            }
+            },
+
         },
         mounted() {
 
