@@ -51,8 +51,7 @@ class ChatController extends Controller
             'teacher_id' => $lesson->user_id,
             'chat_type' =>  'student_chat'
         ]);
-        $url = '/profile/messages/' . $chat->id;
-        return $url;
+        return $chat;
     }
     public function sendMessage(Request $request, $id)
     {
