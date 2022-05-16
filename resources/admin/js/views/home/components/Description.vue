@@ -34,7 +34,7 @@
                 {{course.subject.title}}
             </el-tag>
         </div>
-        <div v-if="course.direction.active === 0" class="mb-4">
+        <div v-if="course.direction && course.direction.active === 0" class="mb-4">
             <h6>Неопобликованное направление:</h6>
             <el-tag type="danger" >
                 {{course.direction.title}}
