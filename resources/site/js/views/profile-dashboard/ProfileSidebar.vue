@@ -72,43 +72,81 @@
             </li>
         </ul>
 
-        <div class="my-count">
+        <div class="my-count" v-if="user.profile_type === 'teacher'">
             <span class="my-count__text" v-if="user.profile_type==='teacher'">На счету:</span>
-            <span class="my-count__text" v-if="user.profile_type==='student'">Бонусы:</span>
-            <span class="my-count__check" v-if="user.profile_type==='student'">{{balance}}</span>
             <span class="my-count__check" v-if="user.profile_type==='teacher'">{{balance}} &#x20bd;</span>
             <div style="margin-top:5px" class="my-count__check" v-if="user.profile_type==='teacher'">Бонусов: {{promo_balance}}</div>
 
         </div>
+        <div class="profile-data-transactions"  v-if="user.profile_type === 'student'">
+            <div class="profile-data-transactions__content">
+                <label class="profile-data-transactions__label">
+                    Бонусов на счету:
+                </label>
+                <span class="profile-data-transactions__value">
+                             {{balance}}
+                </span>
+
+            </div>
+        </div>
         <button class="btn button" @click="addPromo" v-if="user.profile_type==='student'" style="width: 100%;margin-top: 15px">
             Активировать промокод
         </button>
+
     </aside>
+        <add-student-promo
+
+            v-if="promoModal && user.profile_type === 'student'"
+            @close="closePromoModal"
+            @add-promo="saveBalance"
+            :promoModal="promoModal"
+            :id="account.id"
+        ></add-student-promo>
 </div>
 </template>
 
 <script>
-import EventBus from "../../EventBus";
 
+import EventBus from "../../EventBus";
+import AddStudentPromo from "../profile/AddStudentPromo";
 export default {
+    components:{
+        AddStudentPromo,
+    },
     props :['user'],
     mounted(){
         this.getBalance();
         this.getCoursesCount();
+        this.getAccount();
     },
     created() {
         EventBus.$on('sidebar-balance', this.getBalance)
     },
     data(){
         return{
+            account: {},
+            promoModal:false,
             balance: 0,
             promo_balance: 0,
             tabs:[],
         }
     },
     methods:{
+        saveBalance() {
+            this.getBalance();
+            this.closePromoModal();
+        },
+        closePromoModal() {
+            this.promoModal = false;
+        },
+        getAccount() {
+            axios.get('/api/profile/account')
+                .then((response) => {
+                    this.account = response.data;
+                })
+        },
         addPromo() {
-            EventBus.$emit('show-promo-modal');
+            this.promoModal = true;
         },
         getBalance(){
             axios.get('/api/sidebar-balance')

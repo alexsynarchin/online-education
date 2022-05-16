@@ -162,31 +162,9 @@
                     </div>
 
                 </el-form>
-                <div class="profile-data-transactions"  v-if="user.profile_type === 'student'">
-                    <div class="profile-data-transactions__content">
-                        <label class="profile-data-transactions__label">
-                            Бонусов на счету:
-                        </label>
-                        <span class="profile-data-transactions__value">
-                             {{user.student_account.promo_balance}}
-                        </span>
-
-                    </div>
-                    <button class="btn button" @click="addPromo">
-                        Активировать промокод
-                    </button>
-                </div>
-
             </div>
         </section>
-        <add-student-promo
 
-            v-if="promoModal && user.profile_type === 'student'"
-            @close="closePromoModal"
-            @add-promo="saveBalance"
-            :promoModal="promoModal"
-            :id="user.student_account.id"
-        ></add-student-promo>
         <el-dialog
             title="Добавить регион"
             :visible.sync="RegionModal"
@@ -223,12 +201,11 @@
 </template>
 <script>
     import EventBus from '@/site/js/EventBus.js'
-    import AddStudentPromo from "./AddStudentPromo";
     import {mask} from 'vue-the-mask';
     import { Errors } from  '@/common/js/services/errors.js';
     import WorkPlaces from "./work-places";
     export default {
-        components: {AddStudentPromo, WorkPlaces,},
+        components: {WorkPlaces,},
         props: {
             user: {
                 type: Object,
@@ -245,7 +222,6 @@
                 },
                 CityModal:false,
                 RegionModal:false,
-                promoModal:false,
                 profileEdit:false,
                 formData: this.user,
                 cities: [],
@@ -325,10 +301,7 @@
             changeWorkPlaces(places) {
                 this.formData.places = places;
             },
-            saveBalance(balance) {
-                this.user.student_account.promo_balance = balance;
-                this.closePromoModal();
-            },
+
             formSubmit(){
                 var data = this.formData;
                 axios.post('/api/profile/user/' + this.user.id + '/update', data)
@@ -351,13 +324,6 @@
             cancelEdit() {
                 this.profileEdit = false;
                 this.formData = this.user;
-            },
-            addPromo()
-            {
-                this.promoModal = true;
-            },
-            closePromoModal() {
-                this.promoModal = false;
             },
             handleEdit(){
                 this.profileEdit = true;

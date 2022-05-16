@@ -27,6 +27,9 @@ class HomeController extends Controller
                 if($edu_type->id === 1) {
                     $label = 'класс';
                 }
+                if($edu_type->id === 4) {
+                    $label = 'возраст';
+                }
                 $slide = [
                     'id' => $edu_type -> id,
                     'title' => $page->blocks['slider'][$key]['title'],
