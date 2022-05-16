@@ -13,6 +13,10 @@
                 <label style="font-weight: bold">{{(course.edu_type_id === 4) ? 'Программа' : 'Специальность' }}:</label>
                 <span>{{course.specialty.title}}</span>
             </div>
+            <div class="mb-1" style="font-size: 19px" v-if="(course.edu_type_id !== 4) && course.subject">
+                <label style="font-weight: bold">Предмет:</label>
+                <span>{{course.subject.title}}</span>
+            </div>
         </section>
 
         <div class="mb-4" v-if="course.themes.length > 0">
@@ -37,7 +41,7 @@
             </el-tag>
         </div>
         <div v-if="course.specialty && course.specialty.active === 0" class="mb-4" >
-            <h6>Неопобликованная специальность:</h6>
+            <h6>Неопобликованная {{course.edu_type_id === 4 ? 'программа' : 'специальность' }}:</h6>
             <el-tag type="danger" >
                 {{course.specialty.title}}
             </el-tag>
