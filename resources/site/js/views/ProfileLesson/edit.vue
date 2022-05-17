@@ -34,6 +34,7 @@
                 <description-form :lesson="lesson"></description-form>
                 <content-form
                     :ContentData ="contentData"
+                    :errors="errors"
                     v-if="loaded"></content-form>
                 <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
                 <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
@@ -86,6 +87,7 @@
     import DescriptionForm from "./components/form";
     import ContentForm from "./components/ContentForm";
     import TestForm from "./components/LessonTest/TestForm";
+    import { Errors } from  '@/common/js/services/errors.js';
     export default {
         components:{
             DescriptionForm, ContentForm, TestForm,
@@ -110,6 +112,7 @@
                 sendMsg:{
                     text:"",
                 },
+                errors: new Errors(),
             }
         },
         methods: {
@@ -145,6 +148,10 @@
                 .then((response) => {
                     window.location.href = '/profile/courses/' + this.slug
                 })
+                    .catch((error) => {
+                        this.isLoading = false;
+                        this.errors.record(error.response.data.errors);
+                    })
             },
             getData() {
                 axios.get('/api/profile/' + this.slug + '/' + this.lesson_slug + '/show')

@@ -28,25 +28,18 @@
 
             <richtext v-model="lesson.text"></richtext>
         </el-form-item>
-        <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 22px">
-            <el-form-item style="margin-bottom: 0">
-                <el-checkbox v-model="lesson.type_text">Текст</el-checkbox>
-            </el-form-item>
-            <el-form-item style="margin-left: 2rem; margin-bottom: 0">
-                <el-checkbox v-model="lesson.type_image">Изображение</el-checkbox>
-            </el-form-item>
-            <el-form-item style="margin-left: 2rem; margin-bottom: 0">
-                <el-checkbox v-model="lesson.type_audio">Аудио</el-checkbox>
-            </el-form-item>
-            <el-form-item style="margin-left: 2rem; margin-bottom: 0">
-                <el-checkbox v-model="lesson.type_video">Видео</el-checkbox>
-            </el-form-item>
-        </el-row>
+        <el-form-item :inline="true"  style="margin-left: 1rem; margin-bottom: 22px" prop="content_type" :error="errors.get('content_type')">
+            <el-checkbox v-model="lesson.type_text">Текст</el-checkbox>
+            <el-checkbox v-model="lesson.type_image">Изображение</el-checkbox>
+            <el-checkbox v-model="lesson.type_audio">Аудио</el-checkbox>
+            <el-checkbox v-model="lesson.type_video">Видео</el-checkbox>
+        </el-form-item>
     </el-form>
 </template>
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import richtext from '@/common/js/components/richtext/index';
+
 export default {
     components: {
         richtext,
@@ -56,9 +49,11 @@ export default {
         lesson: {
             type:Object,
             requires:true,
-        }
+        },
+        errors: {},
     },
     data() {
+
         return {
             rules:{
                 title:[
@@ -71,7 +66,9 @@ export default {
                 time:[
                 { type:'number', min: 1, message: 'Время не млжет быть меньше 1 минуты', trigger: 'blur' }
                 ],
+
             },
+
         }
     },
     methods: {

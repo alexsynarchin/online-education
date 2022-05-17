@@ -20,7 +20,7 @@
         <h1 class="b-profile-user__title">Создание урока</h1>
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Урок" name="description">
-                <lesson-form :lesson="lesson"></lesson-form>
+                <lesson-form :lesson="lesson" :errors="errors"></lesson-form>
                 <div class="text-center mb-3">
                     <el-button  type="primary" @click.prevent="store(0)"  style="text-transform: uppercase">
                         Сохранить как черновик
@@ -51,6 +51,7 @@
 <script>
 import TestForm from "./components/LessonTest/TestForm";
 import LessonForm from "./components/lessonForm";
+import { Errors } from  '@/common/js/services/errors.js';
     export default {
     components: {
         LessonForm, TestForm
@@ -83,7 +84,8 @@ import LessonForm from "./components/lessonForm";
                     complete_percent:0,
                     questions:[]
                 },
-                test_state:false
+                test_state:false,
+                errors: new Errors(),
             }
         },
         methods: {
@@ -120,12 +122,8 @@ import LessonForm from "./components/lessonForm";
                         window.location = response.request.responseURL;
                     })
                     .catch( (error) => {
-                        var errors = error.response;
-                        var er_data =  errors.data.errors;
                         this.isLoading = false;
-                        if(er_data){
-
-                        }
+                        this.errors.record(error.response.data.errors);
                     });
             },
             getCourseData() {

@@ -8,6 +8,7 @@ use App\Models\Lesson\Lesson;
 use App\Services\Lesson\UpdateLessonService;
 use App\Services\StoreLessonService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class TeacherLessonController extends Controller
 {
@@ -24,6 +25,9 @@ class TeacherLessonController extends Controller
 
     public function store(Request $request)
     {
+        if(!$request->get('type_text') && !$request->get('type_image') && !$request->get('type_audio') && !$request->get('type_video')) {
+            throw ValidationException::withMessages(['content_type' => 'Выберите тип содержимого урока']);
+        }
         $storeLesson = new StoreLessonService();
         $lesson = $storeLesson -> make($request);
         $course = Course::findOrFail($lesson -> course_id);
@@ -37,6 +41,10 @@ class TeacherLessonController extends Controller
 
     public function update(Request $request)
     {
+
+        if(!$request->get('contentData')['type_text'] && !$request->get('contentData')['type_image'] && !$request->get('contentData')['type_audio'] && !$request->get('contentData')['type_audio']) {
+            throw ValidationException::withMessages(['content_type' => 'Выберите тип содержимого урока']);
+        }
         $updateService = new UpdateLessonService();
         $lesson = $updateService ->update($request, $request->get('lesson')['id']);
         return 'success';
