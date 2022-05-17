@@ -23,7 +23,7 @@
             </el-row>
         </el-form>
         <el-button icon="el-icon-plus" type="primary" class="button  mb-4" @click.prevent="showQuestionModal">
-            Добавить вопрос
+            Добавить Тест
         </el-button>
 
         <section class="question-list mb-4" v-if="data.questions.length > 0">
@@ -34,7 +34,6 @@
             >
                 <div  class="d-flex justify-content-between">
                     <div class="question-item__content">
-                        <figure class="question-item__img" v-if="question.image"><img :src="question.preview"> </figure>
                         <div v-html="question.text"></div>
                     </div>
 
@@ -47,11 +46,12 @@
             </el-card>
         </section>
         <el-dialog
+            class="test-modal"
             title="Новый вопрос"
-            append-to-body
             :visible.sync="questionModal"
-            :fullscreen="true"
-            center>
+            width="90%"
+            append-to-body
+            >
             <add-question :editing="editing" :editQuestion="editQuestion" v-if="questionModal" @close="closeQuestionModal"
                           @update="onUpdateQuestion"
                           @add="addQuestion">
@@ -74,6 +74,7 @@
         methods: {
             addQuestion(value) {
                 this.data.questions.push(value);
+                this.$emit('update');
             },
             showQuestionModal()
             {
@@ -94,6 +95,7 @@
             onUpdateQuestion(question){
                 this.editQuestion = question;
                 this.editing = false;
+                this.$emit('update');
                 this.closeQuestionModal();
             },
             submitForm(formName){

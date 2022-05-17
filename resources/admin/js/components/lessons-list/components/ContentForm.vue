@@ -1,31 +1,23 @@
 <template>
     <fieldset class="create-lesson__content mt-4">
-
+        {{data}}
         <el-form :model="data" ref="data" :rules="rules" label-position="top">
             <el-form-item prop="text" label="Содержимое урока">
                 <richtext v-model="data.text"></richtext>
             </el-form-item>
-            <el-row type="flex" :gutter="10" style="margin-left: 1rem; margin-bottom: 0">
-                <el-form-item style="margin-bottom: 0">
-                    <el-checkbox v-model="data.type_text">Текст</el-checkbox>
-                </el-form-item>
-                <el-form-item style="margin-left: 2rem; margin-bottom: 0">
-                    <el-checkbox v-model="data.type_image">Изображение</el-checkbox>
-                </el-form-item>
-                <el-form-item style="margin-left: 2rem; margin-bottom: 0">
-                    <el-checkbox v-model="data.type_audio">Аудио</el-checkbox>
-                </el-form-item>
-                <el-form-item style="margin-left: 2rem; margin-bottom: 0">
-                    <el-checkbox v-model="data.type_video">Видео</el-checkbox>
-                </el-form-item>
-            </el-row>
+            <el-form-item :inline="true"  style="margin-left: 1rem; margin-bottom: 22px" prop="content_type" :error="errors.get('content_type')">
+                <el-checkbox v-model="data.type_text">Текст</el-checkbox>
+                <el-checkbox v-model="data.type_image">Изображение</el-checkbox>
+                <el-checkbox v-model="data.type_audio">Аудио</el-checkbox>
+                <el-checkbox v-model="data.type_video">Видео</el-checkbox>
+            </el-form-item>
         </el-form>
     </fieldset>
 </template>
 <script>
 import richtext from '@/common/js/components/richtext/index';
     export default {
-        props:['data'],
+        props:['data', 'errors'],
         components:{
             richtext,
         },

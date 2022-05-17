@@ -1,5 +1,5 @@
 <template>
-    <el-form class="question-option mt-3 list-group-item" :rules="rules" label-position="top" :model="option_data" ref="option_data">
+    <el-form class="question-option list-group-item" :rules="rules" label-position="top" :model="option_data" ref="option_data">
                 <el-row type="flex" class="align-items-center">
                     <h6 style="margin-bottom: 0"> Вариант ответа {{index + 1}}</h6>
                     <el-form-item prop="right_answer" style="margin-left:1rem; margin-bottom: 0">
@@ -8,21 +8,8 @@
                     <el-button style="margin-left: auto" icon="el-icon-delete" circle type="danger" v-on:click.prevent="removeOption"></el-button>
                 </el-row>
         <el-row type="flex" :gutter="15">
-            <el-form-item prop="image" label="Картинка к ответу">
-                <el-upload
-                    action=""
-                    v-model="option_data.preview"
-                    class="avatar-uploader"
-                    :auto-upload="false"
-                    :show-file-list="false"
-                    :on-change="onFileChange"
-                >
-                    <img v-if="option_data.preview" :src="option_data.preview" class="avatar">
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-            </el-form-item>
                 <el-form-item label="Текст ответа" prop="text" style="flex:  auto; margin-left: 1rem">
-                    <richtext :id="'option_text_' + index" v-model="option_data.text"></richtext>
+                    <richtext   v-model="option_data.text"></richtext>
                 </el-form-item>
         </el-row>
     </el-form>

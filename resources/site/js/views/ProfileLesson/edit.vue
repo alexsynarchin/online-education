@@ -144,7 +144,12 @@
                 window.location.href = '/profile/courses/' + this.slug
             },
             updateLesson() {
-                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, test:this.test, contentData:this.contentData, updateTest:false})
+                axios.post('/api/profile/lesson/update', {
+                    course:this.course,
+                    lesson:this.lesson,
+                    test:this.test,
+                    contentData:this.contentData,
+                    updateTest:false})
                 .then((response) => {
                     window.location.href = '/profile/courses/' + this.slug
                 })

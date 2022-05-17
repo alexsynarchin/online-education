@@ -18,12 +18,13 @@
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Основная информация" name="description">
                 <description-form :lesson="lesson"></description-form>
+                <h3 class="mt-3 mb-3">
+                    Тест к уроку
+                </h3>
+                <test-form :data="test"    v-if="loaded"></test-form>
             </el-tab-pane>
             <el-tab-pane label="Содержимое урока" name="content">
-                <content-form :data="lesson.content" v-if="loaded"></content-form>
-            </el-tab-pane>
-            <el-tab-pane label="Тест к уроку" name="test">
-                <test-form :data="test"   v-if="loaded"></test-form>
+                <content-form :errors="errors" :data="contentData" v-if="loaded"></content-form>
             </el-tab-pane>
         </el-tabs>
         <div v-if="activeTab != 'chat'">
@@ -100,6 +101,7 @@
 import DescriptionForm from "./components/form";
 import ContentForm from "./components/ContentForm";
 import TestForm from "./components/LessonTest/TestForm";
+import { Errors } from  '@/common/js/services/errors.js';
     export default {
         props: {
           id: {
@@ -121,6 +123,8 @@ import TestForm from "./components/LessonTest/TestForm";
         },
         data() {
             return {
+                contentData: {},
+                errors: new Errors(),
                 chatVisible:false,
                 sendMsg:{
                     text:"",
@@ -182,16 +186,27 @@ import TestForm from "./components/LessonTest/TestForm";
                     this.course = response.data.course;
                     this.lesson = response.data.lesson;
                     this.test = response.data.test;
+                    this.contentData = {
+                        text:response.data.lesson.content.text,
+                        type_video: response.data.lesson.type_video,
+                        type_text: response.data.lesson.type_text,
+                        type_audio: response.data.lesson.type_audio,
+                        type_image: response.data.lesson.type_image
+                    }
                     this.loaded = true;
+
                 })
             },
             canselUpdate() {
                 this.$emit('close');
             },
             updateLesson() {
-                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, test:this.test})
+                axios.post('/api/profile/lesson/update', {course:this.course, lesson:this.lesson, contentData:this.contentData, test:this.test, updateTest:true})
                     .then((response) => {
                         this.$emit('close', this.lesson.title);
+                    })
+                    .catch((error) => {
+                        this.errors.record(error.response.data.errors);
                     })
             },
             lessonChangeStatus(status) {
