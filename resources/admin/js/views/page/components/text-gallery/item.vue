@@ -38,7 +38,7 @@
 
 </template>
 <script>
-import richtext from "@/common/js/components/richtext/index.vue";
+import richtext from "@/common/js/components/richtext/index2.vue";
     export default {
         components:{
             richtext,
