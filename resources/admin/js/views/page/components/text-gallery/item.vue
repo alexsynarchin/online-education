@@ -6,7 +6,15 @@
                 <el-input v-model="item.title"></el-input>
             </el-form-item>
             <el-form-item label="Текст">
-                <richtext v-model="item.text"></richtext>
+                <div  style="padding-top: 50px; position: relative;">
+                    <div style="position: absolute; top:10px; right: 10px;">
+                        <el-button type="primary" size="small" @click="editText" v-if="!edit">Редактировать текст</el-button>
+                        <el-button type="success" size="small" @click="saveText" v-if="edit">Сохранить текст</el-button>
+                    </div>
+                    <div v-html="item.text" v-if="!edit"></div>
+                    <richtext v-model="text" v-else></richtext>
+                </div>
+
             </el-form-item>
             <div class="d-flex mb-4">
                 <el-upload
@@ -50,11 +58,22 @@ import richtext from "@/common/js/components/richtext/index2.vue";
         },
         data() {
             return {
+                text:"",
                 upload_image:"",
                 delete_img: [],
+                edit:false,
             }
         },
         methods: {
+            editText() {
+                this.text = this.item.text;
+                this.edit = true;
+            },
+            saveText() {
+                this.item.text = this.text;
+                this.edit = false;
+                this.text = "";
+            },
             deleteItem() {
                 this.$emit('delete', this.$vnode.key);
             },
