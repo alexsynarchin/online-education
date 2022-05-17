@@ -48,8 +48,7 @@
                 console.log(index)
             },
             endSort(){
-                this.sortingItem = false;
-                this.sortingItem = true;
+
                 this.$emit('sort', {list:this.localBlocks, list_name:'instruction'})
             },
             createItem(data) {

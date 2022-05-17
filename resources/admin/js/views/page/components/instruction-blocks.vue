@@ -1,7 +1,6 @@
 <template>
     <section class="blocks-by-type mt-4 mb-4">
-
-        <text-gallery sort="" :delete_img="form.delete_img" :blocks="form.instr_blocks"></text-gallery>
+        <text-gallery @sort="sort" :delete_img="form.delete_img" :blocks="form.instr_blocks"></text-gallery>
     </section>
 </template>
 <script>
@@ -24,8 +23,9 @@ export default {
         }
     },
     methods: {
-        sort() {
-            console.log('sort');
+        sort(data) {
+            console.log(data)
+            this.form.instr_blocks = data.list;
         },
         prepareForm() {
 
