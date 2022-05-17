@@ -59,8 +59,8 @@
                   allow-create
                   default-first-option
                   filterable
-                  :placeholder="'Выберите или добавьте' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
-                  :no-match-text="'Выберите или добавьте' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
+                  :placeholder="'Выберите или добавьте ' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
+                  :no-match-text="'Выберите или добавьте ' + (form.edu_type_id === 4 ? 'программу' :  'специальность')"
                   style="width: 100%;">
                   <el-option
                       v-for="item in specialties"
