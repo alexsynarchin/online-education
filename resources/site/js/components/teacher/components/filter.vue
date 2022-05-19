@@ -32,15 +32,27 @@
                         label:'Выберите тип учебного заведения:',
                         options: [
                             {
+                                id:'preschool',
+                                slug:  "preschool",
+                                title: "Дошкольное",
+                            },
+                            {
                                 id:'school',
                                 slug:'school',
                                 title:'Школа'
                             },
                             {
+                                id:'secondary_special',
+                                slug:"secondary_special",
+                                title: "Средне-специальное",
+                            },
+                            {
                                 id:'university',
                                 slug:'university',
                                 title:'ВУЗ'
-                            }
+                            },
+
+
                         ],
                         value:null,
                     },

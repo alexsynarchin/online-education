@@ -27,8 +27,6 @@ class StaticPageController extends Controller
         $request->validate([
             'slug' => 'unique:pages'
         ]);
-
-
         $page = Page::create($request->except('seo','text'));
         $page -> seo() ->create($request -> get('seo'));
         if($request -> get('text')) {

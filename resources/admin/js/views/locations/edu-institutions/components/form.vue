@@ -64,13 +64,23 @@
                 cities:[],
                 types: [
                     {
-                        slug:"university",
+                        slug:  "preschool",
+                        title: "Дошкольное",
+                    },
+                    {
+                        slug: "university",
                         title: "Высшее",
                     },
                     {
-                        slug:"school",
+                        slug:"secondary_special",
+                        title: "Средне-специальное",
+                    },
+                    {
+                        slug: "school",
                         title: "Школа",
-                    }
+                    },
+
+
                 ],
                 errors: new Errors(),
             }

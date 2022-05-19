@@ -16,6 +16,12 @@
                 </div>
 
             </el-form-item>
+            <el-form-item>
+                <el-checkbox-group v-model="item.cols">
+                    <el-checkbox :value="1" label="Картинки в одну колонку"></el-checkbox>
+                    <el-checkbox :value="2" label="Option B"></el-checkbox>
+                </el-checkbox-group>
+            </el-form-item>
             <div class="d-flex mb-4">
                 <el-upload
                     action=""
@@ -62,6 +68,7 @@ import richtext from "@/common/js/components/richtext/index2.vue";
                 upload_image:"",
                 delete_img: [],
                 edit:false,
+                cols: 2,
             }
         },
         methods: {
