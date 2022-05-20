@@ -84,4 +84,10 @@ class UserController extends Controller
        // $user->sendEmailVerificationNotification();
         return $user -> email;
     }
+
+    public function phoneConfirmation(Request $request)
+    {
+       $LOGIN ="black656";
+       $PASSWORD = "pioner1468006";
+    }
 }

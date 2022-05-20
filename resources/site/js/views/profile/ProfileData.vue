@@ -134,13 +134,17 @@
                     </div>
                     <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">Телефон:</span>
-                        <el-form-item prop="email" v-if="profileEdit">
-                            <el-input
-                                v-mask="'+7(###)-##-##-###'"
-                                :placeholder="'+7(999)-99-99-999'"
-                                v-model="formData.phone">
-                            </el-input>
-                        </el-form-item>
+                        <div class="d-flex align-items-center" style="margin-bottom: 22px" v-if="profileEdit">
+                            <el-form-item prop="email"  style="margin-bottom: 0">
+                                <el-input
+                                    v-mask="'+7(###)-##-##-###'"
+                                    :placeholder="'+7(999)-99-99-999'"
+                                    v-model="formData.phone">
+                                </el-input>
+                            </el-form-item>
+                            <el-button size="small" type="primary" style="margin-left: 10px" @click.prevent="phoneConfirmationModal = true">Подтвердить</el-button>
+                        </div>
+
                         <span class="profile-data-item__value" v-else>{{user.phone}}</span>
                     </div>
                     <div class="profile-data-head" v-if="user.profile_type === 'teacher'">
@@ -164,11 +168,27 @@
                 </el-form>
             </div>
         </section>
-
         <el-dialog
+            title="Подтвердите номер телефона"
+            :visible.sync=" phoneConfirmationModal"
+            width="40%">
+            <p>Введите код подтверждения последние 6 цифр номер телефона с которого вам поступит входящий звонок</p>
+            <el-form label-position="top" :model="phoneConfirmationForm" class="profile-data-form" style="margin-bottom: 28px">
+                <el-form-item label="Введите код" prop="code">
+                    <el-input style="" v-model="phoneConfirmationForm.code"></el-input>
+                </el-form-item>
+            </el-form>
+            <div class="text-center">
+                <el-button type="primary" @click.prevent="confirmPhone">
+                    Подтвердить
+                </el-button>
+            </div>
+        </el-dialog>
+        <el-dialog
+            style="max-width: 320px"
             title="Добавить регион"
             :visible.sync="RegionModal"
-            width="40%"
+            width="100%"
             v-if="RegionModal"
         >
             <el-form label-position="top" :model="RegionForm">
@@ -214,15 +234,19 @@
         directives: {mask},
         data() {
             return {
+                phoneConfirmationForm: {
+                    code: ""
+                },
                 RegionForm: {
                     title: ""
                 },
                 CityForm: {
                     title: ""
                 },
+                phoneConfirmationModal:false,
                 CityModal:false,
                 RegionModal:false,
-                profileEdit:false,
+                profileEdit:true,
                 formData: this.user,
                 cities: [],
                 regions:[],
@@ -247,6 +271,12 @@
             },
         },
         methods: {
+            confirmPhone() {
+                axios.post('/api/profile/user/phone-confirmation')
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+            },
             addRegion() {
                 axios.post('/api/region/store', this.RegionForm)
                     .then((response)=> {
