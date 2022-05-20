@@ -10,6 +10,7 @@
             <div class="about-page__content">
                 {!! $page->text !!}
             </div>
+
             @if(isset($page->blocks['about_list']) && $page->blocks['about_list'] )
                 <ul class="about-list">
                     @foreach($page->blocks['about_list'] as $item)

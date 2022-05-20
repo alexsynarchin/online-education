@@ -4,6 +4,14 @@
 <div class="instruction-page__content">
     {!! $page->text !!}
 </div>
+<div class="instruction-block__gal">
+    <figure>
+        <img src="/assets/site/images/test/01.jpg">
+    </figure>
+    <figure>
+        <img src="/assets/site/images/test/02.jpg">
+    </figure>
+</div>
 @if(isset($page->blocks['instr_blocks']) && $page->blocks['instr_blocks'] )
     @foreach($page->blocks['instr_blocks'] as $item)
         <section class="instruction-block @if(isset($item['border']) &&  $item['border'] == false) instruction-block--none-border @endif"  >
