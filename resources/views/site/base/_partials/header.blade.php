@@ -27,7 +27,7 @@
     <section class="page-header-main">
         <div class="container page-header-main__inner">
             <a href="/" class="page-header__logo">
-                <img class="b-header__logo-img" src="/assets/site/images/logo.png?ver=1" alt="logo" height="30px">
+                <img class="b-header__logo-img" src="/assets/site/images/logo.png?ver=1" alt="logo" height="34px">
             </a>
             <div class="page-header__search">
                 @include('site.base.header.headerSearch')
