@@ -20,7 +20,13 @@ class LoginController extends Controller
             if($request->get('url')) {
                 return $request->get('url') . '?comment=show';
             } else {
-                return route('dashboard');
+                if(!(Auth::user()->phone_confirmation)) {
+                    return route('dashboard');
+                } else if(Auth::user()->profile_type === 'teacher') {
+                    return route('profile.course.index', ['type' => 'moderate']);
+                } else if (Auth::user()->profile_type === 'student') {
+                    return route('profile.education');
+                }
             }
 
             //return redirect()->intended('dashboard');

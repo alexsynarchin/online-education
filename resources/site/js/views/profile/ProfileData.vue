@@ -434,6 +434,14 @@
         },
         async mounted() {
             this.getRegions();
+            if(!this.formData.phone_confirmation) {
+                this.profileEdit = true;
+                this.$notify({
+                    title: 'Подтвердите номер телефона',
+                    message: 'Подтвердите номер телефона',
+                    type: 'warning'
+                });
+            }
             if(this.formData.region_id) {
                 this.getCities(this.formData.region_id);
             }
