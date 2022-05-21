@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
-
 class UserController extends Controller
 {
     public function index()
@@ -89,5 +88,6 @@ class UserController extends Controller
     {
        $LOGIN ="black656";
        $PASSWORD = "pioner1468006";
+       return "test";
     }
 }

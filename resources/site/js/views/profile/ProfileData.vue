@@ -272,9 +272,13 @@
         },
         methods: {
             confirmPhone() {
-                axios.post('/api/profile/user/phone-confirmation')
+               /* axios.post('/api/profile/user/phone-confirmation')
                     .then((response) => {
                         console.log(response.data);
+                    })*/
+                axios.post('https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1')
+                    .then((response) => {
+                        console.log(response.data)
                     })
             },
             addRegion() {
