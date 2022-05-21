@@ -142,7 +142,7 @@
                                     v-model="formData.phone">
                                 </el-input>
                             </el-form-item>
-                            <el-button size="small" type="primary" style="margin-left: 10px" @click.prevent="phoneConfirmationModal = true">Подтвердить</el-button>
+                            <el-button v-if="!formData.phone_confirmation" size="small" type="primary" style="margin-left: 10px" @click.prevent="phoneConfirmationModal = true">Подтвердить</el-button>
                         </div>
 
                         <span class="profile-data-item__value" v-else>{{user.phone}}</span>
@@ -172,14 +172,29 @@
             title="Подтвердите номер телефона"
             :visible.sync=" phoneConfirmationModal"
             width="40%">
-            <p>Введите код подтверждения последние 6 цифр номер телефона с которого вам поступит входящий звонок</p>
-            <el-form label-position="top" :model="phoneConfirmationForm" class="profile-data-form" style="margin-bottom: 28px">
-                <el-form-item label="Введите код" prop="code">
+            <el-alert
+                :closable="false"
+                class="mb-3"
+                style="word-break: break-word;"
+                title="Код - 6 последних цифр номер телефона с которого вам поступит входящий звонок"
+                type="info"></el-alert>
+            <el-form label-position="top"  :model="phoneConfirmationForm"
+                     class="profile-data-form d-flex align-items-end"
+                     style="margin-bottom: 28px">
+                <el-form-item label="Код подтверждения" prop="code" style="flex:1" :error="errors.get('code')">
                     <el-input style="" v-model="phoneConfirmationForm.code"></el-input>
                 </el-form-item>
+                <el-button type="primary" @click.prevent="sendConfirmPhoneCode">Выслать код</el-button>
             </el-form>
+            <el-alert
+                v-if="countDown > 0"
+                :closable="false"
+                class="mb-3"
+                style="word-break: break-word;"
+                :title="'Вы можете отправить код повторно через ' +  countDown + ' сек.' "
+                type="warning"></el-alert>
             <div class="text-center">
-                <el-button type="primary" @click.prevent="confirmPhone">
+                <el-button type="primary" @click.prevent="confirmPhoneCode(check_code)">
                     Подтвердить
                 </el-button>
             </div>
@@ -234,6 +249,8 @@
         directives: {mask},
         data() {
             return {
+                check_code:"",
+                countDown:0,
                 phoneConfirmationForm: {
                     code: ""
                 },
@@ -246,7 +263,7 @@
                 phoneConfirmationModal:false,
                 CityModal:false,
                 RegionModal:false,
-                profileEdit:true,
+                profileEdit:false,
                 formData: this.user,
                 cities: [],
                 regions:[],
@@ -271,15 +288,38 @@
             },
         },
         methods: {
-            confirmPhone() {
-               /* axios.post('/api/profile/user/phone-confirmation')
+            sendConfirmPhoneCode() {
+                if(this.countDown === 0) {
+                    axios.post('/api/profile/user/phone-confirmation', {phone:this.formData.phone})
+                        .then((response) => {
+                            console.log(response.data);
+                            this.countDown = 60;
+                            if(response.data.code){
+                                this.check_code = response.data.code;
+                            }
+                            console.log(this.check_code);
+                            this.countDownTimer();
+                        })
+                }
+            },
+            confirmPhoneCode(code) {
+                axios.post('/api/profile/user/phone-check-code', {check_code:code, code:this.phoneConfirmationForm.code})
                     .then((response) => {
-                        console.log(response.data);
-                    })*/
-                axios.post('https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1')
-                    .then((response) => {
-                        console.log(response.data)
+                        this.formData.phone_confirmation = true;
+                        this.phoneConfirmationModal = false;
                     })
+                    .catch((error) => {
+                        this.errors.record(error.response.data.errors);
+                    })
+            },
+            countDownTimer () {
+
+                if (this.countDown > 0) {
+                    setTimeout(() => {
+                        this.countDown -= 1
+                        this.countDownTimer()
+                    }, 1000)
+                }
             },
             addRegion() {
                 axios.post('/api/region/store', this.RegionForm)

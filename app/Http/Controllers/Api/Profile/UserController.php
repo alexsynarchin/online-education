@@ -86,8 +86,34 @@ class UserController extends Controller
 
     public function phoneConfirmation(Request $request)
     {
+        $phone = preg_replace('/[^0-9]/', '', $request->get('phone'));
        $LOGIN ="black656";
        $PASSWORD = "pioner1468006";
-       return "test";
+       //https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1
+        $client = new \GuzzleHttp\Client();
+        $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+' . $phone . '&mes=code&call=1&fmt=3';
+        $response = $client->request('POST', $url);
+        $result = $response->getBody();
+       return $result;
+    }
+
+    public function checkPhoneCode(Request $request)
+    {
+        $code = $request->get('check_code');
+        $request->validate([
+            'code' => ['required',
+            function ($attribute, $value, $fail) use ($code) {
+                if ($value != $code) {
+                    $fail('Код подтверждения не совпадает');
+                }
+            },]
+        ],
+        [
+            'code.required' => 'Введите код подтверждения'
+        ]);
+        $user = Auth::user();
+        $user->phone_confirmation = true;
+        $user->save();
+        return 'success';
     }
 }

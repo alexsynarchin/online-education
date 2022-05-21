@@ -45,6 +45,7 @@ Route::post('/profile/user/{id}/select-profile', [UserController::class, 'select
 Route::post('/profile/user/{id}/update-email', [UserController::class, 'updateEmail']) -> name('user.update-email');
 Route::post('/profile/user/{id}/update', [UserController::class, 'update']) -> name('user.update');
 Route::post('/profile/user/phone-confirmation', [UserController::class, 'phoneConfirmation']) -> name('user.phone-confirmation');
+Route::post('/profile/user/phone-check-code', [UserController::class, 'checkPhoneCode'])->name('user.check.phone-code');
 
 //Header nav
 use App\Http\Controllers\Api\HeaderNavController;
