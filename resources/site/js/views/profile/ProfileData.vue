@@ -435,7 +435,13 @@
         async mounted() {
             this.getRegions();
             if(this.formData.profile_type === 'teacher' && this.formData.edu_institutions.length === 0) {
+                let offset = 0;
+                if(!this.formData.phone_confirmation) {
+                    offset =100;
+                }
                 this.$notify({
+                    offset:offset,
+                    duration:30000,
                     title: 'Добавьте место работы',
                     message: 'Ваш профиль станет отображаться на странице "Поиск преподавателя"',
                     type: 'warning'
@@ -446,7 +452,8 @@
                 this.$notify({
                     title: 'Подтвердите номер телефона',
                     message: 'Для верификации профиля',
-                    type: 'warning'
+                    type: 'warning',
+                    duration:30000,
                 });
             }
             if(this.formData.region_id) {
