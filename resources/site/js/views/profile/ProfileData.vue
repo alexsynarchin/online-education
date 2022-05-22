@@ -434,11 +434,18 @@
         },
         async mounted() {
             this.getRegions();
+            if(this.formData.edu_institutions.length === 0) {
+                this.$notify({
+                    title: 'Добавьте место работы',
+                    message: 'Ваш профиль станет отображаться на странице "Поиск преподавателя"',
+                    type: 'warning'
+                });
+            }
             if(!this.formData.phone_confirmation) {
                 this.profileEdit = true;
                 this.$notify({
                     title: 'Подтвердите номер телефона',
-                    message: 'Подтвердите номер телефона',
+                    message: 'Для верификации профиля',
                     type: 'warning'
                 });
             }
