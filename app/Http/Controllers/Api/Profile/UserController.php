@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+
 class UserController extends Controller
 {
     public function index()
@@ -86,15 +87,19 @@ class UserController extends Controller
 
     public function phoneConfirmation(Request $request)
     {
-        $phone = preg_replace('/[^0-9]/', '', $request->get('phone'));
-       $LOGIN ="black656";
-       $PASSWORD = "pioner1468006";
-       //https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1
-        $client = new \GuzzleHttp\Client();
-        $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+' . $phone . '&mes=code&call=1&fmt=3';
-        $response = $client->request('POST', $url);
-        $result = $response->getBody();
-       return $result;
+        if(Auth::check()) {
+            $phone = preg_replace('/[^0-9]/', '', $request->get('phone'));
+            $LOGIN ="black656";
+            $PASSWORD = "pioner1468006";
+            //https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1
+            $client = new \GuzzleHttp\Client();
+            $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
+            //$url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes='.urlencode('code').'&call=1&fmt=3';
+            $response = $client->request('POST', $url);
+            $result = $response->getBody();
+            return $result;
+        }
+
     }
 
     public function checkPhoneCode(Request $request)
