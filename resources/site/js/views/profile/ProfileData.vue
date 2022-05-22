@@ -434,7 +434,7 @@
         },
         async mounted() {
             this.getRegions();
-            if(this.formData.edu_institutions.length === 0) {
+            if(this.formData.profile_type === 'teacher' && this.formData.edu_institutions.length === 0) {
                 this.$notify({
                     title: 'Добавьте место работы',
                     message: 'Ваш профиль станет отображаться на странице "Поиск преподавателя"',
