@@ -78,9 +78,6 @@ Route::get('/faq', function(){
 Route::get('/how-it-works', function(){
     return view('site.faq');
 });
-Route::get('/test', function () {
-    return view('site.test-sms.index');
-});
-Route::post('/test/sms', [HomeController::class,'smsTest']);
+
 use App\Http\Controllers\Site\StaticPageController;
 Route::get('{path}', [StaticPageController::class, 'show'])->where('path', '[0-9A-Za-zА-Яа-я\/\.-]+') ->name('static-page');
