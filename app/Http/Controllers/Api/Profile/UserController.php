@@ -89,15 +89,18 @@ class UserController extends Controller
     {
         if(Auth::check()) {
             $phone = preg_replace('/[^0-9]/', '', $request->get('phone'));
+            $random = substr(str_shuffle('0123456789'), 0, 5);
+
             $LOGIN ="black656";
             $PASSWORD = "pioner1468006";
             //https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1
             $client = new \GuzzleHttp\Client();
-            $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
-            //$url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes='.urlencode('code').'&call=1&fmt=3';
+            //$url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
+            $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=' .$random . '&call=1&fmt=3';
+
             $response = $client->request('POST', $url);
             $result = $response->getBody();
-            return $result;
+            return $random;
         }
 
     }

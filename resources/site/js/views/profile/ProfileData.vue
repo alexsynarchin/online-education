@@ -294,9 +294,10 @@
                         .then((response) => {
                             console.log(response.data);
                             this.countDown = 60;
-                            if(response.data.code){
+                           /* if(response.data.code){
                                 this.check_code = response.data.code;
-                            }
+                            } */
+                            this.check_code = response.data;
                             console.log(this.check_code);
                             this.countDownTimer();
                         })
