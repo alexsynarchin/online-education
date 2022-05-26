@@ -135,7 +135,7 @@
                     <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">Телефон:</span>
                         <div class="d-flex align-items-center" style="margin-bottom: 22px" v-if="profileEdit">
-                            <el-form-item prop="email"  style="margin-bottom: 0">
+                            <el-form-item   style="margin-bottom: 0" :error="errors.get('phone')">
                                 <el-input
                                     v-mask="'+7(###)-##-##-###'"
                                     :placeholder="'+7(999)-99-99-999'"
@@ -184,8 +184,15 @@
                 <el-form-item label="Код подтверждения" prop="code" style="flex:1" :error="errors.get('code')">
                     <el-input style="" v-model="phoneConfirmationForm.code"></el-input>
                 </el-form-item>
-                <el-button type="primary" @click.prevent="sendConfirmPhoneCode">Выслать код</el-button>
+                <el-button type="primary" @click.prevent="sendConfirmPhoneCode(0)">Выслать код</el-button>
             </el-form>
+            <el-alert
+                class="mb-3"
+                v-if="errors.has('phone')"
+                type="error"
+                :closable="false"
+                :title="errors.get('phone')"
+            ></el-alert>
             <el-alert
                 v-if="countDown > 0"
                 :closable="false"
@@ -193,8 +200,18 @@
                 style="word-break: break-word;"
                 :title="'Вы можете отправить код повторно через ' +  countDown + ' сек.' "
                 type="warning"></el-alert>
+            <el-alert
+                v-if="check_code"
+                class="mb-3"
+                title="Если вам не пришел входящий звонок по истечению 1 минуты, вы сможете запросить звонок с озвучиванием кода роботом при звонке"
+                type="warning"
+                :closable="false"
+                center
+                show-icon>
+            </el-alert>
+            <el-button class="mb-3"  v-if="check_code && countDown === 0" type="primary" @click.prevent="sendConfirmPhoneCode(1)">Выслать код с озвучиванием роботом</el-button>
             <div class="text-center">
-                <el-button type="primary" @click.prevent="confirmPhoneCode(check_code)">
+                <el-button type="success" @click.prevent="confirmPhoneCode(check_code)">
                     Подтвердить
                 </el-button>
             </div>
@@ -288,23 +305,24 @@
             },
         },
         methods: {
-            sendConfirmPhoneCode() {
+            sendConfirmPhoneCode(voice) {
                 if(this.countDown === 0) {
-                    axios.post('/api/profile/user/phone-confirmation', {phone:this.formData.phone})
+                    axios.post('/api/profile/user/phone-confirmation', {phone:this.formData.phone, voice:voice, code:this.check_code})
                         .then((response) => {
                             console.log(response.data);
                             this.countDown = 60;
-                           /* if(response.data.code){
+                           if(response.data.code){
                                 this.check_code = response.data.code;
-                            } */
-                            this.check_code = response.data;
-                            console.log(this.check_code);
+                            }
                             this.countDownTimer();
+                        })
+                        .catch((error) => {
+                            this.errors.record(error.response.data.errors);
                         })
                 }
             },
             confirmPhoneCode(code) {
-                axios.post('/api/profile/user/phone-check-code', {check_code:code, code:this.phoneConfirmationForm.code})
+                axios.post('/api/profile/user/phone-check-code', {check_code:code, code:this.phoneConfirmationForm.code, phone:this.formData.phone})
                     .then((response) => {
                         this.formData.phone_confirmation = true;
                         this.phoneConfirmationModal = false;
@@ -388,12 +406,8 @@
                         });
                         this.profileEdit = false;
                     })
-                    .catch(function (error) {
-                        var errors = error.response;
-                        if(errors.statusText === 'Unprocessable Entity' || errors.status === 422){
-                            console.log(errors.data);
-                            var er_data =  errors.data.errors;
-                        }
+                    .catch((error) => {
+                        this.errors.record(error.response.data.errors);
                     });
             },
             cancelEdit() {

@@ -34,7 +34,17 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $user = User::findOrFail($id);
-        $user ->update($request->except('teacher_account', 'student_account', 'edu_institutions'));
+        $request->validate([
+            'phone' => 'unique:users,phone,' . $user -> id,
+        ], [
+            'phone.unique' => 'Данный номер телефона уже используется другим пользователем'
+        ]);
+
+        $user ->update($request->except('teacher_account', 'student_account', 'edu_institutions', 'phone'));
+        if($user->phone != $request->get('phone')) {
+            $user -> phone_confirmation = false;
+            $user->save();
+        }
         if($user->city()->exists()) {
             $city = $user->city()->first();
             $user -> city = $city->title;
@@ -88,19 +98,24 @@ class UserController extends Controller
     public function phoneConfirmation(Request $request)
     {
         if(Auth::check()) {
+            $request->validate([
+                'phone' => 'unique:users,phone,' . Auth::user() -> id,
+            ], [
+                'phone.unique' => 'Данный номер телефона уже используется другим пользователем'
+            ]);
             $phone = preg_replace('/[^0-9]/', '', $request->get('phone'));
-            $random = substr(str_shuffle('0123456789'), 0, 5);
-
             $LOGIN ="black656";
             $PASSWORD = "pioner1468006";
             //https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1
             $client = new \GuzzleHttp\Client();
-            //$url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
-            $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=' .$random . '&call=1&fmt=3';
-
+            if($request->get('voice') === 1) {
+                $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=' . $request->get('code'). '&call=1&fmt=3';
+            } else {
+                $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
+            }
             $response = $client->request('POST', $url);
             $result = $response->getBody();
-            return $random;
+            return $result;
         }
 
     }
@@ -121,6 +136,7 @@ class UserController extends Controller
         ]);
         $user = Auth::user();
         $user->phone_confirmation = true;
+        $user -> phone = $request->get('phone');
         $user->save();
         return 'success';
     }
