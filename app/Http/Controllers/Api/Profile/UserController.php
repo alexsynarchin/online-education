@@ -42,6 +42,7 @@ class UserController extends Controller
 
         $user ->update($request->except('teacher_account', 'student_account', 'edu_institutions', 'phone'));
         if($user->phone != $request->get('phone')) {
+            $user->phone = $request->get('phone');
             $user -> phone_confirmation = false;
             $user->save();
         }
