@@ -15,7 +15,7 @@
             >
             </el-alert>
             <el-form-item  prop="price" label="Стоимость, руб" style="margin-bottom: 0; margin-right: 2rem" class="label-height-0">
-                <el-input-number v-model="lesson.price" :step="50" :min="50"  step-strictly></el-input-number>
+                <el-input-number v-model="lesson.price" :step="5" :min="5"  step-strictly></el-input-number>
             </el-form-item>
 
 
