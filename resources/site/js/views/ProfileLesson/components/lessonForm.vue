@@ -1,5 +1,6 @@
 <template>
     <el-form :model="lesson" ref="lesson" :rules="rules" label-position="top">
+
         <el-form-item label="Название урока" prop="title">
             <el-input v-model="lesson.title"></el-input>
         </el-form-item>
@@ -15,12 +16,12 @@
             >
             </el-alert>
             <el-form-item  prop="price" label="Стоимость, руб" style="margin-bottom: 0; margin-right: 2rem" class="label-height-0">
-                <el-input-number v-model="lesson.price" :step="5" :min="5"  step-strictly></el-input-number>
+                <el-input-number v-model="lesson.price" :step="5" :min="5"  ></el-input-number>
             </el-form-item>
 
 
             <el-form-item  prop="time" label="Время прохождения, мин" style="margin-bottom: 0; margin-right: 0.45rem; margin-left: auto" class="label-height-0">
-                <el-input-number v-model="lesson.time" :step="5" :min="0"  step-strictly></el-input-number>
+                <el-input-number v-model="lesson.time" :step="5" :min="0"  ></el-input-number>
             </el-form-item>
 
         </el-row>
