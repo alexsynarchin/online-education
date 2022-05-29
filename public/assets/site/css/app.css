@@ -12150,6 +12150,20 @@ a {
   min-height: 500px;
 }
 
+.restore-pass-link {
+  font-weight: bold;
+  color: #3490dc;
+  text-decoration: none;
+}
+.restore-pass-link:hover {
+  text-decoration: none;
+  color: #3490dc;
+}
+.restore-pass-link__wrap {
+  margin-top: 20px;
+  text-align: right;
+}
+
 .form-checkbox-conf {
   position: relative;
   font-weight: 400;

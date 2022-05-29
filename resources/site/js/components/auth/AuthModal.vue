@@ -6,6 +6,11 @@
         <tabs>
             <tab name="Вход" :selected="true">
                 <login :url="url"></login>
+                <div class="restore-pass-link__wrap">
+                    <button  class="btn btn-link restore-pass-link" @click.prevent="restorePass">
+                        Забыли пароль?
+                    </button>
+                </div>
             </tab>
             <tab name="Регистрация">
                 <register :url="url" @setProfileType="setProfileType"></register>
@@ -55,10 +60,15 @@ export default {
         setProfileType(profile_type) {
             this.profile_type= profile_type;
             console.log(this.profile_type);
-        }
+        },
+        restorePass() {
+            this.closeModal();
+            EventBus.$emit('show-restore-modal')
+        },
     },
     created() {
-        EventBus.$on('show-auth-modal', this.show)
+        EventBus.$on('show-auth-modal', this.show);
+        EventBus.$on('close-auth-modal', this.closeModal);
     }
 }
 </script>

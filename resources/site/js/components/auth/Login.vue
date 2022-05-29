@@ -25,9 +25,8 @@
             </div>
         </div>
         <button class="modal-form-btn" type="submit" @click.prevent="loginPost">Вход</button>
-        <a href="">
-            Забыли пароль?
-        </a>
+
+
     </form>
 
 </template>
@@ -55,6 +54,7 @@
 
         },
         methods:{
+
             loginPost(){
                 axios.post('/login', this.loginDetails)
                     .then((response) =>  {

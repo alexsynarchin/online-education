@@ -46,6 +46,8 @@ Route::post('/profile/user/{id}/update-email', [UserController::class, 'updateEm
 Route::post('/profile/user/{id}/update', [UserController::class, 'update']) -> name('user.update');
 Route::post('/profile/user/phone-confirmation', [UserController::class, 'phoneConfirmation']) -> name('user.phone-confirmation');
 Route::post('/profile/user/phone-check-code', [UserController::class, 'checkPhoneCode'])->name('user.check.phone-code');
+Route::post('/profile/user/email/verification-notification', [UserController::class, 'sendVerificationEmail'])
+    ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 //Header nav
 use App\Http\Controllers\Api\HeaderNavController;
@@ -164,7 +166,11 @@ use App\Http\Controllers\Api\Profile\EduInstitutionController;
 Route::get('/edu-institutions', [EduInstitutionController::class, 'index'])->name('edu-institutions');
 Route::post('/edu-institution/store', [EduInstitutionController::class,'store'])->name('edu-institution.store');
 
+use App\Http\Controllers\Api\Auth\RestorePasswordController;
 
+Route::post('/restore-password/{type}/send-code', [RestorePasswordController::class,'sendCode'])->name('restore-password.send');
+Route::post('/restore-password/{type}/confirm-code', [RestorePasswordController::class,'confirmCode'])->name('restore-password.confirm');
+Route::post('/restore-password/change', [RestorePasswordController::class,'changePassword'])->name('restore-password.change');
 
 
 

@@ -141,4 +141,10 @@ class UserController extends Controller
         $user->save();
         return 'success';
     }
+
+    public function sendVerificationEmail(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+        return 'success';
+    }
 }

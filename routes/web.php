@@ -78,6 +78,12 @@ Route::get('/faq', function(){
 Route::get('/how-it-works', function(){
     return view('site.faq');
 });
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 use App\Http\Controllers\Site\StaticPageController;
 Route::get('{path}', [StaticPageController::class, 'show'])->where('path', '[0-9A-Za-zА-Яа-я\/\.-]+') ->name('static-page');

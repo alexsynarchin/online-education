@@ -13,6 +13,7 @@ Vue.component('HeaderLogin',require('./components/header/HeaderLogInOrReg.vue').
 Vue.component('HeaderNavigation', require('./components/header/HeaderNavigation').default);
 Vue.component('ModalLogin',require('./components/auth/AuthModal.vue').default);
 Vue.component('HeaderMobile', require('./components/header/HeaderMobile').default);
+Vue.component('RestorePassword', require('./components/auth/RestoreModal').default);
 //Buying
 Vue.component('BuyBtn',require('./components/buying/button').default);
 Vue.component('BuyModal', require('./components/buying/BuyModal').default);

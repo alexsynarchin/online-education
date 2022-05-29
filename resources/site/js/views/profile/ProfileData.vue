@@ -125,11 +125,14 @@
                     </div>
                     <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">E-mail:</span>
-                        <el-form-item prop="email" v-if="profileEdit">
+                        <div class="d-flex align-items-center" style="margin-bottom: 22px" v-if="profileEdit">
+                        <el-form-item prop="email" style="margin-bottom: 0">
                             <el-input
                                 v-model="formData.email">
                             </el-input>
                         </el-form-item>
+                            <el-button v-if="!formData.email_verified_at" size="small" type="primary" style="margin-left: 10px" @click.prevent="confirmEmail">Подтвердить</el-button>
+                        </div>
                         <span class="profile-data-item__value" v-else>{{user.email}}</span>
                     </div>
                     <div class="profile-data-body__item profile-data-item">
@@ -209,7 +212,10 @@
                 center
                 show-icon>
             </el-alert>
-            <el-button class="mb-3"  v-if="check_code && countDown === 0" type="primary" @click.prevent="sendConfirmPhoneCode(1)">Выслать код с озвучиванием роботом</el-button>
+            <el-button class="mb-3"  v-if="check_code && countDown === 0"
+                       type="primary"
+                       @click.prevent="sendConfirmPhoneCode(1)">
+                Выслать код с озвучиванием роботом</el-button>
             <div class="text-center">
                 <el-button type="success" @click.prevent="confirmPhoneCode(check_code)">
                     Подтвердить
@@ -446,6 +452,12 @@
                 reader.readAsDataURL(file.raw);
                 this.formSubmit();
             },
+            confirmEmail() {
+                axios.post('/api/profile/user/email/verification-notification')
+                    .then((response)=> {
+                        console.log(response.data)
+                    })
+            }
         },
         async mounted() {
             this.getRegions();
