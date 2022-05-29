@@ -17,7 +17,7 @@
                                 {{errors.get('email')}}
                             </div>
                         </div>
-                        <el-button type="primary" size="medium" style="margin-left: 10px" @click.prevent="sendCode(activeName, 0)">
+                        <el-button type="primary" size="medium" style="margin-left: 10px" @click.prevent="sendCode(activeName)">
                             Отправить код
                         </el-button>
                     </div>
@@ -49,6 +49,12 @@
 
             </el-tab-pane>
             <el-tab-pane name="phone" label="По номеру телефона">
+                <el-alert
+                    :closable="false"
+                    class="mb-3"
+                    style="word-break: break-word;"
+                    title="Код - 6 последних цифр номер телефона с которого вам поступит входящий звонок"
+                    type="info"></el-alert>
                 <form role="form">
                     <div class="d-flex align-items-center modal-form-group">
                         <div style="flex: 1">
@@ -61,7 +67,7 @@
                                 {{errors.get('phone')}}
                             </div>
                         </div>
-                        <el-button type="primary" size="medium" style="margin-left: 10px" @click.prevent="sendCode(activeName, 0)">
+                        <el-button type="primary" size="medium" style="margin-left: 10px" @click.prevent="sendCode(activeName)">
                             Отправить код
                         </el-button>
                     </div>
@@ -72,19 +78,6 @@
                         style="word-break: break-word;"
                         :title="'Вы можете отправить код повторно через ' +  countDown + ' сек.' "
                         type="warning"></el-alert>
-                    <el-alert
-                        v-if="form.phoneCode"
-                        class="mb-3"
-                        title="Если вам не пришел входящий звонок по истечению 1 минуты, вы сможете запросить звонок с озвучиванием кода роботом при звонке"
-                        type="warning"
-                        :closable="false"
-                        center
-                        show-icon>
-                    </el-alert>
-                    <el-button class="mb-3"  v-if="form.phoneCode && countDown === 0"
-                               type="primary"
-                               @click.prevent="sendCode(activeName, 1)">
-                        Выслать код с озвучиванием роботом</el-button>
                     <div class="modal-form-group">
                         <input class="modal-form-group__input form-control"
                                type="text"
@@ -154,7 +147,6 @@
                     phone: "",
                     phoneCode: "",
                     emailCode: "",
-                    voice:0,
                 },
 
                 modalVisible:false,
@@ -204,8 +196,7 @@
                 console.log('open')
                 this.modalVisible = true;
             },
-            sendCode(type, voice) {
-                this.form.voice = voice;
+            sendCode(type) {
                axios.post('/api/restore-password/' + type +'/send-code', this.form)
                    .then((response) => {
                        if(this.activeName === 'phone') {

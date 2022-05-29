@@ -30,11 +30,7 @@ class RestorePasswordController extends Controller
             $PASSWORD = "pioner1468006";
             //https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=+79174939476&mes=code&call=1
             $client = new \GuzzleHttp\Client();
-            if($request->get('voice') === 1) {
-                $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=' . $request->get('phoneCode'). '&call=1&fmt=3';
-            } else {
-                $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
-            }
+            $url = 'https://smsc.ru/sys/send.php?login=black656&psw=pioner1468006&phones=' . $phone . '&mes=code&call=1&fmt=3';
             $response = $client->request('POST', $url);
             return [
                 'result' => json_decode($response->getBody()),
