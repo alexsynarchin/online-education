@@ -118,8 +118,8 @@
             </div>
             <div class="modal-form-group">
                 <input class="modal-form-group__input form-control" type="password"
-                       name="password"
-                       placeholder="Пароль"
+
+                       placeholder="Подтвердите пароль"
                        v-model="passForm.password_confirmation"
                 >
             </div>
