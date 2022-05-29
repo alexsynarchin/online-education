@@ -69,7 +69,7 @@
                     },
                     {
                         type:'city',
-                        label:'Выберите ваш город:',
+                        label:'Выберите город:',
                         options: [],
                         value:null,
                     },
