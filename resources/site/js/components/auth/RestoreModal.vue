@@ -7,6 +7,47 @@
         Восстановление пароля
     </h5>
         <el-tabs v-model="activeName" @tab-click="handleClick" v-if="!codeCheck">
+            <el-tab-pane name="email" label="По e-mail">
+                <form role="form">
+                    <div class="d-flex align-items-center modal-form-group">
+                        <div style="flex: 1">
+                            <input class="modal-form-group__input form-control" type="mail" name="email" placeholder="email"
+                                   v-model="form.email" :class="{'is-invalid' : errors.get('email')}">
+                            <div class="invalid-feedback">
+                                {{errors.get('email')}}
+                            </div>
+                        </div>
+                        <el-button type="primary" size="medium" style="margin-left: 10px" @click.prevent="sendCode(activeName, 0)">
+                            Отправить код
+                        </el-button>
+                    </div>
+                    <el-alert
+                        v-if="form.emailCode"
+                        class="mb-3"
+                        title="На ваш электронный адрес было отправлено письмо с кодом"
+                        type="warning"
+                        :closable="false"
+                        center
+                        show-icon>
+                    </el-alert>
+                    <div class="modal-form-group">
+                        <input class="modal-form-group__input form-control"
+                               type="text"
+                               placeholder="Введите код"
+                               v-model="form.check_code"
+                               :class="{'is-invalid' : errors.get('check_code')}">
+                        <div class="invalid-feedback">
+                            {{errors.get('check_code')}}
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <el-button type="success" @click.prevent="confirmCode">
+                            Подтвердить код
+                        </el-button>
+                    </div>
+                </form>
+
+            </el-tab-pane>
             <el-tab-pane name="phone" label="По номеру телефона">
                 <form role="form">
                     <div class="d-flex align-items-center modal-form-group">
@@ -61,47 +102,7 @@
                     </div>
                 </form>
             </el-tab-pane>
-            <el-tab-pane name="email" label="По e-mail">
-                <form role="form">
-                        <div class="d-flex align-items-center modal-form-group">
-                            <div style="flex: 1">
-                                <input class="modal-form-group__input form-control" type="mail" name="email" placeholder="email"
-                                       v-model="form.email" :class="{'is-invalid' : errors.get('email')}">
-                                <div class="invalid-feedback">
-                                    {{errors.get('email')}}
-                                </div>
-                            </div>
-                            <el-button type="primary" size="medium" style="margin-left: 10px" @click.prevent="sendCode(activeName, 0)">
-                                Отправить код
-                            </el-button>
-                        </div>
-                    <el-alert
-                        v-if="form.emailCode"
-                        class="mb-3"
-                        title="На ваш электронный адрес было отправлено письмо с кодом"
-                        type="warning"
-                        :closable="false"
-                        center
-                        show-icon>
-                    </el-alert>
-                    <div class="modal-form-group">
-                        <input class="modal-form-group__input form-control"
-                               type="text"
-                               placeholder="Введите код"
-                               v-model="form.check_code"
-                               :class="{'is-invalid' : errors.get('check_code')}">
-                        <div class="invalid-feedback">
-                            {{errors.get('check_code')}}
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <el-button type="success" @click.prevent="confirmCode">
-                            Подтвердить код
-                        </el-button>
-                    </div>
-                </form>
 
-            </el-tab-pane>
 
         </el-tabs>
         <form v-else>
@@ -141,7 +142,7 @@
                 user_id:null,
                 countDown:0,
                 codeCheck:false,
-                activeName: "phone",
+                activeName: "email",
                 passForm: {
                     password: "",
                     password_confirmation: "",
