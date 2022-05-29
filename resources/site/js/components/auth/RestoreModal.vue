@@ -170,6 +170,7 @@
                         this.form.emailCode = "";
                         this.form.phoneCode = "";
                         this.form.check_code = "";
+                        this.codeCheck = false;
                         this.errors.clear();
                         this.$notify({
                             title: 'Ваш пароль изменет',
