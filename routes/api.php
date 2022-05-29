@@ -165,6 +165,7 @@ Route::post('/city/store', [CityController::class, 'store'])->name('city.store')
 use App\Http\Controllers\Api\Profile\EduInstitutionController;
 Route::get('/edu-institutions', [EduInstitutionController::class, 'index'])->name('edu-institutions');
 Route::post('/edu-institution/store', [EduInstitutionController::class,'store'])->name('edu-institution.store');
+Route::post('/edu-institution/find-or-create-repetitor', [EduInstitutionController::class, 'findOrCreateRepetitor'])->name('edu-institution.find-or-create-repetitor');
 
 use App\Http\Controllers\Api\Auth\RestorePasswordController;
 

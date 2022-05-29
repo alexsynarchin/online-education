@@ -1,0 +1,33 @@
+.repititor-btn {
+    box-shadow: none;
+    font-size: 12px;
+    margin-left: 8px;
+    padding: 13px 18px;
+    background: rgba(106, 137, 204, 0.09);
+    border: 1px solid rgba(106, 137, 204, 0.4);
+    border-radius: 5px;
+    color: rgba(74, 105, 189, 0.68);
+    &:hover, &:focus {
+        background: rgba(106, 137, 204, 0.09);
+        border: 1px solid rgba(106, 137, 204, 0.4);
+        border-radius: 5px;
+        color: rgba(74, 105, 189, 0.68);
+        box-shadow: none;
+
+    }
+    &--selected {
+        border: 1px solid #6A89CC;
+        background: transparent;
+        color: #3A507E;
+        &:hover, &:focus {
+            border: 1px solid #6A89CC;
+            background: transparent;
+            color: #3A507E;
+        }
+
+    }
+    &__wrap{
+      font-size: 12px;
+        margin-left: 8px;
+    }
+}

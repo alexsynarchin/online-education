@@ -70,6 +70,7 @@
                     </div>
                 </el-form-item>
                 <el-form-item
+                    v-if="!workForm.repetitor"
                     class="profile-work-places__select-wrap"
                     :label="filters[0].label"
                     prop="edu_type"
@@ -86,8 +87,13 @@
                             </el-option>
                         </el-select>
                 </el-form-item>
-                <label class="el-form-item__label" style="display: block; float:none; text-align: left;">Учебное заведение</label>
+                <div class="d-flex align-items-center">
+                    <label class="el-form-item__label" style="display: block; float:none; text-align: left;">Выберите учебное учреждение или</label>
+                    <el-checkbox @change="selectRepetitor" style="margin-left: 10px" v-model="workForm.repetitor"> Репетитор</el-checkbox>
+                </div>
+
                 <el-form-item
+                    v-if="!workForm.repetitor"
                     class="profile-work-places__select-wrap"
                     prop="edu_institution"
                 >
@@ -163,7 +169,7 @@
                 filters: [
                     {
                         type:'edu_type',
-                        label:'Выберите тип учебного заведения:',
+                        label:'Выберите уровень учебного учреждения:',
                         options: [
                             {
                                 id:'preschool',
@@ -198,11 +204,13 @@
                         value:null,
                     },
                 ],
+                repetitor: {},
                 workForm : {
                     main:false,
                     edu_type: null,
                     city: null,
                     edu_institution: null,
+                    repetitor:false,
                 },
                 rules: {
                     edu_type: [
@@ -235,6 +243,26 @@
                 this.filters[1].options = [];
                 this.modalVisible = false;
             },
+            selectRepetitor() {
+                if(this.workForm.city && this.workForm.repetitor) {
+                    this.workItem.id = this.repetitor.id;
+                    this.workForm.edu_institution = this.repetitor.id;
+                    this.workItem.title = this.repetitor.title;
+                    this.workForm.edu_type = 'repetitor';
+                } else if(!this.workForm.city) {
+                    this.workForm.repetitor=false;
+                    this.$notify.error({
+                        title: 'Выберите город'
+                    });
+                }
+            },
+            findOrCreateRepetitor() {
+                axios.post('/api/edu-institution/find-or-create-repetitor', this.workForm)
+                    .then((response) => {
+                        this.repetitor = response.data;
+                    })
+
+            },
             addEduInstitution(data) {
                 this.getEduInstitutions(this.workForm.edu_type);
                 this.workItem.id = data.id;
@@ -251,6 +279,7 @@
                 if(this.workForm.edu_type) {
                     this.getEduInstitutions(this.workForm.edu_type);
                 }
+                this.findOrCreateRepetitor();
             },
             openCityModal() {
                 this.$refs.add_city.openModal(this.region_id);
@@ -295,9 +324,19 @@
             },
 
             openModal() {
-                if(this.edu_institutions.length < 4 ) {
+                const index = this.edu_institutions.findIndex(object => {
+                    return object.type === 'repetitor';
+                });
+                console.log(index)
+                if(this.edu_institutions.length < 4  && index ===-1) {
                     this.modalVisible = true;
-                } else {
+                }
+                else if(index !== -1) {
+                    this.$notify.error({
+                        title: 'Репититор не может добавлять другие места работы',
+                    });
+                }
+                else  {
                     this.$notify.error({
                         title: 'Количество мест работы не может быть больше 4',
                     });
@@ -349,12 +388,27 @@
                             });
                         }
                         this.workForm.main = false;
-                      this.edu_institutions.push({id:this.workItem.id, main:this.workItem.main, title:this.workItem.title});
+                        if(this.workForm.repetitor) {
+
+                        }
+
+                        this.edu_institutions.push({id:this.workItem.id, main:this.workItem.main, title:this.workItem.title});
+                        if(this.workForm.repetitor) {
+                            this.edu_institutions.forEach(item => {
+                                if(item.type !== 'repetitor') {
+                                    let index = this.edu_institutions.findIndex(object => {
+                                        return object.id === item.id;
+                                    });
+                                    this.edu_institutions.splice(index,1);
+                                }
+                            })
+                        }
                         this.workForm = {
                             main:false,
                             edu_type: null,
                             city: null,
                             edu_institution: null,
+                            repetitor: false,
                         }
                         this.workItem.id = null;
                         this.workItem.title = "";

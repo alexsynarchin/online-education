@@ -18,14 +18,25 @@
                     :value="item.id">
                 </el-option>
             </el-select>
+            <div v-if="index === 2" class="repititor-btn__wrap">
+                или
+                <button class="btn repititor-btn"
+                        :class="{'repititor-btn--selected':select_repetitor}"
+                        @click.prevent="selectRepititor"
+                >Показать репититоров</button>
+            </div>
         </div>
 
     </section>
 </template>
 <script>
+    import Button from "../../buying/button";
     export default {
+        components: {Button},
         data() {
             return {
+                select_repetitor:false,
+                repetitor: {},
                 filters: [
                     {
                         type:'edu_type',
@@ -72,7 +83,30 @@
             }
         },
         methods: {
+            selectRepititor() {
+                if(this.filters[1].value) {
+                    this.select_repetitor = !this.select_repetitor;
+                    if(this.select_repetitor) {
+                        this.filters[2].value = null;
+                        let filter = {
+                            type:'repetitor',
+                            city:this.filters[1].value,
+                            edu_institution:this.repetitor.id
+                        };
+                        this.searchTeacher(filter);
+                    }
+                }
+                else {
+                    this.$notify.error({
+                        title: 'Выберите город'
+                    });
+                }
+            },
             selectFilter(type, value) {
+                if(type==='city') {
+                    this.getRepetitor;
+                    this.select_repetitor = false;
+                }
                 if(type != 'edu_institution' && this.filters[0].value && this.filters[1].value) {
                     this.filters[2].value = null;
                     this.filters[2].options = [];
@@ -83,6 +117,7 @@
                         city:this.filters[1].value,
                         edu_institution:this.filters[2].value
                     };
+                    this.select_repetitor = false;
                     this.searchTeacher(filter);
                 }
             },
@@ -104,6 +139,12 @@
                     }
                 })
             }
+        },
+        getRepetitor() {
+            axios.post('/api/edu-institution/find-or-create-repetitor', {city:this.filters[0].value})
+                .then((response) => {
+                    this.repetitor = response.data;
+                })
         },
         mounted() {
             this.getFilterData('city');
