@@ -166,13 +166,13 @@
             })
         },
         selectEdu(index) {
-        if(index === 0) {
+        if(index === 1) {
           this.listHeight = 450
             this.getLevels(this.edu_types[index]['id']);
             this.getSubjects(this.edu_types[index]['id']);
         }
-        if(index ===1 || index === 2 || index === 3) {
-            this.getDirections(index+1);
+        if(index ===0 || index === 2 || index === 3) {
+            this.getDirections(this.edu_types[index]['id']);
         }
         this.Eduselected = true
         this.selectedEdu = index;

@@ -14,7 +14,7 @@ class HeaderNavController extends Controller
 {
     public function eduTypesList()
     {
-        $edu_types = CategoryType::where('type', 'edu_type') -> get();
+        $edu_types = CategoryType::where('type', 'edu_type') ->orderBy('menuindex')-> get();
         return $edu_types;
     }
     public function eduLevelsList(Request $request)
