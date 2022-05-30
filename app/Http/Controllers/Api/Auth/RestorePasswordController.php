@@ -104,7 +104,7 @@ class RestorePasswordController extends Controller
     public function changePassword(Request $request)
     {
         $request->validate([
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:3|confirmed',
             'password_confirmation' => 'required',
         ], [
             'password.required' => 'Введите пароль',
