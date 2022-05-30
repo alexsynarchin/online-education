@@ -90,7 +90,7 @@ class BuyingController extends Controller
             $order->type = $request->get('type');
             $order ->save();
             $mrh_login = "Educall";
-            $mrh_pass1 = "mgmwMI1r4tFoX7Amj4A6";
+            $mrh_pass1 = "Y4LNJev2oSank7b5fJA0";
             $inv_id = $order->id;
             $inv_desc = "Оплата за обучение";
             $out_summ = $order->sum;
