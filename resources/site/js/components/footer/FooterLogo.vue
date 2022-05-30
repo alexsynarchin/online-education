@@ -1,7 +1,7 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-2">
         <a class="b-footer__logo" :href="url">
-            <img class="b-footer__logo-img" src="/images/logo-2.svg" alt="logo">
+            <img class="b-footer__logo-img" src="/assets/site/images/logo.png?ver=1" alt="logo">
         </a>
     </div>
 </template>
@@ -11,7 +11,7 @@
         name: "footerLogo",
         data () {
             return {
-                url: 'google.com'
+                url: '/'
             }
         }
     }
@@ -37,8 +37,6 @@ rupture.scale-names =  'xs'     'sm'     'md'     'lg'      'xl'
         margin-bottom 30px
 
 .b-footer__logo-img
-    width: 125px
-    height: 90px
     display: block
 
 

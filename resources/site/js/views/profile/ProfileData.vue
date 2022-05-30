@@ -179,7 +179,7 @@
                 :closable="false"
                 class="mb-3"
                 style="word-break: break-word;"
-                title="Код - 6 последних цифр номер телефона с которого вам поступит входящий звонок"
+                title="Вам поступит звонок-сброс с уникального номера. Введите последние 6 цифр этого номера"
                 type="info"></el-alert>
             <el-form label-position="top"  :model="phoneConfirmationForm"
                      class="profile-data-form d-flex align-items-end"

@@ -109,9 +109,6 @@
                             <h3 class="blog-item__title">
                                 {{$article->title}}
                             </h3>
-                            <p>
-                                {!! $article->description  !!}
-                            </p>
                         </section>
                     </a>
                 </div>

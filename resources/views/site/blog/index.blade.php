@@ -25,9 +25,6 @@
                         <h3 class="blog-item__title">
                             {{$article->title}}
                         </h3>
-                        <div>
-                            {!! $article->description !!}
-                        </div>
                     </section>
                 </a>
             </div>
