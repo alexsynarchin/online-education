@@ -4,7 +4,7 @@
     }"
     >
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h3 class="home-slider__title">
                     {{slide.title}}
                 </h3>
