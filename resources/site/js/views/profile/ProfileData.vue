@@ -466,6 +466,7 @@
                 if(!this.formData.phone_confirmation) {
                     offset =100;
                 }
+                this.profileEdit = true;
                 this.$notify({
                     offset:offset,
                     duration:30000,

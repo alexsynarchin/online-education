@@ -22,8 +22,14 @@ class LoginController extends Controller
             } else {
                 if(!(Auth::user()->phone_confirmation)) {
                     return route('dashboard');
-                } else if(Auth::user()->profile_type === 'teacher') {
-                    return route('profile.course.index', ['type' => 'moderate']);
+                }
+                else if(Auth::user()->profile_type === 'teacher') {
+                    if(Auth::user()->eduInstitutions()->exists()) {
+                        return route('profile.course.index', ['type' => 'moderate']);
+                    } else {
+                        return route('dashboard');
+                    }
+
                 } else if (Auth::user()->profile_type === 'student') {
                     return route('profile.education');
                 }
