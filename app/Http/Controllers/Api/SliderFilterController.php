@@ -9,7 +9,12 @@ class SliderFilterController extends Controller
 {
     public function filter(Request $request)
     {
-        $url = route('catalog',['edu_slug' => $request->get('edu_type'), 'level' =>$request->get('edu_level')]);
+        if($request->has('ege')) {
+            $url = route('catalog',['edu_slug' => $request->get('edu_type'), 'ege' =>$request->get('ege')]);
+        } else {
+            $url = route('catalog',['edu_slug' => $request->get('edu_type'), 'level' =>$request->get('edu_level')]);
+        }
+
         return $url;
     }
 }

@@ -25,6 +25,7 @@
                     {{index + 1}}
                 </span>
             </li>
+            <li class="home-slider-levels__item" v-if="slide.id === 1" @click.prevent="selectEge">ЕГЭ</li>
         </ul>
 
     </div>
@@ -51,7 +52,13 @@
                 .then((response) => {
                     window.location.href = response.data;
                 })
-            }
+            },
+             selectEge() {
+                 axios.post('/api/slider/filter', {edu_type:this.slide.slug, ege: true})
+                     .then((response) => {
+                         window.location.href = response.data;
+                     })
+             }
         }
     }
 </script>
