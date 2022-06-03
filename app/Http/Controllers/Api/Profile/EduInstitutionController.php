@@ -36,7 +36,7 @@ class EduInstitutionController extends Controller
         $repetitor = EduInstitution::firstOrCreate([
             'city_id' =>$request->get('city'),
             'repititor'=> true,
-            'title' => 'Репититор',
+            'title' => 'Репетитор',
             'type' => $request->get('edu_type')
         ]);
         return $repetitor;
