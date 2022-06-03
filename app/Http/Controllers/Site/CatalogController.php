@@ -23,7 +23,9 @@ class CatalogController extends Controller
         if($request->has('levels')) {
             $courses = $courses -> whereIn('edu_level_id', $request->get('levels'));
         }
-
+        if($request->has('yege')) {
+            $courses = $courses -> where('yege', $request->get('yege'));
+        }
         if($request->has('subjects')) {
             $courses = $courses -> whereIn('subject_id', $request->get('subjects'));
         }
