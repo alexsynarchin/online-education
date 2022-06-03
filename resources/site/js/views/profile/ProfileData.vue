@@ -455,7 +455,12 @@
             confirmEmail() {
                 axios.post('/api/profile/user/email/verification-notification')
                     .then((response)=> {
-                        console.log(response.data)
+                        this.$notify({
+                            title: 'Письмо отправлено на вашу почту',
+                            message: 'На вашу почту придет письмо для верификации профиля',
+                            type: 'success',
+                            duration:30000,
+                        });
                     })
             }
         },
