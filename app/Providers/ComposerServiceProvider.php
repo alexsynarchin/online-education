@@ -50,8 +50,12 @@ class ComposerServiceProvider extends ServiceProvider
                 $direction = CategoryType::where('slug', $request->get('direction'))->firstOrFail(['id']);
                 $direction = $direction->id;
             }
+            $yege = [];
+            if($request->has('yege')) {
+                $yege = [1];
+            }
             $filter = [
-                'yege' => [],
+                'yege' =>  $yege,
                 'subjects' =>$subjects,
                 'levels' => $levels,
                 'edu_type' => $category_type -> id,

@@ -1,6 +1,5 @@
 <template>
     <section class="filter-sidebar">
-
         <sidebar-item
             v-if="selected.edu_type === 1 && loaded"
             :title="'Подготовка к Егэ'"
@@ -67,7 +66,7 @@
         props:{
             filterStart:{
                 type:Object,
-                default:{levels:[], subjects:[], direction:null, specialties:[], edu_type:null, themes:[], sort:{value:'', direction:''}},
+                default:{yege:[], levels:[], subjects:[], direction:null, specialties:[], edu_type:null, themes:[], sort:{value:'', direction:''}},
             }
         },
         data() {
