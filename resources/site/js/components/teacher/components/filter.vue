@@ -89,7 +89,8 @@
                     if(this.select_repetitor) {
                         this.filters[2].value = null;
                         let filter = {
-                            type:'repetitor',
+                            type:this.filters[0].value,
+                            repititor:true,
                             city:this.filters[1].value,
                             edu_institution:this.repetitor.id
                         };
@@ -103,8 +104,12 @@
                 }
             },
             selectFilter(type, value) {
+                if(type === 'edu_type' && this.filters[1].value) {
+                    this.getRepetitor();
+                    this.select_repetitor = false;
+                }
                 if(type==='city') {
-                    this.getRepetitor;
+                    this.getRepetitor();
                     this.select_repetitor = false;
                 }
                 if(type != 'edu_institution' && this.filters[0].value && this.filters[1].value) {
@@ -138,14 +143,19 @@
                         this.filters[2].options = response.data;
                     }
                 })
-            }
+            },
+            getRepetitor() {
+                console.log('test')
+                axios.post('/api/edu-institution/find-or-create-repetitor', {
+                    city:this.filters[1].value,
+                    repititor:true,
+                    edu_type:this.filters[0].value })
+                    .then((response) => {
+                        this.repetitor = response.data;
+                    })
+            },
         },
-        getRepetitor() {
-            axios.post('/api/edu-institution/find-or-create-repetitor', {city:this.filters[0].value})
-                .then((response) => {
-                    this.repetitor = response.data;
-                })
-        },
+
         mounted() {
             this.getFilterData('city');
         }

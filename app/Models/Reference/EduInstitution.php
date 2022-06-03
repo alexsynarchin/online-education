@@ -13,10 +13,13 @@ class EduInstitution extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'type', 'title', 'slug', 'city_id'
+        'type', 'title', 'slug', 'city_id', 'repititor'
     ];
     protected $appends = [
         'region'
+    ];
+    protected $casts = [
+        'repititor'  => 'boolean',
     ];
     public function getSlugOptions() : SlugOptions
     {

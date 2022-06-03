@@ -32,10 +32,12 @@ class EduInstitutionController extends Controller
 
     public function findOrCreateRepetitor(Request $request)
     {
+
         $repetitor = EduInstitution::firstOrCreate([
             'city_id' =>$request->get('city'),
-            'type' => 'repetitor',
-            'title' => 'Репититор'
+            'repititor'=> true,
+            'title' => 'Репититор',
+            'type' => $request->get('edu_type')
         ]);
         return $repetitor;
     }

@@ -70,7 +70,6 @@
                     </div>
                 </el-form-item>
                 <el-form-item
-                    v-if="!workForm.repetitor"
                     class="profile-work-places__select-wrap"
                     :label="filters[0].label"
                     prop="edu_type"
@@ -89,11 +88,11 @@
                 </el-form-item>
                 <div class="d-flex align-items-center">
                     <label class="el-form-item__label" style="display: block; float:none; text-align: left;">Выберите учебное учреждение или</label>
-                    <el-checkbox @change="selectRepetitor" style="margin-left: 10px" v-model="workForm.repetitor"> Репетитор</el-checkbox>
+                    <el-checkbox @change="selectRepetitor" style="margin-left: 10px" v-model="workForm.repititor"> Репетитор</el-checkbox>
                 </div>
 
                 <el-form-item
-                    v-if="!workForm.repetitor"
+                    v-if="!workForm.repititor"
                     class="profile-work-places__select-wrap"
                     prop="edu_institution"
                 >
@@ -210,7 +209,7 @@
                     edu_type: null,
                     city: null,
                     edu_institution: null,
-                    repetitor:false,
+                    repititor:false,
                 },
                 rules: {
                     edu_type: [
@@ -233,6 +232,7 @@
                     main:false,
                     edu_type: null,
                     city: null,
+                    repititor: false,
                     edu_institution: null,
                 }
                 this.workItem.id = null;
@@ -244,13 +244,13 @@
                 this.modalVisible = false;
             },
             selectRepetitor() {
-                if(this.workForm.city && this.workForm.repetitor) {
+                if(this.workForm.city && this.workForm.repititor) {
                     this.workItem.id = this.repetitor.id;
                     this.workForm.edu_institution = this.repetitor.id;
                     this.workItem.title = this.repetitor.title;
-                    this.workForm.edu_type = 'repetitor';
+                    this.workItem.repititor = this.workForm.repititor
                 } else if(!this.workForm.city) {
-                    this.workForm.repetitor=false;
+                    this.workForm.repititor=false;
                     this.$notify.error({
                         title: 'Выберите город'
                     });
@@ -279,7 +279,7 @@
                 if(this.workForm.edu_type) {
                     this.getEduInstitutions(this.workForm.edu_type);
                 }
-                this.findOrCreateRepetitor();
+
             },
             openCityModal() {
                 this.$refs.add_city.openModal(this.region_id);
@@ -325,7 +325,7 @@
 
             openModal() {
                 const index = this.edu_institutions.findIndex(object => {
-                    return object.type === 'repetitor';
+                    return object.repititor === true;
                 });
                 console.log(index)
                 if(this.edu_institutions.length < 4  && index ===-1) {
@@ -351,6 +351,7 @@
                 } else {
                     this.filters[1].options = [];
                 }
+                this.findOrCreateRepetitor();
             },
             selectEduInstitution() {
                 this.workItem.id = this.workForm.edu_institution;
@@ -388,14 +389,16 @@
                             });
                         }
                         this.workForm.main = false;
-                        if(this.workForm.repetitor) {
+                        this.edu_institutions.push({
+                            id:this.workItem.id,
+                            repititor:this.workForm.repititor,
+                            main:this.workItem.main,
+                            title:this.workItem.title});
 
-                        }
 
-                        this.edu_institutions.push({id:this.workItem.id, main:this.workItem.main, title:this.workItem.title});
-                        if(this.workForm.repetitor) {
+                        if(this.workForm.repititor) {
                             this.edu_institutions.forEach(item => {
-                                if(item.type !== 'repetitor') {
+                                if(!item.repititor ) {
                                     let index = this.edu_institutions.findIndex(object => {
                                         return object.id === item.id;
                                     });
@@ -408,7 +411,7 @@
                             edu_type: null,
                             city: null,
                             edu_institution: null,
-                            repetitor: false,
+                            repititor: false,
                         }
                         this.workItem.id = null;
                         this.workItem.title = "";
