@@ -78,6 +78,10 @@ Route::get('/faq', function(){
 Route::get('/how-it-works', function(){
     return view('site.faq');
 });
+
+Route::get('/contact', function(){
+    return view('site.contact.contact');
+});
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
