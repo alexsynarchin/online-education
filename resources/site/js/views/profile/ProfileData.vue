@@ -53,6 +53,10 @@
                         Данные пользователя
                     </div>
                     <div class="profile-data-body__item profile-data-item">
+                        <span class="profile-data-item__label">ID:</span>
+                        <span class="profile-data-item__value">{{user.id}}</span>
+                    </div>
+                    <div class="profile-data-body__item profile-data-item">
                         <span class="profile-data-item__label">Дата регистрации:</span>
                         <span class="profile-data-item__value">{{user.formatted_created_at}}</span>
                     </div>
