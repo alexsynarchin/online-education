@@ -23,7 +23,7 @@
                 <button class="btn repititor-btn"
                         :class="{'repititor-btn--selected':select_repetitor}"
                         @click.prevent="selectRepititor"
-                >Показать репититоров</button>
+                >Показать репетиторов</button>
             </div>
         </div>
 

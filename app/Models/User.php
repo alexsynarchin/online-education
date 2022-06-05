@@ -55,7 +55,7 @@ class User extends Authenticatable implements HasMedia
     ];
     protected $appends = [
         'profile_type', 'subjects', 'avatar', 'gender_string','formatted_birthday',
-        'formatted_created_at', 'main_work', 'region_id', 'region_title'
+        'formatted_created_at', 'main_work', 'region_id', 'region_title', 'repititor',
     ];
 
     /**
@@ -156,6 +156,16 @@ class User extends Authenticatable implements HasMedia
             return $subjects;
         }
     }
+
+    public function getRepititorAttribute()
+    {
+        $repititor = false;
+        if($this->eduInstitutions()->where('repititor', 1) ->exists()) {
+            $repititor = true;
+        }
+        return $repititor;
+    }
+
     public function studentAccount(){
         return $this -> hasOne(StudentAccount::class,'user_id');
     }

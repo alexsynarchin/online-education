@@ -35,6 +35,7 @@
             <el-checkbox v-model="lesson.type_audio">Аудио</el-checkbox>
             <el-checkbox v-model="lesson.type_video">Видео</el-checkbox>
         </el-form-item>
+        <a href="https://studio-obs.ru/skachat" class="btn button">Скачать бесплатно OBS для записи видео</a>
     </el-form>
 </template>
 <script>

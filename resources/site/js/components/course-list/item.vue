@@ -155,6 +155,14 @@
                 <span style="margin-left: 5px; margin-right: 5px" v-if="course.author.main_work">
                     ({{course.author.main_work}})
                 </span>
+                <span class="" v-if="course.author.repititor" style="margin-left: 25px">
+                    Репетитор
+                    <el-tooltip class="item" effect="dark" content="К репетиторам относятся, авторы собственных курсов, репетиторы, преподаватели частных школ и другие преподаватели не относящие к госучреждениям" placement="top-start">
+                    <svg class="course-item__author-icon">
+                        <use xlink:href="/assets/site/images/sprites.svg?ver=12#sprite-question-icon"></use>
+                    </svg>
+                </el-tooltip>
+                </span>
             </div>
         </div>
     </section>
