@@ -152,7 +152,7 @@
                         <use xlink:href="/assets/site/images/sprites.svg?ver=12#sprite-question-icon"></use>
                     </svg>
                 </el-tooltip>
-                <span style="margin-left: 5px; margin-right: 5px" v-if="course.author.main_work">
+                <span style="margin-left: 5px; margin-right: 5px" v-if="course.author.main_work && !course.author.repititor">
                     ({{course.author.main_work}})
                 </span>
                 <span class="" v-if="course.author.repititor" style="margin-left: 25px">
