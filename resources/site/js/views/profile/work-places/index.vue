@@ -88,7 +88,9 @@
                 </el-form-item>
                 <div class="d-flex align-items-center">
                     <label class="el-form-item__label" style="display: block; float:none; text-align: left;">Выберите учебное учреждение или</label>
+                    <el-tooltip class="item" effect="dark" content="К репетиторам относятся, авторы собственных курсов, репетиторы, преподаватели частных школ и другие преподаватели не относящие к госучреждениям" placement="top-start">
                     <el-checkbox @change="selectRepetitor" style="margin-left: 10px" v-model="workForm.repititor"> Репетитор</el-checkbox>
+                    </el-tooltip>
                 </div>
 
                 <el-form-item
