@@ -25,7 +25,6 @@ Route::post('/register', [RegisterController::class,'register'])->name('register
 use App\Http\Controllers\Auth\LoginController;
 Route::post('/login', [LoginController::class,'login']) -> name('login');
 Route::post('/logout', [LoginController::class, 'logout']) -> name('logout');
-
 use App\Http\Controllers\DashboardController;
 Route::get('/profile', [DashboardController::class, 'index']) -> name('dashboard');
 Route::get('/profile/my-courses/{type}', [DashboardController::class, 'index']) -> name('profile.course.index');
@@ -86,7 +85,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    return redirect('/dashboard');
+    return redirect('/profile');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 use App\Http\Controllers\Site\StaticPageController;
