@@ -51,8 +51,13 @@
             </fieldset>
             <button class="modal-form-btn" type="submit" @click.prevent="registerPost()">Зарегистрироваться</button>
             <div class="modal-form-polytic">
-                <span class="modal-form-polytic__text">Нажимая кнопку «Зарегистрироваться» вы принимаете условия</span>
-                <span class="modal-form-polytic__conf">Пользовательское соглашения</span>
+                <span class="modal-form-polytic__text" style="word-break: break-word">Нажимая кнопку «Зарегистрироваться» вы принимаете условия:</span>
+                <br>
+                <a target="_blank" href="/offert-po" class="modal-form-polytic__conf">Публичной оферты для пользователя</a>
+                <br>
+                <span class="modal-form-polytic__text" style="word-break: break-word">или </span>
+                <br>
+                <a target="_blank" href="/offert-pr" class="modal-form-polytic__conf">Публичной оферты для преподавателя</a>
             </div>
         </form>
 </template>
