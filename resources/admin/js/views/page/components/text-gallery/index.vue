@@ -44,8 +44,9 @@
         },
         methods: {
             deleteItem(index) {
-                this.localBlocks.splice(1, index);
+                this.localBlocks.splice(index, 1);
                 console.log(index)
+                console.log('test')
             },
             endSort(){
 

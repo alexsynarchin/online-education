@@ -17,7 +17,7 @@
 
             </el-form-item>
             <el-form-item>
-                <el-checkbox-group v-model="item.cols">
+                <el-checkbox-group v-model="item.cols" v-if="item.cols">
                     <el-checkbox :value="1" label="Картинки в одну колонку"></el-checkbox>
                     <el-checkbox :value="2" label="Option B"></el-checkbox>
                 </el-checkbox-group>
