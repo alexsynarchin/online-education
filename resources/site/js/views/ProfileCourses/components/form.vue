@@ -105,7 +105,7 @@
               </el-select>
           </el-form-item>
           <el-form-item class="col-md-12 col-xl-6 "
-                        v-if="themes_loaded && form.edu_type_id !== 4">
+                        v-if="themes_loaded">
                     <div>
                         <label style="text-align: left" class="el-form-item__label">Ключевые фразы темы</label>
                         <el-tooltip class="item" effect="dark"
