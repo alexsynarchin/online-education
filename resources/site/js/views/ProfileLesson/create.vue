@@ -19,7 +19,7 @@
         </ul>
         <div class="d-flex align-items-center justify-content-between">
             <h1 class="b-profile-user__title">Создание урока</h1>
-            <a href="https://studio-obs.ru/skachat" class="btn button">Скачать  OBS для записи видео</a>
+            <a href="/assets/site/files/OBS-Studio-26.1.1-Full-Installer-x64.exe" class="btn button" download>Скачать  OBS для записи видео</a>
         </div>
 
         <el-tabs v-model="activeTab"  class="edu-tabs">
