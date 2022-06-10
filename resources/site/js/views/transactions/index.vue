@@ -131,6 +131,12 @@ import TransactionStudent from './components/student';
                           type: 'error'
                       });
                   }
+                  else if(this.user.has_wait_withdraw) {
+                     this.$notify({
+                         title: 'Дождитесь подтверждения предыдущего вывода средств',
+                         type: 'error'
+                     });
+                 }
                  else if(this.withdrawSum > 0){
                      axios.post('/api/profile/withdraw',
                          {user_id:this.user.id,

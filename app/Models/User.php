@@ -55,7 +55,7 @@ class User extends Authenticatable implements HasMedia
     ];
     protected $appends = [
         'profile_type', 'subjects', 'avatar', 'gender_string','formatted_birthday',
-        'formatted_created_at', 'main_work', 'region_id', 'region_title', 'repititor',
+        'formatted_created_at', 'main_work', 'region_id', 'region_title', 'repititor', 'has_wait_withdraw'
     ];
 
     /**
@@ -165,7 +165,14 @@ class User extends Authenticatable implements HasMedia
         }
         return $repititor;
     }
-
+    public function getHasWaitWithdrawAttribute()
+    {
+        $exists = false;
+        if($this->profile_type === 'teacher') {
+            $exists = Withdraw::where('teacher_id', $this->id) -> where('done', 0) -> exists();
+        }
+        return $exists;
+    }
     public function studentAccount(){
         return $this -> hasOne(StudentAccount::class,'user_id');
     }
