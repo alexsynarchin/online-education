@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,11 @@ class WithdrawController extends Controller
     {
         $moderator = \Auth::user();
         $withdraw = Withdraw::findOrFail($request->get('id'));
+        $teacher = User::findOrFail($withdraw->teacher_id);
+        $account = $teacher -> teacherAccount;
+        $account->balance = $account->balance - $withdraw-> balance;
+        $account-> promo_balance= $account->promo_balance - $withdraw->promo_balance;
+        $account->save();
         $withdraw->moderator_id = $moderator->id;
         $withdraw->done = 1;
         $withdraw->save();
