@@ -1,6 +1,6 @@
 <template>
     <section class="mb-4">
-        <h3 class="tarif-title">Все цифры указаны с учетом комиссии системы — 15%</h3>
+        <h3 class="tarif-title">Все цифры указаны с учетом комиссии системы — 25%</h3>
         <div class="b-table-transac">
             <div class="b-table-transac__head">
                 <div class="b-table-transac__head_item b-table-transac__head_item--count">

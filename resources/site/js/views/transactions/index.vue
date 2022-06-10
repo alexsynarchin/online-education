@@ -33,8 +33,26 @@
                         <span class="availibale-sum__cout"> {{Sum}} </span>
                         <span class="availibale-sum__rub">руб</span>
                     </div>
+                    <div class="availibale-sum" style="font-weight: 700">
+                        <span class="availibale-sum__text">Сумма с учетом комиссии:</span>
+                        <span class="availibale-sum__cout"> {{SumWithPercent}} </span>
+                        <span class="availibale-sum__rub">руб</span>
+                    </div>
                     <button class="form-pay__btn" @click.prevent="withdraw">Вывести</button>
                 </form>
+                <section class="withdraw-alert">
+                    <div class="d-flex">
+                        <i class="el-icon-info" style="color:#e44e36; font-size: 26px; margin-right: 10px"></i>
+                        <div>
+                            <p style="margin-bottom: 15px">
+                                Вы можете вывести бонусы в размере не более 30% от суммы денежного счета
+                            </p>
+                            <p style="font-weight: 700">
+                                Вывести бонусы можно только после подтверждения номера телефона
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="payment-types">
@@ -48,12 +66,9 @@
                             Вывод возможен только на карты Visa, MasterCard и МИР с 16-ти и 18-значным номером.
                         </p>
                         <p>
-                            Комиссия при выводе составляет:
+                            Комиссия сервиса составляет 25% на денежный и бонусный счет.
                         </p>
-                        <p>
-                            -- На карты РФ: 3%, но не менее 50 руб.;
-                        </p>
-                        <p> -- На карты мира: 4%, но не менее 300 руб.</p>
+                        <p>Снимается при выводе средств</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +92,9 @@ import TransactionStudent from './components/student';
             return {
                 user: {},
                 Sum: 0,
+                SumWithPercent:0,
                 withdrawSum:0,
+
             }
         },
          methods: {
@@ -86,19 +103,35 @@ import TransactionStudent from './components/student';
                      .then((response) => {
                          this.user = response.data;
                             if(this.user.profile_type === 'teacher') {
-                                this.Sum = parseInt(this.user.teacher_account.balance) + parseInt(this.user.teacher_account.promo_balance);
-
+                                this.Sum = parseInt(this.user.teacher_account.balance);
+                                let withdraw_promo = parseInt(this.user.teacher_account.promo_balance);
+                                let percent = (this.Sum / 100) * 30;
+                                if (withdraw_promo > percent) {
+                                    withdraw_promo = percent;
+                                }
+                                this.Sum = this.Sum + withdraw_promo;
+                                let comision = (this.Sum / 100) * 25;
+                                this.SumWithPercent = parseInt(this.Sum - comision);
+                                this.Sum = parseInt(this.Sum);
                             }
                      })
              },
 
               withdraw() {
-                 if(this.withdrawSum > this.Sum) {
+                 if(this.withdrawSum > this.SumWithPercent) {
                      this.$notify({
                          title: 'Выводимая сумма больше доступной для вывода',
                          type: 'error'
                      });
-                 } else {
+
+                 }
+                  else if(!this.user.phone_confirmation) {
+                      this.$notify({
+                          title: 'Подтвердите номер телефона',
+                          type: 'error'
+                      });
+                  }
+                 else if(this.withdrawSum > 0){
                      axios.post('/api/profile/withdraw',
                          {user_id:this.user.id,
                              sum:this.Sum,

@@ -14437,6 +14437,17 @@ a {
   font-size: 15px;
 }
 
+.withdraw-alert {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  background-color: #f0f3fc;
+  border-radius: 5px;
+  border: 1px solid #e2e2ea;
+  padding: 25px;
+  color: #777e88;
+  font-size: 14px;
+}
+
 .rating-list {
   list-style-type: none;
   margin-left: 0;
