@@ -93,6 +93,7 @@ import TransactionStudent from './components/student';
             SumWithPercent:function (){
                 let sum = this.withdrawSum * 0.25;
                 sum = this.withdrawSum - sum;
+                sum =parseInt(sum);
                 return sum;
             }
         },
