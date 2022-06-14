@@ -28,16 +28,17 @@
                         <label for="#sum" class="form-pay-group__label">Сумма</label>
                         <input v-model="withdrawSum" type="text" id="sum" class="form-pay-group__input" placeholder="">
                     </fieldset>
-                    <div class="availibale-sum">
+                    <div class="availibale-sum" >
+                        <span class="availibale-sum__text">Сумма на ваш счет с учетом комиссии:</span>
+                        <span class="availibale-sum__cout"> {{SumWithPercent}} </span>
+                        <span class="availibale-sum__rub">руб</span>
+                    </div>
+                    <div class="availibale-sum" style="font-weight: 700">
                         <span class="availibale-sum__text">Доступно к выводу:</span>
                         <span class="availibale-sum__cout"> {{Sum}} </span>
                         <span class="availibale-sum__rub">руб</span>
                     </div>
-                    <div class="availibale-sum" style="font-weight: 700">
-                        <span class="availibale-sum__text">Сумма с учетом комиссии:</span>
-                        <span class="availibale-sum__cout"> {{SumWithPercent}} </span>
-                        <span class="availibale-sum__rub">руб</span>
-                    </div>
+
                     <button class="form-pay__btn" @click.prevent="withdraw">Вывести</button>
                 </form>
                 <section class="withdraw-alert">
@@ -45,7 +46,7 @@
                         <i class="el-icon-info" style="color:#e44e36; font-size: 26px; margin-right: 10px"></i>
                         <div>
                             <p style="margin-bottom: 15px">
-                                Вы можете вывести бонусы в размере не более 30% от суммы денежного счета
+                                Вы можете вывести бонусы в размере не более 25% от суммы денежного счета
                             </p>
                             <p style="font-weight: 700">
                                 Вывести бонусы можно только после подтверждения номера телефона
@@ -88,11 +89,17 @@ import TransactionStudent from './components/student';
     components: {
         transactionTeacher, TransactionStudent,
     },
+        computed: {
+            SumWithPercent:function (){
+                let sum = this.withdrawSum * 0.25;
+                sum = this.withdrawSum - sum;
+                return sum;
+            }
+        },
         data() {
             return {
                 user: {},
                 Sum: 0,
-                SumWithPercent:0,
                 withdrawSum:0,
 
             }
@@ -105,20 +112,18 @@ import TransactionStudent from './components/student';
                             if(this.user.profile_type === 'teacher') {
                                 this.Sum = parseInt(this.user.teacher_account.balance);
                                 let withdraw_promo = parseInt(this.user.teacher_account.promo_balance);
-                                let percent = (this.Sum / 100) * 30;
+                                let percent = (this.Sum / 100) * 25;
                                 if (withdraw_promo > percent) {
                                     withdraw_promo = percent;
                                 }
                                 this.Sum = this.Sum + withdraw_promo;
-                                let comision = (this.Sum / 100) * 25;
-                                this.SumWithPercent = parseInt(this.Sum - comision);
                                 this.Sum = parseInt(this.Sum);
                             }
                      })
              },
 
               withdraw() {
-                 if(this.withdrawSum > this.SumWithPercent) {
+                 if(this.withdrawSum > this.Sum) {
                      this.$notify({
                          title: 'Выводимая сумма больше доступной для вывода',
                          type: 'error'

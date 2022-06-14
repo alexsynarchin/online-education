@@ -26,11 +26,18 @@
                 </template>
             </el-table-column>
             <el-table-column
-                sortable
-                label="Сумма"
+
+                label="Сумма преподавателю"
                 prop="sum"
             >
 
+            </el-table-column>
+            <el-table-column
+                label="Комиссия"
+            >
+                <template slot-scope="scope">
+                    {{scope.row.promo_balance + scope.row.balance - scope.row.sum}}
+                </template>
             </el-table-column>
             <el-table-column
                 sortable
