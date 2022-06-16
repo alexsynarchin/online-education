@@ -38,6 +38,7 @@ class StoreLessonService
             'price_user' => $price,
             'time' => $request->get('time'),
             'user_id' => Auth::user()->id,
+            'vk_url' => $request->get('vk_url'),
             'status' => $request -> get('status'),
         ]);
 

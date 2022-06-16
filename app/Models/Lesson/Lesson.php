@@ -16,7 +16,7 @@ class Lesson extends Model
     use HasFactory,  HasSlug;
 
     protected $fillable = [ 'title', 'course_id','price', 'time','user_id','status',
-        'price_user','type_video','type_text','type_image', 'type_audio', 'slug'];
+        'price_user','type_video','type_text','type_image', 'type_audio', 'slug', 'vk_url'];
     protected $appends = ['user_buy'];
     protected $casts = [
         'type_text' => 'boolean',

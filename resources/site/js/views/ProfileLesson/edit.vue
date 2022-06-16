@@ -168,6 +168,7 @@
                     this.lesson = response.data.lesson;
                     this.getMessages();
                     this.contentData = {
+                        vk_url: response.data.lesson.vk_url,
                         text:response.data.lesson.content.text,
                         type_video: response.data.lesson.type_video,
                         type_text: response.data.lesson.type_text,

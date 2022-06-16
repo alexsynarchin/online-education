@@ -82,6 +82,7 @@ import { Errors } from  '@/common/js/services/errors.js';
                     type_image:false,
                     type_video:false,
                     type_audio:false,
+                    vk_url: ""
                 },
                 testData:{
                     repeat_period:0,

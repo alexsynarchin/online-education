@@ -25,6 +25,7 @@ class UpdateLessonService
             'title' => $description['title'],
             'price_user' => $description['price'],
             'price' => 0,
+            'vk_url' => $content['vk_url'],
             'type_audio' => $content['type_audio'],
             'type_text' => $content['type_text'],
             'type_video' => $content['type_video'],
