@@ -17,7 +17,7 @@
 
                 <form class="form-pay">
                     <fieldset class="form-pay-group">
-                        <label for="#number-cart" class="form-pay-group__label">Номер карты</label>
+                        <label for="#number-cart" class="form-pay-group__label">Номер банковской карты</label>
                         <input  v-model="user.teacher_account.card_number"
                                 type="text"
                                 id="number-cart"
@@ -29,7 +29,7 @@
                         <input v-model="withdrawSum" type="text" id="sum" class="form-pay-group__input" placeholder="">
                     </fieldset>
                     <div class="availibale-sum" >
-                        <span class="availibale-sum__text">Сумма на ваш счет с учетом комиссии:</span>
+                        <span class="availibale-sum__text">Переведем на карту с учетом комиссии:</span>
                         <span class="availibale-sum__cout"> {{SumWithPercent}} </span>
                         <span class="availibale-sum__rub">руб</span>
                     </div>
@@ -62,15 +62,20 @@
                         <img class="payment-types-head__item" src="/images/master-card.svg" alt="master-card">
                         <img class="payment-types-head__item" src="/images/mir.svg" alt="mir">
                     </div>
-                    <div class="payment-text">
-                        <p>
-                            Вывод возможен только на карты Visa, MasterCard и МИР с 16-ти и 18-значным номером.
-                        </p>
-                        <p>
-                            Комиссия сервиса составляет не более 25% на денежный и бонусный счет.
-                        </p>
-                        <p>Снимается при выводе средств</p>
-                    </div>
+                    <section class="withdraw-alert">
+                        <div class="d-flex">
+                            <i class="el-icon-info" style="color:#e44e36; font-size: 26px; margin-right: 10px"></i>
+                            <div>
+                                <p>
+                                    Вывод возможен только на карты Visa, MasterCard и МИР с 16-ти и 18-значным номером.
+                                </p>
+                                <p>
+                                    Комиссия сервиса составляет не более 25% на денежный и бонусный счет.
+                                </p>
+                                <p>Снимается при выводе средств</p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
