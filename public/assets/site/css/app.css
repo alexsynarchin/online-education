@@ -15345,14 +15345,15 @@ a {
   margin-left: -15px;
   margin-right: -15px;
 }
-.instruction-block__gal figure {
+.instruction-block__gal-image {
   margin-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.instruction-block__gal-image--50 {
   width: 50%;
   max-width: 50%;
   flex: 1 50%;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 20px;
 }
 .instruction-block__text {
   font-size: 16px;

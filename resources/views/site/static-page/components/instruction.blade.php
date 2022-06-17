@@ -21,9 +21,11 @@
             @if(count($item['images']))
                 <div class="instruction-block__gal">
                     @foreach($item['images'] as $image)
-                        <figure>
+
+                        <figure class="instruction-block__gal-image @if(count($item['images']) > 0) instruction-block__gal-image--50 @endif" >
                             <img src="{{$image['link']}}">
                         </figure>
+
 
                     @endforeach
                 </div>
