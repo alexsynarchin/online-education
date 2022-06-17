@@ -39,6 +39,7 @@ class StoreLessonService
             'time' => $request->get('time'),
             'user_id' => Auth::user()->id,
             'vk_url' => $request->get('vk_url'),
+            'youtube_url' => $request->get('youtube_url'),
             'status' => $request -> get('status'),
         ]);
 

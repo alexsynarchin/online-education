@@ -52,9 +52,12 @@
                         @if($lesson->user_buy)
                             <div style="flex:1">
                                 @if($lesson->vk_url)
-                                <iframe class="mt-3" src="{{$lesson->vk_url}}" width="100%" height="480"
-                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0" allowfullscreen
-                                ></iframe>
+                                    <iframe class="mt-3" src="{{$lesson->vk_url}}" width="100%" height="480"
+                                            allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0" allowfullscreen
+                                    ></iframe>
+                                @endif
+                                @if($lesson->youtube_urll)
+                                    <iframe width="100%" height="480" src="{{$lesson->youtube_url}}" frameborder="0" allowfullscreen></iframe>
                                 @endif
                                 <div class="mb-4">
                                     {!! $lesson -> content -> text !!}

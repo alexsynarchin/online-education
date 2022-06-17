@@ -188,6 +188,7 @@ import { Errors } from  '@/common/js/services/errors.js';
                     this.test = response.data.test;
                     this.contentData = {
                         vk_url: response.data.lesson.vk_url,
+                        youtube_url:response.data.lesson.youtube_url,
                         text:response.data.lesson.content.text,
                         type_video: response.data.lesson.type_video,
                         type_text: response.data.lesson.type_text,
