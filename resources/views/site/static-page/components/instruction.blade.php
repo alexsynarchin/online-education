@@ -22,7 +22,7 @@
                 <div class="instruction-block__gal">
                     @foreach($item['images'] as $image)
 
-                        <figure class="instruction-block__gal-image @if(count($item['images']) > 1) instruction-block__gal-image--50 @endif" >
+                        <figure class="instruction-block__gal-image" >
                             <img src="{{$image['link']}}">
                         </figure>
 
