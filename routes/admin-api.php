@@ -98,3 +98,6 @@ Route::post('/edu-institution/{id}/remove', [EduInstitutionController::class, 'r
 
 use App\Http\Controllers\Admin\Api\ChatController;
 Route::post('/edu-chat/read', [ChatController::class, 'readMessages'])->name('edu-chat.read');
+
+use App\Http\Controllers\Admin\Api\ModeratorController;
+Route::post('/create-moderator', [ModeratorController::class,'store'])->name('moderator.store');

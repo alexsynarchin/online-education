@@ -4,7 +4,7 @@
             <div class="sidebar-header">
                 <img src="/images/logo.svg">
             </div>
-            <sidebar-nav ></sidebar-nav>
+            <sidebar-nav :user="user"></sidebar-nav>
 
 
         </el-aside>

@@ -203,9 +203,10 @@ export default {
         newModerator(formName) {
             this.$refs[formName].validate((valid) => {
                 if(valid) {
-                    axios.post('/admin/api/create-moderator',this.moderatorForm)
+                    axios.post('/api/admin/create-moderator',this.moderatorForm)
                         .then((response) => {
                             this.moderatorModal = false;
+
                             this.$message({
                                 message: response.data,
                                 type: 'success'

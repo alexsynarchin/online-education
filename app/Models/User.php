@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use phpDocumentor\Reflection\Types\True_;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -55,7 +56,13 @@ class User extends Authenticatable implements HasMedia
     ];
     protected $appends = [
         'profile_type', 'subjects', 'avatar', 'gender_string','formatted_birthday',
-        'formatted_created_at', 'main_work', 'region_id', 'region_title', 'repititor', 'has_wait_withdraw'
+        'formatted_created_at',
+        'main_work',
+        'region_id',
+        'region_title',
+        'repititor',
+        'has_wait_withdraw',
+        'super_admin'
     ];
 
     /**
@@ -102,6 +109,15 @@ class User extends Authenticatable implements HasMedia
             $profile_type = 'student';
         }
         return $profile_type;
+    }
+
+    public function getSuperAdminAttribute()
+    {
+        if($this->hasRole('super-admin')) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function registerMediaCollections(): void
