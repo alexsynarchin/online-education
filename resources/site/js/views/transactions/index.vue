@@ -62,13 +62,14 @@
                         <img class="payment-types-head__item" src="/images/master-card.svg" alt="master-card">
                         <img class="payment-types-head__item" src="/images/mir.svg" alt="mir">
                     </div>
+                    <p class="payment-text">
+                        Вывод возможен только на карты Visa, MasterCard и МИР с 16-ти и 18-значным номером.
+                    </p>
                     <section class="withdraw-alert">
                         <div class="d-flex">
                             <i class="el-icon-info" style="color:#e44e36; font-size: 26px; margin-right: 10px"></i>
                             <div>
-                                <p>
-                                    Вывод возможен только на карты Visa, MasterCard и МИР с 16-ти и 18-значным номером.
-                                </p>
+
                                 <p>
                                     Комиссия сервиса составляет не более 25% на денежный и бонусный счет.
                                 </p>
