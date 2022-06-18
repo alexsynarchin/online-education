@@ -34,7 +34,7 @@
         </el-alert>
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Урок" name="description">
-                <description-form :lesson="lesson"></description-form>
+                <description-form  :edu_type_id="course.edu_type_id" :lesson="lesson"></description-form>
                 <content-form
                     :ContentData ="contentData"
                     :errors="errors"

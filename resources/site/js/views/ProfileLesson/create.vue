@@ -24,7 +24,7 @@
 
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Урок" name="description">
-                <lesson-form :lesson="lesson" :errors="errors"></lesson-form>
+                <lesson-form :edu_type_id="course.edu_type_id" :lesson="lesson" :errors="errors"></lesson-form>
                 <div class="text-center mb-3">
                     <el-button  type="primary" @click.prevent="store(0)"  style="text-transform: uppercase">
                         Сохранить как черновик

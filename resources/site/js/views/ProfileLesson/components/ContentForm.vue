@@ -2,7 +2,7 @@
     <fieldset class="create-lesson__content mt-4">
         <el-form :model="ContentData" ref="data" :rules="rules" label-position="top">
             <label for="text" class="el-form-item__label">Содержимое урока</label>
-            <div class="mb-2">
+            <div class="mb-3">
                 <el-button type="primary" @click="dialogVisible = true" v-if="!ContentData.vk_url && !ContentData.youtube_url">Добавить видео</el-button>
                 <el-button type="danger" @click="deleteVkVideo" v-if="ContentData.vk_url || ContentData.youtube_url">Удалить видео</el-button>
                 <div  v-if="ContentData.vk_url" class="mt-3">
@@ -65,10 +65,11 @@
 <script>
 import richtext from '@/common/js/components/richtext/index';
     export default {
-        props:['ContentData', 'errors'],
+        props:['ContentData',  'errors'],
         components:{
             richtext,
         },
+
         data(){
             return{
                 youtubeInput: "",

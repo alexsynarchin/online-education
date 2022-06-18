@@ -17,7 +17,7 @@
         </el-badge>
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Основная информация" name="description">
-                <description-form :lesson="lesson"></description-form>
+                <description-form :edu_type_id="course.edu_type_id" :lesson="lesson"></description-form>
                 <h3 class="mt-3 mb-3">
                     Тест к уроку
                 </h3>

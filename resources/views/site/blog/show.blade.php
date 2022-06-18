@@ -16,9 +16,13 @@
                 {{$page->title}}
             </li>
         </ul>
-        <h1 class="page-title">
-            {{$page->title}}
-        </h1>
-        {!! $page->text !!}
+        <section class="article">
+            <h1 class="page-title">
+                {{$page->title}}
+            </h1>
+            <div class="article__content">
+                {!! $page->text !!}
+            </div>
+        </section>
     </div>
 @endsection

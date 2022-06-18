@@ -4,14 +4,13 @@
             <el-form-item label="Название урока" prop="title">
                 <el-input v-model="lesson.title"></el-input>
             </el-form-item>
-            <el-row type="flex" class="align-items-start justify-content-between mb-3" :gutter="10">
+            <el-row type="flex" class=" justify-content-end mb-3" :gutter="10">
 
                 <el-alert
-                    style="margin-right: 0.5rem"
-                    title="Желаемая стоимость урока"
+                    style="margin-right: 0.5rem; width: auto;"
+                    :title="'Рекомендованная цена урока ' + recommended_price + ' руб.'"
                     type="info"
                     show-icon
-                    description="Будет принята во внимание при выставлении модератором"
                     :closable="false"
                 >
                 </el-alert>
@@ -20,13 +19,13 @@
                 </el-form-item>
 
 
-                <el-form-item  prop="time" label="Время прохождения, мин" style="margin-bottom: 0; margin-right: 0.45rem; margin-left: auto" class="label-height-0">
+                <el-form-item  prop="time" label="Время прохождения, мин" style="margin-bottom: 0; margin-right: 0.45rem;" class="label-height-0">
                     <el-input-number v-model="lesson.time" :step="5" :min="0"  ></el-input-number>
                 </el-form-item>
 
             </el-row>
             <label for="text" class="el-form-item__label">Содержимое урока</label>
-            <div class="mb-2">
+            <div class="mb-3">
                 <el-button type="primary" @click="dialogVisible = true" v-if="!lesson.vk_url && !lesson.youtube_url">Добавить видео</el-button>
                 <el-button type="danger" @click="deleteVkVideo" v-if="lesson.vk_url || lesson.youtube_url">Удалить видео</el-button>
                 <div  v-if="lesson.vk_url" class="mt-3">
@@ -98,7 +97,23 @@ export default {
         richtext,
         'editor': Editor,
     },
+    computed: {
+        recommended_price(){
+            let price = "";
+            if(this.edu_type_id===1) {
+                price = "20-50";
+            } else if(this.edu_type_id === 2) {
+                price = "30-70";
+            } else if(this.edu_type_id === 3) {
+                price = "40-80";
+            } else if(this.edu_type_id === 4) {
+                price = "40-80";
+            }
+            return price;
+        },
+    },
     props: {
+        edu_type_id: {},
         lesson: {
             type:Object,
             requires:true,
