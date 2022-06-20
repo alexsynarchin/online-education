@@ -4,6 +4,7 @@
             Написать преподавателю
         </el-button>
         <el-dialog
+            title="Чат с преподавателем"
             :visible.sync="dialogVisible"
             width="50%"
             :before-close="handleClose">
