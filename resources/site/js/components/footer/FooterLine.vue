@@ -6,13 +6,13 @@
                     <div class="b-footer-line">
                         <div class="b-footer-copyright">
                             <p class="b-footer-copyright__text">
-                                © 2018 ООО "Учебный центр" Все права защищены.
+                                © 2019  Автономная некоммерческая организация ОСВДО "ОБРАЗОВАТЕЛЬНЫЙ".
                             </p>
                         </div>
 
                         <div class="b-footer-development">
                             <span class="b-footer-development__first">
-                                Разработка сайта
+                                Создан совместно с
                             </span>
                             <a class="b-footer-development__link" href="http://pandaworks.ru/">
                                 <span class="b-footer-development__link_first">
