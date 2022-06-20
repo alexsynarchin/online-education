@@ -11,7 +11,8 @@
         </el-row>
         <data-tables :data="students"  :filters="filters">
             <el-table-column
-                type="index"
+                prop="id"
+                label="ID"
             >
             </el-table-column>
             <el-table-column

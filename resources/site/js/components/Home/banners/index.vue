@@ -31,7 +31,11 @@
             :visible.sync="dialogVisible"
             width="50%"
         >
-            <div v-html="currentText"></div>
+            <section>
+                <div style="word-break: normal;" v-html="currentText">
+                </div>
+            </section>
+
         </el-dialog>
     </section>
 </template>
