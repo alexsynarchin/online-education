@@ -22,12 +22,15 @@
             <div class="mb-3">
                 <el-button type="primary" @click="dialogVisible = true" v-if="!ContentData.vk_url && !ContentData.youtube_url">Добавить видео</el-button>
             </div>
-            <el-form-item :inline="true"  style="margin-left: 1rem; margin-bottom: 22px" prop="content_type" :error="errors.get('content_type')">
-                <el-checkbox v-model="ContentData.type_text">Текст</el-checkbox>
-                <el-checkbox v-model="ContentData.type_image">Изображение</el-checkbox>
-                <el-checkbox v-model="ContentData.type_audio">Аудио</el-checkbox>
-                <el-checkbox v-model="ContentData.type_video">Видео</el-checkbox>
-            </el-form-item>
+            <div role="alert" class="el-alert el-alert--info is-light"
+                 style="display:inline-block;width:auto;padding-top:22px;padding-bottom:22px;margin-bottom: 22px">
+                <el-form-item style="margin-bottom:0" :inline="true"   prop="content_type" :error="errors.get('content_type')">
+                    <el-checkbox v-model="ContentData.type_text">Текст</el-checkbox>
+                    <el-checkbox v-model="ContentData.type_image">Изображение</el-checkbox>
+                    <el-checkbox v-model="ContentData.type_audio">Аудио</el-checkbox>
+                    <el-checkbox v-model="ContentData.type_video">Видео</el-checkbox>
+                </el-form-item>
+            </div>
         </el-form>
         <el-dialog
             v-if="dialogVisible"
