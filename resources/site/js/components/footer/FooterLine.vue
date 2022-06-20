@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="b-footer-line">
                         <div class="b-footer-copyright">
-                            <p class="b-footer-copyright__text">
+                            <p class="b-footer-copyright__text" style="">
                                 © 2019  Автономная некоммерческая организация ОСВДО "ОБРАЗОВАТЕЛЬНЫЙ".
                             </p>
                         </div>
