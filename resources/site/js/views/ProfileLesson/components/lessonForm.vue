@@ -135,7 +135,7 @@ export default {
                 ],
 
                 time:[
-                { type:'number', min: 1, message: 'Время не млжет быть меньше 1 минуты', trigger: 'blur' }
+                { type:'number', min: 1, message: '', trigger: 'blur' }
                 ],
 
             },
