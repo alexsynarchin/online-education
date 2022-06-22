@@ -74,6 +74,7 @@ class StoreLessonService
         $content_path = 'users/user-' . Auth::user()->id .'/courses/course-'. $course_id . '/lesson-' . $lesson->id.'/content';
         $content = $content_service->store($request->get('text'), $directory, $content_path);
         $lesson -> content()->save($content);
+
         return $lesson;
     }
 }
