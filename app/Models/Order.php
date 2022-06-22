@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['student_id', 'status', 'lesson_id'];
+    protected $fillable = ['student_id', 'status', 'buying_id', 'money', 'bonus'];
 
     public function lessons()
     {
@@ -19,18 +19,38 @@ class Order extends Model
     }
 
     protected $appends = [
-        'formatted_created_at', 'name'
+        'formatted_created_at', 'name', 'student'
     ];
 
     public function getFormattedCreatedAtAttribute() {
         return isset($this->attributes['created_at']) ? Carbon::parse($this->attributes['created_at'])->format('d.m.Y') : null;
     }
+    public function teacher()
+    {
+        return $this->belongsTo(User::class, 'teacher_id');
+    }
+    public function studentAccount()
+    {
+        return $this->belongsTo(Account\StudentAccount::class, 'student_id');
+    }
+    public function getStudentAttribute()
+    {
+        return $this->studentAccount->user;
+    }
     public function getNameAttribute()
     {
         $name='';
         if($this->attributes['type'] === 'course') {
-            $course = Course::findOrFail($this->attributes['buying_id']);
-            $name = $course->title;
+            if(Course::where('id', $this->attributes['buying_id']) -> exists()) {
+                $course = Course::findOrFail($this->attributes['buying_id']);
+                $name = $course->title;
+            }
+
+        } else {
+            if(Lesson::where('id', $this->attributes['buying_id']) -> exists()) {
+                $lesson = Lesson::findOrFail($this->attributes['buying_id']);
+                $name = $lesson->title;
+            }
         }
         return $name;
     }

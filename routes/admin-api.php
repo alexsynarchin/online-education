@@ -101,3 +101,6 @@ Route::post('/edu-chat/read', [ChatController::class, 'readMessages'])->name('ed
 
 use App\Http\Controllers\Admin\Api\ModeratorController;
 Route::post('/create-moderator', [ModeratorController::class,'store'])->name('moderator.store');
+
+use App\Http\Controllers\Admin\Api\OrderController;
+Route::get('/orders', [OrderController::class, 'index'])->name('orders');

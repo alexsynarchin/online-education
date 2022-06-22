@@ -20,7 +20,7 @@ class BuyService
 
         if($request->get('type') === 'course') {
             $course = Course::findOrFail($request->get('id'));
-            $lessons = $course->lessons()->get();
+            $lessons = $course->lessons()->where('status', 2)->get();
             foreach ($lessons as $lesson) {
                 $this->lessonToStudent($lesson, $student->id);
             }

@@ -68,6 +68,12 @@ export default {
                     check: this.user.super_admin
                 },
                 {
+                    id:"/admin/orders",
+                    title:"Заказы",
+                    icon:"el-icon-coin",
+                    check: this.user.super_admin
+                },
+                {
                     id:"/admin/moderators",
                     title:"Модераторы",
                     icon:"el-icon-user",

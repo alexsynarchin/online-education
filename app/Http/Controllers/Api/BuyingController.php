@@ -77,23 +77,34 @@ class BuyingController extends Controller
     public function buy(Request $request, BuyService $buyService)
     {
         $url='';
+        $order = new Order();
+        $order->student_id = \Auth::user()->studentAccount->id;
+        $order->buying_id = $request->get('id');
+        $order->sum = $request->get('price');
+        $order->type = $request->get('type');
+        $order->bonus = (int) $request->get('price') - (int) $request->get('discount_price');
+        $order->money = $request->get('discount_price');
+        if($request->get('type') === 'course') {
+            $course = Course::findOrFail($request->get('id'));
+            $order -> teacher_id = $course->author_id;
+        } else {
+            $lesson = Lesson::findOrFail($request->get('id'));
+            $order -> teacher_id = $lesson->user_id;
+        }
+        $order->save();
         if($request->get('discount_price') === 0) {
+            $order -> status = 'success';
+            $order->save();
            $url = $buyService->finishBuy($request);
 
         } else {
-
-            $order = new Order();
             $order->status = 'wait';
-            $order->student_id = \Auth::user()->studentAccount->id;
-            $order->buying_id = $request->get('id');
-            $order->sum = $request->get('discount_price');
-            $order->type = $request->get('type');
             $order ->save();
             $mrh_login = "Educall";
             $mrh_pass1 = "Y4LNJev2oSank7b5fJA0";
             $inv_id = $order->id;
             $inv_desc = "Оплата за обучение";
-            $out_summ = $order->sum;
+            $out_summ = $order->money;
             $IsTest = 0;
             $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
             $url = 'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=' . $mrh_login . '&OutSum='.$out_summ .'&InvId='.$inv_id.'&Description='.$inv_desc.'&SignatureValue='.$crc.'&IsTest='.$IsTest;

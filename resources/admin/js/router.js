@@ -13,6 +13,7 @@ import Articles from "./views/articles";
 import StaticPages from './views/page';
 import Settings from "./views/settings";
 import Locations from "./views/locations/index";
+import Orders from "./views/orders/index";
 Vue.use(VueRouter);
 let routes = [
     { name: 'home', path: '/admin', component: AdminHome},
@@ -28,6 +29,7 @@ let routes = [
     { name: 'static-pages', path: '/admin/static-pages', component: StaticPages},
     { name: 'articles', path: '/admin/articles', component: Articles},
     { name: 'locations', path: '/admin/locations', component: Locations},
+    { name: 'orders', path: '/admin/orders', component: Orders},
 ];
 export default new VueRouter({
     mode: 'history',

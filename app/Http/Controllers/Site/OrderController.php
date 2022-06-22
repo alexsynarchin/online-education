@@ -17,9 +17,10 @@ class OrderController extends Controller
     public function success(Request $request)
     {
         $order = Order::findOrFail($request->get('InvId'));
+        $order -> status = 'success';
+        $order->save();
         if($order->type === 'course') {
             $course = Course::findOrFail($order->buying_id);
-            $price = $course-> lessons -> sum('price_user');;
             $lessons = $course->lessons()->get();
             foreach ($lessons as $lesson) {
                 $this->lessonToStudent($lesson, $order->student_id);
@@ -31,7 +32,6 @@ class OrderController extends Controller
             $teacher = User::findOrFail($course->author_id);
         } else {
             $lesson = Lesson::findOrFail($order->buying_id);
-            $price = $lesson->price? $lesson->price : $lesson->price_user;
             $this->lessonToStudent($lesson, $order->student_id);
             $teacher = User::findOrFail($lesson->user_id);
             $course = Course::findOrFail($lesson->course_id);
@@ -42,17 +42,12 @@ class OrderController extends Controller
             ]);
         }
         $teacher = $teacher -> teacherAccount;
-        $promo_balance = 0;
-        if($price - $order->sum != 0) {
-          $promo_balance = $price - $order->sum;
-          $price = $order->sum;
-        }
-        $teacher->balance = $teacher->balance + $price;
-        $teacher->promo_balance = $teacher->promo_balance + $promo_balance;
+        $teacher->balance = $teacher->balance + $order->money;
+        $teacher->promo_balance = $teacher->promo_balance + $order->bonus;
         $teacher->save();
         $teacher_id = $teacher -> id;
         $student = StudentAccount::findOrFail($order->student_id);
-            $student->promo_balance = $student -> promo_balance - $promo_balance;
+            $student->promo_balance = $student -> promo_balance - $order->bonus;
             $student -> save();
         if(!$student->teachers()->where('student_id', $student->id)->exists()) {
             $student->teachers()->attach($teacher_id);
