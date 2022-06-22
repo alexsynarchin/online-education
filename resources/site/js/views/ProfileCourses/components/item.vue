@@ -31,7 +31,7 @@
                     <h6 class="mb-0" style="margin-right: 20px">Список уроков:</h6>
                     <el-button icon="el-icon-plus" size="medium" type="success" @click="addLesson">Добавить урок</el-button>
                 </div>
-                <section v-if="course.lessons.length > 0">
+                <section v-if="course.lessons && course.lessons.length > 0">
                     <ul class="course-item-lessons" style="margin-top: 0">
                         <li class="course-item-lessons__item course-item-lessons__item--preview" v-for="(lesson, index) in course.lessons">
                             <a :href="'/profile/courses/' + course.slug + '/lesson/' + lesson.slug + '/edit'"
