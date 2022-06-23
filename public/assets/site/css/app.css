@@ -13349,6 +13349,10 @@ a {
   left: 16px;
 }
 
+.lesson-content .tox.tox-tinymce {
+  height: 1000px !important;
+}
+
 .filter-nav {
   flex: 1 75%;
   max-width: 75%;

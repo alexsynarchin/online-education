@@ -39,7 +39,7 @@
                     <iframe width="100%" height="480" :src="lesson.youtube_url" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
-            <el-form-item prop="text">
+            <el-form-item prop="text" class="lesson-content">
 
                 <richtext v-model="lesson.text"></richtext>
             </el-form-item>

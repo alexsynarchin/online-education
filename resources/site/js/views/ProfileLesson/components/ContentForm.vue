@@ -16,7 +16,7 @@
                 </div>
 
             </div>
-            <el-form-item prop="text" >
+            <el-form-item prop="text"  class="lesson-content">
                 <richtext v-model="ContentData.text"></richtext>
             </el-form-item>
             <div class="d-flex align-items-center justify-content-between">
