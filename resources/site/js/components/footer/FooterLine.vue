@@ -6,7 +6,7 @@
                     <div class="b-footer-line">
                         <div class="b-footer-copyright">
                             <p class="b-footer-copyright__text" style="">
-                                © 2019  Автономная некоммерческая организация ОСВДО "ОБРАЗОВАТЕЛЬНЫЙ".
+                                © 2019  АНО ОСВДО "ОБРАЗОВАТЕЛЬНЫЙ".
                             </p>
                         </div>
 
