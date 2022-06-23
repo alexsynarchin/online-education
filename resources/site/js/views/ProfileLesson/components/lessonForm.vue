@@ -1,5 +1,6 @@
 <template>
     <section>
+
         <el-form :model="lesson" ref="lesson" :rules="rules" label-position="top">
             <el-form-item label="Название урока" prop="title">
                 <el-input v-model="lesson.title"></el-input>
@@ -42,17 +43,27 @@
 
                 <richtext v-model="lesson.text"></richtext>
             </el-form-item>
-            <div class="mb-3">
+            <div class="d-flex align-items-center justify-content-between">
                 <el-button type="primary" @click="dialogVisible = true" v-if="!lesson.vk_url && !lesson.youtube_url">Добавить видео</el-button>
-            </div>
-            <div role="alert" class="el-alert el-alert--info is-light"
-                 style="display:inline-block;width:auto;padding-top:22px;padding-bottom:22px;margin-bottom: 22px">
-            <el-form-item style="margin-bottom:0" :inline="true"   prop="content_type" :error="errors.get('content_type')">
-                <el-checkbox v-model="lesson.type_text">Текст</el-checkbox>
-                <el-checkbox v-model="lesson.type_image">Изображение</el-checkbox>
-                <el-checkbox v-model="lesson.type_audio">Аудио</el-checkbox>
-                <el-checkbox v-model="lesson.type_video">Видео</el-checkbox>
-            </el-form-item>
+                <div role="alert" class="el-alert el-alert--info is-light"
+                     style="display:block;overflow: visible; position:relative;width:auto;padding-top:0;padding-bottom:0">
+                    <el-form-item style="margin-bottom:0" :inline="true">
+                        <el-checkbox v-model="lesson.type_text">Текст</el-checkbox>
+                        <el-checkbox v-model="lesson.type_image">Изображение</el-checkbox>
+                        <el-checkbox v-model="lesson.type_audio">Аудио</el-checkbox>
+                        <el-checkbox v-model="lesson.type_video">Видео</el-checkbox>
+                    </el-form-item>
+                    <div class="el-form-item__error" style="left: 16px" v-if="errors.has('content_type')" v-html="errors.get('content_type')"></div>
+
+                </div>
+                <div>
+                    <el-button  type="primary" @click.prevent="store(0)"  style="text-transform: uppercase">
+                        Сохранить как черновик
+                    </el-button>
+                    <el-button type="success" @click.prevent="store(1)"  style="text-transform: uppercase">
+                        Опубликовать
+                    </el-button>
+                </div>
             </div>
         </el-form>
 
@@ -145,6 +156,9 @@ export default {
         }
     },
     methods: {
+        store(status){
+            this.$emit('store', status);
+        },
         changeVideoType() {
             if(this.videoType === 'youtube') {
                 this.lesson.vk_url = "";

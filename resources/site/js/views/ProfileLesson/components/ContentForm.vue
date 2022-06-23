@@ -19,18 +19,26 @@
             <el-form-item prop="text" >
                 <richtext v-model="ContentData.text"></richtext>
             </el-form-item>
-            <div class="mb-3">
+            <div class="d-flex align-items-center justify-content-between">
                 <el-button type="primary" @click="dialogVisible = true" v-if="!ContentData.vk_url && !ContentData.youtube_url">Добавить видео</el-button>
+                <section style="position: relative">
+                    <div class="lesson-content-types">
+                        <el-form-item style="margin-bottom:0">
+                            <el-checkbox v-model="ContentData.type_text">Текст</el-checkbox>
+                            <el-checkbox v-model="ContentData.type_image">Изображение</el-checkbox>
+                            <el-checkbox v-model="ContentData.type_audio">Аудио</el-checkbox>
+                            <el-checkbox v-model="ContentData.type_video">Видео</el-checkbox>
+                        </el-form-item>
+                    </div>
+                    <div class="lesson-content-types__error"  v-if="errors.has('content_type')" v-html="errors.get('content_type')"></div>
+                </section>
+
+                <div>
+                    <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
+                    <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
+                </div>
             </div>
-            <div role="alert" class="el-alert el-alert--info is-light"
-                 style="display:inline-block;width:auto;padding-top:22px;padding-bottom:22px;margin-bottom: 22px">
-                <el-form-item style="margin-bottom:0" :inline="true"   prop="content_type" :error="errors.get('content_type')">
-                    <el-checkbox v-model="ContentData.type_text">Текст</el-checkbox>
-                    <el-checkbox v-model="ContentData.type_image">Изображение</el-checkbox>
-                    <el-checkbox v-model="ContentData.type_audio">Аудио</el-checkbox>
-                    <el-checkbox v-model="ContentData.type_video">Видео</el-checkbox>
-                </el-form-item>
-            </div>
+
         </el-form>
         <el-dialog
             v-if="dialogVisible"
@@ -87,6 +95,13 @@ import richtext from '@/common/js/components/richtext/index';
             }
         },
         methods:{
+            canselUpdate() {
+                this.$emit('canselUpdate')
+            },
+            updateLesson() {
+                this.$emit('updateLesson');
+            },
+
             changeVideoType() {
                 if(this.videoType === 'youtube') {
                     this.ContentData.vk_url = "";

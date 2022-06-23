@@ -42,7 +42,7 @@ class TeacherLessonController extends Controller
     public function update(Request $request)
     {
 
-        if(!$request->get('contentData')['type_text'] && !$request->get('contentData')['type_image'] && !$request->get('contentData')['type_audio'] && !$request->get('contentData')['type_audio']) {
+        if(!$request->get('contentData')['type_text'] && !$request->get('contentData')['type_image'] && !$request->get('contentData')['type_audio'] && !$request->get('contentData')['type_video']) {
             throw ValidationException::withMessages(['content_type' => 'Выберите тип содержимого урока']);
         }
         $updateService = new UpdateLessonService();

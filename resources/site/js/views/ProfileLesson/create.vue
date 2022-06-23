@@ -24,14 +24,9 @@
 
         <el-tabs v-model="activeTab"  class="edu-tabs">
             <el-tab-pane label="Урок" name="description">
-                <lesson-form :edu_type_id="course.edu_type_id" :lesson="lesson" :errors="errors"></lesson-form>
+                <lesson-form @store="store" :edu_type_id="course.edu_type_id" :lesson="lesson" :errors="errors"></lesson-form>
                 <div class="text-center mb-3">
-                    <el-button  type="primary" @click.prevent="store(0)"  style="text-transform: uppercase">
-                        Сохранить как черновик
-                    </el-button>
-                    <el-button type="success" @click.prevent="store(1)"  style="text-transform: uppercase">
-                        Опубликовать
-                    </el-button>
+
                 </div>
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">

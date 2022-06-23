@@ -13327,6 +13327,28 @@ a {
   color: #6A89CC;
 }
 
+.lesson-content-types {
+  background-color: #f4f4f5;
+  color: #909399;
+  padding: 0 16px;
+  margin: 0;
+  border-radius: 4px;
+  position: relative;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.lesson-content-types__error {
+  color: #F56C6C;
+  font-size: 12px;
+  line-height: 1;
+  padding-top: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+}
+
 .filter-nav {
   flex: 1 75%;
   max-width: 75%;

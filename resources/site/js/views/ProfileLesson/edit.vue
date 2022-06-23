@@ -38,9 +38,10 @@
                 <content-form
                     :ContentData ="contentData"
                     :errors="errors"
-                    v-if="loaded"></content-form>
-                <el-button style="margin-right: 2rem"  type="success" @click.prevent="updateLesson">Сохранить</el-button>
-                <el-button  type="info" @click.prevent="canselUpdate">Отменить</el-button>
+                    v-if="loaded"
+                    @cancelUpdate="canselUpdate"
+                    @updateLesson="updateLesson"
+                ></content-form>
             </el-tab-pane>
             <el-tab-pane label="Тест к уроку" name="test">
                 <test-form :data="test"  @update="updateTest"  v-if="loaded"></test-form>
