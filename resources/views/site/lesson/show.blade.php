@@ -56,7 +56,7 @@
                                             allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0" allowfullscreen
                                     ></iframe>
                                 @endif
-                                @if($lesson->youtube_urll)
+                                @if($lesson->youtube_url)
                                     <iframe width="100%" height="480" src="{{$lesson->youtube_url}}" frameborder="0" allowfullscreen></iframe>
                                 @endif
                                 <div class="mb-4">
