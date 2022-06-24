@@ -17,9 +17,10 @@ class StudentCourseController extends Controller
                 $query->where('student_id', $student_id);
             });
         })->with(['author', 'edu_type','lessons' => function($query) use ($student_id){
-            $query->whereHas('students', function ($query) use ($student_id){
-                $query->where('student_id', $student_id);
-            });
+            $query->where('status',2);
+           // $query->whereHas('students', function ($query) use ($student_id){
+             //   $query->where('student_id', $student_id);
+            //});
         }]) -> get();
         return $courses;
     }
