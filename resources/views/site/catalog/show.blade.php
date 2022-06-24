@@ -116,9 +116,10 @@
                                                     @endif
                                                 </ul>
                                             @endif
-                                            <span class="course-item-lessons__price">
+                                            <span class="course-item-lessons__price" v-if="{{json_encode(!$lesson->user_buy)}}">
                                                     {{$lesson->price_user}} ₽
                                             </span>
+                                            <el-button type="primary" size="small" v-else>Перейти</el-button>
                                         </a>
                                     </li>
                                 @endforeach
