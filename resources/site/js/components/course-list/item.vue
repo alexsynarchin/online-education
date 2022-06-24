@@ -62,9 +62,10 @@
                                     </el-tooltip>
                                 </li>
                             </ul>
-                            <span class="course-item-lessons__price">
+                            <span class="course-item-lessons__price" v-if="!lesson.user_buy">
                                 {{lesson.price_user}} ₽
                             </span>
+                            <el-button type="primary" size="small" v-else>Перейти</el-button>
                         </a>
                     </li>
                     <li class="course-item-lessons__item" v-for="(lesson, index) in course.lessons" v-if="!lessons_slice">
@@ -105,9 +106,10 @@
                                     </el-tooltip>
                                 </li>
                             </ul>
-                            <span class="course-item-lessons__price">
+                            <span class="course-item-lessons__price" v-if="!lesson.user_buy">
                                 {{lesson.price_user}} ₽
                             </span>
+                            <el-button type="primary" size="small" v-else>Перейти</el-button>
                         </a>
                     </li>
                 </ul>
