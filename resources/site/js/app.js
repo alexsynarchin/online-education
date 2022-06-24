@@ -44,6 +44,7 @@ Vue.component('Faq', require('./views/faq/index').default);
 Vue.component('SearchTeachers',require('./components/teacher/index').default);
 
 Vue.component('CourseList', require('./components/course-list/index').default);
+Vue.component('CourseItem',require('./components/course-list/item').default);
 
 //Lesson Student
 Vue.component('LessonStudent', require('./components/LessonStudent/index').default);
