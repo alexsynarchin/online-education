@@ -5,13 +5,13 @@
             <el-button type="success" icon="el-icon-plus" @click="moderatorModalOpen('create')">Добавить</el-button>
         </div>
         <el-row type="flex" class="mb-3">
-            <el-col :span="8">
-                <el-input
-                    v-model="filters[0].value"
-                    size="large"
-                    width="100%"
-                    placeholder="Поиск: Имя, Фамилия или Отчество"/>
-            </el-col>
+                <el-col :span="8">
+                    <el-input
+                        v-model="filters[0].value"
+                        size="large"
+                        width="100%"
+                        placeholder="Поиск: Имя, Фамилия или Отчество"/>
+                </el-col>
         </el-row>
         <data-tables :data="moderators"  :filters="filters">
             <el-table-column
