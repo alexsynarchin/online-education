@@ -3,6 +3,8 @@ import Vue from "vue";
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+import LarabergVue from 'laraberg-vue';
+Vue.use(LarabergVue)
 import lang from 'element-ui/lib/locale/lang/ru-RU';
 import locale from 'element-ui/lib/locale';
 locale.use(lang);

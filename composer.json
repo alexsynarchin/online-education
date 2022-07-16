@@ -17,7 +17,8 @@
         "socialiteproviders/vkontakte": "^4.2",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^5.4",
-        "spatie/laravel-sluggable": "^2.6"
+        "spatie/laravel-sluggable": "^2.6",
+        "van-ons/laraberg": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",

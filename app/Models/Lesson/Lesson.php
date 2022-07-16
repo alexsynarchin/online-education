@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use VanOns\Laraberg\Traits\RendersContent;
 
 class Lesson extends Model
 {
-    use HasFactory,  HasSlug;
+    use HasFactory,  HasSlug, RendersContent;
 
     protected $fillable = [ 'title', 'course_id','price', 'time','user_id','status',
         'price_user','type_video','type_text','type_image', 'type_audio', 'slug', 'vk_url', 'youtube_url'];
@@ -24,6 +25,7 @@ class Lesson extends Model
         'type_audio' => 'boolean',
         'type_image' => 'boolean',
     ];
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
